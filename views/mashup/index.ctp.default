@@ -1,0 +1,44 @@
+<div id="content">
+    <div class="post">
+        <div class="entry">
+<?php
+//echo '<pre>';
+
+if($newsType == 'googleSearch') {
+?>
+<ul>
+<br clear="all"/>
+<?php
+foreach($GoogleSearch as $google) {
+    echo '<li>';
+    echo '<span class="title"><label for><a href="'.$google['link'].'" target="_new">'.$google['title'].'</a></label></span><br/>'."\n";
+    echo '<span class="title_entry">'.$google['description'].'</span><br/>'."\n";
+    echo '</li>';
+}
+?>
+</ul>
+      </div><!-- end entry -->
+          </div>
+          </div>
+<?php
+}
+else {
+//print_r($TwitterSearch);
+        foreach($TwitterSearch->results as $res) {
+            //print_r($res);
+            echo '
+                <img src="'.$res['link']['image']->attributes()->href.'" alt="'.$res['author']['name'][0].' Avatar" />
+                <a href="'.$res['author']['uri'][0].'">'.$res['author']['name'][0].'</a>
+                <div class="what">'.$res['title'][0].'</div>
+                <div class="l"><span class="date"><a href="'.$res['link']['status']->attributes()->href.'" title="View original post">Original Post</a></span></div>
+            ';
+        }
+?>
+      </div><!-- end entry -->
+          </div>
+    <a href="<?php echo Router::url('/search/'.urlencode($keyword).'/'.($page-1)); ?>">Prev Page</a>
+    <a href="<?php echo Router::url('/search/'.urlencode($keyword).'/'.($page+1)); ?>">Next Page</a>
+          </div>
+<?php } ?>
+                  <!-- end #content -->
+
