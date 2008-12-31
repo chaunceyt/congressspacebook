@@ -5,7 +5,7 @@ class TwitterController extends AppController {
     var $name = 'Twitter';
     var $helpers = array('Html', 'Form');
     var $components = array('Zend', 'Mashup');
-    var $uses = array();
+    var $uses = array('Twitterfriend');
 
     function beforeFilter()
     {
@@ -78,6 +78,55 @@ class TwitterController extends AppController {
         $TwitterSearchRef = $this->Mashup->twitterSearch($keyword, 'refto');
         $twitter_url = 'http://twitter.com/'.$keyword;
         $google_social_map = $this->Mashup->googleSocialGraph($twitter_url);
+
+           $friends=0;
+           $friends1=0;
+           $friends2=0;
+           foreach($google_social_map as $gsm) {
+            if(isset($gsm['attributes']['url'])) {
+                if(preg_match('/http:\/\/twitter.com\/'.urlencode($keyword).'/is',$gsm['attributes']['url'])) {
+                    if(isset($gsm['nodes_referenced_by']) && sizeof($gsm['nodes_referenced']) > 0) {
+                        //print_r($gsm);
+                        foreach($gsm['nodes_referenced_by'] as $key => $type) {
+                            if($type['types'][0] == 'contact') {
+                                $friends1++;
+                                //echo $key . ' (' . $type['types'][0].') <br/>';
+                            }
+                        }
+
+                    }
+                    if(isset($gsm['nodes_referenced_by']) && sizeof($gsm['nodes_referenced']) > 0) {
+                        //print_r($gsm);
+                        foreach($gsm['nodes_referenced'] as $key => $type) {
+                            if($type['types'][0] == 'contact') {
+                                $friends2++;
+                                //echo $key . ' (' . $type['types'][0].') <br/>';
+                            }
+                        }
+
+                    }
+                }
+            }
+           }
+           $friends = $friends1 + $friends2;
+           if($friends > 0) {
+                $this->data['Twitterfriend']['twitter_friends'] = $friends;
+                $this->data['Twitterfriend']['username'] = $keyword;
+
+                            $this->Twitterfriend->create();
+                            if ($this->Twitterfriend->save($this->data)) {
+                                //it was saved
+                            } else {
+                                //error
+                                //$this->Session->setFlash(__('The Twitterfriend could not be saved. Please, try again.', true));
+                            }
+           }
+           else {
+                   //didn't find any friends...
+           }
+
+
+        
         $this->set('google_social', $google_social_map);
         $this->set('TwitterSearchFrom', $TwitterSearchFrom);
         $this->set('TwitterSearchTo', $TwitterSearchTo);

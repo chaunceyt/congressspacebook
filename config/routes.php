@@ -35,8 +35,8 @@
  */
 	
     Router::connect('/', array('controller' => 'mashup', 'action' => 'index'));
-    Router::connect('/people_who_have_the_most_twitter_friends', array('plugin' => 'twitterfriends', 'controller' => 'twitterfriends', 'action' => 'index'));
     Router::connect('/people_who_have_the_most_twitter_friends/add', array('plugin' => 'twitterfriends', 'controller' => 'twitterfriends', 'action' => 'add'));
+    Router::connect('/people_who_have_the_most_twitter_friends/*', array('plugin' => 'twitterfriends', 'controller' => 'twitterfriends', 'action' => 'index'));
     Router::connect('/users/', array('plugin' => 'users', 'controller' => 'users', 'action' => 'login'));
     Router::connect('/search/:keyword/:page', array('controller' => 'mashup', 'action' => 'index'));
 

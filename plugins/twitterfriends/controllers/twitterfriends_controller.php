@@ -14,6 +14,7 @@ class TwitterfriendsController extends AppController {
 	function index() {
 		$this->Twitterfriend->recursive = 0;
         $this->paginate['Twitterfriend'] = array(
+                'limit' => '10',
                 'order' => array('Twitterfriend.twitter_friends' => 'desc'));
 
 		$this->set('accounts', $this->paginate());
