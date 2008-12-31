@@ -545,6 +545,9 @@ class MashupComponent extends Object
                     "description" => $xml->document->item[$i]->excerpt
                     );
         }
+        if(!isset($arr)) {
+            $arr = array();
+        }
         return $arr;
     }
 

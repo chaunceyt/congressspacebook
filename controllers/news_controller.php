@@ -7,11 +7,19 @@ class NewsController extends AppController {
     var $components = array('Zend', 'Mashup');
     var $uses = array();
 
+    function beforeFilter()
+    {
+        $this->Auth->allowedActions = array('index');
+        parent::beforeFilter();
+    }
+
+
     function beforeRender()
     {
         $keyword = $this->params['keyword'];
         $this->set('keyword', $keyword);
     }
+
     function index()
     {
         $keyword = $this->params['keyword'];

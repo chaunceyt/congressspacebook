@@ -7,6 +7,12 @@ class TechnoratiController extends AppController {
     var $components = array('Zend', 'Mashup');
     var $uses = array();
 
+    function beforeFilter()
+    {
+        $this->Auth->allowedActions = array('index');
+        parent::beforeFilter();
+    }
+    
     function index()
     {
         $keyword = $this->params['keyword'];

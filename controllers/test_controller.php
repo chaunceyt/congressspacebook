@@ -4,9 +4,34 @@ class TestController extends AppController {
 
     var $name = 'Test';
     var $helpers = array('Html', 'Form');
-    var $components = array('Zend', 'Mashup');
+    //var $components = array('Auth', 'Users.Bakery');
+    //var $components = array('Auth', 'Users.Bakery');
     var $uses = array();
+    /*function beforeFilter()
+    {
+        $this->Auth->loginAction = '/users/login';
+        $this->Auth->logoutRedirect = '/';
 
+        $this->Auth->fields = array('username'=> 'username', 'password'=>'psword');
+        $this->Auth->loginError = 'Invalid e-mail/password combination.  Please try again.';
+        $this->Auth->allow('display');
+        $this->Auth->authorize = 'controller';
+        //$this->Auth->object = $this;
+        //$this->Auth->authenticate = $this;
+        
+        $realReferer = $this->referer(null, true);
+        $sessionReferer = $this->Session->read('referer');
+        if (!$sessionReferer) {
+            $this->Session->write('referer', $this->referer(null, true));
+            if (!$this->Auth->user()) {
+                $this->Auth->authError = __('Please login to continue', true);
+            }
+            $this->Auth->allowedActions('*');
+        }
+    }
+   function isAuthorized() {  
+        return true;  
+   }*/  
     function index()
     {
         $this->autoRender=false;

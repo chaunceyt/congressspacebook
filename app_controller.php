@@ -1,7 +1,42 @@
 <?php
-class AppController extends Controller {
+class AppController extends Controller 
+{
+    var $components = array('Auth', 'RequestHandler', 'Zend', 'Mashup');
+    var $helpers = array('Html', 'Form', 'Time', 'Javascript', 'Cache', 'Mashup');
+    //var $helpers = array('Html', 'Form', 'Mashup');
 
-    var $helpers = array('Html', 'Form', 'Mashup');
+    function beforeFilter()
+    {
+        $this->Auth->loginAction = '/users/login';
+        $this->Auth->logoutRedirect = '/';
+
+        $this->Auth->fields = array('username'=> 'username', 'password'=>'psword');
+        $this->Auth->loginError = 'Invalid e-mail/password combination.  Please try again.';
+        $this->Auth->allow('display');
+        $this->Auth->authorize = 'controller';
+        //$this->Auth->object = $this;
+        //$this->Auth->authenticate = $this;
+
+        $realReferer = $this->referer(null, true);
+        $sessionReferer = $this->Session->read('referer');
+        if (!$sessionReferer) {
+            $this->Session->write('referer', $this->referer(null, true));
+            if (!$this->Auth->user()) {
+                $this->Auth->authError = __('Please login to continue', true);
+            }
+            //$this->Auth->allowedActions('*');
+        }
+
+        if($this->Auth->user()) {
+            $this->{$this->modelClass}->currentUserId = $this->Auth->user('id');
+        }
+    }
+
+   function isAuthorized() {
+        return true;
+   }
+
+
     function beforeRender()
     {
         //fixme
@@ -15,7 +50,10 @@ class AppController extends Controller {
                     $keyword = $this->data['Search']['keyword'];
                 }
                 else {
-                    $keyword = $this->data['Search']['url'];
+                    //fixme: generating a notice. @ fornow..
+                    //cthorn - thinking about something else and noticed the warning
+                    //12302008
+                    $keyword = @$this->data['Search']['url'];
                 }
                 $this->set('keyword', $keyword);
             }
