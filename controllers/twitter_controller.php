@@ -9,7 +9,7 @@ class TwitterController extends AppController {
 
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index');
+        $this->Auth->allowedActions = array('index', 'user');
         parent::beforeFilter();
     }
 
