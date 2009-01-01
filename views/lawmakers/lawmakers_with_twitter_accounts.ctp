@@ -20,6 +20,8 @@ foreach ($lawmakers as $lawmaker):
 			[<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>] </li>
 <?php endforeach; ?>
 <p></p>
+<p>Powered by:<a href="http://services.sunlightlabs.com/api/" target="_new">Sunlight Labs API</a> data feed.</p>
         </div>
     </div>
 </div>
+<p></p>

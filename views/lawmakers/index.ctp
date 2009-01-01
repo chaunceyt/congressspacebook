@@ -51,6 +51,8 @@ foreach ($lawmakers as $lawmaker):
 	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
 </div>
 </p>
-        </div>
+<p></p>
+<p>Powered by:<a href="http://services.sunlightlabs.com/api/" target="_new">Sunlight Labs API</a> data feed.</p>
+</div>
     </div>
 </div>
