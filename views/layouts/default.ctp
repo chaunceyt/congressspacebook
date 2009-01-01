@@ -41,7 +41,7 @@ Released   : 20071222
 <div id="container">
 <div id="header">
         <h1 style="padding-right:5px;"><a href="<?php echo Router::url('/'); ?>">MASHUP::KEYWORD</a></h1>
-        <h3>browse the latest news headlines, comments, posts, photos, videos, and events...</h3>
+        <h3>browse the latest news, comments, posts, photos, videos, events and social_streams...</h3>
 </div>
 <div id="page">
 
