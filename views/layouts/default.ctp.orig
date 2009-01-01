@@ -36,23 +36,27 @@ Released   : 20071222
 #firefoxPlugin { display: none; }
 </style>
 <![endif]-->
+
+
 </head>
 <body>
-<div id="container">
 <div id="header">
-        <h1 style="padding-right:5px;"><a href="<?php echo Router::url('/'); ?>">MASHUP::KEYWORD</a></h1>
-        <h3>browse the latest news headlines, comments, posts, photos, videos, and events...</h3>
+        <h1><a href="<?php echo Router::url('/'); ?>">MASHUP::KEYWORD</a></h1>
 </div>
+<div id="navheader">
+<h3 style="padding-left:20px">want to browse the latest news headlines, comments, posts, photos, videos, and events...</h3>
+        <br clear="all" />
+</div>        
 <div id="page">
-
 			<?php $session->flash(); ?>
 
 			<?php echo $content_for_layout; ?>
+
         <div id="sidebar">
                 <?php echo $this->element('sidebar', array('keyword' => $keyword)); ?>
         </div>
-    <br style="clear:both;" />
-      </div>
+        <div style="clear: both;">&nbsp;</div>
+</div>
 <!-- end #page -->
 <hr />
 <script type="text/javascript">
@@ -66,8 +70,9 @@ pageTracker._trackPageview();
 </script>
 
 <div id="footer">
-        <p>(c) 2008 Mashupkeyword.com.</p>
-        <p>Powered By MASHUP::Keyword</p>
+        <p>(c) 2008 Mashupkeyword.com. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+
+        <p>Powered By MASHUP::Keyword BETA</p>
 </div>
 </body>
 </html>
