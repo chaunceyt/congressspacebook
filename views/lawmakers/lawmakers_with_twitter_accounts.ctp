@@ -14,8 +14,8 @@ foreach ($lawmakers as $lawmaker):
         //$response = file_get_contents($url);
         //preg_match("/\<ul class=\"about vcard entry-author\"\>(.*?)<\/ul>/is", $response, $author_vcard);
 ?>
-
-		<li><a href="<?php echo Router::url('/social_stream/user/'.urlencode($lawmaker['Lawmaker']['twitter_id']));?>"><?php echo $lawmaker['Lawmaker']['firstname']; ?>
+        <li><span><img src="<?php echo Router::url('/img/lawmakers/40x50/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /></span>
+		<a href="<?php echo Router::url('/social_stream/user/'.urlencode($lawmaker['Lawmaker']['twitter_id']));?>"><?php echo $lawmaker['Lawmaker']['firstname']; ?>
 			<?php echo $lawmaker['Lawmaker']['lastname']; ?></a>
 			[<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>] </li>
 <?php endforeach; ?>

@@ -18,7 +18,7 @@ echo $paginator->counter(array(
 </div>
 </p>
 <p></p>
-<table cellpadding="0" cellspacing="0">
+<table cellpadding="0" cellspacing="5">
 <?php
 $i = 0;
 foreach ($lawmakers as $lawmaker):
@@ -29,16 +29,27 @@ foreach ($lawmakers as $lawmaker):
     $keyword = $lawmaker['Lawmaker']['firstname'] . ' ' .$lawmaker['Lawmaker']['lastname'];
 ?>
 	<tr<?php echo $class;?>>
+        <td valign="top">
+        <span><img src="<?php echo Router::url('/img/lawmakers/40x50/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /></span>
+        </td>
 		<td>
 			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
 			<?php echo $lawmaker['Lawmaker']['lastname']; ?>
 			[<?php echo $lawmaker['Lawmaker']['party']; ?>-
-			<?php echo $lawmaker['Lawmaker']['state']; ?>]
-		</td>
-		<td class="actions">
-                    <span><a href="<?php echo Router::url('/news/'. @urlencode($keyword)); ?>" title="Latest News"> news</a> </span>
-                    <span><a href="<?php echo Router::url('/technorati/'.@urlencode($keyword)); ?>" title="Blog Chatter">blogs</a> </span>
-                    <span><a href="<?php echo Router::url('/comments/'.@urlencode($keyword)); ?>" title="Comments: Blogs">comments</a>  </span>
+			<?php echo $lawmaker['Lawmaker']['state']; ?>] <br/>
+            Office: <?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
+            Phone:  <?php echo $lawmaker['Lawmaker']['phone']; ?><br/>
+            Email: <?php echo $lawmaker['Lawmaker']['email']; ?><br/>
+            <p>mashup: 
+            <span><a href="<?php echo Router::url('/news/'. @urlencode($keyword)); ?>" title="Latest News"> news</a> </span>
+            <span><a href="<?php echo Router::url('/technorati/'.@urlencode($keyword)); ?>" title="Blog Chatter">blogs</a> </span>
+            <span><a href="<?php echo Router::url('/comments/'.@urlencode($keyword)); ?>" title="Comments: Blogs">comments</a>  </span>
+            <?php if(!empty($lawmaker['Lawmaker']['lastname'])) { ?>
+            <span><a href="<?php echo Router::url('/social_stream/user/'.@urlencode($keyword)); ?>" title="Comments: Blogs">comments</a>  </span>
+
+            <?php } ?>
+            </p>
+        <br/>
 		</td>
 	</tr>
 <?php endforeach; ?>
