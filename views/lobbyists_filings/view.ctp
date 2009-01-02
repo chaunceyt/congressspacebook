@@ -6,17 +6,20 @@
 		<p><?php echo $html->link(__('Browse other Filings', true), array('action'=>'index')); ?> </p>
 
 <div class="lobbyistsFilings view">
-<h2><?php  __('Filling ID: '.$lobbyistsFiling['LobbyistsFiling']['filing_id']);?></h2>
+<h2>
+<?php  __('Filling ID: '.$lobbyistsFiling['LobbyistsFiling']['filing_id']);?><br/>
+<a href="http://soprweb.senate.gov/index.cfm?event=printFiling&filingId=<?php echo trim($lobbyistsFiling['LobbyistsFiling']['filing_id']); ?>">view pdf</a>
+</h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 
         <strong><?php __('Period of the filing'); ?></strong>:
 			<?php echo $lobbyistsFiling['LobbyistsFiling']['filing_period']; ?><br/>
 		
         <strong><?php __('Filing Date sent to Senate'); ?></strong>:
-			<?php echo $lobbyistsFiling['LobbyistsFiling']['filing_date']; ?><br/>
+			<?php echo date("F j, Y", strtotime($lobbyistsFiling['LobbyistsFiling']['filing_date'])); ?><br/>
 
         <strong><?php __('Filing Amount'); ?></strong>:
-			<?php echo $lobbyistsFiling['LobbyistsFiling']['filing_amount']; ?><br/>
+			<?php echo number_format($lobbyistsFiling['LobbyistsFiling']['filing_amount']); ?> (total amount of expenditures on filing)<br/>
 		
 		<strong><?php __('Filing Year'); ?></strong>:
 			<?php echo $lobbyistsFiling['LobbyistsFiling']['filing_year']; ?><br/>
@@ -27,7 +30,7 @@
 		<strong><?php __('Client Senate Id - assigned to client'); ?></strong>:
 			<?php echo $lobbyistsFiling['LobbyistsFiling']['client_senate_id']; ?><br/>
 			
-		<strong><?php __('Client Name - lobbying is done on behalf of'); ?></strong>:
+		<strong><?php __('Client Name - lobbying is done on behalf of'); ?></strong>:<br/>
 			<?php echo $lobbyistsFiling['LobbyistsFiling']['client_name']; ?><br/>
 			
 		<strong><?php __('Client Country'); ?></strong>:
