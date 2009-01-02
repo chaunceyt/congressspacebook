@@ -27,6 +27,7 @@ foreach ($lawmakers as $lawmaker):
 		$class = ' class="altrow"';
 	}
     $keyword = $lawmaker['Lawmaker']['firstname'] . ' ' .$lawmaker['Lawmaker']['lastname'];
+    $congresspedia_name = ucfirst($lawmaker['Lawmaker']['firstname']) . '_' .ucfirst($lawmaker['Lawmaker']['lastname']);
 ?>
 	<tr<?php echo $class;?>>
         <td valign="top">
@@ -50,8 +51,9 @@ foreach ($lawmakers as $lawmaker):
             $response = file_get_contents($url);
             ?>
 
-            <?php } ?>
-            </p>
+            <?php } ?><br/>
+            Congresspedia URL: <a href="http://www.sourcewatch.org/index.php?title=<?php echo $congresspedia_name; ?>" target="_new"><?php echo $congresspedia_name; ?></a>
+        </p>
         <br/>
 		</td>
 	</tr>

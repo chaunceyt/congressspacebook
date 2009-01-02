@@ -1,0 +1,2 @@
+http://bioguide.congress.gov/scripts/biodisplay.pl?index=O000167 <-- bioguide_id in lawmakers table
+http://votesmart.org/voting_category.php?can_id=9490 <-- votesmart id
