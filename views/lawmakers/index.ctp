@@ -35,8 +35,7 @@ foreach ($lawmakers as $lawmaker):
 		<td>
 			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
 			<?php echo $lawmaker['Lawmaker']['lastname']; ?>
-			[<?php echo $lawmaker['Lawmaker']['party']; ?>-
-			<?php echo $lawmaker['Lawmaker']['state']; ?>] <br/>
+			[<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?>] <br/>
             Office: <?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
             Phone:  <?php echo $lawmaker['Lawmaker']['phone']; ?><br/>
             Email: <?php echo $lawmaker['Lawmaker']['email']; ?><br/>

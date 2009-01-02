@@ -647,10 +647,15 @@ class MashupComponent extends Object
         return $this;
     }
 
-    public function eventfulSearch($keyword, $page)
+    public function eventfulSearch($keyword, $page, $location="")
     {
         $key = 'xP4PjJDbMXdhMFjR';
-        $url = 'http://api.evdb.com/rest/events/search?app_key='.$key.'&keywords='.urlencode($keyword).'&page_number='.$page.'&date=Future';
+        if(empty($location)) {
+            $url = 'http://api.evdb.com/rest/events/search?app_key='.$key.'&keywords='.urlencode($keyword).'&page_number='.$page.'&date=Future';
+        }
+        else {
+            $url = 'http://api.evdb.com/rest/events/search?app_key='.$key.'&location='.$location.'&page_number='.$page.'&date=Future';
+        }
         $response = file_get_contents($url);
         $xml = simplexml_load_string($response);
         return $xml;
