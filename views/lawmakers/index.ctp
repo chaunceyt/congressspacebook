@@ -30,7 +30,7 @@ foreach ($lawmakers as $lawmaker):
 ?>
 	<tr<?php echo $class;?>>
         <td valign="top">
-        <span><img src="<?php echo Router::url('/img/lawmakers/40x50/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /></span>
+        <span><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /></span>
         </td>
 		<td>
 			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
@@ -46,6 +46,10 @@ foreach ($lawmakers as $lawmaker):
             <span><a href="<?php echo Router::url('/comments/'.@urlencode($keyword)); ?>" title="Comments: Blogs">comments</a>  </span>
             <?php if(!empty($lawmaker['Lawmaker']['lastname'])) { ?>
             <span><a href="<?php echo Router::url('/social_stream/user/'.@urlencode($keyword)); ?>" title="Comments: Blogs">comments</a>  </span>
+            <?php
+            $url = "http://www.govtrack.us/congress/person_api.xpd?id=".$lawmaker['Lawmaker']['govtrack_id'];
+            $response = file_get_contents($url);
+            ?>
 
             <?php } ?>
             </p>
