@@ -66,7 +66,7 @@ pageTracker._trackPageview();
 </script>
 
 <div id="footer">
-        <p>(c) 2008 Mashupkeyword.com.</p>
+        <p>(c) 2007-<?php echo date("Y"); ?> Mashupkeyword.com.</p>
         <p>Powered By MASHUP::Keyword</p>
 </div>
 </body>
