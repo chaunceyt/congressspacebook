@@ -1,5 +1,6 @@
     <ul>
             <li>
+            <h3>MASHUP</h3>
                 <ul>
                     <li><img src="http://twitter.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/twitter/'. @urlencode($keyword)); ?>" title="Twitter Chatter">Twitter Post</a>  </li>
                     <li><img src="http://www.friendfeed.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/friendfeed/'. @urlencode($keyword)); ?>" title="Friend Feed">FriendFeed Chatter</a>  </li>
@@ -15,6 +16,18 @@
                     <!--<li><a href="<?php echo Router::url('/audioscrobbler/tracks/'.@urlencode($keyword)); ?>" title="Top Tracks">Top Tracks</a> </li>-->
                     <!--<li><a href="./lyricwiki/<?php echo @urlencode($keyword); ?>" title="Lyrics">Lyrics</a> </li>-->
                 </ul>
+                <h3>Lobbyist @ Work</h3>
+                <ul>
+                    <li><a href="<?php echo Router::url('/lobbyists_filings'); ?>">Browse</a></li>
+                    <li>Search</li>
+                    <li>api</li>
+                </ul>    
+                <h3>Congressional Mashup</h3>
+                <ul>
+                    <li><a href="<?php echo Router::url('/lawmakers'); ?>">Browse</a></li>
+                    <li>Search</li>
+                    <li>api</li>
+                </ul>    
                 <h2>About</h2>
                 <ul>
                 <li><a href="<?php echo Router::url('/pages/about'); ?>">MASHUP::Keyword</a></li>

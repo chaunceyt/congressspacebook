@@ -52,7 +52,8 @@ foreach ($lawmakers as $lawmaker):
             ?>
 
             <?php } ?><br/>
-            Congresspedia URL: <a href="http://www.sourcewatch.org/index.php?title=<?php echo $congresspedia_name; ?>" target="_new"><?php echo $congresspedia_name; ?></a>
+            Congresspedia URL: <a href="http://www.sourcewatch.org/index.php?title=<?php echo $congresspedia_name; ?>" target="_new"><?php echo $congresspedia_name; ?></a><br/>
+            On the issues: <a href="http://senate.ontheissues.org/<?php echo $congresspedia_name; ?>.htm" target="_new">history</a>
         </p>
         <br/>
 		</td>
