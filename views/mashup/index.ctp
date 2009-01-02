@@ -50,6 +50,8 @@ avicon" width="25" /></a> </span>
 <p><h2><strong><em>or</em></strong> see <a href="<?php echo Router::url('/people_who_have_the_most_twitter_friends'); ?>">who</a> has the most <img src="http://www.twitter.com/favicon.ico" class="favicon" width="20" />witter Connections...</h2></p>
 <p><h2><strong><em>or</em></strong> check out the <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">lawmakers</a> who use <img src="http://www.twitter.com/favicon.ico" class="favicon" width="20" />witter...</h2></p>
 <p><h2><strong><em>or</em></strong> view the Congressional <a href="<?php echo Router::url('/lawmakers'); ?>">MASHUP</a> (beta)</h2></p> 
+<p><h2><strong><em>or</em></strong> view the Lawmakers in your <a href="<?php echo Router::url('/nearby/lawmakers'); ?>">state/region</a></h2></p> 
+<p><h2><strong><em>or</em></strong> view local <a href="<?php echo Router::url('/nearby'); ?>"> news</a></h2></p> 
 <!--
  <p id="firefoxPlugin"><a href="javascript:window.external.AddSearchProvider('http://mashupkeyword.com/blog/mashupkeyword-search.xml')">Install</a>
 Firefox

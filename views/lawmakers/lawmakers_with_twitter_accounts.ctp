@@ -34,7 +34,7 @@ foreach ($lawmakers as $lawmaker):
             <span><a href="<?php echo Router::url('/technorati/'.@urlencode($keyword)); ?>" title="Blog Chatter">blogs</a> </span>
             <span><a href="<?php echo Router::url('/comments/'.@urlencode($keyword)); ?>" title="Comments: Blogs">comments</a>  </span>
             <?php if(!empty($lawmaker['Lawmaker']['lastname'])) { ?>
-            <span><a href="<?php echo Router::url('/social_stream/user/'.@urlencode($keyword)); ?>" title="Twitter Stream">twitter_stream</a>  </span>
+            <span><a href="<?php echo Router::url('/social_stream/user/'.@urlencode($lawmaker['Lawmaker']['twitter_id'])); ?>" title="Twitter Stream">twitter_stream</a>  </span>
             <?php } ?>
             </p>
         <br/>
