@@ -52,8 +52,17 @@ foreach ($lawmakers as $lawmaker):
             ?>
 
             <?php } ?><br/>
+            Biographical Information <a href="http://bioguide.congress.gov/scripts/biodisplay.pl?index=<?php echo $lawmaker['Lawmaker']['bioguide_id']; ?>" target="_new">about</a><br/>
+            Voting: <a href="http://votesmart.org/voting_category.php?can_id=<?php echo $lawmaker['Lawmaker']['votesmart_id']; ?>" target="_new">record</a><br/>
+            Compaign Finance/Money : <a href="http://www.opensecrets.org/politicians/summary.php?cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" target="_new">summary</a><br/>
+            FEC Candidate Summary : <a href="http://query.nictusa.com/cgi-bin/cancomsrs/?_08+<?php echo $lawmaker['Lawmaker']['fec_id']; ?>" target="_new">reports</a><br/>
             Congresspedia URL: <a href="http://www.sourcewatch.org/index.php?title=<?php echo $congresspedia_name; ?>" target="_new"><?php echo $congresspedia_name; ?></a><br/>
-            On the issues: <a href="http://senate.ontheissues.org/<?php echo $congresspedia_name; ?>.htm" target="_new">history</a>
+            
+            <?php if(preg_match('/House/',$lawmaker['Lawmaker']['congress_office'])) { ?>
+                On the issues: <a href="http://senate.ontheissues.org/House/<?php echo $congresspedia_name; ?>.htm" target="_new">history</a>
+            <?php }  else  {?>
+                On the issues: <a href="http://senate.ontheissues.org/Senate/<?php echo $congresspedia_name; ?>.htm" target="_new">history</a>
+            <?php } ?>    
         </p>
         <br/>
 		</td>
