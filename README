@@ -1,0 +1,62 @@
+this is my entry into the http://sunlightlabs.com/contest/
+
+my entry email sent to them.
+
+I've been working with MASHUP APIs for a number of years now and ran across your contest by accident looking for data to integrate into my mashup @mashupkeyword.com. Before I found your site I had support for youtube, flickr, backtype, friendfeed, google, yahoo, eventful already and the data you all provided fits extremely well.
+
+http://mashupkeyword.com/
+
+Using CakePHP as the framework. Originally I had used the Zend Framework but for the MVC pattern cumbersome and ported it to CakePHP.
+The software is a wrapper named MASHUP::Keyword I developed to make it easy to fetch data about a word.
+
+I've already started to integrate that data into the mashup.  apidump.csv.gz and lobbyist data provided here:
+http://sunlightlabs.com/contest/
+
+View lawmakers who use twitter.
+--- view their social stream: see who interacts with them.
+http://mashupkeyword.com/lawmakers_with_twitter_accounts
+
+Congressional Mashup
+http://mashupkeyword.com/lawmakers
+-- this section is BETA but has lots of useful information about Congress members.
+
+I Links to:
+
+--- mashup: news, blogs, comments search
+--- Biographical Information
+--- Voting record
+--- Campaign Finance/Money Summary
+--- FEC Candidate Summary
+--- Congresspedia
+--- Ontheissues
+
+todo:
+integrate Capitol Words API
+search interface for lawmakers and lobbyists
+
+
+Lobbyist @ Work
+-- this section is also very BETA provides a list of companies who used lobbyists for ...
+-- I point to the filing and display information about said filing.
+
+This is work in progress..  the last commit before March 31 deadline is my entry.
+
+Repo: http://github.com/chaunceyt
+
+DATASETS used
+
+Sunlight Labs API Lobbyist Dataset - made cake friendly
+Sunlight Labs API Lawmaker Dataset
+
+apis being used (so far)
+youtube
+flickr
+eventful
+google
+yahoo
+audioscrobbler
+backtype
+friendfeed
+
+NOTE: this import is the app folder my my CakePHP 1.2final folder. so it should work with any 1.2 ver
+
