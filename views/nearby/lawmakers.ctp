@@ -49,7 +49,7 @@ foreach ($lawmakers as $lawmaker):
             <?php
             $url = "http://www.govtrack.us/congress/person_api.xpd?id=".$lawmaker['Lawmaker']['govtrack_id'];
             $response = file_get_contents($url);
-            ?>
+            ?><br/>
             Biographical Information <a href="http://bioguide.congress.gov/scripts/biodisplay.pl?index=<?php echo $lawmaker['Lawmaker']['bioguide_id']; ?>" target="_new">
 about</a><br/>
             Voting: <a href="http://votesmart.org/voting_category.php?can_id=<?php echo $lawmaker['Lawmaker']['votesmart_id']; ?>" target="_new">record</a><br/>
