@@ -6,7 +6,7 @@ I've been working with MASHUP APIs for a number of years now and ran across your
 
 http://mashupkeyword.com/
 
-Using CakePHP as the framework. Originally I had used the Zend Framework but for the MVC pattern cumbersome and ported it to CakePHP.
+Using CakePHP as the framework. Originally I had used the Zend Framework the MVC pattern  was cumbersome so I ported it to CakePHP. (should have re-read that message) 
 The software is a wrapper named MASHUP::Keyword I developed to make it easy to fetch data about a word.
 
 I've already started to integrate that data into the mashup.  apidump.csv.gz and lobbyist data provided here:
