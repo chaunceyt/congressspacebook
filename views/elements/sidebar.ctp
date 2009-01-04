@@ -37,6 +37,7 @@
                 <h3>For Fun</h3>
                 <ul>
                     <li><a href="<?php echo Router::url('/mashup'); ?>">mashup</a></li>
+                    <li><a href="<?php echo Router::url('/keyword_frequency/'.$keyword); ?>">word frequency</a></li>
                 </ul>                
                 <h2>About</h2>
                 <ul>
