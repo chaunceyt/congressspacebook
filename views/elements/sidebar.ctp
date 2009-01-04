@@ -18,7 +18,8 @@
                 </ul>
                 <h3>Congressional Mashup</h3>
                 <ul>
-                    <li><a href="<?php echo Router::url('/lawmakers'); ?>">Browse</a></li>
+                    <li><a href="<?php echo Router::url('/lawmakers/browse'); ?>">Browse</a></li>
+                    <li><a href="<?php echo Router::url('/lawmakers'); ?>">Search</a></li>
                 </ul>    
                 <h3>Lobbyist @ Work</h3>
                 <ul>
