@@ -20,11 +20,17 @@
                 <ul>
                     <li><a href="<?php echo Router::url('/lawmakers/browse'); ?>">Browse</a></li>
                     <li><a href="<?php echo Router::url('/lawmakers'); ?>">Search</a></li>
+                    <li><a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">those using twitter</a></li>
+                    <li><a href="<?php echo Router::url('/nearby/lawmakers'); ?>">In your state</a></li>
                 </ul>    
                 <h3>Lobbyist @ Work</h3>
                 <ul>
                     <li><a href="<?php echo Router::url('/lobbyists_filings'); ?>">Browse</a></li>
-                </ul>    
+                </ul>
+                <h3>For Fun</h3>
+                <ul>
+                    <li><a href="<?php echo Router::url('/mashup'); ?>">mashup</a></li>
+                </ul>                
                 <h2>About</h2>
                 <ul>
                     <li><a href="<?php echo Router::url('/pages/about'); ?>">MASHUP::Keyword</a></li>
