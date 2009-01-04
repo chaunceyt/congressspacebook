@@ -6,7 +6,13 @@
 <h2><?php __('Congressional Mashup');?></h2>
 <em>improving government transparency and disclosure...</em>
 
-
+<p>
+<form method="post" action="<?php echo Router::url('/lawmakers/search'); ?>">
+    <input type="hidden" name="_method" value="POST" />
+    <input name="data[Search][query]" type="text" value="" class="query" id="Search" />
+    <input type="submit" id="searchbtn" value="Search for Lawmaker" />
+</form> 
+</p>
 
 <h3>Browse by State</h3>
 <p>

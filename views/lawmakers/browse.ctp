@@ -17,8 +17,14 @@ echo $paginator->counter(array(
     <?php
         //print_r($this->params['pass']);
         //hack to make pagination work with params
-        if($this->params['pass'][0] == 'state' || $this->params['pass'][0] == 'party') {
-            $paginator->options(array('url' => '/'.$this->params['pass'][0].'/'.$this->params['pass'][1]));
+        if(isset($this->params['pass'][0])) {
+            if($this->params['pass'][0] == 'state' || $this->params['pass'][0] == 'party') {
+                $paginator->options(array('url' => '/'.$this->params['pass'][0].'/'.$this->params['pass'][1]));
+            }
+        }
+        //if we're dealing with a searchpost
+        if(isset($this->passedArgs['name'])) {
+                $paginator->options(array('url' => '/name:'.$this->passedArgs['name']));
         }
     ?>
 	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
