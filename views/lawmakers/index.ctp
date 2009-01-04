@@ -15,6 +15,8 @@
 </form> 
 </p>
 
+<h3>start with  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> members..</h3> 
+
 <h3>Browse by State</h3>
 <p>
 <?php

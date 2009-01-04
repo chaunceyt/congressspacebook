@@ -30,10 +30,10 @@ class LawmakersController extends AppController {
 	function browse($by=null, $value=null) {
 		$this->Lawmaker->recursive = 0;
         //check to see if we're doing a search.
-        if(isset($this->passedArgs['name'])) { 
-            $value = $this->passedArgs['name'];
+        if(isset($this->passedArgs['query'])) { 
+            $value = $this->passedArgs['query'];
             $this->paginate['Lawmaker'] = array('limit' => '25' );
-            $this->paginate['Lawmaker']['conditions'] = "firstname like '".$value."%' or lastname like '".$value."%'";
+            $this->paginate['Lawmaker']['conditions'] = "concat(firstname, lastname, phone, email) like '%".$value."%'";
         }
         else { // deal with params state, party, house, senate
             if(isset($by)) { 
@@ -52,7 +52,7 @@ class LawmakersController extends AppController {
                         break;
                     case 'house' :
                         $this->paginate['Lawmaker'] = array('limit' => '25' ); 
-                        $this->paginate['Lawmaker']['conditions'] = "firstname like '%House%'";
+                        $this->paginate['Lawmaker']['conditions'] = "congress_office like '%House%'";
                         break;
                     case 'senate' :
                         $this->paginate['Lawmaker'] = array('limit' => '25' ); 
@@ -84,7 +84,7 @@ class LawmakersController extends AppController {
     function search()
     {
         if(!empty($this->data)){
-            $params['name'] = $this->data['Search']['query'];
+            $params['query'] = $this->data['Search']['query'];
             $params['action'] = 'browse';
             $this->redirect($params);
         }        

@@ -21,10 +21,16 @@ echo $paginator->counter(array(
             if($this->params['pass'][0] == 'state' || $this->params['pass'][0] == 'party') {
                 $paginator->options(array('url' => '/'.$this->params['pass'][0].'/'.$this->params['pass'][1]));
             }
+            else if($this->params['pass'][0] == 'house' || $this->params['pass'][0] == 'senate') {
+                $paginator->options(array('url' => '/'.$this->params['pass'][0]));
+            }
+            else {
+                //do nothing: consider making this a helper if you have to repeat.
+            }
         }
         //if we're dealing with a searchpost
-        if(isset($this->passedArgs['name'])) {
-                $paginator->options(array('url' => '/name:'.$this->passedArgs['name']));
+        if(isset($this->passedArgs['query'])) {
+                $paginator->options(array('url' => '/query:'.urlencode($this->passedArgs['query'])));
         }
     ?>
 	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
