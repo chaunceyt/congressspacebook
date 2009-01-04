@@ -2,8 +2,8 @@
             <li>
     
             <p>
-                <strong><em><?php echo $keyword; ?></em></strong> -
-                 random word<br/>
+                <strong><a href="<?php echo Router::url('/keyword_frequency/'.$keyword); ?>" title="Random Keyword"><em><?php echo $keyword; ?></em></a></strong> -
+                  word<br/>
                 used <?php echo number_format($wordused); ?> time(s)<br/>
                 by congress last year<br/>
             </p>

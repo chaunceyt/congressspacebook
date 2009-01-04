@@ -9,7 +9,7 @@ class MashupController extends AppController {
 
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index');
+        $this->Auth->allowedActions = array('index', 'word_usage');
         parent::beforeFilter();
     }
 
@@ -35,7 +35,23 @@ class MashupController extends AppController {
         //$this->set('GoogleSearch', $this->Mashup->googleNews($keyword));
         
     }
+    function word_usage()
+    {
+        $keyword = $this->params['keyword'];
+        $this->set('word', $keyword);
+    }
 
+    
+    function search()
+    {
+        $this->autoRender=false;
+        if(!empty($this->data)){
+            $params['query'] = $this->data['Search']['query'];
+            $url = '/keyword_frequency/'.urlencode($params['query']);
+            $this->redirect($url);
+        }
+    }
+    
     function test()
     {
         $this->autoRender=false;

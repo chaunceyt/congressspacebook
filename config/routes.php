@@ -35,7 +35,7 @@
  */
 	
     Router::connect('/', array('controller' => 'lawmakers', 'action' => 'index'));
-    //Router::connect('/congress_person/', array('controller' => 'lawmakers', 'action' => 'view'));
+    Router::connect('/keyword_frequency/:keyword', array('controller' => 'mashup', 'action' => 'word_usage'));
     Router::connect('/lawmakers/state/', array('controller' => 'lawmakers', 'action' => 'browse'));
     Router::connect('/lawmakers_with_twitter_accounts', array('controller' => 'lawmakers', 'action' => 'lawmakers_with_twitter_accounts'));
     Router::connect('/people_who_have_the_most_twitter_friends/add', array('plugin' => 'twitterfriends', 'controller' => 'twitterfriends', 'action' => 'add'));

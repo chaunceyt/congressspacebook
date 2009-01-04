@@ -106,7 +106,9 @@ class AppController extends Controller
         srand((float) microtime() * 10000000);
         $words = array('health','energy','security','public','report','service','country','percent','fiscal','services',
                        'care','programs','education','date','iraq','tax','information','funds','amount','assistance',
-                       'defense','community','children','military','development','system','oil','term','office','plan');
+                       'defense','community','children','military','development','system','oil','term','office','plan',
+                       'family', 'help', 'economy', 'jobs', 'school', 'money', 'administraion','entitled', 'economic',
+                       'billion','security','communication','plan', 'auto');
         $rand_keys = shuffle($words);
         return $words[$rand_keys];
     }
