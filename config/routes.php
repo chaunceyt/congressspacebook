@@ -35,6 +35,7 @@
  */
 	
     Router::connect('/', array('controller' => 'mashup', 'action' => 'index'));
+    Router::connect('/lawmakers/state/', array('controller' => 'lawmakers', 'action' => 'browse'));
     Router::connect('/lawmakers_with_twitter_accounts', array('controller' => 'lawmakers', 'action' => 'lawmakers_with_twitter_accounts'));
     Router::connect('/people_who_have_the_most_twitter_friends/add', array('plugin' => 'twitterfriends', 'controller' => 'twitterfriends', 'action' => 'add'));
     Router::connect('/people_who_have_the_most_twitter_friends/*', array('plugin' => 'twitterfriends', 'controller' => 'twitterfriends', 'action' => 'index'));

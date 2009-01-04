@@ -3,7 +3,7 @@
         <div class="entry">
 
 <div class="lawmakers index">
-<h2><?php __('Lawmakers in this region: ' .$current_webuser->region);?></h2>
+<h2><?php __('Congressional Mashup');?></h2>
 <p>
 <?php
 echo $paginator->counter(array(
@@ -11,11 +11,21 @@ echo $paginator->counter(array(
 ));
 ?></p>
 <p>
+<center>
 <div class="paging">
+
+    <?php
+        //print_r($this->params['pass']);
+        //hack to make pagination work with params
+        if($this->params['pass'][0] == 'state' || $this->params['pass'][0] == 'party') {
+            $paginator->options(array('url' => '/'.$this->params['pass'][0].'/'.$this->params['pass'][1]));
+        }
+    ?>
 	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
  | 	<?php echo $paginator->numbers();?>
 	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
 </div>
+</center>
 </p>
 <p></p>
 <table cellpadding="0" cellspacing="5">
@@ -27,6 +37,7 @@ foreach ($lawmakers as $lawmaker):
 		$class = ' class="altrow"';
 	}
     $keyword = $lawmaker['Lawmaker']['firstname'] . ' ' .$lawmaker['Lawmaker']['lastname'];
+    $congresspedia_name = ucfirst($lawmaker['Lawmaker']['firstname']) . '_' .ucfirst($lawmaker['Lawmaker']['lastname']);
 ?>
 	<tr<?php echo $class;?>>
         <td valign="top">
@@ -35,8 +46,7 @@ foreach ($lawmakers as $lawmaker):
 		<td>
 			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
 			<?php echo $lawmaker['Lawmaker']['lastname']; ?>
-			[<?php echo $lawmaker['Lawmaker']['party']; ?>-
-			<?php echo $lawmaker['Lawmaker']['state']; ?>] <br/>
+			[<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?>] <br/>
             Office: <?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
             Phone:  <?php echo $lawmaker['Lawmaker']['phone']; ?><br/>
             Email: <?php echo $lawmaker['Lawmaker']['email']; ?><br/>
@@ -44,32 +54,26 @@ foreach ($lawmakers as $lawmaker):
             <span><a href="<?php echo Router::url('/news/'. @urlencode($keyword)); ?>" title="Latest News"> news</a> </span>
             <span><a href="<?php echo Router::url('/technorati/'.@urlencode($keyword)); ?>" title="Blog Chatter">blogs</a> </span>
             <span><a href="<?php echo Router::url('/comments/'.@urlencode($keyword)); ?>" title="Comments: Blogs">comments</a>  </span>
-            <?php if(!empty($lawmaker['Lawmaker']['lastname'])) { ?>
-            <span><a href="<?php echo Router::url('/social_stream/user/'.@urlencode($keyword)); ?>" title="Comments: Blogs">comments</a>  </span>
+            <?php if(!empty($lawmaker['Lawmaker']['twitter_id'])) { ?>
+            <span><a href="<?php echo Router::url('/social_stream/user/'.@urlencode($lawmaker['Lawmaker']['twitter_id'])); ?>" title="twitter account">twitter_stream</a>  </span>
             <?php
             $url = "http://www.govtrack.us/congress/person_api.xpd?id=".$lawmaker['Lawmaker']['govtrack_id'];
-            //fixme: supressing this for now
             $response = @file_get_contents($url);
-            ?><br/>
-            Biographical Information <a href="http://bioguide.congress.gov/scripts/biodisplay.pl?index=<?php echo $lawmaker['Lawmaker']['bioguide_id']; ?>" target="_new">
-about</a><br/>
+            ?>
+
+            <?php } ?><br/>
+            Biographical Information <a href="http://bioguide.congress.gov/scripts/biodisplay.pl?index=<?php echo $lawmaker['Lawmaker']['bioguide_id']; ?>" target="_new">about</a><br/>
             Voting: <a href="http://votesmart.org/voting_category.php?can_id=<?php echo $lawmaker['Lawmaker']['votesmart_id']; ?>" target="_new">record</a><br/>
-            Campaign Finance/Money : <a href="http://www.opensecrets.org/politicians/summary.php?cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" target="_new">summary
-</a><br/>
-            FEC Candidate Summary : <a href="http://query.nictusa.com/cgi-bin/cancomsrs/?_08+<?php echo $lawmaker['Lawmaker']['fec_id']; ?>" target="_new">reports</a><br/
->
-            <?php if(isset($congresspedia_name)) { ?>
-                Congresspedia URL: <a href="http://www.sourcewatch.org/index.php?title=<?php echo $congresspedia_name; ?>" target="_new"><?php echo $congresspedia_name; ?></a><br/>
-
-                <?php if(preg_match('/House/',$lawmaker['Lawmaker']['congress_office'])) { ?>
-                    On the issues: <a href="http://senate.ontheissues.org/House/<?php echo $congresspedia_name; ?>.htm" target="_new">history</a>
-                <?php }  else  {?>
-                    On the issues: <a href="http://senate.ontheissues.org/Senate/<?php echo $congresspedia_name; ?>.htm" target="_new">history</a>
-                <?php } ?>
-            <?php } ?>
-
-            <?php } ?>
-            </p>
+            Campaign Finance/Money : <a href="http://www.opensecrets.org/politicians/summary.php?cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" target="_new">summary</a><br/>
+            FEC Candidate Summary : <a href="http://query.nictusa.com/cgi-bin/cancomsrs/?_08+<?php echo $lawmaker['Lawmaker']['fec_id']; ?>" target="_new">reports</a><br/>
+            Congresspedia URL: <a href="http://www.sourcewatch.org/index.php?title=<?php echo $congresspedia_name; ?>" target="_new"><?php echo $congresspedia_name; ?></a><br/>
+            
+            <?php if(preg_match('/House/',$lawmaker['Lawmaker']['congress_office'])) { ?>
+                On the issues: <a href="http://senate.ontheissues.org/House/<?php echo $congresspedia_name; ?>.htm" target="_new">history</a>
+            <?php }  else  {?>
+                On the issues: <a href="http://senate.ontheissues.org/Senate/<?php echo $congresspedia_name; ?>.htm" target="_new">history</a>
+            <?php } ?>    
+        </p>
         <br/>
 		</td>
 	</tr>
@@ -77,11 +81,13 @@ about</a><br/>
 </table>
 </div>
 <p>
+<center>
 <div class="paging">
 	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
  | 	<?php echo $paginator->numbers();?>
 	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
 </div>
+</center>
 </p>
 <p></p>
 <p>Powered by:<a href="http://services.sunlightlabs.com/api/" target="_new">Sunlight Labs API</a> data feed.</p>

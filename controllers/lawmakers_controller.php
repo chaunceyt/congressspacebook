@@ -6,14 +6,56 @@ class LawmakersController extends AppController {
 
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index', 'view');
+        $this->Auth->allowedActions = array('index', 'browse', 'lawmakers_with_twitter_accounts', 'view');
         parent::beforeFilter();
     }
 
 	function index() {
 		$this->Lawmaker->recursive = 0;
         //$conditions = array('twitter_id' ));
+        
+        $stateTagCloud = $this->Lawmaker->stateTagCloud();
+        $this->set('stateTagCloud', $stateTagCloud);
+
+        $partyTagCloud = $this->Lawmaker->partyTagCloud();
+        $this->set('partyTagCloud', $partyTagCloud);
+        
+        $genderTagCloud = $this->Lawmaker->genderTagCloud();
+        $this->set('genderTagCloud', $genderTagCloud);
+
         $this->paginate['Lawmaker'] = array('limit' => '25' ); 
+		$this->set('lawmakers', $this->paginate());
+	}
+
+	function browse($by=null, $value=null) {
+		$this->Lawmaker->recursive = 0;
+        
+        if(isset($by)) { 
+            switch($by) {
+                case 'state' :
+                    $this->paginate['Lawmaker'] = array('limit' => '25' ); 
+                    $this->paginate['Lawmaker']['conditions'] = "state = '{$value}'";
+                    break;
+                case 'party' :
+                    $this->paginate['Lawmaker'] = array('limit' => '25' ); 
+                    $this->paginate['Lawmaker']['conditions'] = "party = '{$value}'";
+                    break;
+                case 'letter' :
+                    $this->paginate['Lawmaker'] = array('limit' => '25' ); 
+                    $this->paginate['Lawmaker']['conditions'] = "firstname like '{$value}%'";
+                    break;
+                case 'house' :
+                    $this->paginate['Lawmaker'] = array('limit' => '25' ); 
+                    $this->paginate['Lawmaker']['conditions'] = "firstname like '%House%'";
+                    break;
+                case 'senate' :
+                    $this->paginate['Lawmaker'] = array('limit' => '25' ); 
+                    $this->paginate['Lawmaker']['conditions'] = "congress_office like '%Senate%'";
+                    break;
+                default :
+
+            }
+        }
 		$this->set('lawmakers', $this->paginate());
 	}
 
