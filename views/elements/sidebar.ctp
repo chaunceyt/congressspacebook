@@ -1,5 +1,12 @@
     <ul>
             <li>
+    
+            <p>
+                <strong><em><?php echo $keyword; ?></em></strong> -
+                 random word<br/>
+                used <?php echo number_format($wordused); ?> time(s)<br/>
+                by congress last year<br/>
+            </p>
             <h3>MASHUP</h3>
                 <ul>
                     <li><img src="http://twitter.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/twitter/'. @urlencode($keyword)); ?>" title="Twitter Chatter">Twitter Post</a>  </li>

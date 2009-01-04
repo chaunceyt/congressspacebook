@@ -13,7 +13,18 @@ class LawmakersController extends AppController {
 	function index() {
 		$this->Lawmaker->recursive = 0;
         //$conditions = array('twitter_id' ));
-        
+        /* not working as expected.
+        require APP . 'vendors' . DS .'JSON.php';
+        $json = new Services_JSON();
+        //need to cache this
+        $captial_words_today_url = 'http://www.capitolwords.org/api/word/iraq/2008/05/23/feed.json';
+        $data = file_get_contents($captial_words_today_url);
+        $results = $json->decode($data);
+        echo '<pre>';
+        print_r($results);
+        $this->set('words', $results);
+        */
+    
         $stateTagCloud = $this->Lawmaker->stateTagCloud();
         $this->set('stateTagCloud', $stateTagCloud);
 
@@ -73,12 +84,14 @@ class LawmakersController extends AppController {
 		$this->set('lawmakers', $this->Lawmaker->find('all', $conditions));
 	}
 
-	function view($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid Lawmaker.', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$this->set('lawmaker', $this->Lawmaker->read(null, $id));
+	function view($id=null) 
+    {
+        if(!$id) {
+            $this->redirect('/');
+            exit();
+        }
+        $lawmaker = $this->Lawmaker->read(null, $id);
+		$this->set('lawmaker', $lawmaker);
 	}
 
     function search()

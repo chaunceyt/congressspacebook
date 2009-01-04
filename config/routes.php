@@ -35,11 +35,13 @@
  */
 	
     Router::connect('/', array('controller' => 'lawmakers', 'action' => 'index'));
+    //Router::connect('/congress_person/', array('controller' => 'lawmakers', 'action' => 'view'));
     Router::connect('/lawmakers/state/', array('controller' => 'lawmakers', 'action' => 'browse'));
     Router::connect('/lawmakers_with_twitter_accounts', array('controller' => 'lawmakers', 'action' => 'lawmakers_with_twitter_accounts'));
     Router::connect('/people_who_have_the_most_twitter_friends/add', array('plugin' => 'twitterfriends', 'controller' => 'twitterfriends', 'action' => 'add'));
     Router::connect('/people_who_have_the_most_twitter_friends/*', array('plugin' => 'twitterfriends', 'controller' => 'twitterfriends', 'action' => 'index'));
     Router::connect('/users/', array('plugin' => 'users', 'controller' => 'users', 'action' => 'login'));
+    
     Router::connect('/search/:keyword/:page', array('controller' => 'mashup', 'action' => 'index'));
 
 	//Audioscrobbler Music

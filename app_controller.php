@@ -39,6 +39,7 @@ class AppController extends Controller
 
     function beforeRender()
     {
+        $this->_words();
         //fixme
         if(isset($this->params['keyword'])) {
             $keyword = $this->params['keyword'];
@@ -58,6 +59,25 @@ class AppController extends Controller
                 $this->set('keyword', $keyword);
             }
             else {
+                $_random_keyword = $this->_words();
+                
+                require APP . 'vendors' . DS .'JSON.php';
+                $json = new Services_JSON();
+                //need to cache this
+                
+                $captial_words_today_url = 'http://www.capitolwords.org/api/word/'.$_random_keyword.'/2008/feed.json';
+                $data = @file_get_contents($captial_words_today_url);
+                $results = $json->decode($data);
+                
+                $_wordused=0;
+                foreach($results as $result) {
+                    $_wordused += $result->word_count;
+                }
+
+                $this->set('wordused', $_wordused);
+                $this->set('keyword', $_random_keyword);
+               
+                /*
                 //get random value
                 $gi = geoip_open(APP . 'geocity' . DS .'GeoLiteCity.dat',GEOIP_MEMORY_CACHE);
                 $_current_webuser = geoip_record_by_addr($gi, $_SERVER['REMOTE_ADDR']);
@@ -69,6 +89,7 @@ class AppController extends Controller
                 else {
                     $this->set('keyword', 'Obama');
                 }
+                */
             }
         }
         if($this->params['controller'] == 'social_graph') {
@@ -78,6 +99,16 @@ class AppController extends Controller
             $this->set('keyword', 'Social');
            
         }
+    }
+
+    function _words()
+    {
+        srand((float) microtime() * 10000000);
+        $words = array('health','energy','security','public','report','service','country','percent','fiscal','services',
+                       'care','programs','education','date','iraq','tax','information','funds','amount','assistance',
+                       'defense','community','children','military','development','system','oil','term','office','plan');
+        $rand_keys = shuffle($words);
+        return $words[$rand_keys];
     }
 
 }
