@@ -3,21 +3,21 @@
         <div class="entry">
 
 <div class="lawmakers index">
-<h2><?php __('The Congressional Mashup');?> - 
+<h2><?php __('CongressSpaceBook');?> - 
 <em><?php __('making government transparency for real...');?></em></h2>
 <br/>
-<p>Find the Congress member(s) in your area and see what they're doing...</p>
+<p>Browse US Congress member(s) profiles by...</p>
 <p>
 <form method="post" action="<?php echo Router::url('/lawmakers/search'); ?>">
     <input type="hidden" name="_method" value="POST" />
     <input name="data[Search][query]" type="text" value="" class="query" id="Search" />
-    <input type="submit" id="searchbtn" value="Search for Lawmaker" />
+    <input type="submit" id="searchbtn" value="Searching the Profile Database" />
 </form> 
 </p>
 
-<h3>start with  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> members..</h3> 
+<h3>or start with either <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> member profiles</h3> 
 
-<h3>Browse by State</h3>
+<h3>Browse profiles by State.</h3>
 <p>
 <?php
     $max_size = 250; // max font size in %
@@ -43,7 +43,7 @@
 
 ?>
 </p>
-<h3>Browse by Party</h3>
+<h3>Browse profiles by Party.</h3>
 <p>
 <?php
     $max_size = 250; // max font size in %
@@ -70,7 +70,7 @@
 ?>
 </p>
 
-<h3>Browse by letter</h3>
+<h3>Browse profiles by letter.</h3>
 <p>
 <?php
 $letters = range('a','z');

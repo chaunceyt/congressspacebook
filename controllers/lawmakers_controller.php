@@ -6,7 +6,13 @@ class LawmakersController extends AppController {
 
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index', 'browse', 'lawmakers_with_twitter_accounts', 'view');
+        $this->Auth->allowedActions = array('index', 
+                                            'browse', 
+                                            'lawmakers_with_twitter_accounts', 
+                                            'view', 
+                                            'campaign_cost',
+                                            'industry_by_race'
+                                            );
         parent::beforeFilter();
     }
 
@@ -103,6 +109,18 @@ class LawmakersController extends AppController {
         }        
     }
 
+    function campaign_cost()
+    {
+
+    }
+
+    function industry_by_race()
+    {
+    }
+
+    function industry()
+    {
+    }
 
 	function add() {
 		if (!empty($this->data)) {

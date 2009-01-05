@@ -73,7 +73,7 @@ body {
 
 /* BEGIN: Standard Layout */
 #container {
-  width: 740px;
+  width: 750px;
 }
 
 #content {
@@ -647,3 +647,16 @@ div.paging span.current {
 div.paging span a {
 }
 
+#profile_page {
+  width: 500px ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+#profile_left {
+  float: left;
+  width: 40%;
+}
+#profile_right {
+  float: right;
+  width: 60%;
+}
