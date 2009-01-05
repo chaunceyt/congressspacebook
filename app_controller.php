@@ -1,4 +1,5 @@
 <?php
+require APP . 'vendors' . DS .'JSON.php';
 class AppController extends Controller 
 {
     var $components = array('Auth', 'RequestHandler', 'Zend', 'Mashup');
@@ -39,11 +40,24 @@ class AppController extends Controller
 
     function beforeRender()
     {
-        $this->_words();
+        $json = new Services_JSON();
+        $_random_keyword = $this->_words();
+        //$this->_words();
         //fixme
         if(isset($this->params['keyword'])) {
             $keyword = $this->params['keyword'];
             $this->set('keyword', $keyword);
+            
+            $captial_words_today_url = 'http://www.capitolwords.org/api/word/'.$keyword.'/2008/feed.json';
+            $data = @file_get_contents($captial_words_today_url);
+            $results = $json->decode($data);
+              
+            $_wordused=0;
+            foreach($results as $result) {
+                $_wordused += $result->word_count;
+            }
+
+            $this->set('wordused', $_wordused);
         }
         else {
             if(isset($this->data)) {
@@ -59,10 +73,7 @@ class AppController extends Controller
                 $this->set('keyword', $keyword);
             }
             else {
-                $_random_keyword = $this->_words();
                 
-                require APP . 'vendors' . DS .'JSON.php';
-                $json = new Services_JSON();
                 //need to cache this
                 
                 $captial_words_today_url = 'http://www.capitolwords.org/api/word/'.$_random_keyword.'/2008/feed.json';

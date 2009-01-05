@@ -44,6 +44,10 @@ Released   : 20071222
         <h3>browse the latest news, comments, posts, photos, videos, events and social_streams...</h3>
 </div>
 <div id="page">
+<p><h2><?php __('CongressSpaceBook');?> -
+<em><?php __('making government transparency for real...');?></em></h2>
+<br/>
+</p>
 
 			<?php $session->flash(); ?>
 

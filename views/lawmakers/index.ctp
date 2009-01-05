@@ -1,12 +1,44 @@
 <div id="content">
     <div class="post">
         <div class="entry">
-
-<h2><?php __('CongressSpaceBook');?> - 
-<em><?php __('making government transparency for real...');?></em></h2>
-<br/>
 <div id="homepage_page">
 <div id="homepage_left">
+<p style="font-size:12px;">member of the month</p>
+<p><img src="<?php echo Router::url('/'); ?>img/noprofile.jpg" alt="default" border="0" /></p>
+
+<p style="font-size:12px;">random Dem</p>
+<p>
+<div>
+<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
+<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
+<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" /><br/>
+<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
+<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
+</div>
+</p>
+<p>&nbsp;</p>
+<p style="font-size:12px;">random Repub</p>
+<p>
+<div>
+<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
+<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
+<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" /><br/>
+<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
+<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
+</div>
+</p>
+
+</div>
+<div id="homepage_right">
+<p><strong>CongressSpaceBook members also <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
+<p>
+<form method="post" action="<?php echo Router::url('/lawmakers/search'); ?>">
+    <input type="hidden" name="_method" value="POST" />
+    <input name="data[Search][query]" type="text" value="" class="query" id="Search" />
+    <input type="submit" id="searchbtn" value="Search Profiles" />
+</form> 
+</p>
+<p>&nbsp;</p>
 <p><span style="font-size:16px;">Party</span> 
 <?php
     $max_size = 250; // max font size in %
@@ -32,16 +64,7 @@
 
 ?>
 </p>
-<p>
-<form method="post" action="<?php echo Router::url('/lawmakers/search'); ?>">
-    <input type="hidden" name="_method" value="POST" />
-    <input name="data[Search][query]" type="text" value="" class="query" id="Search" />
-    <input type="submit" id="searchbtn" value="Search Profiles" />
-</form> 
-</p>
-</div>
-<div id="homepage_right">
-<p><strong>CongressSpaceBook members also <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
+
 <p>
 <?php
     $max_size = 250; // max font size in %
@@ -81,6 +104,7 @@
 <h3>.. or just <a href="<?php echo Router::url('/lawmakers/browse/'); ?>" title="Browse">Browse</a> to see who they are.</h3>
 
 <h3><a href="<?php echo Router::url('/nearby/lawmakers'); ?>">In your state</a></h3>
+
 
 </div><!-- end of homepage_right -->
 </div>

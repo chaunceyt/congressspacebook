@@ -11,7 +11,8 @@ class LawmakersController extends AppController {
                                             'lawmakers_with_twitter_accounts', 
                                             'view', 
                                             'campaign_cost',
-                                            'industry_by_race'
+                                            'industry_by_race',
+                                            'search'
                                             );
         parent::beforeFilter();
     }
@@ -108,10 +109,9 @@ class LawmakersController extends AppController {
             $this->redirect($params);
         }        
     }
-
+    
     function campaign_cost()
     {
-
     }
 
     function industry_by_race()

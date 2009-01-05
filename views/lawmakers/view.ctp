@@ -48,19 +48,6 @@
         
 </div>
 <div id="profile_right">
-<p>
-            <span><a href="<?php echo Router::url('/news/'. @urlencode($this_person)); ?>" title="Latest News"> news</a> </span>
-            <span><a href="<?php echo Router::url('/technorati/'.@urlencode($this_person)); ?>" title="Blog Chatter">blogs</a> </span>
-            <span><a href="<?php echo Router::url('/comments/'.@urlencode($this_person)); ?>" title="Comments: Blogs">comments</a>  </span>
-            <?php if(!empty($lawmaker['Lawmaker']['twitter_id'])) { ?>
-            <span><a href="<?php echo Router::url('/social_stream/user/'.@urlencode($lawmaker['Lawmaker']['twitter_id'])); ?>" title="twitter account">twitter_stream</a>  </span>
-            <?php
-            //$url = "http://www.govtrack.us/congress/person_api.xpd?id=".$lawmaker['Lawmaker']['govtrack_id'];
-            //$response = @file_get_contents($url);
-            ?>
-
-
-</p>
 <h3>Contact Info</h3>
 <p>
 			<strong>Office</strong>:<br/> <?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
@@ -76,7 +63,6 @@
             }
             ?><br/>
             <p>
-            <?php } ?><br/>
             <strong>Bio Information</strong>: <a href="http://bioguide.congress.gov/scripts/biodisplay.pl?index=<?php echo $lawmaker['Lawmaker']['bioguide_id']; ?>" target="_new">about</a><br/>
             <strong>Voting</strong>: <a href="http://votesmart.org/voting_category.php?can_id=<?php echo $lawmaker['Lawmaker']['votesmart_id']; ?>" target="_new">record</a><br/>
             <strong>Campaign Finance/Money</strong> : <a href="http://www.opensecrets.org/politicians/summary.php?cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" target="_new">summary</a><br/>
@@ -89,6 +75,15 @@
             <?php } ?>
 </p>
 <h3>SuperWall</h3>
+<p>
+            <?php if(!empty($lawmaker['Lawmaker']['twitter_id'])) { ?>
+            <span> twitter social_stream <a href="<?php echo Router::url('/social_stream/user/'.@urlencode($lawmaker['Lawmaker']['twitter_id'])); ?>" title="twitter account">twitter_stream</a>  </span>
+            <?php
+            //$url = "http://www.govtrack.us/congress/person_api.xpd?id=".$lawmaker['Lawmaker']['govtrack_id'];
+            //$response = @file_get_contents($url);
+            ?>
+            <?php } ?><br/>
+</p>
 <p>
 <center>
 <script type='text/javascript' src='http://www.opensecrets.org/widgets/races_widget.php?id=<?php echo $openSecretWidgitData; ?>'></script>
