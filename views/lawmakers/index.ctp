@@ -2,22 +2,46 @@
     <div class="post">
         <div class="entry">
 
-<div class="lawmakers index">
 <h2><?php __('CongressSpaceBook');?> - 
 <em><?php __('making government transparency for real...');?></em></h2>
 <br/>
-<p>Browse US Congress member(s) profiles by...</p>
+<div id="homepage_page">
+<div id="homepage_left">
+<p><span style="font-size:16px;">Party</span> 
+<?php
+    $max_size = 250; // max font size in %
+    $min_size = 100; // min font size in %
+
+    $max_qty = max(array_values($partyTagCloud));
+    $min_qty = min(array_values($partyTagCloud));
+
+    $spread = $max_qty - $min_qty;
+    if (0 == $spread) { // we don't want to divide by zero
+        $spread = 1;
+    }
+
+    $step = ($max_size - $min_size)/($spread);
+    $i=0;
+    foreach ($partyTagCloud as $key => $value) {
+        $size = $min_size + (($value - $min_qty) * $step);
+        echo '<a href="'.Router::url('/lawmakers/browse/party/'.$key).'" style="font-size: '.$size.'%"';
+        echo ' title="'.$value.' lawmakers in  '.$key.'"';
+        echo '>'.$key.'</a> ';
+        $i++;
+    }
+
+?>
+</p>
 <p>
 <form method="post" action="<?php echo Router::url('/lawmakers/search'); ?>">
     <input type="hidden" name="_method" value="POST" />
     <input name="data[Search][query]" type="text" value="" class="query" id="Search" />
-    <input type="submit" id="searchbtn" value="Searching the Profile Database" />
+    <input type="submit" id="searchbtn" value="Search Profiles" />
 </form> 
 </p>
-
-<h3>or start with either <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> member profiles</h3> 
-
-<h3>Browse profiles by State.</h3>
+</div>
+<div id="homepage_right">
+<p><strong>CongressSpaceBook members also <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
 <p>
 <?php
     $max_size = 250; // max font size in %
@@ -43,45 +67,22 @@
 
 ?>
 </p>
-<h3>Browse profiles by Party.</h3>
+
 <p>
 <?php
-    $max_size = 250; // max font size in %
-    $min_size = 100; // min font size in %
-
-    $max_qty = max(array_values($partyTagCloud));
-    $min_qty = min(array_values($partyTagCloud));
-
-    $spread = $max_qty - $min_qty;
-    if (0 == $spread) { // we don't want to divide by zero
-        $spread = 1;
-    }
-
-    $step = ($max_size - $min_size)/($spread);
-    $i=0;
-    foreach ($partyTagCloud as $key => $value) {
-        $size = $min_size + (($value - $min_qty) * $step);
-        echo '<a href="'.Router::url('/lawmakers/browse/party/'.$key).'" style="font-size: '.$size.'%"';
-        echo ' title="'.$value.' lawmakers in  '.$key.'"';
-        echo '>'.$key.'</a> ';
-        $i++;
-    }
-
+//$letters = range('a','z');
+//foreach($letters as $letter) {
+//    echo '<span style="padding:1px;font-size:16px;"><a href="'.Router::url('/lawmakers/browse/letter/'.strtoupper($letter)).'" title="'.strtoupper($letter).'"><strong>'.strtoupper($letter).'</a></strong></span>';
+//}
 ?>
 </p>
-
-<h3>Browse profiles by letter.</h3>
-<p>
-<?php
-$letters = range('a','z');
-foreach($letters as $letter) {
-    echo '<span style="padding:1px;font-size:16px;"><a href="'.Router::url('/lawmakers/browse/letter/'.strtoupper($letter)).'" title="'.strtoupper($letter).'"><strong>'.strtoupper($letter).'</a></strong></span>';
-}
-?>
-</p>
+<p><h3>.. or start with either <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> member profiles</h3></p>
 
 <h3>.. or just <a href="<?php echo Router::url('/lawmakers/browse/'); ?>" title="Browse">Browse</a> to see who they are.</h3>
 
+<h3><a href="<?php echo Router::url('/nearby/lawmakers'); ?>">In your state</a></h3>
+
+</div><!-- end of homepage_right -->
 </div>
 </p>
 <p></p>

@@ -660,3 +660,19 @@ div.paging span a {
   float: right;
   width: 60%;
 }
+
+
+#homepage_page {
+  width: 500px ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+#homepage_left {
+  float: left;
+  width: 40%;
+}
+#homepage_right {
+  float: right;
+  width: 60%;
+}
+
