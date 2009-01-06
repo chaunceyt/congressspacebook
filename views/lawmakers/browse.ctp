@@ -3,7 +3,7 @@
         <div class="entry">
 
 <div class="lawmakers index">
-<h2><?php __('Congressional Mashup');?></h2>
+<h2><?php __('Browse Member Profiles');?></h2>
 <p>
 <?php
 echo $paginator->counter(array(
