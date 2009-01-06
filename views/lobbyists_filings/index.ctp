@@ -2,7 +2,7 @@
     <div class="post">
         <div class="entry">
 <div class="lobbyistsFilings index">
-<h2><?php __('Lobbyist @ Work...');?></h2>
+<h2><?php __('Lobbyist @ Work their expenditures...');?></h2>
 <p>
 <?php
 echo $paginator->counter(array(

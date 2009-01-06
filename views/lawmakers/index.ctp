@@ -3,47 +3,56 @@
         <div class="entry">
 <div id="homepage_header">
                 <strong><a href="<?php echo Router::url('/keyword_frequency/'.$keyword); ?>"title="Random Keyword"><em><?php echo $keyword; ?></em></a></strong> -
-                random keyword used <?php echo number_format($wordused); ?> time(s) by congress in 2008 <br/>
-
+                random keyword men <?php echo number_format($wordused); ?> time(s) by Congress in 2008 <br/>
 </div>
 <div id="homepage_page">
 <div id="homepage_left">
-<p style="font-size:12px;">member of the month</p>
-<p><img src="<?php echo Router::url('/'); ?>img/noprofile.jpg" alt="default" border="0" /></p>
+<h3>These lawmakers</h3>
+<p><a href="<?php echo Router::url('/nearby/lawmakers'); ?>"><img src="<?php echo Router::url('/'); ?>img/noprofile.jpg" alt="default" border="0" /></p></a>
 
-<p style="font-size:12px;">random Dem</p>
-<p>
-<div>
-<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
-<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
-<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" /><br/>
-<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
-<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
+<h3>State Cloud</h3>
+<div id="homepage_tagcloud">
+<?php
+    $max_size = 250; // max font size in %
+    $min_size = 100; // min font size in %
+
+    $max_qty = max(array_values($stateTagCloud));
+    $min_qty = min(array_values($stateTagCloud));
+
+    $spread = $max_qty - $min_qty;
+    if (0 == $spread) { // we don't want to divide by zero
+        $spread = 1;
+    }
+
+    $step = ($max_size - $min_size)/($spread);
+    $i=0;
+    foreach ($stateTagCloud as $key => $value) {
+        $size = $min_size + (($value - $min_qty) * $step);
+        echo '<a href="'.Router::url('/lawmakers/browse/state/'.$key).'" style="padding:2;font-size: '.$size.'%"';
+        echo ' title="'.$value.' lawmakers in  '.$key.'"';
+        echo '>'.$key.'</a> ';
+        $i++;
+    }
+
+?>
 </div>
-</p>
-<p>&nbsp;</p>
-<p style="font-size:12px;">random Repub</p>
-<p>
-<div>
-<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
-<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
-<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" /><br/>
-<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
-<img src="<?php echo Router::url('/'); ?>img/no_profile_small.jpg" alt="default" border="0" />
-</div>
-</p>
+
 
 </div>
 <div id="homepage_right">
-<p><strong> members also <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
+<p></p>
+<h3>Welcome. Let's get started...</h3>
+<p><strong>We</strong> have lawmaking power. The U.S. Constitution created us and named us the legislative branch - the branch with the power to write laws.</p>
+<p> No laws can govern the nation unless <strong>we</strong> enacted them and then approved by the President.</p>
 <p>
-<form method="post" action="<?php echo Router::url('/lawmakers/search'); ?>">
-    <input type="hidden" name="_method" value="POST" />
-    <input name="data[Search][query]" type="text" value="" class="query" id="Search" />
-    <input type="submit" id="searchbtn" value="Search Profiles" />
-</form> 
+<strong>We</strong> have the "Power of the Purse." The Constitution grants <strong>us</strong> the power of the purse. Under Article 1 [section 8], <strong>we</strong> are given the power to tax and impose tariffs, duties, and other measures to collect revenue for the U.S. Treasury.</p>
+<p> <strong>We</strong> are also given the authority to borrow money on credit on behalf of the United States. Article 1 [section 9, clause 7] of the U.S. Constitution, states no money can be appropriated [spent] out of the U.S. Treasury <strong>unless</strong> we Act. This means that governmental agencies and departments may not spend any money for their operations and programs that <strong>we</strong> have not appropriated nor use any federal money for any purpose that <strong>we</strong> have not expressly authorized.
 </p>
+<h4>Browse our Profile System</h4>
 <p>&nbsp;</p>
+<p><h3>start with either our <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> member profiles</h3></p>
+<p></p>
+<p><strong> some of our members are <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
 <p><span style="font-size:16px;">Party</span> 
 <?php
     $max_size = 250; // max font size in %
@@ -72,43 +81,16 @@
 
 <p>
 <?php
-    $max_size = 250; // max font size in %
-    $min_size = 100; // min font size in %
-
-    $max_qty = max(array_values($stateTagCloud));
-    $min_qty = min(array_values($stateTagCloud));
-
-    $spread = $max_qty - $min_qty;
-    if (0 == $spread) { // we don't want to divide by zero
-        $spread = 1;
-    }
-
-    $step = ($max_size - $min_size)/($spread);
-    $i=0;
-    foreach ($stateTagCloud as $key => $value) {
-        $size = $min_size + (($value - $min_qty) * $step);
-        echo '<a href="'.Router::url('/lawmakers/browse/state/'.$key).'" style="padding:2;font-size: '.$size.'%"';
-        echo ' title="'.$value.' lawmakers in  '.$key.'"';
-        echo '>'.$key.'</a> ';
-        $i++;
-    }
-
-?>
-</p>
-
-<p>
-<?php
 //$letters = range('a','z');
 //foreach($letters as $letter) {
 //    echo '<span style="padding:1px;font-size:16px;"><a href="'.Router::url('/lawmakers/browse/letter/'.strtoupper($letter)).'" title="'.strtoupper($letter).'"><strong>'.strtoupper($letter).'</a></strong></span>';
 //}
 ?>
 </p>
-<p><h3>.. or start with either <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> member profiles</h3></p>
+<p><strong> members also <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
 
-<h3>.. or just <a href="<?php echo Router::url('/lawmakers/browse/'); ?>" title="Browse">Browse</a> to see who they are.</h3>
+<h3>.. or just <a href="<?php echo Router::url('/lawmakers/browse/'); ?>" title="Browse">Browse</a> to see who we are.</h3>
 
-<h3><a href="<?php echo Router::url('/nearby/lawmakers'); ?>">In your state</a></h3>
 
 
 </div><!-- end of homepage_right -->

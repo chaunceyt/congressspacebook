@@ -40,13 +40,13 @@ Released   : 20071222
 <body>
 <div id="container">
 <div id="header">
+<a href="<?php echo Router::url('/'); ?>" title="CongressSpacebook.com"><img src="<?php echo Router::url('/'); ?>img/congress_spacebook_header.jpg" alt="" border="0"/></a>
+<!--
         <h1 style="padding-right:5px;"><a href="<?php echo Router::url('/'); ?>">MASHUP::KEYWORD</a></h1>
         <h3>browse the latest news, comments, posts, photos, videos, events and social_streams...</h3>
+-->        
 </div>
 <div id="page">
-<p><h2><?php __('CongressSpaceBook');?> -
-<em><?php __('making government transparency for real...');?></em></h2>
-<br/>
 </p>
 
 			<?php $session->flash(); ?>

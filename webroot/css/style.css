@@ -42,7 +42,7 @@ body {
 }
 
 #header {
-  height: 72px; 
+  height: 92px; 
   margin: 0 -0.5px 12px 0; padding: 0;
 }
 
@@ -681,6 +681,17 @@ div.paging span a {
     color: #000000;
     font-size: 11px;
     text-transform: uppercase;
+}
+
+#homepage_page h3, #homepage_page h3 a {
+    color: #000000;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+#homepage_tagcloud {
+  float: center;
+  width: 145px;
 }
 
 #homepage_page {

@@ -1,8 +1,19 @@
     <ul>
+
             <li>
+            <ul>
+<p>
+<form method="post" action="<?php echo Router::url('/lawmakers/search'); ?>">
+    <input type="hidden" name="_method" value="POST" />
+    <input name="data[Search][query]" type="text" value="" class="query" id="Search" />
+    <input type="submit" id="searchbtn" value="Search Profiles" />
+</form>
+</p>
+<p></p>            
+            </ul>
                 <h3>Lobbyist @ Work</h3>
                 <ul>
-                    <li><a href="<?php echo Router::url('/lobbyists_filings'); ?>">Browse</a></li>
+                    <li><a href="<?php echo Router::url('/lobbyists_filings'); ?>">Their Clients</a></li>
                 </ul>
                 <h3>MASHUP</h3>
                <ul>

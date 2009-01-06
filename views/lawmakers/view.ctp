@@ -1,11 +1,10 @@
 <div id="content">
     <div class="post">
         <div class="entry">
-<div id="profile_header">Browse Profiles</div>
+<div id="profile_header"><h2>Member Profile</h2></div>
 <div id="profile_page">
 
 <div id="profile_left">
-    <h4><?php  __('Member');?></h4>
     <p><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /></p>
 
             <?php
@@ -20,11 +19,11 @@
 
                 $openSecretWidgitData = $lawmaker['Lawmaker']['state'].$_district;
             ?>
-            Title: <?php echo $lawmaker['Lawmaker']['title']; ?><br/>
-			Name: <?php echo $lawmaker['Lawmaker']['firstname']; ?>
+			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
 			<?php echo $lawmaker['Lawmaker']['middlename']; ?>
 			<?php echo $lawmaker['Lawmaker']['lastname']; ?><br/>
-			Party-State-District: <?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?>
+            <?php echo $lawmaker['Lawmaker']['title']; ?><br/>
+			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?>
             <br/>
 
         </p>
@@ -35,10 +34,7 @@
                     <li><img src="http://www.friendfeed.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/friendfeed/'. @urlencode($this_person)); ?>" title="Friend Feed">FriendFeed Chatter</a>  </li>
                     <li><img src="http://backtype.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/comments/'.@urlencode($this_person)); ?>" title="Comments: Blogs">User Comments</a>  </li>
                     <li><img src="http://www.technorati.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/technorati/'.@urlencode($this_person)); ?>" title="Blog Chatter">Blogs Chatter</a> </li>
-                    <li><img src="http://www.flickr.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/flickr/'.@urlencode($this_person)); ?>" title="Images">Flickr Images</a>  </li>
-                    <li><img src="http://youtube.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/youtube/'.@urlencode($this_person)); ?>" title="Videos">Youtube Videos</a>  </li>
                     <li><img src="http://www.google.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/news/'. @urlencode($this_person)); ?>" title="News">Google News</a> </li>
-                    <li><img src="http://www.eventful.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/eventful/'.@urlencode($this_person)); ?>" title="Event">EventFul</a> </li>
                     <!--<li> Audioscrobbler </li>-->
                     <!--<li><a href="<?php echo Router::url('/audioscrobbler/similar/'.@urlencode($this_person)); ?>" title="Similar Artist">Similar Artist</a> </li>-->
                     <!--<li><a href="<?php echo Router::url('/audioscrobbler/albums/'.@urlencode($this_person)); ?>" title="Albums">Albums</a> </li>-->
@@ -48,7 +44,6 @@
         
 </div>
 <div id="profile_right">
-<h4>Info</h4>
 <p>
             <?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
 			Phone: <?php echo $lawmaker['Lawmaker']['phone']; ?><br/>
