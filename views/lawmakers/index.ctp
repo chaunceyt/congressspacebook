@@ -86,7 +86,6 @@
 //}
 ?>
 </p>
-<p><strong> members also <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
 
 <h3>.. or just <a href="<?php echo Router::url('/lawmakers/browse/'); ?>" title="Browse">Browse</a> to see who we are.</h3>
 
