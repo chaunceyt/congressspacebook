@@ -2,8 +2,7 @@
     <div class="post">
         <div class="entry">
 <div id="homepage_header">
-                <strong><a href="<?php echo Router::url('/keyword_frequency/'.$keyword); ?>"title="Random Keyword"><em><?php echo $keyword; ?></em></a></strong> -
-                random keyword men <?php echo number_format($wordused); ?> time(s) by Congress in 2008 <br/>
+<h3>Welcome to our Community..!</h3>
 </div>
 <div id="homepage_page">
 <div id="homepage_left">
@@ -41,8 +40,8 @@
 </div>
 <div id="homepage_right">
 <p></p>
-<h3>Welcome. Let's get started...</h3>
-<p><strong>We</strong> have lawmaking power. The U.S. Constitution created us and named us the legislative branch - the branch with the power to write laws.</p>
+<h3>Let's get started...</h3>
+<p><strong>We</strong> have lawmaking power. The U.S. Constitution created <strong>us</strong> and named <strong>us</strong> the legislative branch - the branch with the power to write laws.</p>
 <p> No laws can govern the nation unless <strong>we</strong> enacted them and then approved by the President.</p>
 <p>
 <strong>We</strong> have the "Power of the Purse." The Constitution grants <strong>us</strong> the power of the purse. Under Article 1 [section 8], <strong>we</strong> are given the power to tax and impose tariffs, duties, and other measures to collect revenue for the U.S. Treasury.</p>
