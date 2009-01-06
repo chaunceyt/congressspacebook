@@ -6,7 +6,7 @@ class LobbyistsLobbyistsController extends AppController {
 
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index');
+        $this->Auth->allowedActions = array('index', 'view');
         parent::beforeFilter();
     }
 

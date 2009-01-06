@@ -9,7 +9,7 @@ class YoutubeController extends AppController {
 
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index');
+        $this->Auth->allowedActions = array('index', 'video');
         parent::beforeFilter();
     }
 

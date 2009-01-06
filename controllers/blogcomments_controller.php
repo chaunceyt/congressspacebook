@@ -9,8 +9,8 @@ class BlogcommentsController extends AppController {
 
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index');
-        parent::beforeFilter();
+        //$this->Auth->allowedActions = array('index');
+        //parent::beforeFilter();
     }
 
     function index()

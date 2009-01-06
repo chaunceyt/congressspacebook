@@ -4,6 +4,12 @@ class LobbyistsIssuesController extends AppController {
 	var $name = 'LobbyistsIssues';
 	var $helpers = array('Html', 'Form');
 
+    function beforeFilter()
+    {
+        $this->Auth->allowedActions = array('index', 'view');
+        parent::beforeFilter();
+    }
+    
 	function index() {
 		$this->LobbyistsIssue->recursive = 0;
 		$this->set('lobbyistsIssues', $this->paginate());

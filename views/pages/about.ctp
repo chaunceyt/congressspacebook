@@ -4,9 +4,10 @@
                         <h2 class="title">/about us</h2>
                         <div class="entry">
 <p>
-Mashup::Keyword <br/>
+CongressSpaceBook <br/>
 - Developer: Chauncey Thorn<br/>
 - $email = $this->chaunceyt->gmail->com();<br/>
+- Powered by: MASHUP::Keyword and <a href="http://services.sunlightlabs.com/api/" target="_new">Sunlight Labs</a> data<br/>
 - takes advantage of state-of-the-art XML webservices i.e. Google, Yahoo, Flickr, YouTube <br/>
 - Environment:  Linux, Apache2, Mysql 5, PHP 5.2.x + <strike>Zend</strike> CakePHP Framework MVC<br/>
 - Framework:  I first developed this site using <strike>Zend</strike> however I prefer the CakePHP Framework's  MVC pattern but, still use Zend components!<br/>

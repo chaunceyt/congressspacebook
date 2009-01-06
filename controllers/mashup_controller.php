@@ -9,7 +9,7 @@ class MashupController extends AppController {
 
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index', 'word_usage');
+        $this->Auth->allowedActions = array('index', 'word_usage', 'search');
         parent::beforeFilter();
     }
 

@@ -7,6 +7,16 @@ class AudioscrobblerController extends AppController {
     var $components = array('Zend', 'Mashup');
     var $uses = array();
 
+    function beforeFilter()
+    {
+        $this->Auth->allowedActions = array('index',
+                                            'similar',
+                                            'albums',
+                                            'tracks');
+        parent::beforeFilter();
+    }
+
+
     function index()
     {
         $this->autoRender=false;
