@@ -30,7 +30,7 @@ foreach ($lawmakers as $lawmaker):
 ?>
 	<tr<?php echo $class;?>>
         <td valign="top">
-        <span><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /></span>
+        <span><a href="<?php echo Router::url('/lawmakers/view/'.$lawmaker['Lawmaker']['id']); ?>"><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
         </td>
 		<td>
 			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
