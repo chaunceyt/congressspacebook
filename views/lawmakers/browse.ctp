@@ -51,6 +51,7 @@ foreach ($lawmakers as $lawmaker):
     $congresspedia_name = ucfirst($lawmaker['Lawmaker']['firstname']) . '_' .ucfirst($lawmaker['Lawmaker']['lastname']);
 ?>
         <div class="imageblock">
+        <?php //fixme need to check if the image file exist and use default image once it's done ?>
             <a href="<?php echo Router::url('/lawmakers/view/'.$lawmaker['Lawmaker']['id']); ?>"><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0"/></a>
             <strong><a href="<?php echo Router::url('/lawmakers/view/'.$lawmaker['Lawmaker']['id']); ?>"><?php echo $lawmaker['Lawmaker']['lastname']; ?></a></strong><br/>
         </div>

@@ -13,7 +13,7 @@ Released   : 20071222
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title><?php echo strtoupper($keyword); ?>| Browse Latest News, Videos, Pictures, Comments, Posts, Events| MASHUP::Keyword</title>
+<title><?php echo strtoupper($keyword); ?>| Browse Latest News, Videos, Pictures, Comments, Posts, Events| CongressSpacebook.com</title>
 <meta name="Author" content="Chauncey Thorn (chaunceyt [at] gmail.com)">
 <META NAME="Generator" CONTENT="MASHUP::Keyword (www.mashupkeyword.com)">
 <meta name="KeyWords" content="beyonce,  mashup, celebs, artist, hiphop, rnb, keywords, api, search, music, zend framework, php, reggae, soul, hip-hop, photos">
@@ -70,7 +70,7 @@ pageTracker._trackPageview();
 </script>
 
 <div id="footer">
-        <p>(c) 2007-<?php echo date("Y"); ?> Mashupkeyword.com.</p>
+        <p>(c) <?php echo date("Y"); ?> CongressSpacebook.com.</p>
         <p>Powered By MASHUP::Keyword</p>
 </div>
 </body>
