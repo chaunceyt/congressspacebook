@@ -40,6 +40,12 @@
 </div>
 <div id="homepage_right">
 <p></p>
+<p><strong>Event</strong>: Jan. 6, 2009  - The 111th Congress convenes. It's going to be a eventful day...</p>
+<p><strong>Alert</strong>: There could be issues with  
+<a href="<?php echo Router::url('/news/'. @urlencode('Minnesota')); ?>" title="Twitter Chatter">Minnesota</a> 
+<a href="<?php echo Router::url('/news/'. @urlencode('Al Franken')); ?>" title="Twitter Chatter">Al Franken</a>
+and we're also dealing with the <a href="<?php echo Router::url('/news/'. @urlencode('Roland Burris')); ?>" title="Twitter Chatter">Roland Burris</a> issue 
+- </p>
 <h3>Let's get started...</h3>
 <p><strong>We</strong> have lawmaking power. The U.S. Constitution created <strong>us</strong> and named <strong>us</strong> the legislative branch - the branch with the power to write laws.</p>
 <p> No laws can govern the nation unless <strong>we</strong> enacted them and have it approved by the President.</p>
