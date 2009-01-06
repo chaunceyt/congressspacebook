@@ -4,9 +4,16 @@ class LobbyistsFilingsController extends AppController {
 	var $name = 'LobbyistsFilings';
 	var $helpers = array('Html', 'Form');
 
+    function beforeFilter()
+    {
+        $this->Auth->allowedActions = array('index', 'view');
+        parent::beforeFilter();
+    }
+
+
 	function index() {
 		$this->LobbyistsFiling->recursive = 0;
-        $this->paginate['LobbyistsFiling'] = array('order' => array('filing_date' => 'desc'),'limit' => '50');
+        $this->paginate['LobbyistsFiling'] = array('order' => array('filing_amount' => 'desc'),'limit' => '50');
 		$this->set('lobbyistsFilings', $this->paginate());
 	}
 

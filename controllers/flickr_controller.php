@@ -9,7 +9,7 @@ class FlickrController extends AppController {
 
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index');
+        $this->Auth->allowedActions = array('index', 'image');
         parent::beforeFilter();
     }
     

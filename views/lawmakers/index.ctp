@@ -1,6 +1,11 @@
 <div id="content">
     <div class="post">
         <div class="entry">
+<div id="homepage_header">
+                <strong><a href="<?php echo Router::url('/keyword_frequency/'.$keyword); ?>"title="Random Keyword"><em><?php echo $keyword; ?></em></a></strong> -
+                random keyword used <?php echo number_format($wordused); ?> time(s) by congress in 2008 <br/>
+
+</div>
 <div id="homepage_page">
 <div id="homepage_left">
 <p style="font-size:12px;">member of the month</p>
@@ -30,7 +35,7 @@
 
 </div>
 <div id="homepage_right">
-<p><strong>CongressSpaceBook members also <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
+<p><strong> members also <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
 <p>
 <form method="post" action="<?php echo Router::url('/lawmakers/search'); ?>">
     <input type="hidden" name="_method" value="POST" />

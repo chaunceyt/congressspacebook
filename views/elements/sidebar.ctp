@@ -1,12 +1,5 @@
     <ul>
             <li>
-    <h3>Random Word</h3>
-            <p>
-                <strong><a href="<?php echo Router::url('/keyword_frequency/'.$keyword); ?>" title="Random Keyword"><em><?php echo $keyword; ?></em></a></strong> -
-                  word<br/>
-                used <?php echo number_format($wordused); ?> time(s)<br/>
-                by congress last year<br/>
-            </p>
                 <h3>Lobbyist @ Work</h3>
                 <ul>
                     <li><a href="<?php echo Router::url('/lobbyists_filings'); ?>">Browse</a></li>

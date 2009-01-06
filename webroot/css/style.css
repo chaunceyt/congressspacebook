@@ -506,7 +506,7 @@ cite  { font-style: normal; }
 a img { border: none; padding: 0; margin: 0; }
 
 a:link,  a:visited { color: #000; }
-a:hover, a:active  { color: #fff; background: #000; }
+a:hover, a:active  { color: #fff; background: #ff0000; }
 
 /* http://longren.org/2006/09/27/wrapping-text-inside-pre-tags */
 /* Uncomment if you want preformatted text to wrap in IE <= 6 */
@@ -647,6 +647,18 @@ div.paging span.current {
 div.paging span a {
 }
 
+#homepage_header {
+  height: 20px;
+  margin: 0 -0.5px 12px 0; padding: 0;
+}
+
+
+#page_header {
+  height: 72px;
+  margin: 0 -0.5px 12px 0; padding: 0;
+}
+
+
 #profile_page {
   width: 500px ;
   margin-left: auto ;
@@ -660,7 +672,16 @@ div.paging span a {
   float: right;
   width: 60%;
 }
-
+#profile_page h4, #profile_page h4 a {
+    color: #000000;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+#profile_page h3, #profile_page h3 a {
+    color: #000000;
+    font-size: 11px;
+    text-transform: uppercase;
+}
 
 #homepage_page {
   width: 500px ;
@@ -675,4 +696,36 @@ div.paging span a {
   float: right;
   width: 60%;
 }
+#profileresults {
+    width: 500px;
+    padding-top: 10px;
+}
+#profileresults .imageblock {
+    width: 95px;
+    height: 141px;
+    margin-right: 25px;
+    float: left;
+    text-align: center;
+    clear: none;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
 
+#profileresults .imageblock a {
+    color: #000099;
+    font-size: 12px;
+}
+
+#profileresults .imageblock img {
+    float: none;
+}
+#profileresults .imageblock img:hover {
+border: 1px solid #000099:;
+}
+
+#profileresults .imageblock h3 {
+    padding-bottom: 2px;
+}
+.clear {
+    clear: both;
+}

@@ -2,7 +2,7 @@
     <div class="post">
         <div class="entry">
 <div class="lobbyistsFilings index">
-<h2><?php __('Lobbyist @ Work on behalf of...');?></h2>
+<h2><?php __('Lobbyist @ Work...');?></h2>
 <p>
 <?php
 echo $paginator->counter(array(
@@ -10,6 +10,11 @@ echo $paginator->counter(array(
 ));
 ?></p>
 <table cellpadding="0" cellspacing="0">
+<tr>
+        <th><?php echo $paginator->sort('Client lobbying is done on behalf of', 'client_name');?></th>
+        <th><?php echo $paginator->sort('Expenditures','filing_amount');?></th>
+</tr>
+
 <?php
 $i = 0;
 
@@ -24,7 +29,8 @@ foreach ($lobbyistsFilings as $lobbyistsFiling):
 			<a href="<?php echo Router::url('/lobbyists_filings/view/'.$lobbyistsFiling['LobbyistsFiling']['filing_id']);?>"><?php echo $lobbyistsFiling['LobbyistsFiling']['client_name']; ?></a>
 		</td>
 		<td>
-			<?php echo date("m-d-Y", strtotime($lobbyistsFiling['LobbyistsFiling']['filing_date'])); ?>
+			$<?php echo number_format($lobbyistsFiling['LobbyistsFiling']['filing_amount']); ?> 
+            <?php      //echo date("m-d-Y", strtotime($lobbyistsFiling['LobbyistsFiling']['filing_date'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
