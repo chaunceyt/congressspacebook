@@ -34,7 +34,9 @@
 ?>
 </div>
 <p></p>
-<p><span style="font-size:16px;">Party</span> 
+<h3>The parties</h3> 
+<p></p>
+<p>
 <?php
     $max_size = 250; // max font size in %
     $min_size = 100; // min font size in %
