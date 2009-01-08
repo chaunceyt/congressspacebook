@@ -144,9 +144,9 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
 <div id="list1a">
 
     <?php if(isset($candContrib)) { ?>
-            <a><h4>Contributors</h4></a>
+            <a><h2>Contributors</h2></a>
             <div>
-            <table style="width:100%;">
+            <table>
             <?php
               for($i=0; $i < sizeof($candContrib->contributors->contributor); $i++) {     
                   echo '<tr>';
@@ -158,10 +158,10 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
             </div>
     <?php } ?> 
     <?php if(isset($candIndustry)) { ?>
-            <a><h4>Industries</h4></a>
+            <a><h2>Industries</h2></a>
             
             <div>
-            <table style="width:100%;">
+            <table>
             <?php
               for($i=0; $i < sizeof($candIndustry->industries->industry); $i++) {     
                   echo '<tr>';
@@ -175,10 +175,10 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
             </div>
       <?php } ?>
       <?php if(isset($candSector)) { ?>
-            <a><h4>Sectors</h4></a>
+            <a><h2>Sectors</h2></a>
             <div>
             
-            <table style="width:100%;">
+            <table>
             <?php
               for($i=0; $i < sizeof($candSector->sectors->sector); $i++) {     
                   echo '<tr>';

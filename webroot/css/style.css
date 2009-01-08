@@ -667,11 +667,11 @@ div.paging span a {
 }
 #profile_left {
   float: left;
-  width: 40%;
+  width: 180px;
 }
 #profile_right {
-  float: right;
-  width: 60%;
+  float: left;
+  width: 330px;
 }
 #profile_page h4, #profile_page h4 a {
     color: #000000;
