@@ -28,7 +28,7 @@ foreach ($lobbyistsFilings as $lobbyistsFiling):
 		<td>
 			<a href="<?php echo Router::url('/lobbyists_filings/view/'.$lobbyistsFiling['LobbyistsFiling']['filing_id']);?>"><?php echo $lobbyistsFiling['LobbyistsFiling']['client_name']; ?></a>
 		</td>
-		<td>
+		<td style="text-align:right">
 			$<?php echo number_format($lobbyistsFiling['LobbyistsFiling']['filing_amount']); ?> 
             <?php      //echo date("m-d-Y", strtotime($lobbyistsFiling['LobbyistsFiling']['filing_date'])); ?>
 		</td>
