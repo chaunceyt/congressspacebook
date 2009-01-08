@@ -30,6 +30,11 @@ Released   : 20071222
 <?php  echo $html->css('style')."\n"; ?>
 <?php  echo $html->css('tooltip')."\n"; ?>
 <script type="text/javascript" src="/js/tooltip.js"></script>
+<?php 
+echo $scripts_for_layout;
+?>
+<script type="text/javascript" src="/js/jquery.accordion.js"></script>
+<script type="text/javascript" src="/js/tooltip.js"></script>
 <link href="/css/bracket.css" rel="stylesheet" type="text/css" media="screen" />
 <!--[if IE]>
 <style type="text/css"> 

@@ -2,7 +2,9 @@
 class LawmakersController extends AppController {
 
 	var $name = 'Lawmakers';
+    var $components = array('Opensecrets', 'Zend');
 	var $helpers = array('Html', 'Form');
+    public $_cache = null;
 
     function beforeFilter()
     {
@@ -89,11 +91,26 @@ class LawmakersController extends AppController {
 
 	function view($id=null) 
     {
+        $this->Zend->startup();
+        $_cache = $this->Zend->cache();
+        //require APP . 'vendors' . DS .'JSON.php';
+        //$json = new Services_JSON();
         if(!$id) {
             $this->redirect('/');
             exit();
         }
         $lawmaker = $this->Lawmaker->read(null, $id);
+        $_year = date("Y")-1;
+        $cid = $lawmaker['Lawmaker']['crp_id'];
+        
+        $candSummary = $this->Opensecrets->candSummary($cid, $_year, 'xml');
+        $candContrib = $this->Opensecrets->candContrib($cid, $_year,'xml');
+        $candIndustry = $this->Opensecrets->candIndustry($cid, $_year,'xml');
+        $candSector = $this->Opensecrets->candSector($cid, $_year,'xml');
+        $this->set('candSummary', $candSummary);
+        $this->set('candContrib', $candContrib);
+        $this->set('candIndustry', $candIndustry);
+        $this->set('candSector', $candSector);
 		$this->set('lawmaker', $lawmaker);
 	}
 

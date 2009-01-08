@@ -2,14 +2,12 @@
     <div class="post">
         <div class="entry">
 <div id="homepage_header">
-<h3>Welcome to our Community..!</h3>
 </div>
 <div id="homepage_page">
 <div id="homepage_left">
-<h3>These lawmakers</h3>
-<p><a href="<?php echo Router::url('/nearby/lawmakers'); ?>"><img src="<?php echo Router::url('/'); ?>img/noprofile.jpg" alt="default" border="0" /></p></a>
-
-<h3>State Cloud</h3>
+<h2><?php echo $current_webuser->region; ?> lawmakers</h2>
+<p><a href="<?php echo Router::url('/nearby/lawmakers'); ?>"><img src="<?php echo Router::url('/'); ?>img/states/<?php echo strtolower($current_webuser->region); ?>.png" alt="default" border="0" /></p></a>
+<h3>The States</h3>
 <div id="homepage_tagcloud">
 <?php
     $max_size = 250; // max font size in %

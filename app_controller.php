@@ -40,6 +40,10 @@ class AppController extends Controller
 
     function beforeRender()
     {
+        $gi = geoip_open(APP . 'geocity' . DS .'GeoLiteCity.dat',GEOIP_MEMORY_CACHE);
+        $_current_webuser = geoip_record_by_addr($gi, $_SERVER['REMOTE_ADDR']);
+        $this->set('current_webuser', $_current_webuser);
+        
         $json = new Services_JSON();
         $_random_keyword = $this->_words();
         //$this->_words();
@@ -90,10 +94,7 @@ class AppController extends Controller
                
                 /*
                 //get random value
-                $gi = geoip_open(APP . 'geocity' . DS .'GeoLiteCity.dat',GEOIP_MEMORY_CACHE);
-                $_current_webuser = geoip_record_by_addr($gi, $_SERVER['REMOTE_ADDR']);
                 $this->{$this->modelClass}->currentWebuser = $_current_webuser;
-                $this->set('current_webuser', $_current_webuser);
                 if(isset($_current_webuser->city)) {
                     $this->set('keyword', $_current_webuser->city);
                 }

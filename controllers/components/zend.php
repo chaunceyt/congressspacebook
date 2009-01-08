@@ -11,7 +11,6 @@ class ZendComponent extends Object
         $include = get_include_path();
         $include.= PATH_SEPARATOR. APP . 'vendors' . DS;
         $successful = set_include_path($include);
-        
         if (!$successful) {
             throw new Exception('ZendComponent failed to set include path.', E_ERROR);
         }
@@ -21,15 +20,14 @@ class ZendComponent extends Object
 
     public function cache()
     {
+        $cacheDir = APP . 'tmp' . DS .'zend_cache';
         $frontendOptions = array(
             'lifetime' => 7200, // cache lifetime of 2 hours
             'automatic_serialization' => true);
         $backendOptions = array(
-            'cache_dir' => '/tmp/'); // Directory where to put the cache files
+            'cache_dir' => $cacheDir); // Directory where to put the cache files
         return Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
     }
-
-
-
     
-}?> 
+}//end of class
+?> 
