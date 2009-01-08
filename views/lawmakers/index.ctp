@@ -63,10 +63,12 @@
 
 </div>
 <div id="homepage_right">
+<p><strong>Event</strong>: Jan. 6, 2009  - The 111th Congress convenes. It was an eventful day...</p>
 <p></p>
-<h3>Top Members</h3>
+<h3>Top Members of the 111th Congress</h3>
 <p>
 <?php
+
 foreach ($current_congress as $current) {
 ?>
         <span><a href="<?php echo Router::url('/lawmakers/view/'.$current['lawmaker']['id']); ?>"><img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
@@ -74,23 +76,29 @@ foreach ($current_congress as $current) {
 <?php }
 ?>
 </p>
-<p><strong>Event</strong>: Jan. 6, 2009  - The 111th Congress convenes. It's going to be a eventful day...</p>
 
 
-<p><strong>Alert</strong>: There could be issues with  
+<p><strong>Issue(s)</strong> we're dealing with:  
 <a href="<?php echo Router::url('/news/'. @urlencode('Minnesota')); ?>" title="Twitter Chatter">Minnesota</a> 
 <a href="<?php echo Router::url('/news/'. @urlencode('Al Franken')); ?>" title="Twitter Chatter">Al Franken</a>
-and we're also dealing with the <a href="<?php echo Router::url('/news/'. @urlencode('Roland Burris')); ?>" title="Twitter Chatter">Roland Burris</a> issue 
+<a href="<?php echo Router::url('/news/'. @urlencode('Roland Burris')); ?>" title="Twitter Chatter">Roland Burris</a>
+
+<a href="<?php echo Router::url('/twitter/'. @urlencode('economy')); ?>" title="Twitter Chatter">economy</a> 
+<a href="<?php echo Router::url('/twitter/'. @urlencode('health care')); ?>" title="Twitter Chatter">health care</a> 
+<a href="<?php echo Router::url('/twitter/'. @urlencode('jobs')); ?>" title="Twitter Chatter">jobs</a> 
+<a href="<?php echo Router::url('/twitter/'. @urlencode('bailout')); ?>" title="Twitter Chatter">bailouts</a> 
+
 </p>
-<h3>Let's get started...</h3>
+<!--
+<h3>About..</h3>
 <p><strong>We</strong> have lawmaking power. The U.S. Constitution created <strong>us</strong> and named <strong>us</strong> the legislative branch - the branch with the power to write laws.</p>
 <p> No laws can govern the nation unless <strong>we</strong> enacted them and have it approved by the President.</p>
 <p>
 <strong>We</strong> have the "Power of the Purse." The Constitution grants <strong>us</strong> the power of the purse. Under Article 1 [section 8], <strong>we</strong> are given the power to tax and impose tariffs, duties, and other measures to collect revenue for the U.S. Treasury.</p>
 <p> <strong>We</strong> are also given the authority to borrow money on credit on behalf of the United States. Article 1 [section 9, clause 7] of the U.S. Constitution, states no money can be appropriated [spent] out of the U.S. Treasury <strong>unless</strong> we Act. This means that governmental agencies and departments may not spend any money for their operations and programs that <strong>we</strong> have not appropriated nor use any federal money for any purpose that <strong>we</strong> have not expressly authorized.
 </p>
-<h4>Browse our Profile System</h4>
-<p>&nbsp;</p>
+-->
+<h1> Get to know us</h1>
 <p><h3>start with either our <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> member profiles</h3></p>
 <p></p>
 <p><strong> some of our members are <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
