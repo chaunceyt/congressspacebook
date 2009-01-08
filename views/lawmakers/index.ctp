@@ -64,7 +64,19 @@
 </div>
 <div id="homepage_right">
 <p></p>
+<h3>Top Members</h3>
+<p>
+<?php
+foreach ($current_congress as $current) {
+?>
+        <span><a href="<?php echo Router::url('/lawmakers/view/'.$current['lawmaker']['id']); ?>"><img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
+
+<?php }
+?>
+</p>
 <p><strong>Event</strong>: Jan. 6, 2009  - The 111th Congress convenes. It's going to be a eventful day...</p>
+
+
 <p><strong>Alert</strong>: There could be issues with  
 <a href="<?php echo Router::url('/news/'. @urlencode('Minnesota')); ?>" title="Twitter Chatter">Minnesota</a> 
 <a href="<?php echo Router::url('/news/'. @urlencode('Al Franken')); ?>" title="Twitter Chatter">Al Franken</a>

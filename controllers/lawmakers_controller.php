@@ -33,7 +33,10 @@ class LawmakersController extends AppController {
         print_r($results);
         $this->set('words', $results);
         */
-    
+   
+        $current_congress = $this->Lawmaker->getCurrentCongress();
+        $this->set('current_congress', $current_congress);
+
         $stateTagCloud = $this->Lawmaker->stateTagCloud();
         $this->set('stateTagCloud', $stateTagCloud);
 

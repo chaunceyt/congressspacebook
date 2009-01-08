@@ -38,11 +38,20 @@ echo $javascript->includeScript('jquery.accordion');
 <div id="content">
     <div class="post">
         <div class="entry">
-<div id="profile_header"><h2>Member Profile</h2></div>
+<div id="profile_header">
+<p><strong>Member Profile</strong>
+            <?php echo $lawmaker['Lawmaker']['title']; ?> 
+			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
+			<?php echo $lawmaker['Lawmaker']['middlename']; ?>
+			<?php echo $lawmaker['Lawmaker']['lastname']; ?><br/>
+           <strong> Office</strong> :<?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
+</p>            
+</div>
 <div id="profile_page">
 
 <div id="profile_left">
-    <p class="profile_thumb_img"><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /></p>
+    <p class="profile_thumb_img"><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /><br/>
+			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?></p>
 
             <?php
                 $congresspedia_name = ucfirst($lawmaker['Lawmaker']['firstname']) . '_' .ucfirst($lawmaker['Lawmaker']['lastname']);
@@ -56,15 +65,9 @@ echo $javascript->includeScript('jquery.accordion');
 
                 $openSecretWidgitData = $lawmaker['Lawmaker']['state'].$_district;
             ?>
-            <?php echo $lawmaker['Lawmaker']['title']; ?> 
-			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
-			<?php echo $lawmaker['Lawmaker']['middlename']; ?>
-			<?php echo $lawmaker['Lawmaker']['lastname']; ?><br/>
-			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?>
             <br/>
 
         </p>
-            <?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
 			Phone: <?php echo $lawmaker['Lawmaker']['phone']; ?><br/>
 			Fax: <?php echo $lawmaker['Lawmaker']['fax']; ?><br/>
 			Website: 
@@ -108,7 +111,7 @@ chs=260x100
 &amp;chd=t:<?php echo trim($candSummary->summary->attributes()->total);?>,<?php echo trim($candSummary->summary->attributes()->spent);?>,<?php echo trim($candSummary->summary->attributes()->cash_on_hand);?>,<?php echo trim($candSummary->summary->attributes()->debt);?>
 &amp;cht=p3
 &amp;chl=Raised|Spent|Cash|Debt"
-alt="Sample chart" /><br/>
+alt="Member Fundraising" /><br/>
 </p>
 <p style="text-aligh:center">Last updated: <?php echo $candSummary->summary->attributes()->last_updated; ?></p>
 <p>

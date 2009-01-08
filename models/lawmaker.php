@@ -32,5 +32,13 @@ class Lawmaker extends AppModel {
         }
         return $tags;
     }
+
+    function getCurrentCongress($ids ="'168','391','239','101','43','76','416','157','331','283'")
+    {
+        $sql = "select * from lawmakers as lawmaker where id IN ({$ids})";
+        $results = $this->query($sql);
+        return $results;
+    }
+                
 }
 ?>
