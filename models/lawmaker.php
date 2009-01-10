@@ -1,9 +1,9 @@
 <?php
 class Lawmaker extends AppModel {
 
-	var $name = 'Lawmaker';
+	public $name = 'Lawmaker';
 
-    function stateTagCloud()
+    public function stateTagCloud()
     {
         $sql = 'select state, count(*) as lawmakers from lawmakers group by state';
         $results = $this->query($sql);
@@ -13,7 +13,7 @@ class Lawmaker extends AppModel {
         return $tags;
     }
 
-    function partyTagCloud()
+    public function partyTagCloud()
     {
         $sql = 'select party, count(*) as lawmakers from lawmakers group by party';
         $results = $this->query($sql);
@@ -23,7 +23,7 @@ class Lawmaker extends AppModel {
         return $tags;
     }
 
-    function genderTagCloud()
+    public function genderTagCloud()
     {
         $sql = 'select gender, count(*) as lawmakers from lawmakers group by gender';
         $results = $this->query($sql);
@@ -33,12 +33,21 @@ class Lawmaker extends AppModel {
         return $tags;
     }
 
-    function getCurrentCongress($ids ="'168','391','239','101','43','76','416','157','331','283'")
+    public function getCurrentCongress($ids ="'168','391','239','101','43','76','416','157','331','283','291','392','354','332'")
     {
         $sql = "select * from lawmakers as lawmaker where id IN ({$ids})";
         $results = $this->query($sql);
         return $results;
     }
+
+    public function getCongressMembersByState($state, $limit = 14)
+    {
+        $sql = "select * from lawmakers as lawmaker where state = '".$state."' order by rand() limit ".$limit;
+        $results = $this->query($sql);
+        return $results;
+    }
+
+
                 
 }
 ?>

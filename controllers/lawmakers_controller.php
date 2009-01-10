@@ -2,7 +2,7 @@
 class LawmakersController extends AppController {
 
 	var $name = 'Lawmakers';
-    var $components = array('Opensecrets', 'Zend');
+    var $components = array('Opensecrets', 'Fedspending', 'Zend');
 	var $helpers = array('Html', 'Form');
     public $_cache = null;
 
@@ -34,8 +34,13 @@ class LawmakersController extends AppController {
         $this->set('words', $results);
         */
    
-        $current_congress = $this->Lawmaker->getCurrentCongress();
+        //$current_congress = $this->Lawmaker->getCurrentCongress();
+        $webuser = $this->Session->read('current_webuser');
+        $state = strtolower($webuser->region);
+        $current_congress = $this->Lawmaker->getCongressMembersByState($state);
         $this->set('current_congress', $current_congress);
+        $fedSpendingSummary = $this->Fedspending->getFedSpendingSummary($state);
+        $this->set('fedSpending', $fedSpendingSummary);
 
         $stateTagCloud = $this->Lawmaker->stateTagCloud();
         $this->set('stateTagCloud', $stateTagCloud);

@@ -3,6 +3,9 @@ echo $javascript->includeScript('jquery');
 echo $javascript->includeScript('jquery.dimensions');
 echo $javascript->includeScript('jquery.accordion');
 ?>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAASRRg767hPjhGnvMC6zjRwRSw4_dCU545QaPZjzXUEikk77PCGhRY6K5QLtCcNsRoLC86QN_6vp7DDA"
+          type="text/javascript"></script>
+
     <script type="text/javascript">
     jQuery().ready(function(){
         // simple accordion
@@ -38,20 +41,16 @@ echo $javascript->includeScript('jquery.accordion');
 <div id="content">
     <div class="post">
         <div class="entry">
-<div id="profile_header">
-<p><strong>Member Profile</strong>
-            <?php echo $lawmaker['Lawmaker']['title']; ?> 
-			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
-			<?php echo $lawmaker['Lawmaker']['middlename']; ?>
-			<?php echo $lawmaker['Lawmaker']['lastname']; ?><br/>
-           <strong> Office</strong> :<?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
-</p>            
-</div>
 <div id="profile_page">
 
 <div id="profile_left">
     <p class="profile_thumb_img"><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /><br/>
 			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?></p>
+            <?php echo $lawmaker['Lawmaker']['title']; ?> 
+			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
+			<?php echo $lawmaker['Lawmaker']['middlename']; ?>
+			<?php echo $lawmaker['Lawmaker']['lastname']; ?><br/>
+           <strong> Office</strong> :<?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
 
             <?php
                 $congresspedia_name = ucfirst($lawmaker['Lawmaker']['firstname']) . '_' .ucfirst($lawmaker['Lawmaker']['lastname']);
@@ -104,10 +103,10 @@ echo $javascript->includeScript('jquery.accordion');
         
 </div>
 <div id="profile_right">
-<h2>Members Fundraising</h2>
-<p>
+<h2><p style="text-align:center">Members Fundraising</p></h2>
+<p style="text-align:center">
 <img src="http://chart.apis.google.com/chart?
-chs=260x100
+chs=300x100
 &amp;chd=t:<?php echo trim($candSummary->summary->attributes()->total);?>,<?php echo trim($candSummary->summary->attributes()->spent);?>,<?php echo trim($candSummary->summary->attributes()->cash_on_hand);?>,<?php echo trim($candSummary->summary->attributes()->debt);?>
 &amp;cht=p3
 &amp;chl=Raised|Spent|Cash|Debt"
@@ -126,7 +125,7 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
             <?php } ?><br/>
        <?php if(!isset($candContrib, $candIndustry, $candSector)) { ?>
        <a><h4>Info</h4></a>
-       <div>
+            <div>
             <p style="padding-top:10px;">
             <strong>Bio Information</strong>: <a href="http://bioguide.congress.gov/scripts/biodisplay.pl?index=<?php echo $lawmaker['Lawmaker']['bioguide_id']; ?>" target="_new">about</a><br/>
             <strong>Campaign Finance/Money</strong> : <a href="http://www.opensecrets.org/politicians/summary.php?cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" target="_new">summary</a><br/>
@@ -141,12 +140,12 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
             </p>
             </div>
        <?php } ?>     
-<div id="list1a">
+<div id="list1a" style="width:507px;">
 
     <?php if(isset($candContrib)) { ?>
             <a><h2>Contributors</h2></a>
             <div>
-            <table>
+            <table width="80%">
             <?php
               for($i=0; $i < sizeof($candContrib->contributors->contributor); $i++) {     
                   echo '<tr>';
@@ -161,7 +160,7 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
             <a><h2>Industries</h2></a>
             
             <div>
-            <table>
+            <table width="80%">
             <?php
               for($i=0; $i < sizeof($candIndustry->industries->industry); $i++) {     
                   echo '<tr>';
@@ -178,7 +177,7 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
             <a><h2>Sectors</h2></a>
             <div>
             
-            <table>
+            <table width="80%">
             <?php
               for($i=0; $i < sizeof($candSector->sectors->sector); $i++) {     
                   echo '<tr>';
@@ -195,9 +194,7 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
 </div>
 </div> <!-- end profile_right -->
 </div> <!-- end profile_page -->
-
-
-
+</div>
         </div>
     </div>
 </div>

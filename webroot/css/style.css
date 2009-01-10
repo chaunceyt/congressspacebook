@@ -42,8 +42,8 @@ body {
 }
 
 #header {
-  height: 92px; 
-  margin: 0 -0.5px 12px 0; padding: 0;
+  height: 130px; 
+  margin: 0 -0.5px 10px 0; padding: 0;
 }
 
 #page {}
@@ -73,17 +73,17 @@ body {
 
 /* BEGIN: Standard Layout */
 #container {
-  width: 742px;
+  width: 912px;
 }
 
 #content {
-  width: 510px;
+  width: 669px;
 }
 /* END: Standard Layout */
 
 /* BEGIN: Wide Layout
 #container {
-  width: 900px;
+  width: 912px;
 }
 
 #content {
@@ -661,7 +661,7 @@ div.paging span a {
 
 
 #profile_page {
-  width: 600px ;
+  width: 100%;
   margin-left: auto ;
   margin-right: auto ;
 }
@@ -670,8 +670,8 @@ div.paging span a {
   width: 180px;
 }
 #profile_right {
-  float: left;
-  width: 330px;
+  float: right;
+  width: 410px;
 }
 #profile_page h4, #profile_page h4 a {
     color: #000000;
@@ -696,17 +696,17 @@ div.paging span a {
 }
 
 #homepage_page {
-  width: 500px ;
+  width: 100%;
   margin-left: auto ;
   margin-right: auto ;
 }
 #homepage_left {
   float: left;
-  width: 40%;
+  width: 170px;
 }
 #homepage_right {
   float: right;
-  width: 60%;
+  width: 424px;
 }
 #profileresults {
     width: 500px;

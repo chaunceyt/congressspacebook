@@ -12,6 +12,7 @@
 <p></p>            
             </ul>
                 <h3>Lobbyist @ Work</h3>
+                <!--<img src="<?php echo Router::url('/'); ?>img/lobbyist_at_work.jpg" alt="" border="0"/>-->
                 <ul>
                     <li><a href="<?php echo Router::url('/lobbyists_filings'); ?>">Their Clients</a></li>
                 </ul>

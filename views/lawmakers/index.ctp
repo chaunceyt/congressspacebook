@@ -65,32 +65,75 @@
 
 </div>
 <div id="homepage_right">
-<p><strong>Event</strong>: Jan. 6, 2009  - The 111th Congress convenes. It was an eventful day...</p>
-<p></p>
-<h3>Top Members of the 111th Congress</h3>
+<h3>Random Lawmakers in this State.</h3>
 <p>
 <?php
-
+$i=0;
 foreach ($current_congress as $current) {
-?>
-        <span><a href="<?php echo Router::url('/lawmakers/view/'.$current['lawmaker']['id']); ?>"><img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
+    $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
 
-<?php }
+?>
+        <span><a class="url" rel="me" href="<?php echo Router::url('/lawmakers/view/'.$current['lawmaker']['id']); ?>" title="<?php echo $fullname;?>"><img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
+
+<?php
+    if($i ==6) {
+        echo '<br/>';
+    }
+    $i++;  
+    }
+?>
+</p>
+<?php
+        echo '<p>';
+        echo '<strong>Federal Spending ' . $fedSpending->data->record->attributes()->description .' </strong><br/><br/>';
+        echo 'Total Obligated Amount: $' . number_format($fedSpending->data->record->totals->total_ObligatedAmount, 2) . "<br/>";
+        echo 'Rank Among states: ' . $fedSpending->data->record->totals->rank_among_states . "<br/>";
+        echo 'Number of Contractors: ' . number_format($fedSpending->data->record->totals->number_of_contractors) . "<br/>";
+        echo 'Number of Transactions: ' . number_format($fedSpending->data->record->totals->number_of_transactions) . "<br/>";
+        echo '</p>';
+        
+        echo '<p>';
+        echo '<strong>'.$fedSpending->data->record->top_known_congressional_districts->attributes()->description ."</strong><br/><br/>";
+        foreach($fedSpending->data->record->top_known_congressional_districts->congressional_district as $_district) {
+            echo $_district ."<br/>";
+        }
+        echo '</p>';
+
+        echo '<p>';
+        echo '<strong>Top products or services sold</strong>'."<br/><br/>";
+        foreach($fedSpending->data->record->top_products_or_services_sold->product_or_service_category as $_prodsrv) {
+            echo  $_prodsrv . "<br/>";
+        }
+        echo '</p>';
+
+        echo '<p>';
+        echo '<strong>Top contracting agencies</strong>'."<br/><br/>";
+        foreach($fedSpending->data->record->top_contracting_agencies->agency as $_agency) {
+            echo  $_agency . "<br/>";
+        }
+        echo '</p>';
+        
+        echo '<p>';
+        echo '<strong>Top contractor parent companies</strong>'."<br/><br/>";
+        foreach($fedSpending->data->record->top_contractor_parent_companies->contractor_parent_company as $_parent_comp) {
+            echo  $_parent_comp . "<br/>";
+        }
+        echo '</p>';
+        
+        echo '<p>';
+        echo '<strong>Total obligated amount in dollars by year</strong>'."<br/><br/>";
+        $i=0;
+        foreach($fedSpending->data->record->fiscal_years->fiscal_year as $_total_dollars) {
+            echo 'Fical Year 200'.$i .': $'. number_format($_total_dollars) ."<br/>";
+            $i++;
+        }
+        echo '</p>';
+
+
+
 ?>
 </p>
 
-
-<p><strong>Issue(s)</strong> we're dealing with:  
-<a href="<?php echo Router::url('/news/'. @urlencode('Minnesota')); ?>" title="Twitter Chatter">Minnesota</a> 
-<a href="<?php echo Router::url('/news/'. @urlencode('Al Franken')); ?>" title="Twitter Chatter">Al Franken</a>
-<a href="<?php echo Router::url('/news/'. @urlencode('Roland Burris')); ?>" title="Twitter Chatter">Roland Burris</a>
-
-<a href="<?php echo Router::url('/twitter/'. @urlencode('economy')); ?>" title="Twitter Chatter">economy</a> 
-<a href="<?php echo Router::url('/twitter/'. @urlencode('health care')); ?>" title="Twitter Chatter">health care</a> 
-<a href="<?php echo Router::url('/twitter/'. @urlencode('jobs')); ?>" title="Twitter Chatter">jobs</a> 
-<a href="<?php echo Router::url('/twitter/'. @urlencode('bailout')); ?>" title="Twitter Chatter">bailouts</a> 
-
-</p>
 <!--
 <h3>About..</h3>
 <p><strong>We</strong> have lawmaking power. The U.S. Constitution created <strong>us</strong> and named <strong>us</strong> the legislative branch - the branch with the power to write laws.</p>

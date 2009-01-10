@@ -1,5 +1,7 @@
 <?php
 require APP . 'vendors' . DS .'JSON.php';
+require APP . 'vendors' . DS .'facebook'. DS .'facebook.php';
+require APP . 'vendors' . DS .'fbconnect.php';
 class AppController extends Controller 
 {
     var $components = array('Auth', 'RequestHandler', 'Zend', 'Mashup');
@@ -10,6 +12,8 @@ class AppController extends Controller
     {
         $this->Auth->loginAction = '/users/login';
         $this->Auth->logoutRedirect = '/';
+        //fixme: add facebook connect.
+        //$fb_uid = facebook_client()->get_loggedin_user();
 
         $this->Auth->fields = array('username'=> 'username', 'password'=>'psword');
         $this->Auth->loginError = 'Invalid e-mail/password combination.  Please try again.';
@@ -43,7 +47,7 @@ class AppController extends Controller
         $gi = geoip_open(APP . 'geocity' . DS .'GeoLiteCity.dat',GEOIP_MEMORY_CACHE);
         $_current_webuser = geoip_record_by_addr($gi, $_SERVER['REMOTE_ADDR']);
         $this->set('current_webuser', $_current_webuser);
-        
+        $this->Session->write('current_webuser', $_current_webuser); 
         $json = new Services_JSON();
         $_random_keyword = $this->_words();
         //$this->_words();
