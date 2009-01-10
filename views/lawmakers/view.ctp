@@ -143,7 +143,7 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
 <div id="list1a" style="width:507px;">
 
     <?php if(isset($candContrib)) { ?>
-            <a><h2>Contributors</h2></a>
+            <a><h2><img src="<?php echo Router::url('/img/tree_expand.gif'); ?>" alt="" />Contributors</h2></a>
             <div>
             <table width="80%">
             <?php
@@ -157,7 +157,7 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
             </div>
     <?php } ?> 
     <?php if(isset($candIndustry)) { ?>
-            <a><h2>Industries</h2></a>
+            <a><h2><img src="<?php echo Router::url('/img/tree_expand.gif'); ?>" alt="" />Industries</h2></a>
             
             <div>
             <table width="80%">
@@ -174,7 +174,7 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
             </div>
       <?php } ?>
       <?php if(isset($candSector)) { ?>
-            <a><h2>Sectors</h2></a>
+            <a><h2><img src="<?php echo Router::url('/img/tree_expand.gif'); ?>" alt="" />Sectors</h2></a>
             <div>
             
             <table width="80%">
