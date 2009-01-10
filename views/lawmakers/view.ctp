@@ -3,8 +3,8 @@ echo $javascript->includeScript('jquery');
 echo $javascript->includeScript('jquery.dimensions');
 echo $javascript->includeScript('jquery.accordion');
 ?>
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAASRRg767hPjhGnvMC6zjRwRSw4_dCU545QaPZjzXUEikk77PCGhRY6K5QLtCcNsRoLC86QN_6vp7DDA"
-          type="text/javascript"></script>
+    <!--<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAASRRg767hPjhGnvMC6zjRwRSw4_dCU545QaPZjzXUEikk77PCGhRY6K5QLtCcNsRoLC86QN_6vp7DDA"
+          type="text/javascript"></script>-->
 
     <script type="text/javascript">
     jQuery().ready(function(){
