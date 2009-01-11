@@ -3,6 +3,13 @@ class Lawmaker extends AppModel {
 
 	public $name = 'Lawmaker';
 
+    public function getProfileIdByName($profile_name)
+    {
+        $url = 'http://www.sourcewatch.org/index.php?title='.$profile_name;
+        $sql = "select id from lawmakers where congresspedia_url = '".$url."'";
+        $results = $this->query($sql);
+        return $results['lawmakers']['id'];
+    }
     public function stateTagCloud()
     {
         $sql = 'select state, count(*) as lawmakers from lawmakers group by state';
@@ -47,7 +54,25 @@ class Lawmaker extends AppModel {
         return $results;
     }
 
+    public function getProfileTopFriends($state, $party, $member, $limit=9) 
+    {
+        $sql = "select * from lawmakers as lawmaker where state = '".$state."' 
+                and party = '".$party."' 
+                and id != '".$member."'
+                limit ".$limit;
+        $results = $this->query($sql);
+        return $results;
+    }
 
+    public function getProfileFriends($state, $party, $member, $limit=9) 
+    {
+        $sql = "select * from lawmakers as lawmaker where party = '".$party."' 
+                and id != '".$member."'
+                and state NOT IN ( '".$state."')
+                limit ".$limit;
+        $results = $this->query($sql);
+        return $results;
+    }
                 
 }
 ?>

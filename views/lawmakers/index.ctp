@@ -1,69 +1,8 @@
+            
 <div id="content">
     <div class="post">
         <div class="entry">
-<div id="homepage_header">
-</div>
 <div id="homepage_page">
-<div id="homepage_left">
-<h2><?php echo $current_webuser->region; ?> lawmakers</h2>
-<p><a style="hover:none;" href="<?php echo Router::url('/nearby/lawmakers'); ?>"><img src="<?php echo Router::url('/'); ?>img/states/<?php echo strtolower($current_webuser->region); ?>.png" alt="default" border="0" /></p></a>
-<h3>The States</h3>
-<div id="homepage_tagcloud">
-<?php
-    $max_size = 250; // max font size in %
-    $min_size = 100; // min font size in %
-
-    $max_qty = max(array_values($stateTagCloud));
-    $min_qty = min(array_values($stateTagCloud));
-
-    $spread = $max_qty - $min_qty;
-    if (0 == $spread) { // we don't want to divide by zero
-        $spread = 1;
-    }
-
-    $step = ($max_size - $min_size)/($spread);
-    $i=0;
-    foreach ($stateTagCloud as $key => $value) {
-        $size = $min_size + (($value - $min_qty) * $step);
-        echo '<a href="'.Router::url('/lawmakers/browse/state/'.$key).'" style="padding:2;font-size: '.$size.'%"';
-        echo ' title="'.$value.' lawmakers in  '.$key.'"';
-        echo '>'.$key.'</a> ';
-        $i++;
-    }
-
-?>
-</div>
-<p></p>
-<h3>The parties</h3> 
-<p></p>
-<p>
-<?php
-    $max_size = 250; // max font size in %
-    $min_size = 100; // min font size in %
-
-    $max_qty = max(array_values($partyTagCloud));
-    $min_qty = min(array_values($partyTagCloud));
-
-    $spread = $max_qty - $min_qty;
-    if (0 == $spread) { // we don't want to divide by zero
-        $spread = 1;
-    }
-
-    $step = ($max_size - $min_size)/($spread);
-    $i=0;
-    foreach ($partyTagCloud as $key => $value) {
-        $size = $min_size + (($value - $min_qty) * $step);
-        echo '<a href="'.Router::url('/lawmakers/browse/party/'.$key).'" style="font-size: '.$size.'%"';
-        echo ' title="'.$value.' lawmakers in  '.$key.'"';
-        echo '>'.$key.'</a> ';
-        $i++;
-    }
-
-?>
-</p>
-
-
-</div>
 <div id="homepage_right">
 <h3>Random Lawmakers in this State.</h3>
 <p>
@@ -84,6 +23,7 @@ foreach ($current_congress as $current) {
 ?>
 </p>
 <?php
+
         echo '<p>';
         echo '<strong>Federal Spending ' . $fedSpending->data->record->attributes()->description .' </strong><br/><br/>';
         echo 'Total Obligated Amount: $' . number_format($fedSpending->data->record->totals->total_ObligatedAmount, 2) . "<br/>";
@@ -158,12 +98,74 @@ foreach ($current_congress as $current) {
 
 <h3>.. or just <a href="<?php echo Router::url('/lawmakers/browse/'); ?>" title="Browse">Browse</a> to see who we are.</h3>
 
+</div>
 
+<div id="homepage_left">
+<h2><?php echo $current_webuser->region; ?> lawmakers</h2>
+<p><a style="hover:none;" href="<?php echo Router::url('/nearby/lawmakers'); ?>"><img src="<?php echo Router::url('/'); ?>img/states/<?php echo strtolower($current_webuser->region); ?>.png" alt="default" border="0" /></p></a>
+<h3>The States</h3>
+<?php
+    $max_size = 250; // max font size in %
+    $min_size = 100; // min font size in %
 
-</div><!-- end of homepage_right -->
+    $max_qty = max(array_values($stateTagCloud));
+    $min_qty = min(array_values($stateTagCloud));
+
+    $spread = $max_qty - $min_qty;
+    if (0 == $spread) { // we don't want to divide by zero
+        $spread = 1;
+    }
+
+    $step = ($max_size - $min_size)/($spread);
+    $i=0;
+    foreach ($stateTagCloud as $key => $value) {
+        $size = $min_size + (($value - $min_qty) * $step);
+        echo '<a href="'.Router::url('/lawmakers/browse/state/'.$key).'" style="padding:2;font-size: '.$size.'%"';
+        echo ' title="'.$value.' lawmakers in  '.$key.'"';
+        echo '>'.$key.'</a> ';
+        $i++;
+    }
+
+?>
+<p></p>
+<h3>The parties</h3> 
+<p></p>
+<p>
+<?php
+    $max_size = 250; // max font size in %
+    $min_size = 100; // min font size in %
+
+    $max_qty = max(array_values($partyTagCloud));
+    $min_qty = min(array_values($partyTagCloud));
+
+    $spread = $max_qty - $min_qty;
+    if (0 == $spread) { // we don't want to divide by zero
+        $spread = 1;
+    }
+
+    $step = ($max_size - $min_size)/($spread);
+    $i=0;
+    foreach ($partyTagCloud as $key => $value) {
+        $size = $min_size + (($value - $min_qty) * $step);
+        echo '<a href="'.Router::url('/lawmakers/browse/party/'.$key).'" style="font-size: '.$size.'%"';
+        echo ' title="'.$value.' lawmakers in  '.$key.'"';
+        echo '>'.$key.'</a> ';
+        $i++;
+    }
+
+?>
+</p>
+
+</div> <!-- page_left -->
 </div>
 </p>
 <p></p>
 </div>
     </div>
+
 </div>
+        <div id="sidebar">
+                <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+        </div>
+</div>
+

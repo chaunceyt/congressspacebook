@@ -85,4 +85,7 @@ mages/powered/icn_pb_vrt_md.gif" border="0" /></a>
 
         </div>
         <!-- end #content -->
+        <div id="sidebar">
+                <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+        </div>
 

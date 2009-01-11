@@ -55,4 +55,7 @@ Firefox
 search plugin for quick access to this site.    </p>-->
       </div><!-- end entry -->
  </div>
+        <div id="sidebar">
+                <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+        </div>
 

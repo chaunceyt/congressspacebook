@@ -56,3 +56,7 @@ foreach ($lobbyistsIssues as $lobbyistsIssue):
 		<li><?php echo $html->link(__('New Lobbyists Filing', true), array('controller'=> 'lobbyists_filings', 'action'=>'add')); ?> </li>
 	</ul>
 </div>
+        <div id="sidebar">
+                <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+        </div>
+

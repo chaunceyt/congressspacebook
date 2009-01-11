@@ -15,3 +15,7 @@ foreach($data as $local) {
 <img src="http://api.outside.in/images/powered_by_widget_logo.gif" alt="outside.in"/>
     </div>
 </div>
+        <div id="sidebar">
+                <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+        </div>
+

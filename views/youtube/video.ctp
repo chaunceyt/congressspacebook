@@ -54,5 +54,8 @@
 
 	</div>
 	<!-- end #content -->
-	<?php // include '/var/www/mashupkeyword.com/application/views/scripts/sidebar.phtml'; ?>
     <!-- end #sidebar -->
+        <div id="sidebar">
+                <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+        </div>
+    

@@ -99,17 +99,34 @@ class LawmakersController extends AppController {
 
 	function view($id=null) 
     {
+        if(!isset($this->params['username'])) {
+
+            if(!$id) {
+                $this->redirect('/');
+                exit();
+            }
+        }
+
+        if(isset($this->params['username'])) {
+            $id = $this->Lawmaker->getProfileIdByName($this->params['username']);
+        }
+        
         $this->Zend->startup();
         $_cache = $this->Zend->cache();
         //require APP . 'vendors' . DS .'JSON.php';
         //$json = new Services_JSON();
-        if(!$id) {
-            $this->redirect('/');
-            exit();
-        }
         $lawmaker = $this->Lawmaker->read(null, $id);
         $_year = date("Y")-1;
         $cid = $lawmaker['Lawmaker']['crp_id'];
+        $state = $lawmaker['Lawmaker']['state'];
+        $party = $lawmaker['Lawmaker']['party'];
+
+        $profile_top_friends = $this->Lawmaker->getProfileTopFriends($state, $party, $id, '4');
+        $profile_friends = $this->Lawmaker->getProfileFriends($state, $party, $id);
+
+        $this->set('profile_top_friends', $profile_top_friends);
+        $this->set('profile_friends', $profile_friends);
+
         
         $candSummary = $this->Opensecrets->candSummary($cid, $_year, 'xml');
         $candContrib = $this->Opensecrets->candContrib($cid, $_year,'xml');

@@ -30,12 +30,17 @@ Released   : 20071222
 <meta name="googlebot" content="index">
 <?php  echo $html->css('style')."\n"; ?>
 <?php  echo $html->css('tooltip')."\n"; ?>
+<?php echo $javascript->link('jquery-1.2.6.js', false); ?>
+<?php echo $javascript->link('ui.tabs.js', false); ?>
+<?php echo $javascript->link('ui.core.js', false); ?>
 <script type="text/javascript" src="/js/tooltip.js"></script>
 <script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>
 <?php 
 echo $scripts_for_layout;
 ?>
-<script type="text/javascript" src="/js/jquery.accordion.js"></script>
+<script type="text/javascript" src="<?php echo Router::url('/'); ?>/js/jquery-1.2.6.js"></script>
+<script type="text/javascript" src="<?php echo Router::url('/'); ?>/js/ui.core.js"></script>
+<script type="text/javascript" src="<?php echo Router::url('/'); ?>/js/ui.tabs.js"></script>
 <script type="text/javascript" src="/js/tooltip.js"></script>
 <link href="/css/bracket.css" rel="stylesheet" type="text/css" media="screen" />
 <!--[if IE]>
@@ -48,24 +53,20 @@ echo $scripts_for_layout;
 <div id="container">
 <div id="header">
 <a href="<?php echo Router::url('/'); ?>" title="CongressSpacebook.com"><img src="<?php echo Router::url('/'); ?>img/congress_spacebook_header.jpg" alt="" border="0"/></a>
-<!--
-        <h1 style="padding-right:5px;"><a href="<?php echo Router::url('/'); ?>">MASHUP::KEYWORD</a></h1>
-        <h3>browse the latest news, comments, posts, photos, videos, events and social_streams...</h3>
--->        
 </div>
+
 <div id="page">
-</p>
+<?php $session->flash(); ?>
 
-			<?php $session->flash(); ?>
-
-			<?php echo $content_for_layout; ?>
+<?php echo $content_for_layout; ?>
+<!--
         <div id="sidebar">
-                <?php echo $this->element('sidebar', array('keyword' => $keyword)); ?>
-        </div>
-    <br style="clear:both;" />
-      </div>
+                <?php // echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+        </div> -->
 <!-- end #page -->
-<hr />
+</div>
+
+
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -85,6 +86,8 @@ try {
 var pageTracker = _gat._getTracker("UA-2016479-7");
 pageTracker._trackPageview();
 } catch(err) {}</script>
+
+
 <div id="footer">
         <p>(c) <?php echo date("Y"); ?> CongressSpacebook.com.</p>
         <p>Powered By MASHUP::Keyword</p>

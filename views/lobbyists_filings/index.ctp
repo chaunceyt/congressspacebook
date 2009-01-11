@@ -44,3 +44,7 @@ foreach ($lobbyistsFilings as $lobbyistsFiling):
         </div>
     </div>
 </div>
+        <div id="sidebar">
+                <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+        </div>
+

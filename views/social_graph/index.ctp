@@ -80,3 +80,7 @@ if(isset($google_social)) {
           </div>
 
           </div>
+        <div id="sidebar">
+                <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+        </div>
+          

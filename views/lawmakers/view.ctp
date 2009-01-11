@@ -1,55 +1,27 @@
-<?php 
-echo $javascript->includeScript('jquery');
-echo $javascript->includeScript('jquery.dimensions');
-echo $javascript->includeScript('jquery.accordion');
-?>
+<?php echo $this->element('foaf', array('lawmaker' => $lawmaker)); ?>
+<script type="text/javascript">
+            $(function() {
+                $("#rotate > ul").tabs();
+            });
+</script>
+
+
     <!--<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAASRRg767hPjhGnvMC6zjRwRSw4_dCU545QaPZjzXUEikk77PCGhRY6K5QLtCcNsRoLC86QN_6vp7DDA"
           type="text/javascript"></script>-->
-
-    <script type="text/javascript">
-    jQuery().ready(function(){
-        // simple accordion
-        jQuery('#list1a').accordion();
-        jQuery('#list1b').accordion({
-            autoheight: false
-        });
-        // bind to change event of select to control first and seconds accordion
-        // similar to tab's plugin triggerTab(), without an extra method
-        var accordions = jQuery('#list1a, #list1b');
-        
-        jQuery('#switch select').change(function() {
-            accordions.accordion("activate", this.selectedIndex-1 );
-        });
-        jQuery('#close').click(function() {
-            accordions.accordion("activate", -1);
-        });
-        jQuery('#switch2').change(function() {
-            accordions.accordion("activate", this.value);
-        });
-        jQuery('#enable').click(function() {
-            accordions.accordion("enable");
-        });
-        jQuery('#disable').click(function() {
-            accordions.accordion("disable");
-        });
-        jQuery('#remove').click(function() {
-            accordions.accordion("destroy");
-            wizardButtons.unbind("click");
-        });
-});
-    </script>
 <div id="content">
     <div class="post">
         <div class="entry">
 <div id="profile_page">
 
 <div id="profile_left">
-    <p class="profile_thumb_img"><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /><br/>
-			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?></p>
-            <?php echo $lawmaker['Lawmaker']['title']; ?> 
+    <p>        <?php echo $lawmaker['Lawmaker']['title']; ?> 
 			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
 			<?php echo $lawmaker['Lawmaker']['middlename']; ?>
 			<?php echo $lawmaker['Lawmaker']['lastname']; ?><br/>
+			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?>
+    </p>        
+    <p class="profile_thumb_img"><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /><br/>
+            </p>
            <strong> Office</strong> :<?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
 
             <?php
@@ -86,6 +58,39 @@ echo $javascript->includeScript('jquery.accordion');
             }
             ?>
             </p>
+
+<p>
+<p style="font-size:10px">Top Friends (within state)</p>
+<?php
+$i=0;
+foreach ($profile_top_friends as $current) {
+    $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
+
+?>
+        <span><a class="url" rel="me co-resident colleague" href="<?php echo Router::url('/lawmakers/view/'.$current['lawmaker']['id']); ?>" title="<?php echo $fullname;?>"><img src="<?php
+ echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
+
+<?php
+    }
+?>
+</p>
+<p>
+<p style="font-size:10px">Friends (party)</p>
+<?php
+$i=0;
+foreach ($profile_friends as $current) {
+    $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
+
+?>
+        <span><a class="url" rel="me colleague" href="<?php echo Router::url('/lawmakers/view/'.$current['lawmaker']['id']); ?>" title="<?php echo $fullname;?>"><img src="<?php
+ echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
+
+<?php
+    }
+?>
+</p>
+
+
         <p></p>
        <h3> the public is saying...</h3>
                <ul>
@@ -103,8 +108,16 @@ echo $javascript->includeScript('jquery.accordion');
         
 </div>
 <div id="profile_right">
+    <div id="rotate">
+            <ul>
+                <li><a href="#fragment-0"><span>Fundraising</span></a></li>
+                <li><a href="#fragment-1"><span>Contributors</span></a></li>
+                <li><a href="#fragment-2"><span>Industries</span></a></li>
+                <li><a href="#fragment-3"><span>Sectors</span></a></li>
+            </ul>
+<div id="fragment-0">
 <h2><p style="text-align:center">Members Fundraising</p></h2>
-<p style="text-align:center">
+<p style="text-align:left">
 <img src="http://chart.apis.google.com/chart?
 chs=300x100
 &amp;chd=t:<?php echo trim($candSummary->summary->attributes()->total);?>,<?php echo trim($candSummary->summary->attributes()->spent);?>,<?php echo trim($candSummary->summary->attributes()->cash_on_hand);?>,<?php echo trim($candSummary->summary->attributes()->debt);?>
@@ -140,11 +153,11 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
             </p>
             </div>
        <?php } ?>     
-<div id="list1a" style="width:507px;">
+</div>
 
-    <?php if(isset($candContrib)) { ?>
+        <?php if(isset($candContrib)) { ?>
+        <div id="fragment-1">
             <a><h2><img src="<?php echo Router::url('/img/tree_expand.gif'); ?>" alt="" />Contributors</h2></a>
-            <div>
             <table width="80%">
             <?php
               for($i=0; $i < sizeof($candContrib->contributors->contributor); $i++) {     
@@ -154,9 +167,12 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
                }
             ?>
             </table>
-            </div>
-    <?php } ?> 
-    <?php if(isset($candIndustry)) { ?>
+         </div>
+    
+        <?php } ?> 
+
+        <?php if(isset($candIndustry)) { ?>
+        <div id="fragment-2">
             <a><h2><img src="<?php echo Router::url('/img/tree_expand.gif'); ?>" alt="" />Industries</h2></a>
             
             <div>
@@ -172,8 +188,11 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
             ?>
             </table>
             </div>
-      <?php } ?>
-      <?php if(isset($candSector)) { ?>
+        </div>
+        <?php } ?>
+
+        <?php if(isset($candSector)) { ?>
+        <div id="fragment-3">
             <a><h2><img src="<?php echo Router::url('/img/tree_expand.gif'); ?>" alt="" />Sectors</h2></a>
             <div>
             
@@ -189,12 +208,31 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
             ?>
             </table>
             </div>
-      <?php } ?>       
-            
+        </div>            
+        <?php } ?>      
+        </div>
+<h2>Cost of 2008 Campaign</h2>
+<?php 
+$widgetID = $lawmaker['Lawmaker']['state'].$_district;
+$_year_ = date("Y")-1;
+?>
+<p><script type='text/javascript' src='http://www.opensecrets.org/widgets/races_widget.php?id=<?php echo $widgetID; ?>'></script></p>
+
+<IFRAME
+    WIDTH=380
+    HEIGHT=520
+    SRC="http://www.followthemoney.org/services/imsp_table.phtml?l=chaunceyt&p=93a8e3fbd6ddb87c4129f8db379627ff&d=P&t=1&s=<?php echo $lawmaker['Lawmaker']['state']; ?>&y=<?php echo $_year_; ?>&"
+FRAMEBORDER=0></IFRAME>
+
+</div>
 </div>
 </div> <!-- end profile_right -->
 </div> <!-- end profile_page -->
 </div>
         </div>
+        <div id="sidebar">
+                <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+        </div>
     </div>
 </div>
+
