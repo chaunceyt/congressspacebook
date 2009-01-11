@@ -211,13 +211,10 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
         </div>            
         <?php } ?>      
         </div>
-<h2>Cost of 2008 Campaign</h2>
 <?php 
 $widgetID = $lawmaker['Lawmaker']['state'].$_district;
 $_year_ = date("Y")-1;
 ?>
-<p><script type='text/javascript' src='http://www.opensecrets.org/widgets/races_widget.php?id=<?php echo $widgetID; ?>'></script></p>
-
 <IFRAME
     WIDTH=380
     HEIGHT=520
