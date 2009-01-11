@@ -38,9 +38,9 @@ Released   : 20071222
 <?php 
 echo $scripts_for_layout;
 ?>
-<script type="text/javascript" src="<?php echo Router::url('/'); ?>/js/jquery-1.2.6.js"></script>
-<script type="text/javascript" src="<?php echo Router::url('/'); ?>/js/ui.core.js"></script>
-<script type="text/javascript" src="<?php echo Router::url('/'); ?>/js/ui.tabs.js"></script>
+<script type="text/javascript" src="/js/jquery-1.2.6.js"></script>
+<script type="text/javascript" src="/js/ui.core.js"></script>
+<script type="text/javascript" src="/js/ui.tabs.js"></script>
 <script type="text/javascript" src="/js/tooltip.js"></script>
 <link href="/css/bracket.css" rel="stylesheet" type="text/css" media="screen" />
 <!--[if IE]>
