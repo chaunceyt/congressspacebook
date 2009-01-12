@@ -5,10 +5,12 @@ class Lawmaker extends AppModel {
 
     public function getProfileIdByName($profile_name)
     {
-        $url = 'http://www.sourcewatch.org/index.php?title='.$profile_name;
-        $sql = "select id from lawmakers where congresspedia_url = '".$url."'";
+        $sql = "select id from lawmakers where username = '".$profile_name."'";
         $results = $this->query($sql);
-        return $results['lawmakers']['id'];
+        //since we're getting the id we must be viewing it. update views.
+        $update_views_sql = "update lawmakers set views = views + 1  where id = '".$results[0]['lawmakers']['id']."'";
+        $this->query($update_views_sql);
+        return $results[0]['lawmakers']['id'];
     }
     public function stateTagCloud()
     {

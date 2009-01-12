@@ -52,8 +52,8 @@ foreach ($lawmakers as $lawmaker):
 ?>
         <div class="imageblock">
         <?php //fixme need to check if the image file exist and use default image once it's done ?>
-            <a href="<?php echo Router::url('/lawmakers/view/'.$lawmaker['Lawmaker']['id']); ?>"><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0"/></a>
-            <strong><a href="<?php echo Router::url('/lawmakers/view/'.$lawmaker['Lawmaker']['id']); ?>"><?php echo $lawmaker['Lawmaker']['lastname']; ?></a></strong><br/>
+            <a href="<?php echo Router::url('/profiles/'.$lawmaker['Lawmaker']['username']); ?>"><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0"/></a>
+            <strong><a href="<?php echo Router::url('/profiles/'.$lawmaker['Lawmaker']['username']); ?>"><?php echo $lawmaker['Lawmaker']['lastname']; ?></a></strong><br/>
         </div>
 
 <?php endforeach; ?>

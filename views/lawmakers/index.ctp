@@ -12,7 +12,7 @@ foreach ($current_congress as $current) {
     $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
 
 ?>
-        <span><a class="url" rel="me" href="<?php echo Router::url('/lawmakers/view/'.$current['lawmaker']['id']); ?>" title="<?php echo $fullname;?>"><img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
+        <span><a class="url" rel="me" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>"><img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
 
 <?php
     if($i ==6) {

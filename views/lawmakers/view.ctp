@@ -67,7 +67,7 @@ foreach ($profile_top_friends as $current) {
     $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
 
 ?>
-        <span><a class="url" rel="me co-resident colleague" href="<?php echo Router::url('/lawmakers/view/'.$current['lawmaker']['id']); ?>" title="<?php echo $fullname;?>"><img src="<?php
+        <span><a class="url" rel="me co-resident colleague" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>"><img src="<?php
  echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
 
 <?php
@@ -82,7 +82,7 @@ foreach ($profile_friends as $current) {
     $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
 
 ?>
-        <span><a class="url" rel="me colleague" href="<?php echo Router::url('/lawmakers/view/'.$current['lawmaker']['id']); ?>" title="<?php echo $fullname;?>"><img src="<?php
+        <span><a class="url" rel="me colleague" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>"><img src="<?php
  echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
 
 <?php
@@ -117,7 +117,8 @@ foreach ($profile_friends as $current) {
             </ul>
 <div id="fragment-0">
 <h2><p style="text-align:center">Members Fundraising</p></h2>
-<p style="text-align:left">
+<p style="text-align:center"><img src="http://www.opensecrets.org/politicians/scoff_img.php?cycle=2008&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" alt="" /> </p>
+<p style="text-align:center">
 <img src="http://chart.apis.google.com/chart?
 chs=300x100
 &amp;chd=t:<?php echo trim($candSummary->summary->attributes()->total);?>,<?php echo trim($candSummary->summary->attributes()->spent);?>,<?php echo trim($candSummary->summary->attributes()->cash_on_hand);?>,<?php echo trim($candSummary->summary->attributes()->debt);?>
