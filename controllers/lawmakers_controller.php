@@ -120,6 +120,9 @@ class LawmakersController extends AppController {
         $cid = $lawmaker['Lawmaker']['crp_id'];
         $state = $lawmaker['Lawmaker']['state'];
         $party = $lawmaker['Lawmaker']['party'];
+        
+        $fedSpendingSummary = $this->Fedspending->getFedSpendingSummary($state);
+        $this->set('fedSpending', $fedSpendingSummary);
 
         $profile_top_friends = $this->Lawmaker->getProfileTopFriends($state, $party, $id, '4');
         $profile_friends = $this->Lawmaker->getProfileFriends($state, $party, $id);
