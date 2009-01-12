@@ -22,7 +22,13 @@
     </p>        
     <p class="profile_thumb_img"><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /><br/>
             </p>
-           <strong> Office</strong> :<?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
+         <p>Information</p>   
+            <?php
+            if(isset($candSummary)) {
+                    echo 'First Elected: '. $candSummary->summary->attributes()->first_elected . '<br/>';
+            }
+            ?>
+           Office :<br/><?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
 
             <?php
                 $congresspedia_name = ucfirst($lawmaker['Lawmaker']['firstname']) . '_' .ucfirst($lawmaker['Lawmaker']['lastname']);
@@ -39,12 +45,12 @@
             <br/>
 
         </p>
-			Phone: <?php echo $lawmaker['Lawmaker']['phone']; ?><br/>
-			Fax: <?php echo $lawmaker['Lawmaker']['fax']; ?><br/>
-			Website: 
+			Phone:<br/> <?php echo $lawmaker['Lawmaker']['phone']; ?><br/>
+			Fax:<br/> <?php echo $lawmaker['Lawmaker']['fax']; ?><br/>
+			Website: <br/>
             <?php 
             if(!empty($lawmaker['Lawmaker']['website'])) {
-                echo '<a href="'.$lawmaker['Lawmaker']['website'].'" target="_new">click here</a>'; 
+                echo '<a href="'.$lawmaker['Lawmaker']['website'].'" target="_new">'.$lawmaker['Lawmaker']['website'].'</a>'; 
             }
             else {
                 echo 'not found';
@@ -53,9 +59,6 @@
             <p>
             <?php
            
-            if(isset($candSummary)) {
-                    echo 'First Elected: '. $candSummary->summary->attributes()->first_elected . '<br/>';
-            }
             ?>
             </p>
 

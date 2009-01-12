@@ -9,6 +9,7 @@ CongressSpaceBook <br/>
 - $email = $this->chaunceyt->gmail->com();<br/>
 - Powered by: MASHUP::Keyword and <a href="http://services.sunlightlabs.com/api/" target="_new">Sunlight Labs</a> data<br/>
 - takes advantage of state-of-the-art XML webservices i.e. Google, Yahoo, Flickr, YouTube <br/>
+- Govtrack.us, OpenSecrets, FedSpending and a number of others..<br/>
 - Environment:  Linux, Apache2, Mysql 5, PHP 5.2.x + <strike>Zend</strike> CakePHP Framework MVC<br/>
 - Framework:  I first developed this site using <strike>Zend</strike> however I prefer the CakePHP Framework's  MVC pattern but, still use Zend components!<br/>
 - News results provided by Yahoo, Google, Technorati<br/>
@@ -60,4 +61,7 @@ This disclaimer constitutes the entire agreement between you and us in relation 
 </div>
         </div>
         <!-- end #content -->
+        <div id="sidebar">
+                <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+        </div>
 
