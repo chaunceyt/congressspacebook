@@ -850,3 +850,41 @@ border: 1px solid #000099:;
 *:first-child+html .ui-tabs-nav  { /* auto clear @ IE 7 Standards Mode - do not group selectors, otherwise IE 6 will ignore complete rule (because of the unknown + combinator)... */
     display: inline-block;
 }
+
+
+    #rotate {
+        color: #000;
+        /*border-bottom: 1px solid black;*/
+        margin: 2px 0px 0px 0px;
+        padding: 0px;
+        z-index: 1;
+        padding-left: 5px }
+
+    #rotate li {
+        display: inline;
+        overflow: hidden;
+        list-style-type: none; }
+
+    #rotate a, a.active {
+        /*color: #DEDECF;
+        background: #898B5E;*/
+        font: bold 1em "Trebuchet MS", Arial, sans-serif;
+        margin: 0;
+        text-decoration: none; }
+
+    #rotate a.active {
+        /*background: #ABAD85;
+        border-bottom: 3px solid #ABAD85; }*/
+
+    #rotate a:hover {
+        /*color: #fff;*/
+        background: #FF0000; }
+
+    #rotate a:visited {
+       /* color: #000000; }*/
+
+    #rotate a.active:hover {
+        background: #ABAD85;
+        color: #DEDECF; }
+
+

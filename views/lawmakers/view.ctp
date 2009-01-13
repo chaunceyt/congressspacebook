@@ -145,14 +145,15 @@ foreach ($profile_friends as $current) {
         
 </div>
 <div id="profile_right">
-    <div id="rotate">
+   <div id="rotate">
             <ul>
                 <li><a href="#fragment-0"><span>Fundraising</span></a></li>
                 <li><a href="#fragment-1"><span>Contributors</span></a></li>
                 <li><a href="#fragment-2"><span>Industries</span></a></li>
                 <li><a href="#fragment-3"><span>Sectors</span></a></li>
-                <li><a href="#fragment-4"><span>Members State's FedSpending</span></a></li>
-            </ul>
+                <br/>
+                <li><span style="text-aligh:left;"><a href="#fragment-4"><span>Members State's FedSpending</span></a></span></li>
+            </ul>    
 <div id="fragment-0">
 <h2><p style="text-align:center">Members Fundraising</p></h2>
 
