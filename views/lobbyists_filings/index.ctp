@@ -9,7 +9,7 @@ echo $paginator->counter(array(
 'format' => __('Page %page% of %pages%, showing %current% records out of %count% ', true)
 ));
 ?></p>
-<table cellpadding="0" cellspacing="0">
+<table cellpadding="0" cellspacing="0" width="100%">
 <tr>
         <th><?php echo $paginator->sort('Client lobbying is done on behalf of', 'client_name');?></th>
         <th><?php echo $paginator->sort('Expenditures','filing_amount');?></th>
