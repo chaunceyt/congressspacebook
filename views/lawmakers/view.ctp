@@ -43,7 +43,7 @@ $_year_ = date("Y")-1;
     
     <br/>
             </p>
-         <p>Information</p>   
+         <p><strong>Information</strong></p>   
             <?php
             if(isset($candSummary)) {
                     echo 'First Elected: '. $candSummary->summary->attributes()->first_elected . '<br/>';
@@ -78,7 +78,7 @@ $_year_ = date("Y")-1;
             </p>
 
 <p>
-<p style="font-size:10px">Top Friends (within state)</p>
+<p style="font-size:13px"><strong>Top Friends</strong></p>
 <?php
 $i=0;
 foreach ($profile_top_friends as $current) {
@@ -103,7 +103,7 @@ foreach ($profile_top_friends as $current) {
 ?>
 </p>
 <p>
-<p style="font-size:10px">Friends (party)</p>
+<p style="font-size:13px"><strong>Friends</strong></p>
 <?php
 $i=0;
 foreach ($profile_friends as $current) {
