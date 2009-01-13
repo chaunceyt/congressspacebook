@@ -34,7 +34,8 @@ class LawmakersController extends AppController {
         $this->set('words', $results);
         */
    
-        //$current_congress = $this->Lawmaker->getCurrentCongress();
+        $leaders_congress = $this->Lawmaker->getCurrentCongress();
+        $this->set('leaders_congress', $leaders_congress);
         $webuser = $this->Session->read('current_webuser');
         $state = strtolower($webuser->region);
         $current_congress = $this->Lawmaker->getCongressMembersByState($state);

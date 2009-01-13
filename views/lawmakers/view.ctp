@@ -30,7 +30,18 @@ $_year_ = date("Y")-1;
 			<?php echo $lawmaker['Lawmaker']['lastname']; ?><br/>
 			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?>
     </p>        
-    <p class="profile_thumb_img"><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" /><br/>
+    <p class="profile_thumb_img">
+            <?php
+                    $path_to_image = APP .'webroot' . DS .'img' . DS . 'lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg';
+                    if(file_exists($path_to_image)) {
+            ?>
+    <img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" />
+            <?php } else {  ?>
+                <img src="<?php echo Router::url('/img/no_profile_img.jpg'); ?>" alt="" border="0" />
+
+            <?php } ?>
+    
+    <br/>
             </p>
          <p>Information</p>   
             <?php
@@ -74,8 +85,18 @@ foreach ($profile_top_friends as $current) {
     $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
 
 ?>
-        <span><a class="url" rel="me co-resident colleague" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>"><img src="<?php
- echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
+        <span><a class="url" rel="me co-resident colleague" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>">
+            <?php
+                    $path_to_image = APP .'webroot' . DS .'img' . DS . 'lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg';
+                    if(file_exists($path_to_image)) {
+            ?>
+                <img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" />
+            <?php } else {  ?>
+                <img src="<?php echo Router::url('/img/no_profile_img.jpg'); ?>" alt="" border="0" width="40" height="50"/>
+
+            <?php } ?>
+
+        </a></span>
 
 <?php
     }
@@ -89,8 +110,17 @@ foreach ($profile_friends as $current) {
     $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
 
 ?>
-        <span><a class="url" rel="me colleague" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>"><img src="<?php
- echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
+        <span><a class="url" rel="me colleague" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>">
+            <?php
+                    $path_to_image = APP .'webroot' . DS .'img' . DS . 'lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg';
+                    if(file_exists($path_to_image)) {
+            ?>
+        <img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" />
+            <?php } else {  ?>
+                <img src="<?php echo Router::url('/img/no_profile_img.jpg'); ?>" alt="" border="0" width="40" height="50"/>
+
+            <?php } ?>
+
 
 <?php
     }

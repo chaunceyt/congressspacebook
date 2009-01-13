@@ -44,12 +44,12 @@ class Lawmaker extends AppModel {
 
     public function getCurrentCongress($ids ="'168','391','239','101','43','76','416','157','331','283','291','392','354','332'")
     {
-        $sql = "select * from lawmakers as lawmaker where id IN ({$ids})";
+        $sql = "select * from lawmakers as lawmaker where id IN ({$ids}) order by firstname asc, lastname asc";
         $results = $this->query($sql);
         return $results;
     }
 
-    public function getCongressMembersByState($state, $limit = 14)
+    public function getCongressMembersByState($state, $limit = 19)
     {
         //removing rand() see if that prevents the broken page
         $sql = "select * from lawmakers as lawmaker where state = '".$state."' order by district limit ".$limit;

@@ -4,7 +4,14 @@
         <div class="entry">
 <div id="homepage_page">
 <div id="homepage_right">
-<h3>Random Lawmakers in this State.</h3>
+<h1> CongressSpacebook</h1>
+<h2>...a social network where lawmakers are the only members...</h2>
+<p><h3>Browse  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> member profiles</h3></p>
+<p></p>
+<p><strong>We</strong> have lawmaking power. The U.S. Constitution created <strong>us</strong> and named <strong>us</strong> the legislative branch - the branch with the power to write laws.</p>
+<p> No laws can govern the nation unless <strong>we</strong> enacted them and have it approved by the President.</p>
+<p>
+<h3>Lawmakers in the State of <?php echo $current_webuser->region; ?></h3>
 <p>
 <?php
 $i=0;
@@ -12,18 +19,41 @@ foreach ($current_congress as $current) {
     $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
 
 ?>
-        <span><a class="url" rel="me" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>"><img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
+        <span><a class="url" rel="me" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>">
+            <?php
+                    $path_to_image = APP .'webroot' . DS .'img' . DS . 'lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg';
+                    if(file_exists($path_to_image)) {
+            ?>
+        <img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" />
+            <?php } else {  ?>
+                <img src="<?php echo Router::url('/img/no_profile_img.jpg'); ?>" alt="" border="0" width="40" height="50"/>
+
+            <?php } ?>
+        </a></span>
 
 <?php
-    if($i ==6) {
-        echo '<br/>';
-    }
-    $i++;  
     }
 ?>
 </p>
+<strong>We</strong> have the "Power of the Purse." The Constitution grants <strong>us</strong> the power of the purse. Under Article 1 [section 8], <strong>we</strong> are given the power to tax and impose tariffs, duties, and other measures to collect revenue for the U.S. Treasury.</p>
+</p>
+<h3>Current Leaders</h3>
+<p>
 <?php
+$i=0;
+foreach ($leaders_congress as $leaders) {
+    $fullname = $leaders['lawmaker']['firstname'].' '.$leaders['lawmaker']['lastname'];
 
+?>
+        <span><a class="url" rel="me" href="<?php echo Router::url('/profiles/'.$leaders['lawmaker']['username']); ?>" title="<?php echo $fullname;?>"><img src="<?php echo Router::url('/img/lawmakers/40x50/'.$leaders['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
+
+<?php
+    }
+?>
+</p>
+<p> <strong>We</strong> are also given the authority to borrow money on credit on behalf of the United States. Article 1 [section 9, clause 7] of the U.S. Constitution, states no money can be appropriated [spent] out of the U.S. Treasury <strong>unless</strong> we Act. This means that governmental agencies and departments may not spend any money for their operations and programs that <strong>we</strong> have not appropriated nor use any federal money for any purpose that <strong>we</strong> have not expressly authorized...
+<?php
+/*
         echo '<p>';
         echo '<strong>Federal Spending ' . $fedSpending->data->record->attributes()->description .': '. $current_webuser->region.' </strong><br/><br/>';
         echo 'Total Obligated Amount: $' . number_format($fedSpending->data->record->totals->total_ObligatedAmount, 2) . "<br/>";
@@ -69,23 +99,14 @@ foreach ($current_congress as $current) {
         }
         echo '</p>';
 
-
+*/
 
 ?>
 </p>
 
 <!--
 <h3>About..</h3>
-<p><strong>We</strong> have lawmaking power. The U.S. Constitution created <strong>us</strong> and named <strong>us</strong> the legislative branch - the branch with the power to write laws.</p>
-<p> No laws can govern the nation unless <strong>we</strong> enacted them and have it approved by the President.</p>
-<p>
-<strong>We</strong> have the "Power of the Purse." The Constitution grants <strong>us</strong> the power of the purse. Under Article 1 [section 8], <strong>we</strong> are given the power to tax and impose tariffs, duties, and other measures to collect revenue for the U.S. Treasury.</p>
-<p> <strong>We</strong> are also given the authority to borrow money on credit on behalf of the United States. Article 1 [section 9, clause 7] of the U.S. Constitution, states no money can be appropriated [spent] out of the U.S. Treasury <strong>unless</strong> we Act. This means that governmental agencies and departments may not spend any money for their operations and programs that <strong>we</strong> have not appropriated nor use any federal money for any purpose that <strong>we</strong> have not expressly authorized.
-</p>
 -->
-<h1> Get to know us</h1>
-<p><h3>start with either our <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> member profiles</h3></p>
-<p></p>
 <p><strong> some of our members are <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
 <p>
 <?php

@@ -668,6 +668,7 @@ div.paging span a {
 #profile_left {
   float: left;
   width: 180px;
+  padding-left: 20px;       
 }
 #profile_right {
   float: right;
@@ -703,6 +704,7 @@ div.paging span a {
 #homepage_left {
   float: left;
   width: 170px;
+  padding-left: 20px;            
 }
 #homepage_right {
   float: right;
