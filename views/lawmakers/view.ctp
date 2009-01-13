@@ -6,6 +6,12 @@
 </script>
 
 <?php 
+if(strlen($lawmaker['Lawmaker']['district']) == 1) {
+    $_district = '0'.$lawmaker['Lawmaker']['district'];
+}
+else {
+    $_district = $lawmaker['Lawmaker']['district'];
+}
 $widgetID = $lawmaker['Lawmaker']['state'].$_district;
 $_year_ = date("Y")-1;
 ?>
@@ -37,12 +43,6 @@ $_year_ = date("Y")-1;
             <?php
                 $congresspedia_name = ucfirst($lawmaker['Lawmaker']['firstname']) . '_' .ucfirst($lawmaker['Lawmaker']['lastname']);
                 $this_person = $lawmaker['Lawmaker']['firstname'] . ' ' .$lawmaker['Lawmaker']['lastname'];
-                if(strlen($lawmaker['Lawmaker']['district']) == 1) {
-                    $_district = '0'.$lawmaker['Lawmaker']['district'];
-                }
-                else {
-                    $_district = $lawmaker['Lawmaker']['district'];
-                }
 
                 $openSecretWidgitData = $lawmaker['Lawmaker']['state'].$_district;
             ?>
@@ -126,7 +126,8 @@ foreach ($profile_friends as $current) {
 <div id="fragment-0">
 <h2><p style="text-align:center">Members Fundraising</p></h2>
 
-<p style="text-align:center"><img src="http://www.opensecrets.org/politicians/scoff_img.php?cycle=2008&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" alt="" /> </p>
+<p style="text-align:center"><a href="http://www.opensecrets.org/politicians/summary.php?cycle=<?php echo $_year_; ?>&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" title="OpenSecrets" target="_new"><img src="http://www.opensecrets.org/politicians/scoff_img.php?cycle=<?php echo $_year_; ?>&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" alt="" border="0" /></a> </p>
+
 <p style="text-align:center">
 <img src="http://chart.apis.google.com/chart?
 chs=300x100
@@ -142,6 +143,10 @@ Spent: $<?php echo number_format($candSummary->summary->attributes()->spent);?><
 Cash Available: $<?php echo number_format($candSummary->summary->attributes()->cash_on_hand);?><br/>
 Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br/>
 </p>
+<h2><p style="text-align:center">avg. to other House members</p></h2>
+<p style="text-align:center"><a href="http://www.opensecrets.org/politicians/summary.php?cycle=<?php echo $_year_; ?>&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" title="OpenSecrets" target="_new"><img src="http://www.opensecrets.org/politicians/totVSavg.php?cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>&chamber=H" alt="" border="0" /></a> </p>
+<h2><p style="text-align:center">avg. to other Senate members</p></h2>
+<p style="text-align:center"><a href="http://www.opensecrets.org/politicians/summary.php?cycle=<?php echo $_year_; ?>&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" title="OpenSecrets" target="_new"><img src="http://www.opensecrets.org/politicians/totVSavg.php?cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>&chamber=S" alt="" border="0" /></a> </p>
 
             <?php if(!empty($lawmaker['Lawmaker']['twitter_id'])) { ?>
             <span> twitter social_stream <a href="<?php echo Router::url('/social_stream/user/'.@urlencode($lawmaker['Lawmaker']['twitter_id'])); ?>" title="twitter account">twitter_stream</a>  </span>
@@ -278,6 +283,13 @@ Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br
     HEIGHT=520
     SRC="http://www.followthemoney.org/services/imsp_table.phtml?l=chaunceyt&p=93a8e3fbd6ddb87c4129f8db379627ff&d=P&t=1&s=<?php echo $lawmaker['Lawmaker']['state']; ?>&y=<?php echo $_year_; ?>&"
 FRAMEBORDER=0></IFRAME>
+
+
+                <?php
+                    if(isset($lawmaker['Lawmaker']['website'])) {
+                        $site->checkForRss($lawmaker['Lawmaker']['website']);
+                    }
+                 ?>
 
 </div>
 </div>

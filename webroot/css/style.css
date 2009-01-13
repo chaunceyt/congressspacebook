@@ -709,8 +709,9 @@ div.paging span a {
   width: 424px;
 }
 #profileresults {
-    width: 500px;
+    width: 668px;
     padding-top: 10px;
+    padding-left:30px;
 }
 #profileresults .imageblock {
     width: 95px;

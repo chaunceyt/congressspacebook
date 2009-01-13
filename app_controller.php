@@ -5,7 +5,7 @@ require APP . 'vendors' . DS .'fbconnect.php';
 class AppController extends Controller 
 {
     var $components = array('Auth', 'RequestHandler', 'Zend', 'Mashup');
-    var $helpers = array('Html', 'Form', 'Time', 'Javascript', 'Cache', 'Mashup');
+    var $helpers = array('Html', 'Form', 'Time', 'Javascript', 'Cache', 'Mashup', 'Site');
     //var $helpers = array('Html', 'Form', 'Mashup');
 
     function beforeFilter()
