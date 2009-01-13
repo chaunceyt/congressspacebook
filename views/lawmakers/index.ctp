@@ -5,7 +5,7 @@
 <div id="homepage_page">
 <div id="homepage_right">
 <h1> CongressSpacebook</h1>
-<h2>...a social network where lawmakers are the only members...</h2>
+<h2>...a social network/mashup where lawmakers are the only members...</h2>
 <p><h3>Browse  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> member profiles</h3></p>
 <p></p>
 <p><strong>We</strong> have lawmaking power. The U.S. Constitution created <strong>us</strong> and named <strong>us</strong> the legislative branch - the branch with the power to write laws.</p>
