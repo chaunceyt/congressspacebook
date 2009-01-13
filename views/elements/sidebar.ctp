@@ -11,13 +11,11 @@
 </p>
 <p></p>            
             </ul>
-                <h3>Lobbyist @ Work</h3>
-                <!--<img src="<?php echo Router::url('/'); ?>img/lobbyist_at_work.jpg" alt="" border="0"/>-->
                 <ul>
-                    <li><a href="<?php echo Router::url('/lobbyists_filings'); ?>">Their Clients</a></li>
+                    <li><a href="<?php echo Router::url('/lobbyists_filings'); ?>"><img src="<?php echo Router::url('/'); ?>img/lobbyist_at_work.jpg" alt="Their Clients" border="0"/></a></li>
                 </ul>
 
-                we made reference to:<br/>
+                Congress referenced :<br/>
                 <strong><em><?php echo $keyword; ?></em></strong> -
                 <?php echo number_format($wordused); ?> time(s)<br/> in 2008 <br/>
                 
