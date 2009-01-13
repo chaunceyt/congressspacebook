@@ -24,15 +24,14 @@ $_year_ = date("Y")-1;
 <div id="profile_page">
 
 <div id="profile_left">
-    <p>        <?php echo $lawmaker['Lawmaker']['title']; ?> 
+    <p><h4> <?php echo $lawmaker['Lawmaker']['title']; ?> 
 			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
 			<?php echo $lawmaker['Lawmaker']['middlename']; ?>
-			<?php echo $lawmaker['Lawmaker']['lastname']; ?><br/>
-			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?>
+			<?php echo $lawmaker['Lawmaker']['lastname']; ?></h4><br/>
     </p>        
     <p class="profile_thumb_img">
             <?php
-                    $path_to_image = APP .'webroot' . DS .'img' . DS . 'lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg';
+                    $path_to_image = APP .'webroot' . DS .'img' . DS . 'lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg';
                     if(file_exists($path_to_image)) {
             ?>
     <img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" />
@@ -42,6 +41,7 @@ $_year_ = date("Y")-1;
             <?php } ?>
     
     <br/>
+			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?>
             </p>
          <p><strong>Information</strong></p>   
             <?php
