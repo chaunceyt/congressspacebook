@@ -132,7 +132,12 @@ class LawmakersController extends AppController {
         $_cache = $this->Zend->cache();
 
         //let's get this lawmaker
-        $lawmaker = $this->Lawmaker->read(null, $id);
+        /* cache lawmaker no need to keep hitting the database */
+        $lawmaker_key = md5('lawmaker_key_'.$id);
+        if(!$lawmaker = $_cache->load($lawmaker_key)) {
+            $lawmaker = $this->Lawmaker->read(null, $id);
+            $_cache->save($lawmaker, $lawmaker_key, array(), (84600*3));
+        }
 
         //we always want to get last years data - ??
         //fixme: rethink this..
@@ -153,10 +158,10 @@ class LawmakersController extends AppController {
             $_cache->save($profile_top_friends, $profile_top_friends_key, array(), (86400*3));
         }
 
-        $profile_friends_key = md5('profile_friends_key_'.$state.$party.$id);
+        $profiles_friends_key = md5('profile_friends_key_'.$state.$party.$id);
         if(!$profile_friends = $_cache->load($profiles_friends_key)) {
             $profile_friends = $this->Lawmaker->getProfileFriends($state, $party, $id);
-            $_cache->save($profile_friends, $profile_friends_key, array(), (86400*3));
+            $_cache->save($profile_friends, $profiles_friends_key, array(), (86400*3));
         }
 
         $this->set('profile_top_friends', $profile_top_friends);

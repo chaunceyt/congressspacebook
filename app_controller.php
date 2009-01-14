@@ -70,17 +70,20 @@ class AppController extends Controller
         else if(isset($this->params['username'])) {
             $keyword = str_replace('_', ' ', $this->params['username']);
             $this->set('keyword', $keyword);
+
             $captial_words_today_url = 'http://www.capitolwords.org/api/word/'.$keyword.'/2008/feed.json';
             $data = @file_get_contents($captial_words_today_url);
 
             $results = $json->decode($data);
-
             $_wordused=0;
-            foreach($results as $result) {
-                $_wordused += $result->word_count;
+            
+            if($results) {
+                foreach($results as $result) {
+                    $_wordused += $result->word_count;
+                }
             }
+           $this->set('wordused', $_wordused);
 
-            $this->set('wordused', $_wordused);
             
         }
         else {
