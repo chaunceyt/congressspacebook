@@ -26,19 +26,19 @@ class FlickrController extends AppController {
         else {
             $page = 1;
         }
+        
+        //init cache here
+        $_cache = $this->Zend->cache();
+
         $totalpages = $this->Mashup->flickrImagePageTotal($keyword, $page);
         $totalimages = $this->Mashup->flickrImageTotal($keyword, $page);
 
-        $flickrSearchCacheKey = md5('FLICKRSEARCH'.md5($keyword).$page);
         /* Flickr Search */
         $flickrSearchCacheKey = md5('FLICKRSEARCH'.md5($keyword).$page);
-        $flickrSearch = $this->Mashup->flickrSearch($keyword,$page);
-        /*
-        if(!$flickrSearch = $this->_cache->load($flickrSearchCacheKey)) {
-            $flickrSearch = $mashup->flickrSearch();
-            $this->_cache->save($flickrSearch, $flickrSearchCacheKey, array(), (86400*3));
+        if(!$flickrSearch = $_cache->load($flickrSearchCacheKey)) {
+            $flickrSearch = $this->Mashup->flickrSearch($keyword,$page);
+            $_cache->save($flickrSearch, $flickrSearchCacheKey, array(), (86400*3));
         }
-        */
 
         $_nextpage = $page + 1;
         $_prevpage = $page - 1;

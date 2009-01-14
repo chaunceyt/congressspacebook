@@ -23,7 +23,14 @@ class EventfulController extends AppController {
         else {
             $page = 1;
         }
-        $events = $this->Mashup->eventfulSearch($keyword, $page);
+        $_cache = $this->Zend->cache();
+
+        $events_key = md5('events_key_'.$keyword.$page);
+        if(!$events = $_cache->load($events_key)) {
+            $events = $this->Mashup->eventfulSearch($keyword, $page);
+            $_cache->save($events, $events_key, array(), (86400*3));
+        }
+
         $_nextpage = $page + 1;
         $_prevpage = $page - 1;
         $pagenotice = 'Page &nbsp;&nbsp;'.$page .' of ' . $events->page_count .'&nbsp;&nbsp;';

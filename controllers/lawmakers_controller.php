@@ -128,6 +128,26 @@ class LawmakersController extends AppController {
         if(isset($this->params['username'])) {
             $id = $this->Lawmaker->getProfileIdByName($this->params['username']);
         }
+
+        if(isset($this->params['page'])) {
+            switch($this->params['page']) {
+                case 'contributors' :
+                    $_page = 'contributors';
+                    break;
+                case 'sectors' :
+                    $_page = 'sectors';
+                    break;
+                case 'fedspending' :
+                    $_page = 'fedspending';
+                    break;
+                case 'industries' :
+                    $_page = 'industries';
+                    break;
+                default :
+                    $_page = 'default';
+            }
+            $this->set('_page_', $_page);
+        }
         
         $_cache = $this->Zend->cache();
 
