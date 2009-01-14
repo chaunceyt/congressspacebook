@@ -19,37 +19,54 @@ class LawmakersController extends AppController {
         parent::beforeFilter();
     }
 
-	function index() {
+	function index() 
+    {
+        //setup zend cache
+        $_cache = $this->Zend->cache();
+
+
 		$this->Lawmaker->recursive = 0;
-        //$conditions = array('twitter_id' ));
-        /* not working as expected.
-        require APP . 'vendors' . DS .'JSON.php';
-        $json = new Services_JSON();
-        //need to cache this
-        $captial_words_today_url = 'http://www.capitolwords.org/api/word/iraq/2008/05/23/feed.json';
-        $data = file_get_contents($captial_words_today_url);
-        $results = $json->decode($data);
-        echo '<pre>';
-        print_r($results);
-        $this->set('words', $results);
-        */
    
         $leaders_congress = $this->Lawmaker->getCurrentCongress();
         $this->set('leaders_congress', $leaders_congress);
         $webuser = $this->Session->read('current_webuser');
         $state = strtolower($webuser->region);
-        $current_congress = $this->Lawmaker->getCongressMembersByState($state);
+        
+        /* get congress members by state: cache since data isn't going to change*/
+        $current_congress_key = md5('current_congress_key_'.$state);
+        if(!$current_congress = $_cache->load($current_congress_key)) {
+            $current_congress = $this->Lawmaker->getCongressMembersByState($state);
+            $_cache->save($current_congress, $current_congress_key, array(), (86400*3));
+        }
         $this->set('current_congress', $current_congress);
+
+        /* cache support built into fedspending component */
         $fedSpendingSummary = $this->Fedspending->getFedSpendingSummary($state);
         $this->set('fedSpending', $fedSpendingSummary);
 
-        $stateTagCloud = $this->Lawmaker->stateTagCloud();
+        /* cache the state array since we don't need it that often*/
+        $stateTagCloud_key = md5('state_tag_cloud_key');
+        if(!$stateTagCloud = $_cache->load($stateTagCloud_key)) {
+            $stateTagCloud = $this->Lawmaker->stateTagCloud();
+            $_cache->save($stateTagCloud, $stateTagCloud_key, array(), (86400*3));
+        }
         $this->set('stateTagCloud', $stateTagCloud);
-
-        $partyTagCloud = $this->Lawmaker->partyTagCloud();
-        $this->set('partyTagCloud', $partyTagCloud);
         
-        $genderTagCloud = $this->Lawmaker->genderTagCloud();
+        /* get party tagcloud cache it since it's not going to change unless I update the db*/
+        $partyTagCloud_key = md5('party_tag_cloud_key');
+        if(!$partyTagCloud = $_cache->load($partyTagCloud_key)) {
+            $partyTagCloud = $this->Lawmaker->partyTagCloud();
+            $_cache->save($partyTagCloud, $partyTagCloud_key, array(), (86400*3));
+        }
+        $this->set('partyTagCloud', $partyTagCloud);
+       
+        /* get gender tag cloud and cache it.*/
+        //fixme: check view to see if we're using this method.
+        $genderTagCloud_key = md5('gender_tag_cloud_key');
+        if(!$genderTagCloud = $_cache->load($genderTagCloud_key)) {
+            $genderTagCloud = $this->Lawmaker->genderTagCloud();
+            $_cache->save($genderTagCloud, $genderTagCloud_key, array(), (86400*3));
+        }
         $this->set('genderTagCloud', $genderTagCloud);
 
         $this->paginate['Lawmaker'] = array('limit' => '25' ); 
@@ -112,30 +129,46 @@ class LawmakersController extends AppController {
             $id = $this->Lawmaker->getProfileIdByName($this->params['username']);
         }
         
-        $this->Zend->startup();
         $_cache = $this->Zend->cache();
-        //require APP . 'vendors' . DS .'JSON.php';
-        //$json = new Services_JSON();
+
+        //let's get this lawmaker
         $lawmaker = $this->Lawmaker->read(null, $id);
+
+        //we always want to get last years data - ??
+        //fixme: rethink this..
         $_year = date("Y")-1;
+
         $cid = $lawmaker['Lawmaker']['crp_id'];
         $state = $lawmaker['Lawmaker']['state'];
         $party = $lawmaker['Lawmaker']['party'];
         
+        /* cache built into fedspending component */
         $fedSpendingSummary = $this->Fedspending->getFedSpendingSummary($state);
         $this->set('fedSpending', $fedSpendingSummary);
 
-        $profile_top_friends = $this->Lawmaker->getProfileTopFriends($state, $party, $id, '4');
-        $profile_friends = $this->Lawmaker->getProfileFriends($state, $party, $id);
+        /* we want to cache the top friends it's not going to change until a database update */
+        $profile_top_friends_key = md5('profile_top_friends_key_'.$state.$party.$id);
+        if(!$profile_top_friends = $_cache->load($profile_top_friends_key)) {
+            $profile_top_friends = $this->Lawmaker->getProfileTopFriends($state, $party, $id, '4');
+            $_cache->save($profile_top_friends, $profile_top_friends_key, array(), (86400*3));
+        }
+
+        $profile_friends_key = md5('profile_friends_key_'.$state.$party.$id);
+        if(!$profile_friends = $_cache->load($profiles_friends_key)) {
+            $profile_friends = $this->Lawmaker->getProfileFriends($state, $party, $id);
+            $_cache->save($profile_friends, $profile_friends_key, array(), (86400*3));
+        }
 
         $this->set('profile_top_friends', $profile_top_friends);
         $this->set('profile_friends', $profile_friends);
 
-        
+        /* cache built into component */        
         $candSummary = $this->Opensecrets->candSummary($cid, $_year, 'xml');
         $candContrib = $this->Opensecrets->candContrib($cid, $_year,'xml');
         $candIndustry = $this->Opensecrets->candIndustry($cid, $_year,'xml');
         $candSector = $this->Opensecrets->candSector($cid, $_year,'xml');
+
+
         $this->set('candSummary', $candSummary);
         $this->set('candContrib', $candContrib);
         $this->set('candIndustry', $candIndustry);
