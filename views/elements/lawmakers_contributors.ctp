@@ -1,7 +1,7 @@
 
         <?php if(isset($candContrib)) { ?>
             <a><h2><img src="<?php echo Router::url('/img/tree_expand.gif'); ?>" alt="" />Contributors</h2></a>
-            <table width="80%">
+            <table width="100%">
             <?php
               for($i=0; $i < sizeof($candContrib->contributors->contributor); $i++) {     
                   echo '<tr>';

@@ -12,14 +12,13 @@
 <p></p>            
             </ul>
             <?php if(isset($username)) { ?>
-            <h4>The Money</h4>
+            <a><h2>Additional Info</h2></a>
             <ul>
             <li><a href="<?php echo Router::url('/profiles/'.$username.'/contributors'); ?>">Contributors</a> totals</li>
             <li><a href="<?php echo Router::url('/profiles/'.$username.'/industries'); ?>">Industries</a> totals</li>
             <li><a href="<?php echo Router::url('/profiles/'.$username.'/sectors'); ?>">Sectors</a> totals</li>
             <li><a href="<?php echo Router::url('/profiles/'.$username.'/fedspending'); ?>">State's FedSpending</a></li>
             </ul>
-       <a><h4>Additional Info</h4></a>
        <?php
         if(strlen($lawmaker['Lawmaker']['district']) == 1) {
             $_district = '0'.$lawmaker['Lawmaker']['district'];
