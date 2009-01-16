@@ -3,7 +3,7 @@
         <center>Total images found <?echo number_format($FlickrTotalImageCount,0); ?> with the tag <?php echo $keyword; ?></center>
         <center><?echo $FlickrPagination; ?></center>
         
-        <div class="entry">
+        <div class="entry" style="padding-left:90px;">
 <?php
 $i=0;
 foreach($FlickrSearch as $fImage) {

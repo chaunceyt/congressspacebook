@@ -1,8 +1,8 @@
 <div id="page">
 	<div id="content">
 		<div class="post">
-			<h2 class="title"><a href="#"><?php echo  $videoTitle; ?></a></h2>
 			<div class="entry"  style="padding-left:90px;">
+			<h2 class="title"><a href="#"><?php echo  $videoTitle; ?></a></h2>
 
     <p>
     <object width="425" height="350">
