@@ -2,7 +2,7 @@
     <div class="post">
         <div class="entry">
 
-<div class="lawmakers index">
+<div style="padding-left:90px;" class="lawmakers index">
 <h2><?php __('Lawmakers in this region: ' .$current_webuser->region);?></h2>
 <p>
 <?php
@@ -75,7 +75,6 @@ about</a><br/>
 	</tr>
 <?php endforeach; ?>
 </table>
-</div>
 <p>
 <div class="paging">
 	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
@@ -85,6 +84,7 @@ about</a><br/>
 </p>
 <p></p>
 <p>Powered by:<a href="http://services.sunlightlabs.com/api/" target="_new">Sunlight Labs API</a> data feed.</p>
+</div>
 </div>
     </div>
 </div>
