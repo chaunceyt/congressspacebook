@@ -17,14 +17,14 @@ Released   : 20071222
 <title><?php echo strtoupper($keyword); ?>- Making Government Transparency for Real...| CongressSpacebook.com</title>
 <meta name="Author" content="Chauncey Thorn (chaunceyt [at] gmail.com)">
 <META NAME="Generator" CONTENT="MASHUP::Keyword (www.mashupkeyword.com)">
-<meta name="KeyWords" content="beyonce,  mashup, celebs, artist, hiphop, rnb, keywords, api, search, music, zend framework, php, reggae, soul, hip-hop, photos">
-<meta name="Description" content="the ">
+<meta name="KeyWords" content="<?php echo strtoupper($keyword); ?>, congress, senate, house, republican, democratic, parties, politics, fedspend, transparent, fec, govtrack, government, barack, obama, president, independent">
+<meta name="Description" content="Striving to make goverment accountable and more transparent. ">
 <meta name="country" content="USA">
 <meta name="copyright" content="copyright 2008 - MASHUP::Keyword">
 <meta name="coverage" content="Worldwide">
 <meta name="revisit_after" content="1day">
-<meta name="title" content="MASHUP::Keyword videos, photos, news, battles">
-<meta name="identifier" content="http://www.mashupkeyword.com/">
+<meta name="title" content="CongressSpaceBook - Making Government Transparency for Real.">
+<meta name="identifier" content="http://www.congressspacebook.com/">
 
 <meta name="language" content="English">
 <meta name="googlebot" content="index">
