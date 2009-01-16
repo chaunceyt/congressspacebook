@@ -1,6 +1,6 @@
 <div id="content">
     <div class="post">
-                    <div class="entry">
+                    <div class="entry"  style="padding-left:90px;">
 <center>
 <?php 
 if(isset($TwitterSearch->results)) {

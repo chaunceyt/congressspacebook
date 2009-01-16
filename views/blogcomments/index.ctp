@@ -1,5 +1,5 @@
 <div id="content">
-    <div class="post">
+    <div class="post"  style="padding-left:90px;">
 <center><?echo $CommentsPagination; ?></center>
 <div class="entry">
 <?php
@@ -27,4 +27,7 @@ else {
 
           </div>
                   <!-- end #content -->
+        <div id="sidebar">
+                <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+        </div>
 

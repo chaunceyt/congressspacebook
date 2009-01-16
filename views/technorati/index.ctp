@@ -1,7 +1,7 @@
 <div id="page">
         <div id="content">
                 <div class="post">
-                        <div class="entry">
+                        <div class="entry"  style="padding-left:90px;">
             <p></p>
             <ul>
 <?php

@@ -1,7 +1,7 @@
         <div id="content">
                 <div class="post">
         <center><?echo $FriendfeedPagination; ?></center>
-        <div class="entry">
+        <div class="entry"  style="padding-left:70px;">
             <ul>
 <br clear="all"/>
 <?php

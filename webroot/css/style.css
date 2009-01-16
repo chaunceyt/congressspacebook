@@ -937,4 +937,18 @@ float: none
 #nav-menu
 {
 width:30em
-} 
+}
+
+.pullquote_left {
+    width: 240px;
+    border-top: 1px dotted #3f002f;
+    border-bottom: 1px dotted #3f002f;
+    padding: 8px 0;
+    margin-right: 11px;
+    float: left;
+    font-size: 20px;
+    color: #3d648b;
+    background: transparent url(../img/pullquote.gif) no-repeat top left;
+    text-align: left;
+}
+

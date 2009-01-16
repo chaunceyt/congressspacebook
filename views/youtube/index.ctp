@@ -1,6 +1,6 @@
         <div id="content">
                 <div class="post">
-                        <div class="entry">
+                        <div class="entry"  style="padding-left:90px;">
 <p align="center"><?php echo $YoutubePagination; ?></p>
 
 <div id="thumbnails">

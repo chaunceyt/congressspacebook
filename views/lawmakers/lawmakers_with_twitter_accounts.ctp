@@ -1,6 +1,6 @@
 <div id="content">
     <div class="post">
-        <div class="entry">
+        <div class="entry"  style="padding-left:90px;">
 
 <h2><?php __('Lawmakers who have Twitter accounts...');?></h2>
 <table cellpadding="0" cellspacing="5">
