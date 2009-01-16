@@ -10,7 +10,7 @@
 <p>More to come...!</p>
 
 
-<p><h3>Browsing  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> member profiles</h3></p>
+<p><h3>Browse  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> member profiles</h3></p>
 <p></p>
 <h2>you may hear a congress person say...</h2>
 <blockquote>
