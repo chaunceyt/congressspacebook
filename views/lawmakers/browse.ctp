@@ -3,8 +3,8 @@
         <div class="entry">
 
 <div class="lawmakers index">
-<h2><?php __('Browse Member Profiles');?></h2>
-<p>
+<h2 style="text-align:center"><?php __('Browse Member Profiles');?></h2>
+<p style="text-align:center">
 <?php
 echo $paginator->counter(array(
 'format' => __('Page %page% of %pages%, showing %current% lawmakers out of %count% total', true)

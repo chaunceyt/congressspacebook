@@ -4,37 +4,29 @@ class TestController extends AppController {
 
     var $name = 'Test';
     var $helpers = array('Html', 'Form');
+    var $components = array('Capitolwords', 'Govtrack');
     //var $components = array('Auth', 'Users.Bakery');
     //var $components = array('Auth', 'Users.Bakery');
     var $uses = array();
-    /*function beforeFilter()
+    
+    function beforeFilter()
     {
-        $this->Auth->loginAction = '/users/login';
-        $this->Auth->logoutRedirect = '/';
-
-        $this->Auth->fields = array('username'=> 'username', 'password'=>'psword');
-        $this->Auth->loginError = 'Invalid e-mail/password combination.  Please try again.';
-        $this->Auth->allow('display');
-        $this->Auth->authorize = 'controller';
-        //$this->Auth->object = $this;
-        //$this->Auth->authenticate = $this;
-        
-        $realReferer = $this->referer(null, true);
-        $sessionReferer = $this->Session->read('referer');
-        if (!$sessionReferer) {
-            $this->Session->write('referer', $this->referer(null, true));
-            if (!$this->Auth->user()) {
-                $this->Auth->authError = __('Please login to continue', true);
-            }
-            $this->Auth->allowedActions('*');
-        }
-    }
-   function isAuthorized() {  
-        return true;  
-   }*/  
+        $this->Auth->allowedActions = array('index');
+        parent::beforeFilter();
+    }    
+    
     function index()
     {
         $this->autoRender=false;
+        $w = $this->Capitolwords->dailysum('iraq','2006');
+        $ww = $this->Capitolwords->wordofday();
+
+        echo '<pre>';
+        $bills = $this->Govtrack->getBills('110');
+        print_r($bills);
+        
+        print_r($ww);
+        print_r($w);
         App::import('vendor','socialnet');
         $socialnet = new Socialnet;
        

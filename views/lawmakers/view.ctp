@@ -21,9 +21,10 @@ $_year_ = date("Y")-1;
 <div id="content">
     <div class="post">
         <div class="entry">
-<div id="profile_page">
+            <div id="profile_page">
 
-<div id="profile_left">
+            <div id="profile_left">
+
     <p><h4> <?php echo $lawmaker['Lawmaker']['title']; ?> 
 			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
 			<?php echo $lawmaker['Lawmaker']['middlename']; ?>
@@ -143,10 +144,10 @@ foreach ($profile_friends as $current) {
                     <!--<li><a href="./lyricwiki/<?php echo @urlencode($this_person); ?>" title="Lyrics">Lyrics</a> </li>-->
                 </ul>
         
-</div>
-<div id="profile_right">
-<h2 style="padding-top:20px;"><p style="text-align:center">Members Fundraising</p></h2>
-<br/>
+    </div>
+
+    <div id="profile_right">
+    <h2 style="padding-top:20px;"><p style="text-align:center">Member's Fundraising Report</p></h2>
 <?php
 if(isset($_page_)) {
     if($_page_ == 'contributors') {
@@ -166,13 +167,11 @@ else {
         echo $this->element('lawmakers_fundrasing', array('_year_' => $_year_)); 
 }
 ?>
-</div> <!-- end profile_right -->
-</div> <!-- end profile_page -->
+    </div> <!-- end profile_right -->
+    </div> <!-- end profile_page -->
 </div>
         </div>
         <div id="sidebar">
                 <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
         </div>
-    </div>
-</div>
 

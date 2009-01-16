@@ -37,7 +37,7 @@ foreach ($current_congress as $current) {
 </p>
 <strong>We</strong> have the "Power of the Purse." The Constitution grants <strong>us</strong> the power of the purse. Under Article 1 [section 8], <strong>we</strong> are given the power to tax and impose tariffs, duties, and other measures to collect revenue for the U.S. Treasury.</p>
 </p>
-<h3>Current Leaders</h3>
+<h3>111th Congress Leaders</h3>
 <p>
 <?php
 $i=0;
@@ -122,9 +122,9 @@ foreach ($leaders_congress as $leaders) {
 </div>
 
 <div id="homepage_left">
-<h2><?php echo $current_webuser->region; ?> lawmakers</h2>
+<h2>You are from: <?php echo $current_webuser->region; ?> </h2>
 <p><a style="hover:none;" href="<?php echo Router::url('/nearby/lawmakers'); ?>"><img src="<?php echo Router::url('/'); ?>img/states/<?php echo strtolower($current_webuser->region); ?>.png" alt="default" border="0" /></p></a>
-<h3>The States</h3>
+<h3>Browse other states</h3>
 <?php
     $max_size = 250; // max font size in %
     $min_size = 100; // min font size in %
@@ -149,7 +149,7 @@ foreach ($leaders_congress as $leaders) {
 
 ?>
 <p></p>
-<h3>The parties</h3> 
+<h3>Browse by party</h3> 
 <p></p>
 <p>
 <?php
@@ -168,9 +168,20 @@ foreach ($leaders_congress as $leaders) {
     $i=0;
     foreach ($partyTagCloud as $key => $value) {
         $size = $min_size + (($value - $min_qty) * $step);
-        echo '<a href="'.Router::url('/lawmakers/browse/party/'.$key).'" style="font-size: '.$size.'%"';
+        switch($key) {
+            case 'D' :
+                $key_str = 'Democratic';
+                break;
+            case 'R' :
+                $key_str = 'Republican';
+                break;
+            case 'I' :
+                $key_str = 'Independent';
+            default :    
+        }
+        echo '<p><a href="'.Router::url('/lawmakers/browse/party/'.$key).'" style="padding:5px;font-size: '.$size.'%"';
         echo ' title="'.$value.' lawmakers in  '.$key.'"';
-        echo '>'.$key.'</a> ';
+        echo '>'.$key_str.'</a></p> ';
         $i++;
     }
 

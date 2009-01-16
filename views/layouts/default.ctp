@@ -50,6 +50,7 @@ echo $scripts_for_layout;
 <![endif]-->
 </head>
 <body>
+<div id="page_wrapper">
 <div id="container">
 <div id="header">
 <a href="<?php echo Router::url('/'); ?>" title="CongressSpacebook.com"><img src="<?php echo Router::url('/'); ?>img/congress_spacebook_header.jpg" alt="" border="0"/></a>
@@ -91,6 +92,7 @@ pageTracker._trackPageview();
 <div id="footer">
         <p>(c) <?php echo date("Y"); ?> CongressSpacebook.com.</p>
         <p>Powered By MASHUP::Keyword</p>
+</div>
 </div>
 </body>
 </html>

@@ -1,0 +1,10 @@
+<?php
+//state spending
+//Summary for contracts for the state of Alabama
+//http://www.fedspending.org/fpds/fpds.php?datype=X&detail=-1&state=AL federal spending for state
+//List of assistance transactions to entities with "Smith" in their name for FY 2006
+//http://www.fedspending.org/faads/faads.php?datype=X&detail=2&recipient_name=Smith&fiscal_year=2006
+class OpensecretsComponent extends Object
+{
+}
+

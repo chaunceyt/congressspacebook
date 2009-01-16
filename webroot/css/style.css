@@ -46,6 +46,11 @@ body {
   margin: 0 -0.5px 10px 0; padding: 0;
 }
 
+#page_wrapper {
+  background: #fafafa;
+  width: 960px;
+  margin: 0 auto; padding: 0;
+}
 #page {}
 
 #content {
@@ -56,7 +61,7 @@ body {
 #sidebar {
   float: right;
   text-align: left;
-  width: 200px;
+  width: 270px;
   border-left: 1px dotted #ddd;
 }
 
@@ -72,7 +77,7 @@ body {
 
 /* BEGIN: Standard Layout */
 #container {
-  width: 912px;
+  width: 960px;
 }
 
 #content {
@@ -126,7 +131,7 @@ body {
  --------------------------------------------------------------*/
 
 #header { 
-  background: url(images/header_shadow.gif) repeat-x left bottom;
+  background: #fafafa;  
   text-align: center;            
 }
 
@@ -159,7 +164,10 @@ body {
  Content
  --------------------------------------------------------------*/
 
-#content {}
+#content {
+ background: #fafafa;
+
+}
 
 #content h1,
 #content h2,
@@ -404,6 +412,7 @@ body {
  Sidebar
  --------------------------------------------------------------*/
 #sidebar {
+  background: #fafafa;  
   font-size: 11px; 
 }
 
@@ -495,7 +504,8 @@ body {
                #content form.comments { display: none; } }
 
 body {
-  background: url(images/background.gif) repeat-x left top;
+  background: url(../img/bg.jpg) no-repeat scroll 50% 0;
+  background-color: #112441;
   font: normal 12px "lucida grande", verdana, arial, helvetica, sans-serif;
 }
 
@@ -661,6 +671,7 @@ div.paging span a {
 
 
 #profile_page {
+  background: #fafafa;
   width: 100%;
   margin-left: auto ;
   margin-right: auto ;
@@ -671,6 +682,7 @@ div.paging span a {
   padding-left: 20px;       
 }
 #profile_right {
+  background: #fafafa;
   float: right;
   width: 450px;
 }
@@ -708,10 +720,10 @@ div.paging span a {
 }
 #homepage_right {
   float: right;
-  width: 424px;
+  width: 414px;
 }
 #profileresults {
-    width: 668px;
+    width:615px;
     padding-top: 10px;
     padding-left:30px;
 }
