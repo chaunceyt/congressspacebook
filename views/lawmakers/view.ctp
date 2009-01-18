@@ -147,7 +147,17 @@ foreach ($profile_friends as $current) {
     </div>
 
     <div id="profile_right">
-    <h1 style="padding-top:20px; height:50px"><p style="text-align:center">Member's WALL:</h1>
+
+    <div id="rotate">
+           <ul>
+                <li><a href="#fragment-1"><span>Lobbyist @ Work</span></a></li>
+                <li><a href="#fragment-2"><span>Info</span></a></li>
+                <li><a href="#fragment-3"><span>SuperWall</span></a></li>
+            </ul>
+    
+    </div>
+    <div id="fragment-1" style="padding-left:25px;">
+
     <h2> Last Elections Fundraising report</p></h2>
 <?php
 if(isset($_page_)) {
@@ -168,6 +178,44 @@ else {
         echo $this->element('lawmakers_fundrasing', array('_year_' => $_year_)); 
 }
 ?>
+</div>
+
+<div id="fragment-2" style="padding-left:55px;">
+<p></p>
+<h1>Information</h1>
+<p>
+<?php
+//$govtrack_results;
+echo $govtrack_results->Title .' '. $govtrack_results->FullName."<br/>"; 
+?>
+<?php
+foreach($govtrack_results->CongressionalTerms->Term as $term) {
+    echo 'Title: ' . $term->Title . '<br/> Start: ' . $term->Start . ' <br/>End: ' . $term->End . '<br/> State: ' . $term->State . ' <br/> Dirstrict: ' . $term->District ."<br/>";
+}
+?>
+</p>
+
+<?php
+foreach($govtrack_results->CommitteeMembership->Committee as $committee) {
+    echo '<p>'  . $committee->attributes()->Role.' '.$committee->attributes()->name.''."</p>";
+    echo '<h2>Subcommittes</h2><br/>';
+    foreach($committee->Subcommittee as $subcommittee) {
+        echo $subcommittee->attributes()->name . ' ('. $subcommittee->attributes()->id.')'."<br/>";
+    }
+}
+
+?>
+</div>
+<div id="fragment-3" style="padding-left:75px;">
+<?php
+if(!empty($lawmaker['Lawmaker']['youtube_url'])) {
+    $yt_username = str_replace('http://www.youtube.com/','',$lawmaker['Lawmaker']['youtube_url']);
+    $yt_url = 'http://gdata.youtube.com/feeds/base/users/'.trim($yt_username).'/uploads?alt=rss&v=2&client=ytapi-youtube-profile';
+    $site->getYoutubeVideoRss($yt_url);
+    $site->checkForRss($lawmaker['Lawmaker']['website']);
+}
+?>
+</div>
     </div> <!-- end profile_right -->
     </div> <!-- end profile_page -->
 </div>

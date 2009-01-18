@@ -3,14 +3,30 @@
         <div class="entry"   style="padding-left:90px; padding-right:10px;">
 <div class="lobbyistsFilings index">
 <h2><?php __('Lobbyist @ Work their expenditures...');?></h2>
+<img src="http://www.opensecrets.org/lobby/IMG_client_year_comp.php?lname=Pfizer+Inc&type=c" alt="chart" />
 <p>
 <?php
 echo $paginator->counter(array(
 'format' => __('Page %page% of %pages%, showing %current% records out of %count% ', true)
 ));
 ?></p>
+<p>
+<div class="paging">
+	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
+ | 	<?php echo $paginator->numbers();?>
+	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
+</div>
+</p>
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
+<?php 
+        if(isset($this->params['client'])) {
+            $paginator->options(array('url' => '/'.urlencode($this->params['client'])));
+        }
+        else if(isset($this->params['pass'][0])) {
+            $paginator->options(array('url' => '/'.urlencode($this->params['pass'][0])));
+        }
+        ?>
         <th><?php echo $paginator->sort('Registrant filing on behalf of: '. $client, 'client_name');?></th>
         <th><?php echo $paginator->sort('Expenditures','filing_amount');?></th>
 </tr>
@@ -36,11 +52,13 @@ foreach ($lobbyistsFilings as $lobbyistsFiling):
 <?php endforeach; ?>
 </table>
 </div>
+<p>
 <div class="paging">
 	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
  | 	<?php echo $paginator->numbers();?>
 	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
 </div>
+</p>
         </div>
     </div>
 </div>

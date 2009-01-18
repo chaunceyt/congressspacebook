@@ -17,12 +17,14 @@ class IndustriesController extends AppController {
         if(isset($this->params['query'])) {
             $url_params = explode(':',$this->params['query']);
             $query = str_replace('*','/',$url_params[1]);
-            print_r($url_params);
             if($url_params[0] == 'industry') {
                 $conditions = array('industry =' => $query);
+                $section = $query;
+                
             }
             else if($url_params[0] == 'sector') {
                 $conditions = array('sector =' => $query);
+                $section = $query;
             }
             else {
             }
@@ -39,7 +41,7 @@ class IndustriesController extends AppController {
                     );
 
         }
-
+        $this->set('section', $section);
 		$this->set('industries', $this->paginate());
 	}
 
@@ -55,9 +57,21 @@ class IndustriesController extends AppController {
         $this->set('data_rpt_url',$data_rpt_url);
         $this->set('data_rpt', $results[0]);
         
-        $summary_url = 'http://www.opensecrets.org/industries/summary.php?cycle=2008&ind=Q14';
+        $summary_url = 'http://www.opensecrets.org/industries/summary.php?cycle=2008&ind'.$industry['Industry']['catorder'];
         $summary_data = $this->Industry->get_remote_file($summary_url);
-        preg_match_all('#<table class=\'datadisplay\'>(.*?)<\/table>#i',$rpt_data['content'], $results);
+        preg_match_all('#<table class=\'datadisplay\'>(.*?)<\/table>#i',$summary_data['content'], $summary_results);
+        $this->set('summary_results', $summary_results[0]);
+
+        $recips_url = 'http://www.opensecrets.org/industries/recips.php?cycle=2008&ind='.$industry['Industry']['catorder'];
+        $recips_data = $this->Industry->get_remote_file($recips_url);
+        preg_match_all('#<table class=\'datadisplay\'>(.*?)<\/table>#i',$recips_data['content'], $recips_results);
+        $this->set('summary_recips', $recips_results[0][0]);
+        
+        $pacrecips_url = 'http://www.opensecrets.org/industries/pacrecips.php?cycle=2008&ind='.$industry['Industry']['catorder'];
+        $pacrecips_data = $this->Industry->get_remote_file($pacrecips_url);
+        preg_match_all('#<table class=\'datadisplay\'>(.*?)<\/table>#i',$pacrecips_data['content'], $recips_results);
+        $this->set('summary_pacrecips', $pacrecips_results[0][0]);
+        
 
 
 		$this->set('industry', $industry);

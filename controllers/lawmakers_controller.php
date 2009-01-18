@@ -2,7 +2,7 @@
 class LawmakersController extends AppController {
 
 	var $name = 'Lawmakers';
-    var $components = array('Opensecrets', 'Fedspending', 'Zend');
+    var $components = array('Opensecrets', 'Fedspending', 'Zend', 'Govtrack');
 	var $helpers = array('Html', 'Form');
     public $_cache = null;
 
@@ -170,6 +170,9 @@ class LawmakersController extends AppController {
         /* cache built into fedspending component */
         $fedSpendingSummary = $this->Fedspending->getFedSpendingSummary($state);
         $this->set('fedSpending', $fedSpendingSummary);
+
+        $govtrack_results = $this->Govtrack->getPerson($lawmaker['Lawmaker']['govtrack_id'], '110');
+        $this->set('govtrack_results', $govtrack_results);
 
         /* we want to cache the top friends it's not going to change until a database update */
         $profile_top_friends_key = md5('profile_top_friends_key_'.$state.$party.$id);

@@ -13,11 +13,18 @@ class LobbyistsFilingsController extends AppController {
 
 	function index() {
 		$this->LobbyistsFiling->recursive = 0;
-        $client = $this->params['client'];
+        if(!isset($this->params['client'])) {
+            if(isset($this->params['pass'][0])) {
+                $client = $this->params['pass'][0];
+            }
+        }
+        else {
+            $client = $this->params['client'];
+        }
         $conditions = array('LobbyistsFiling.client_name = ' => $client);
         $this->paginate['LobbyistsFiling'] = array(
                 'conditions' => $conditions,
-                'order' => array('filing_amount' => 'desc'),'limit' => '50');
+                'order' => array('filing_amount' => 'desc'),'limit' => '20');
         $this->set('client', $client);
 		$this->set('lobbyistsFilings', $this->paginate());
 	}

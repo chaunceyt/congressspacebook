@@ -36,7 +36,7 @@
 	
     Router::connect('/', array('controller' => 'lawmakers', 'action' => 'index'));
     Router::connect('/industries/:query', array('controller' => 'industries', 'action' => 'index'));
-    Router::connect('/lobbyist/:client', array('controller' => 'lobbyists_filings', 'action' => 'index'));
+    Router::connect('/lobbyist/:client/*', array('controller' => 'lobbyists_filings', 'action' => 'index'));
     //Router::connect('/lawmakers/view', array('controller' => 'lawmakers', 'action' => 'view'));
     Router::connect('/profiles/:username/:page', array('controller' => 'lawmakers', 'action' => 'view'));
     Router::connect('/keyword_frequency/:keyword', array('controller' => 'mashup', 'action' => 'word_usage'));

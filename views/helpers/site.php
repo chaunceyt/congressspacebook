@@ -5,7 +5,7 @@ class SiteHelper extends Helper
 
     function checkForRss($site)
     {
-        $response = file_get_contents($site);
+        $response = @file_get_contents($site);
         preg_match_all('/<link[^>]* href="(.*?)"[^>]*>/', $response, $matches);
         foreach($matches[1] as $match) {
             //we only want rss
@@ -68,5 +68,33 @@ class SiteHelper extends Helper
                 echo "Could not grab feed.";
             }
     }//end function
+
+    function getYoutubeVideoRss($site)
+    {
+    //$response = file_get_contents($site);
+
+            $rss = @simplexml_load_file($site);
+            $entries = 10;
+            if (!empty($rss)) {
+                $title = $rss->channel[0]->title[0];
+                $url = $rss->channel[0]->link[0];
+                $desc = $rss->channel[0]->description[0];
+                echo "<h2>Youtube $title</h2>\n";
+                echo "$desc<br /><br />\n";
+                $c=0;
+                foreach($rss->channel->item as $item) {
+                    $_title = str_replace("Video: ","", $item->title);
+                    $video_id = str_replace('http://www.youtube.com/watch?v=','',$item->link);
+                    $_desc = $item->description;
+                    echo '<a href="'.Router::url('/youtube/video/'.$video_id).'">'. $_title .'</a>'."<br/>\n";
+                    //echo $url ."\n";
+                    //echo "<i>$_desc</i><br /><br />\n";
+                    $c++;
+                }
+            } else {
+                echo "Could not grab feed.";
+            }
+    }//end function
+    
 
 }
