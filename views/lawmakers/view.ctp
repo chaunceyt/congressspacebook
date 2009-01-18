@@ -150,13 +150,13 @@ foreach ($profile_friends as $current) {
 
     <div id="rotate">
            <ul>
-                <li><a href="#fragment-1"><span>Lobbyist @ Work</span></a></li>
-                <li><a href="#fragment-2"><span>Info</span></a></li>
+                <li><a href="#fragment-1"><span>Member @ Work </span></a></li>
+                <li><a href="#fragment-2"><span>Lobbyist @ Work</span></a></li>
                 <li><a href="#fragment-3"><span>SuperWall</span></a></li>
             </ul>
     
     </div>
-    <div id="fragment-1" style="padding-left:25px;">
+    <div id="fragment-2" style="padding-left:25px;">
 
     <h2> Last Elections Fundraising report</p></h2>
 <?php
@@ -180,33 +180,59 @@ else {
 ?>
 </div>
 
-<div id="fragment-2" style="padding-left:55px;">
+<div id="fragment-1" style="padding-left:220px;">
 <p></p>
-<h1>Information</h1>
 <p>
 <?php
 //$govtrack_results;
-echo $govtrack_results->Title .' '. $govtrack_results->FullName."<br/>"; 
+//echo $govtrack_results->Title .' '. $govtrack_results->FullName."<br/>"; 
 ?>
 <?php
 foreach($govtrack_results->CongressionalTerms->Term as $term) {
-    echo 'Title: ' . $term->Title . '<br/> Start: ' . $term->Start . ' <br/>End: ' . $term->End . '<br/> State: ' . $term->State . ' <br/> Dirstrict: ' . $term->District ."<br/>";
+    echo  $term->Title . ' of ' . $term->State . ' ' . $term->District . '  (' . $term->Start . '-' . $term->End .")<br/>";
 }
 ?>
 </p>
+<p>
+<h2>Subcommittes</h2>
 
 <?php
 foreach($govtrack_results->CommitteeMembership->Committee as $committee) {
     echo '<p>'  . $committee->attributes()->Role.' '.$committee->attributes()->name.''."</p>";
-    echo '<h2>Subcommittes</h2><br/>';
     foreach($committee->Subcommittee as $subcommittee) {
         echo $subcommittee->attributes()->name . ' ('. $subcommittee->attributes()->id.')'."<br/>";
     }
 }
-
 ?>
+</p>
+<p>
+<h2>Terms</h2>
+<?php
+foreach($govtrack_results->CongressionalTerms->Term as $term) {
+    echo '<p>'  . $term->Title.' '.$term->Start.'-'. $term->End. ' ('.$term->State.')'."</p>";
+}
+?>
+</p>
+<h2>Sponsored Bills</h2>
+<p>
+<?php
+foreach($govtrack_results->SponsoredBills->Bill as $bill) {
+    echo '<p><strong>' . $bill->attributes()->Session . ' ' . $bill->attributes()->Type . ' ' .$bill->attributes()->Number .' ('. $bill->Status .')</strong></p>';
+    echo '<p>' . $bill->OfficialTitle . '</p>';
+}
+?>
+</p>
+<h2>Co-Sponsored Bills</h2>
+<p>
+<?php
+foreach($govtrack_results->CosponsoredBills->Bill as $bill) {
+    echo '<p><strong>' . $bill->attributes()->Session . ' ' . $bill->attributes()->Type . ' ' .$bill->attributes()->Number .' ('.$bill->Status.')</strong></p>';
+    echo '<p>' . $bill->OfficialTitle . '</p>';
+}
+?>
+</p>
 </div>
-<div id="fragment-3" style="padding-left:75px;">
+<div id="fragment-3" style="padding-left:220px;">
 <?php
 if(!empty($lawmaker['Lawmaker']['youtube_url'])) {
     $yt_username = str_replace('http://www.youtube.com/','',$lawmaker['Lawmaker']['youtube_url']);
