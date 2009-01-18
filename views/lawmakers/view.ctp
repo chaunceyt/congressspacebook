@@ -147,7 +147,8 @@ foreach ($profile_friends as $current) {
     </div>
 
     <div id="profile_right">
-    <h2 style="padding-top:20px;"><p style="text-align:center">Member's Fundraising Report</p></h2>
+    <h1 style="padding-top:20px; height:50px"><p style="text-align:center">Member's WALL:</h1>
+    <h2> Last Elections Fundraising report</p></h2>
 <?php
 if(isset($_page_)) {
     if($_page_ == 'contributors') {

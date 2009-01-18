@@ -1,6 +1,6 @@
 <div id="content">
     <div class="post">
-        <div class="entry">
+        <div class="entry"   style="padding-left:90px; padding-right:10px;">
 <div class="lobbyistsFilings index">
 <h2><?php __('Lobbyist @ Work their expenditures...');?></h2>
 <p>
@@ -11,7 +11,7 @@ echo $paginator->counter(array(
 ?></p>
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
-        <th><?php echo $paginator->sort('Client lobbying is done on behalf of', 'client_name');?></th>
+        <th><?php echo $paginator->sort('Registrant filing on behalf of: '. $client, 'client_name');?></th>
         <th><?php echo $paginator->sort('Expenditures','filing_amount');?></th>
 </tr>
 
@@ -26,7 +26,7 @@ foreach ($lobbyistsFilings as $lobbyistsFiling):
 ?>
 	<tr<?php echo $class;?>>
 		<td>
-			<a href="<?php echo Router::url('/lobbyists_filings/view/'.$lobbyistsFiling['LobbyistsFiling']['filing_id']);?>"><?php echo $lobbyistsFiling['LobbyistsFiling']['client_name']; ?></a>
+			<a href="<?php echo Router::url('/lobbyists_filings/view/'.$lobbyistsFiling['LobbyistsFiling']['filing_id']);?>"><?php echo $lobbyistsFiling['LobbyistsFiling']['registrant_name']; ?></a>
 		</td>
 		<td style="text-align:right">
 			$<?php echo number_format($lobbyistsFiling['LobbyistsFiling']['filing_amount']); ?> 

@@ -1,7 +1,6 @@
 <p></p>
 <p style="text-aligh:center">Last updated: <?php echo $candSummary->summary->attributes()->last_updated; ?></p>
 <p>
-Last Election<br/>
 Raised: $<?php echo number_format($candSummary->summary->attributes()->total);?><br/>
 Spent: $<?php echo number_format($candSummary->summary->attributes()->spent);?><br/>
 Cash Available: $<?php echo number_format($candSummary->summary->attributes()->cash_on_hand);?><br/>

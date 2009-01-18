@@ -48,7 +48,7 @@
             <?php } ?>
                 <p>
                 <ul>
-                    <li><a href="<?php echo Router::url('/lobbyists_filings'); ?>"><img src="<?php echo Router::url('/'); ?>img/lobbyist_at_work.jpg" alt="Their Clients" border="0"/></a></li>
+                    <li><a href="<?php echo Router::url('/industries'); ?>"><img src="<?php echo Router::url('/'); ?>img/lobbyist_at_work.jpg" alt="Their Clients" border="0"/></a></li>
                 </ul>
                 </p>
 
