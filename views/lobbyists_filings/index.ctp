@@ -11,14 +11,6 @@ echo $paginator->counter(array(
 ));
 ?></p>
 <p>
-<div class="paging">
-	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
- | 	<?php echo $paginator->numbers();?>
-	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
-</div>
-</p>
-<table cellpadding="0" cellspacing="0" width="100%">
-<tr>
 <?php 
         if(isset($this->params['client'])) {
             $paginator->options(array('url' => '/'.urlencode($this->params['client'])));
@@ -27,6 +19,14 @@ echo $paginator->counter(array(
             $paginator->options(array('url' => '/'.urlencode($this->params['pass'][0])));
         }
         ?>
+<div class="paging">
+	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
+ | 	<?php echo $paginator->numbers();?>
+	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
+</div>
+</p>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
         <th><?php echo $paginator->sort('Registrant filing on behalf of: '. $client, 'client_name');?></th>
         <th><?php echo $paginator->sort('Expenditures','filing_amount');?></th>
 </tr>
