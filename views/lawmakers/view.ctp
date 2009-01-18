@@ -150,13 +150,13 @@ foreach ($profile_friends as $current) {
 
     <div id="rotate">
            <ul>
-                <li><a href="#fragment-1"><span>Member @ Work </span></a></li>
-                <li><a href="#fragment-2"><span>Lobbyist @ Work</span></a></li>
+                <li><a href="#fragment-1"><span>Lobbyist @ Work</span></a></li>
+                <li><a href="#fragment-2"><span>Member @ Work </span></a></li>
                 <li><a href="#fragment-3"><span>SuperWall</span></a></li>
             </ul>
     
     </div>
-    <div id="fragment-2" style="padding-left:25px;">
+    <div id="fragment-1" style="padding-left:25px;">
 
     <h2> Last Elections Fundraising report</p></h2>
 <?php
@@ -180,7 +180,7 @@ else {
 ?>
 </div>
 
-<div id="fragment-1" style="padding-left:220px;">
+<div id="fragment-2" style="padding-left:220px;">
 <p></p>
 <p>
 <?php
