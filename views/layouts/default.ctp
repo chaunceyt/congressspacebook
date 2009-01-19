@@ -14,7 +14,7 @@ Released   : 20071222
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title><?php echo strtoupper($keyword); ?>- Making Government Transparency for Real...| CongressSpacebook.com</title>
+<title><?php echo $title_for_layout; ?> - Making Government Transparency for Real... at CongressSpacebook.com</title>
 <meta name="Author" content="Chauncey Thorn (chaunceyt [at] gmail.com)">
 <META NAME="Generator" CONTENT="MASHUP::Keyword (www.mashupkeyword.com)">
 <meta name="KeyWords" content="<?php echo strtoupper($keyword); ?>, congress, senate, house, republican, democratic, parties, politics, fedspend, transparent, fec, govtrack, government, barack, obama, president, independent">

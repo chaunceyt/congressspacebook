@@ -180,13 +180,14 @@ if(!isset($_page_)) {
 <?php } ?>
 
 <?php
+/*
     if($_page_ == 'wall') {?>
         <li><a href="<?php echo Router::url('/profiles/'.$username.'/wall'); ?>" title="Home" class="current">Wall</a></li>
 <?php  
     }
     else { ?>
         <li><a href="<?php echo Router::url('/profiles/'.$username.'/wall'); ?>" title="Home">Wall</a></li>
-<?php } ?>
+<?php } */?>
 
 </ul>
 </div>
@@ -232,6 +233,7 @@ else {
 //echo $govtrack_results->Title .' '. $govtrack_results->FullName."<br/>"; 
 ?>
 </p>
+
 </div>
     </div> <!-- end profile_right -->
     </div> <!-- end profile_page -->
@@ -239,5 +241,7 @@ else {
         </div>
         <div id="sidebar">
                 <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
+                <p>Social bookmarking</p>
+                <?php echo $bookmark->getBookMarks($username); ?>
         </div>
 

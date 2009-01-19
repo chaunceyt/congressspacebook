@@ -11,7 +11,10 @@ class IndustriesController extends AppController {
     }
 
 
-	function index() {
+	function index() 
+    {
+        $this->pageTitle = 'The Influencers';
+
 		$this->Industry->recursive = 0;
 
         if(isset($this->params['query'])) {

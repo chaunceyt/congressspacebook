@@ -45,7 +45,10 @@
 //EOF
 require_once(APP . 'geocity' . DS .'geoipcity.inc');
 require_once(APP . 'geocity' . DS .'geoipregionvars.php');
-//$gi = geoip_open(APP . 'geocity' . DS .'GeoLiteCity.dat',GEOIP_MEMORY_CACHE);
-//$_current_webuser = geoip_record_by_addr($gi, $_SERVER['REMOTE_ADDR']);
+require_once(APP . 'config' . DS . 'app.init.php');
+function hsc($string) {
+      return htmlspecialchars($string, ENT_QUOTES, Configure::read('App.encoding'));
+}
+
 
 ?>

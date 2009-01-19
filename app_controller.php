@@ -2,10 +2,11 @@
 require APP . 'vendors' . DS .'JSON.php';
 require APP . 'vendors' . DS .'facebook'. DS .'facebook.php';
 require APP . 'vendors' . DS .'fbconnect.php';
+uses('Sanitize');
 class AppController extends Controller 
 {
     var $components = array('Auth', 'RequestHandler', 'Zend', 'Mashup');
-    var $helpers = array('Html', 'Form', 'Time', 'Javascript', 'Cache', 'Mashup', 'Site');
+    var $helpers = array('Html', 'Form', 'Time', 'Javascript', 'Cache', 'Mashup', 'Site', 'Bookmark');
     //var $helpers = array('Html', 'Form', 'Mashup');
 
     function beforeFilter()
@@ -21,6 +22,17 @@ class AppController extends Controller
         $this->Auth->authorize = 'controller';
         //$this->Auth->object = $this;
         //$this->Auth->authenticate = $this;
+        $this->_siteSettings = Configure::read('AppSettings');
+ 
+        // Set cookie defaults
+        $this->cookieName = Configure::read('Wildflower.cookie.name');
+        $this->cookieTime = Configure::read('Wildflower.cookie.expire');
+        $this->cookieDomain = '.' . getenv('SERVER_NAME');
+ 
+        // Compress output to save bandwith / speed site up
+        //if (!isset($this->params['requested'])) {
+        //    $this->_gzipOutput();
+        //}
 
         $realReferer = $this->referer(null, true);
         $sessionReferer = $this->Session->read('referer');
@@ -148,5 +160,15 @@ class AppController extends Controller
         $rand_keys = shuffle($words);
         return $words[$rand_keys];
     }
-
+    
+    function _gzipOutput() {
+        if (@ob_start('ob_gzhandler')) {
+            header('Content-type: text/html; charset: UTF-8');
+            header('Cache-Control: must-revalidate');
+            $offset = -1;
+            $expireTime = gmdate('D, d M Y H:i:s', time() + $offset);
+            $expireHeader = "Expires: $expireTime GMT";
+            header($expireHeader);
+        }
+    }
 }

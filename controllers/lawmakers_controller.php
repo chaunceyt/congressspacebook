@@ -22,6 +22,7 @@ class LawmakersController extends AppController {
 
     function index() 
     {
+        $this->pageTitle = 'Lawmakers';
         //setup zend cache
         $_cache = $this->Zend->cache();
 
@@ -74,7 +75,9 @@ class LawmakersController extends AppController {
         $this->set('lawmakers', $this->paginate());
     }
 
-    function browse($by=null, $value=null) {
+    function browse($by=null, $value=null) 
+    {
+        $this->pageTitle = 'Browsing profiles by '.ucfirst($by).' '.$value;
         $this->Lawmaker->recursive = 0;
         //check to see if we're doing a search.
         if(isset($this->passedArgs['query'])) { 
@@ -128,9 +131,11 @@ class LawmakersController extends AppController {
 
         if(isset($this->params['username'])) {
             $id = $this->Lawmaker->getProfileIdByName($this->params['username']);
+            $this->pageTitle = str_replace('_', ' ',$this->params['username']);
         }
 
         if(isset($this->params['page'])) {
+            $this->pageTitle = str_replace('_', ' ',$this->params['username']) .' [ '.ucfirst($this->params['page']).' ]';;
             switch($this->params['page']) {
                 case 'contributors' :
                     $_page = 'contributors';
@@ -149,6 +154,18 @@ class LawmakersController extends AppController {
                     break;
                 case 'bills' :
                     $_page = 'bills';
+                    break;
+                case 'bill' :
+                    $_page = 'bill';
+
+                    list($session, $type, $number) = explode('-', $id);
+                    $bill_path = '/home/govtrack/data/us/bills.text/'.$session.'/'.$type.'/'.$type.$number.'.txt';
+                    $raw_text = file_get_contents($bill_path);
+                    $encoding = 'ASCII';
+                    $utf8_text = @iconv( $encoding, "utf-8", $raw_text );
+                    $data = html_entity_decode( $utf8_text, ENT_QUOTES, "utf-8" );
+                    $this->set('data', $data);                    
+
                     break;
                 case 'wall' :
                     $_page = 'wall';
@@ -219,10 +236,12 @@ class LawmakersController extends AppController {
 
     function bill($id=null)
     {
+        $this->pageTitle = str_replace('_', ' ',$this->params['username']) . ' [ Bill: ' . str_replace('-', ' ', $id). ']';
         list($session, $type, $number) = explode('-', $id);
-        $bill_path = '/home/govtrack/data/us/'.$session.'/'.$type.'/'.$type.$number.'.txt';
-        $raw_text = file_get_contents($bull_path);
-        $utf8_text = iconv( $encoding, "utf-8", $raw_text );
+        $bill_path = '/home/govtrack/data/us/bills.text/'.$session.'/'.$type.'/'.$type.$number.'.txt';
+        $raw_text = file_get_contents($bill_path);
+        $encoding = 'ASCII';
+        $utf8_text = @iconv( $encoding, "utf-8", $raw_text );
         $data = html_entity_decode( $utf8_text, ENT_QUOTES, "utf-8" ); 
         $this->set('data', $data);
 
