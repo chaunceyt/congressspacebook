@@ -39,6 +39,7 @@
     Router::connect('/lobbyist/:client/*', array('controller' => 'lobbyists_filings', 'action' => 'index'));
     //Router::connect('/lawmakers/view', array('controller' => 'lawmakers', 'action' => 'view'));
     Router::connect('/profiles/:username/:page', array('controller' => 'lawmakers', 'action' => 'view'));
+    Router::connect('/profiles/:username/bill/*', array('controller' => 'lawmakers', 'action' => 'bill'));
     Router::connect('/keyword_frequency/:keyword', array('controller' => 'mashup', 'action' => 'word_usage'));
     Router::connect('/lawmakers/state/', array('controller' => 'lawmakers', 'action' => 'browse'));
     Router::connect('/lawmakers_with_twitter_accounts', array('controller' => 'lawmakers', 'action' => 'lawmakers_with_twitter_accounts'));

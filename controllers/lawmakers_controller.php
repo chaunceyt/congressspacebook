@@ -1,9 +1,9 @@
 <?php
 class LawmakersController extends AppController {
 
-	var $name = 'Lawmakers';
+    var $name = 'Lawmakers';
     var $components = array('Opensecrets', 'Fedspending', 'Zend', 'Govtrack');
-	var $helpers = array('Html', 'Form');
+    var $helpers = array('Html', 'Form');
     public $_cache = null;
 
     function beforeFilter()
@@ -14,18 +14,19 @@ class LawmakersController extends AppController {
                                             'view', 
                                             'campaign_cost',
                                             'industry_by_race',
+                                            'bill',
                                             'search'
                                             );
         parent::beforeFilter();
     }
 
-	function index() 
+    function index() 
     {
         //setup zend cache
         $_cache = $this->Zend->cache();
 
 
-		$this->Lawmaker->recursive = 0;
+        $this->Lawmaker->recursive = 0;
    
         $leaders_congress = $this->Lawmaker->getCurrentCongress();
         $this->set('leaders_congress', $leaders_congress);
@@ -70,11 +71,11 @@ class LawmakersController extends AppController {
         $this->set('genderTagCloud', $genderTagCloud);
 
         $this->paginate['Lawmaker'] = array('limit' => '25' ); 
-		$this->set('lawmakers', $this->paginate());
-	}
+        $this->set('lawmakers', $this->paginate());
+    }
 
-	function browse($by=null, $value=null) {
-		$this->Lawmaker->recursive = 0;
+    function browse($by=null, $value=null) {
+        $this->Lawmaker->recursive = 0;
         //check to see if we're doing a search.
         if(isset($this->passedArgs['query'])) { 
             $value = $this->passedArgs['query'];
@@ -104,18 +105,18 @@ class LawmakersController extends AppController {
                 }   
             }
         }
-		$this->set('lawmakers', $this->paginate());
-	}
+        $this->set('lawmakers', $this->paginate());
+    }
 
-	function lawmakers_with_twitter_accounts() {
-		$this->Lawmaker->recursive = 0;
+    function lawmakers_with_twitter_accounts() {
+        $this->Lawmaker->recursive = 0;
         //$conditions = array('twitter_id' ));
         $conditions = array('conditions' => "twitter_id != ' '" ); 
         //$conditions = array('Lawmaker.twitter_id != ' => $conditions);
-		$this->set('lawmakers', $this->Lawmaker->find('all', $conditions));
-	}
+        $this->set('lawmakers', $this->Lawmaker->find('all', $conditions));
+    }
 
-	function view($id=null) 
+    function view($id=null) 
     {
         if(!isset($this->params['username'])) {
 
@@ -142,6 +143,18 @@ class LawmakersController extends AppController {
                     break;
                 case 'industries' :
                     $_page = 'industries';
+                    break;
+                case 'history' :
+                    $_page = 'history';
+                    break;
+                case 'bills' :
+                    $_page = 'bills';
+                    break;
+                case 'wall' :
+                    $_page = 'wall';
+                    break;
+                case 'fundraising' :
+                    $_page = 'fundraising';
                     break;
                 default :
                     $_page = 'default';
@@ -201,8 +214,19 @@ class LawmakersController extends AppController {
         $this->set('candContrib', $candContrib);
         $this->set('candIndustry', $candIndustry);
         $this->set('candSector', $candSector);
-		$this->set('lawmaker', $lawmaker);
-	}
+        $this->set('lawmaker', $lawmaker);
+    }
+
+    function bill($id=null)
+    {
+        list($session, $type, $number) = explode('-', $id);
+        $bill_path = '/home/govtrack/data/us/'.$session.'/'.$type.'/'.$type.$number.'.txt';
+        $raw_text = file_get_contents($bull_path);
+        $utf8_text = iconv( $encoding, "utf-8", $raw_text );
+        $data = html_entity_decode( $utf8_text, ENT_QUOTES, "utf-8" ); 
+        $this->set('data', $data);
+
+    }
 
     function search()
     {
@@ -225,46 +249,47 @@ class LawmakersController extends AppController {
     {
     }
 
-	function add() {
-		if (!empty($this->data)) {
-			$this->Lawmaker->create();
-			if ($this->Lawmaker->save($this->data)) {
-				$this->Session->setFlash(__('The Lawmaker has been saved', true));
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->Session->setFlash(__('The Lawmaker could not be saved. Please, try again.', true));
-			}
-		}
-	}
+    function add() {
+        if (!empty($this->data)) {
+            $this->Lawmaker->create();
+            if ($this->Lawmaker->save($this->data)) {
+                $this->Session->setFlash(__('The Lawmaker has been saved', true));
+                $this->redirect(array('action'=>'index'));
+            } else {
+                $this->Session->setFlash(__('The Lawmaker could not be saved. Please, try again.', true));
+            }
+        }
+    }
 
-	function edit($id = null) {
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Lawmaker', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if (!empty($this->data)) {
-			if ($this->Lawmaker->save($this->data)) {
-				$this->Session->setFlash(__('The Lawmaker has been saved', true));
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->Session->setFlash(__('The Lawmaker could not be saved. Please, try again.', true));
-			}
-		}
-		if (empty($this->data)) {
-			$this->data = $this->Lawmaker->read(null, $id);
-		}
-	}
+    function edit($id = null) {
+        if (!$id && empty($this->data)) {
+            $this->Session->setFlash(__('Invalid Lawmaker', true));
+            $this->redirect(array('action'=>'index'));
+        }
+        if (!empty($this->data)) {
+            if ($this->Lawmaker->save($this->data)) {
+                $this->Session->setFlash(__('The Lawmaker has been saved', true));
+                $this->redirect(array('action'=>'index'));
+            } else {
+                $this->Session->setFlash(__('The Lawmaker could not be saved. Please, try again.', true));
+            }
+        }
+        if (empty($this->data)) {
+            $this->data = $this->Lawmaker->read(null, $id);
+        }
+    }
 
-	function delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for Lawmaker', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if ($this->Lawmaker->del($id)) {
-			$this->Session->setFlash(__('Lawmaker deleted', true));
-			$this->redirect(array('action'=>'index'));
-		}
-	}
+    function delete($id = null) {
+        if (!$id) {
+            $this->Session->setFlash(__('Invalid id for Lawmaker', true));
+            $this->redirect(array('action'=>'index'));
+        }
+        if ($this->Lawmaker->del($id)) {
+            $this->Session->setFlash(__('Lawmaker deleted', true));
+            $this->redirect(array('action'=>'index'));
+        }
+    }
 
 }
 ?>
+

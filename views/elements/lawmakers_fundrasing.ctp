@@ -1,3 +1,10 @@
+ <h2> Last Elections Fundraising report</p></h2>
+<p>
+View breakdown by: 
+<a href="<?php echo Router::url('/profiles/'.$username.'/contributors'); ?>">Contributors</a>
+<a href="<?php echo Router::url('/profiles/'.$username.'/industries'); ?>">Industries</a>
+<a href="<?php echo Router::url('/profiles/'.$username.'/sectors'); ?>">Sectors</a>
+</p>
 <p></p>
 <p style="text-aligh:center">Last updated: <?php echo $candSummary->summary->attributes()->last_updated; ?></p>
 <p>
@@ -5,12 +12,6 @@ Raised: $<?php echo number_format($candSummary->summary->attributes()->total);?>
 Spent: $<?php echo number_format($candSummary->summary->attributes()->spent);?><br/>
 Cash Available: $<?php echo number_format($candSummary->summary->attributes()->cash_on_hand);?><br/>
 Debt: $<?php echo number_format($candSummary->summary->attributes()->debt);?><br/>
-</p>
-<p>
-View breakdown by: 
-<a href="<?php echo Router::url('/profiles/'.$username.'/contributors'); ?>">Contributors</a>
-<a href="<?php echo Router::url('/profiles/'.$username.'/industries'); ?>">Industries</a>
-<a href="<?php echo Router::url('/profiles/'.$username.'/sectors'); ?>">Sectors</a>
 </p>
 
 

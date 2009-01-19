@@ -1,6 +1,13 @@
 
         <?php if(isset($candContrib)) { ?>
             <a><h2>Top Contributors and how much they gave this member and their lobbying pattern</h2></a>
+<p>
+View breakdown by:
+Contributors 
+<a href="<?php echo Router::url('/profiles/'.$username.'/industries'); ?>">Industries</a>
+<a href="<?php echo Router::url('/profiles/'.$username.'/sectors'); ?>">Sectors</a>
+</p>
+
             <table width="100%">
             <?php
               for($i=0; $i < sizeof($candContrib->contributors->contributor); $i++) {    

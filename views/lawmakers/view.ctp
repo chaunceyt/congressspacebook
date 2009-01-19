@@ -148,17 +148,51 @@ foreach ($profile_friends as $current) {
 
     <div id="profile_right">
 
-    <div id="rotate">
-           <ul>
-                <li><a href="#fragment-1"><span>Lobbyist @ Work</span></a></li>
-                <li><a href="#fragment-2"><span>Member @ Work </span></a></li>
-                <li><a href="#fragment-3"><span>SuperWall</span></a></li>
-            </ul>
-    
-    </div>
+<div id="member-container">
+<ul id="member-menu">
+<?php
+//this is a hack. dealing with nav links
+if(!isset($_page_)) {
+    $_page_ = 'history';
+}
+?>
+<?php if($_page_ == 'history') { ?>
+    <li><a href="<?php echo Router::url('/profiles/'.$username.''); ?>" title="Home" class="current">Info</a></li>
+<?php } else { ?>
+    <li><a href="<?php echo Router::url('/profiles/'.$username.''); ?>" title="Home">Info</a></li>
+<?php } ?>
+<?php
+    if($_page_ == 'bills') {?>
+        <li><a href="<?php echo Router::url('/profiles/'.$username.'/bills'); ?>" title="Home" class="current">Bills</a></li>
+<?php  
+    }
+    else { ?>
+        <li><a href="<?php echo Router::url('/profiles/'.$username.'/bills'); ?>" title="Home">Bills</a></li>
+<?php } ?>
+
+<?php
+    if($_page_ == 'fundraising' || $_page_ == 'contributors' || $_page_ == 'industries' || $_page_ == 'sectors') {?>
+        <li><a href="<?php echo Router::url('/profiles/'.$username.'/fundraising'); ?>" title="Home" class="current">Fund Raising</a></li>
+<?php  
+    }
+    else { ?>
+        <li><a href="<?php echo Router::url('/profiles/'.$username.'/fundraising'); ?>" title="Home">Fund Raising</a></li>
+<?php } ?>
+
+<?php
+    if($_page_ == 'wall') {?>
+        <li><a href="<?php echo Router::url('/profiles/'.$username.'/wall'); ?>" title="Home" class="current">Wall</a></li>
+<?php  
+    }
+    else { ?>
+        <li><a href="<?php echo Router::url('/profiles/'.$username.'/wall'); ?>" title="Home">Wall</a></li>
+<?php } ?>
+
+</ul>
+</div>
+
     <div id="fragment-1" style="padding-left:25px;">
 
-    <h2> Last Elections Fundraising report</p></h2>
 <?php
 if(isset($_page_)) {
     if($_page_ == 'contributors') {
@@ -173,9 +207,19 @@ if(isset($_page_)) {
     else if($_page_ == 'industries')  {
         echo $this->element('lawmakers_industries', array('_year_' => $_year_)); 
     }
+
+    else if($_page_ == 'history')  {
+        echo $this->element('lawmakers_history', array('_year_' => $_year_)); 
+    }
+    else if($_page_ == 'fundraising')  {
+        echo $this->element('lawmakers_fundrasing', array('_year_' => $_year_)); 
+    }
+    else if($_page_ == 'bills')  {
+        echo $this->element('lawmakers_sponsoredbills', array('_year_' => $_year_)); 
+    }
 }//see if $_page_ isset
 else {
-        echo $this->element('lawmakers_fundrasing', array('_year_' => $_year_)); 
+        echo $this->element('lawmakers_history', array('_year_' => $_year_)); 
 }
 ?>
 </div>
@@ -187,60 +231,7 @@ else {
 //$govtrack_results;
 //echo $govtrack_results->Title .' '. $govtrack_results->FullName."<br/>"; 
 ?>
-<?php
-foreach($govtrack_results->CongressionalTerms->Term as $term) {
-    echo  $term->Title . ' of ' . $term->State . ' ' . $term->District . '  (' . $term->Start . '-' . $term->End .")<br/>";
-}
-?>
 </p>
-<p>
-<h2>Subcommittes</h2>
-
-<?php
-foreach($govtrack_results->CommitteeMembership->Committee as $committee) {
-    echo '<p>'  . $committee->attributes()->Role.' '.$committee->attributes()->name.''."</p>";
-    foreach($committee->Subcommittee as $subcommittee) {
-        echo $subcommittee->attributes()->name . ' ('. $subcommittee->attributes()->id.')'."<br/>";
-    }
-}
-?>
-</p>
-<p>
-<h2>Terms</h2>
-<?php
-foreach($govtrack_results->CongressionalTerms->Term as $term) {
-    echo '<p>'  . $term->Title.' '.$term->Start.'-'. $term->End. ' ('.$term->State.')'."</p>";
-}
-?>
-</p>
-<h2>Sponsored Bills</h2>
-<p>
-<?php
-foreach($govtrack_results->SponsoredBills->Bill as $bill) {
-    echo '<p><strong>' . $bill->attributes()->Session . ' ' . $bill->attributes()->Type . ' ' .$bill->attributes()->Number .' ('. $bill->Status .')</strong></p>';
-    echo '<p>' . $bill->OfficialTitle . '</p>';
-}
-?>
-</p>
-<h2>Co-Sponsored Bills</h2>
-<p>
-<?php
-foreach($govtrack_results->CosponsoredBills->Bill as $bill) {
-    echo '<p><strong>' . $bill->attributes()->Session . ' ' . $bill->attributes()->Type . ' ' .$bill->attributes()->Number .' ('.$bill->Status.')</strong></p>';
-    echo '<p>' . $bill->OfficialTitle . '</p>';
-}
-?>
-</p>
-</div>
-<div id="fragment-3" style="padding-left:220px;">
-<?php
-if(!empty($lawmaker['Lawmaker']['youtube_url'])) {
-    $yt_username = str_replace('http://www.youtube.com/','',$lawmaker['Lawmaker']['youtube_url']);
-    $yt_url = 'http://gdata.youtube.com/feeds/base/users/'.trim($yt_username).'/uploads?alt=rss&v=2&client=ytapi-youtube-profile';
-    $site->getYoutubeVideoRss($yt_url);
-    $site->checkForRss($lawmaker['Lawmaker']['website']);
-}
-?>
 </div>
     </div> <!-- end profile_right -->
     </div> <!-- end profile_page -->

@@ -1,5 +1,11 @@
         <?php if(isset($candSector)) { ?>
             <a><h2>The sector(s) that contributed to this member's last campaign</h2></a>
+<p>
+View breakdown by:
+<a href="<?php echo Router::url('/profiles/'.$username.'/contributors'); ?>">Contributors</a>
+<a href="<?php echo Router::url('/profiles/'.$username.'/industries'); ?>">Industries</a>
+Sectors 
+</p>
             
             <table width="100%">
             <?php

@@ -35,6 +35,16 @@ body {
   text-align: center;
   margin: 0; padding: 0.6em 1em 1em 1em; 
 }
+#member-container{padding:25px 15px 0 15px;margin:0 0 15px 0;}
+ul#member-menu{list-style-type:none;width:100%;position:relative;height:27px;font-family:"Trebuchet MS",Arial,sans-serif;font-size:13px;font-weight:bold;margin:0;padding:11px 0 0 0;}
+ul#member-menu li{display:block;float:left;margin:0 0 0 4px;height:27px;}
+ul#member-menu li.left{margin:0;}
+ul#member-menu li a{display:block;float:left;color:#fff;background:#4A6867;line-height:27px;text-decoration:none;padding:0 17px 0 18px;height:27px;}
+ul#member-menu li a.right{padding-right:19px;}
+ul#member-menu li a:hover{background:#2E4560;}
+ul#member-menu li a.current{color:#2E4560;background:#fff;}
+ul#member-menu li a.current:hover{color:#2E4560;background:#fff;}
+
 
 #container {
   text-align: left; 
@@ -953,4 +963,3 @@ width:30em
     background: transparent url(../img/pullquote.gif) no-repeat top left;
     text-align: left;
 }
-
