@@ -12,7 +12,7 @@ Released   : 20071222
 
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head  profile="http://gmpg.org/xfn/11">
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><?php echo $title_for_layout; ?> - Making Government Transparency for Real... at CongressSpacebook.com</title>
 <meta name="Author" content="Chauncey Thorn (chaunceyt [at] gmail.com)">

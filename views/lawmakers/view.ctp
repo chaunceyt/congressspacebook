@@ -18,20 +18,23 @@ $_year_ = date("Y")-1;
             <div id="profile_page">
 
             <div id="profile_left">
-
+    <div class="vcard">
+    <div class="fn org">
     <p><h4> <?php echo $lawmaker['Lawmaker']['title']; ?> 
 			<?php echo $lawmaker['Lawmaker']['firstname']; ?>
 			<?php echo $lawmaker['Lawmaker']['middlename']; ?>
 			<?php echo $lawmaker['Lawmaker']['lastname']; ?></h4><br/>
-    </p>        
+    </p>
+    </div>
+
     <p class="profile_thumb_img">
             <?php
                     $path_to_image = APP .'webroot' . DS .'img' . DS . 'lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg';
                     if(file_exists($path_to_image)) {
             ?>
-            <a href="<?php echo Router::url('/profiles/'.$username); ?>"><img src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="" /></a>
+            <a class="url" rel="me" href="<?php echo Router::url('/profiles/'.$username); ?>"><img class="photo fn" rel="me" src="<?php echo Router::url('/img/lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="" /></a>
             <?php } else {  ?>
-                <img src="<?php echo Router::url('/img/no_profile_img.jpg'); ?>" alt="" border="0" />
+                <img class="photo fn" src="<?php echo Router::url('/img/no_profile_img.jpg'); ?>" alt="" border="0" />
 
             <?php } ?>
     
@@ -44,8 +47,10 @@ $_year_ = date("Y")-1;
                     echo 'First Elected: '. $candSummary->summary->attributes()->first_elected . '<br/>';
             }
             ?>
-           Office :<br/><?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/>
-
+        <div class="adr">    
+          <div class="street-address"> Office :<br/><?php echo $lawmaker['Lawmaker']['congress_office']; ?><br/></div>
+        </div>
+     </div>   
             <?php
                 $congresspedia_name = ucfirst($lawmaker['Lawmaker']['firstname']) . '_' .ucfirst($lawmaker['Lawmaker']['lastname']);
                 $this_person = $lawmaker['Lawmaker']['firstname'] . ' ' .$lawmaker['Lawmaker']['lastname'];
@@ -80,7 +85,7 @@ foreach ($profile_top_friends as $current) {
     $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
 
 ?>
-        <span><a class="url" rel="me co-resident colleague" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>">
+        <span><a class="url" rel="contact met colleague co-resident friend" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>">
             <?php
                     $path_to_image = APP .'webroot' . DS .'img' . DS . 'lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg';
                     if(file_exists($path_to_image)) {
@@ -105,12 +110,12 @@ foreach ($profile_friends as $current) {
     $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
 
 ?>
-        <span><a class="url" rel="me colleague" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>">
+        <span><a class="url" rel="contact met colleague friend" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>">
             <?php
                     $path_to_image = APP .'webroot' . DS .'img' . DS . 'lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg';
                     if(file_exists($path_to_image)) {
             ?>
-        <img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" />
+            <img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" />
             <?php } else {  ?>
                 <img src="<?php echo Router::url('/img/no_profile_img.jpg'); ?>" alt="" border="0" width="40" height="50"/>
 
