@@ -1,10 +1,4 @@
 <?php echo $this->element('foaf', array('lawmaker' => $lawmaker)); ?>
-<script type="text/javascript">
-            $(function() {
-                $("#rotate > ul").tabs();
-            });
-</script>
-
 <?php 
 if(strlen($lawmaker['Lawmaker']['district']) == 1) {
     $_district = '0'.$lawmaker['Lawmaker']['district'];
@@ -241,7 +235,5 @@ else {
         </div>
         <div id="sidebar">
                 <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
-                <p>Social bookmarking</p>
-                <?php echo $bookmark->getBookMarks($username); ?>
         </div>
 

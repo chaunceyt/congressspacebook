@@ -30,19 +30,23 @@ Released   : 20071222
 <meta name="googlebot" content="index">
 <?php  echo $html->css('style')."\n"; ?>
 <?php  echo $html->css('tooltip')."\n"; ?>
-<?php echo $javascript->link('jquery-1.2.6.js', false); ?>
-<?php echo $javascript->link('ui.tabs.js', false); ?>
-<?php echo $javascript->link('ui.core.js', false); ?>
-<script type="text/javascript" src="/js/tooltip.js"></script>
+<?php //echo $minify->css(array('style', 'tooltip')); ?>
+<?php //echo $minify->js(array('jquery-1.2.6', 'ui.core', 'tooltip')); ?>
+<?php echo $javascript->link('jquery-1.2.6'); ?>
+<?php echo $javascript->link('ui.core'); ?>
+<?php echo $javascript->link('ui.tabs'); ?>
+<?php echo $javascript->link('tooltip'); ?>
 <!--<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>-->
 <?php 
 echo $scripts_for_layout;
 ?>
+<!--
+<script type="text/javascript" src="/js/tooltip.js"></script>
 <script type="text/javascript" src="/js/jquery-1.2.6.js"></script>
 <script type="text/javascript" src="/js/ui.core.js"></script>
 <script type="text/javascript" src="/js/ui.tabs.js"></script>
 <script type="text/javascript" src="/js/tooltip.js"></script>
-<link href="/css/bracket.css" rel="stylesheet" type="text/css" media="screen" />
+-->
 <!--[if IE]>
 <style type="text/css"> 
 #firefoxPlugin { display: none; }

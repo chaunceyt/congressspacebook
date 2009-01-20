@@ -18,7 +18,7 @@ class BookmarkHelper extends Helper{
      * change this defaults if you want to use a different set of bookmarklets
      * The array elements should correspond to $bookmarks keys
      */
-    var $defaults = array('google', 'stumble', 'digg', 'facebook', 'yahoo', 'ask', 'technorati');
+    var $defaults = array('google', 'stumble', 'digg', 'facebook', 'yahoo', 'ask' );
     
     /**
      * @param $pagetitle - (required) Title of the Page

@@ -6,7 +6,7 @@ uses('Sanitize');
 class AppController extends Controller 
 {
     var $components = array('Auth', 'RequestHandler', 'Zend', 'Mashup');
-    var $helpers = array('Html', 'Form', 'Time', 'Javascript', 'Cache', 'Mashup', 'Site', 'Bookmark');
+    var $helpers = array('Html', 'Form', 'Time', 'Javascript', 'Cache', 'Mashup', 'Site', 'Bookmark','Minify');
     //var $helpers = array('Html', 'Form', 'Mashup');
 
     function beforeFilter()

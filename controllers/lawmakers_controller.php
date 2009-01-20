@@ -3,7 +3,7 @@ class LawmakersController extends AppController {
 
     var $name = 'Lawmakers';
     var $components = array('Opensecrets', 'Fedspending', 'Zend', 'Govtrack');
-    var $helpers = array('Html', 'Form');
+    var $helpers = array('Html', 'Form', 'Javascript');
     public $_cache = null;
 
     function beforeFilter()
@@ -111,7 +111,9 @@ class LawmakersController extends AppController {
         $this->set('lawmakers', $this->paginate());
     }
 
-    function lawmakers_with_twitter_accounts() {
+    public function lawmakers_with_twitter_accounts() 
+    {
+        $this->pageTitle = 'Lawmakers using twitter';
         $this->Lawmaker->recursive = 0;
         //$conditions = array('twitter_id' ));
         $conditions = array('conditions' => "twitter_id != ' '" ); 
@@ -237,8 +239,12 @@ class LawmakersController extends AppController {
     function bill($id=null)
     {
         $this->pageTitle = str_replace('_', ' ',$this->params['username']) . ' [ Bill: ' . str_replace('-', ' ', $id). ']';
-        list($session, $type, $number) = explode('-', $id);
-        $bill_path = '/home/govtrack/data/us/bills.text/'.$session.'/'.$type.'/'.$type.$number.'.txt';
+        list($_session, $type, $number) = explode('-', $id);
+        $this->set('congress_session', $_session);
+        $this->set('type', $type);
+        $this->set('number', $number);
+
+        $bill_path = '/home/govtrack/data/us/bills.text/'.$_session.'/'.$type.'/'.$type.$number.'.txt';
         $raw_text = file_get_contents($bill_path);
         $encoding = 'ASCII';
         $utf8_text = @iconv( $encoding, "utf-8", $raw_text );

@@ -60,6 +60,17 @@
                 <ul>
                     <li><a href="<?php echo Router::url('/pages/about'); ?>">CongressSpaceBook</a></li>
                 </ul>
+                <h2>Social bookmarking</h2>
+                <?php
+                    if(!isset($username)) {
+                        $bookmark_str = 'CongressSpacebook';
+                    }
+                    else {
+                        $bookmark_str = str_replace('_', ' ',$username);
+                    }
+                    echo $bookmark->getBookMarks($bookmark_str);
+                 ?>
+
             </li>
         </ul>
         <div style="clear: both; height: 40px;">&nbsp;</div>
