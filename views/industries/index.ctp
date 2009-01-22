@@ -39,6 +39,7 @@ foreach ($industries as $industry):
 	</tr>
 <?php endforeach; ?>
 </table>
+<span>source: <a href="http://opensecrets.org/" title="opensecrets.org" target="_new">opensecrets.org</a></span>
 </div>
 <p>
 <div class="paging"  style="padding-left:90px;">
