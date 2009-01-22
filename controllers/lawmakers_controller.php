@@ -2,7 +2,7 @@
 class LawmakersController extends AppController {
 
     var $name = 'Lawmakers';
-    var $components = array('Opensecrets', 'Fedspending', 'Zend', 'Govtrack');
+    var $components = array('Opensecrets', 'Fedspending', 'Zend', 'Govtrack', 'Sunlightlabs');
     var $helpers = array('Html', 'Form', 'Javascript');
     public $_cache = null;
 
@@ -22,16 +22,19 @@ class LawmakersController extends AppController {
 
     function index() 
     {
+        $webuser = $this->Session->read('current_webuser');
         $this->pageTitle = 'Lawmakers';
         //setup zend cache
         $_cache = $this->Zend->cache();
+
+        //get district of connecting visitor
+        //$webuser_district = $this->Sunlightlabs->getDistrictFromLatLong($webuser->latitude, $webuser->longitude);
 
 
         $this->Lawmaker->recursive = 0;
    
         $leaders_congress = $this->Lawmaker->getCurrentCongress();
         $this->set('leaders_congress', $leaders_congress);
-        $webuser = $this->Session->read('current_webuser');
         $state = strtolower($webuser->region);
         
         /* get congress members by state: cache since data isn't going to change*/
@@ -71,7 +74,7 @@ class LawmakersController extends AppController {
         }
         $this->set('genderTagCloud', $genderTagCloud);
 
-        $this->paginate['Lawmaker'] = array('limit' => '25' ); 
+        $this->paginate['Lawmaker'] = array('limit' => '25' );
         $this->set('lawmakers', $this->paginate());
     }
 

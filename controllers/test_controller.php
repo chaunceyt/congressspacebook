@@ -7,7 +7,7 @@ class TestController extends AppController {
     var $components = array('Capitolwords', 'Govtrack');
     //var $components = array('Auth', 'Users.Bakery');
     //var $components = array('Auth', 'Users.Bakery');
-    var $uses = array();
+    var $uses = array('Lawmaker');
     
     function beforeFilter()
     {
@@ -15,47 +15,49 @@ class TestController extends AppController {
         parent::beforeFilter();
     }    
     
-    function index()
+    function index($clear = false)
     {
         $this->autoRender=false;
-        $w = $this->Capitolwords->dailysum('iraq','2006');
-        $ww = $this->Capitolwords->wordofday();
+
+        //$w = $this->Capitolwords->dailysum('iraq','2006');
+        //$ww = $this->Capitolwords->wordofday();
 
         echo '<pre>';
-        $bills = $this->Govtrack->getBills('110');
-        print_r($bills);
+
+        //$bills = $this->Govtrack->getBills('110');
+        //print_r($bills);
         
-        print_r($ww);
-        print_r($w);
-        App::import('vendor','socialnet');
-        $socialnet = new Socialnet;
+        //print_r($ww);
+        //print_r($w);
+        //App::import('vendor','socialnet');
+        //$socialnet = new Socialnet;
        
 
         //$username = $this->params['username'];
-        $username = 'jeckman';
-        $url = 'http://twitter.com/'.urlencode($username);
-        $response = file_get_contents($url);
-        preg_match("/\<ul class=\"about vcard entry-author\"\>(.*?)<\/ul>/is", $response, $author_vcard);
-        preg_match_all("/\<span class=\"vcard\">(.*?)<\/span>/is", $response, $friends_vcard);
-        $this->set('FriendsVcard', $friends_vcard[1]);
-        $this->set('AuthorVcard', $author_vcard[1]);
+       // $username = 'jeckman';
+       // $url = 'http://twitter.com/'.urlencode($username);
+       // $response = file_get_contents($url);
+       // preg_match("/\<ul class=\"about vcard entry-author\"\>(.*?)<\/ul>/is", $response, $author_vcard);
+        //preg_match_all("/\<span class=\"vcard\">(.*?)<\/span>/is", $response, $friends_vcard);
+        //$this->set('FriendsVcard', $friends_vcard[1]);
+        //$this->set('AuthorVcard', $author_vcard[1]);
         echo '<pre>'; 
         //        echo $author_vcard[1];
         //print_r($friends_vcard[1]);
 
         //$page = $this->params['page'];
-        $TwitterSearchFrom = $this->Mashup->twitterSearch($username, 'from');
-        $TwitterSearchTo = $this->Mashup->twitterSearch($username, 'to');
-        $TwitterSearchRef = $this->Mashup->twitterSearch($username, 'refto');
+        //$TwitterSearchFrom = $this->Mashup->twitterSearch($username, 'from');
+        //$TwitterSearchTo = $this->Mashup->twitterSearch($username, 'to');
+        //$TwitterSearchRef = $this->Mashup->twitterSearch($username, 'refto');
         //$twitter_url = 'http://twitter.com/'.$username;
-        $url = 'http://vibe.com/';
-        $google_social_map = $this->Mashup->googleSocialGraph($url);
-        print_r($google_social_map);
+        //$url = 'http://vibe.com/';
+        //$google_social_map = $this->Mashup->googleSocialGraph($url);
+        //print_r($google_social_map);
         //$google_social_otherme = $this->Mashup->googleSocialGraphOtherMe($google_social_map);
 
         //print_r($google_social_otherme);
 
-        
+        /*
         $this->set('google_social', $google_social_map);
         $this->set('TwitterSearchFrom', $TwitterSearchFrom);
         $this->set('TwitterSearchTo', $TwitterSearchTo);
@@ -64,6 +66,7 @@ class TestController extends AppController {
         
         $flickr['link'] = $socialnet->getAccountUrl('1', $username);
         $flickr['feed'] = $feeds = $socialnet->getInfoFromFeed($username, '1', $flickr['link'], $max_items = 20);
+        */
        // echo '<pre>'; 
         //print_r($flickr);
        

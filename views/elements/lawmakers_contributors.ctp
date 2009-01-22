@@ -14,7 +14,10 @@ Contributors
                   echo '<tr>';
                   echo  '<td><strong><a href="'.Router::url('/lobbyist/'.urlencode($candContrib->contributors->contributor[$i]->attributes()->org_name)).'">'.$candContrib->contributors->contributor[$i]->attributes()->org_name . '</strong></td>   <td style="text-align:right"> $' . number_format($candContrib->contributors->contributor[$i]->attributes()->total) .'</a></td>';
                   echo '</tr>';
-                  echo '<tr><td colspan="2"><a href="http://www.opensecrets.org/lobby/clientsum.php?lname='.urlencode($candContrib->contributors->contributor[$i]->attributes()->org_name).'&year=2008" target="_new"><img src="http://www.opensecrets.org/lobby/IMG_client_year_comp.php?lname='.urlencode($candContrib->contributors->contributor[$i]->attributes()->org_name).'&type=c" alt="chart" title="source: opensecrets.org"/></a></td></tr>';
+                  echo '<tr><td colspan="2">
+                  <a href="http://www.opensecrets.org/lobby/clientsum.php?lname='.urlencode($candContrib->contributors->contributor[$i]->attributes()->org_name).'&year=2008" target="_new"><img src="http://www.opensecrets.org/lobby/IMG_client_year_comp.php?lname='.urlencode($candContrib->contributors->contributor[$i]->attributes()->org_name).'&type=c" alt="chart" title="source: opensecrets.org"/></a><br/>
+                  <p><span>source: <a href="http://opensecrets.org/" title="opensecrets.org" target="_new">opensecrets.org</a></span></p>
+                  </td></tr>';
                }
             ?>
             </table>

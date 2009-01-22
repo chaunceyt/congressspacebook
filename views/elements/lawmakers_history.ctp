@@ -24,6 +24,7 @@ foreach($govtrack_results->CongressionalTerms->Term as $term) {
 }
 ?>
 </p>
+<span>source: <a href="http://govtrack.us/" title="Govtrack.us" target="_new">Govtrack.us</a></span>
 </div>
 </div>
 

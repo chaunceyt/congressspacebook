@@ -26,11 +26,22 @@ alt="Member Fundraising" /><br/>
 </p>
 -->
 <h2><p style="text-align:center">avg. to other House members</p></h2>
-<p style="text-align:center"><a href="http://www.opensecrets.org/politicians/summary.php?cycle=<?php echo $_year_; ?>&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" title="OpenSecrets" target="_new"><img src="http://www.opensecrets.org/politicians/totVSavg.php?cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>&chamber=H" alt="" border="0" /></a><br/><span>source: opensecrets.org</span> </p>
+<p style="text-align:center">
+<a href="http://www.opensecrets.org/politicians/summary.php?cycle=<?php echo $_year_; ?>&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" title="OpenSecrets" target="_new"><img src="http://www.opensecrets.org/politicians/totVSavg.php?cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>&chamber=H" alt="" border="0" /></a><br/>
+    <span>source: <a href="http://opensecrets.org/" title="opensecrets.org" target="_new">opensecrets.org</a></span> 
+</p>
+
 <h2><p style="text-align:center">avg. to other Senate members</p></h2>
-<p style="text-align:center"><a href="http://www.opensecrets.org/politicians/summary.php?cycle=<?php echo $_year_; ?>&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" title="OpenSecrets" target="_new"><img src="http://www.opensecrets.org/politicians/totVSavg.php?cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>&chamber=S" alt="" border="0" /></a><br/><span>source: opensecrets.org</span> </p>
+<p style="text-align:center">
+    <a href="http://www.opensecrets.org/politicians/summary.php?cycle=<?php echo $_year_; ?>&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" title="OpenSecrets" target="_new"><img src="http://www.opensecrets.org/politicians/totVSavg.php?cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>&chamber=S" alt="" border="0" /></a><br/>
+    <span>source: <a href="http://opensecrets.org/" title="opensecrets.org" target="_new">opensecrets.org</a></span> 
+</p>
+
 <h2><p style="text-align:center">Member's Honesty Meter</p></h2>
-<p style="text-align:center"><a href="http://www.opensecrets.org/politicians/summary.php?cycle=<?php echo $_year_; ?>&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" title="OpenSecrets" target="_new"><img src="http://www.opensecrets.org/politicians/scoff_img.php?cycle=<?php echo $_year_; ?>&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" alt="" border="0" /></a><br/><span>source: opensecrets.org</span> </p>
+<p style="text-align:center">
+    <a href="http://www.opensecrets.org/politicians/summary.php?cycle=<?php echo $_year_; ?>&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" title="OpenSecrets" target="_new"><img src="http://www.opensecrets.org/politicians/scoff_img.php?cycle=<?php echo $_year_; ?>&cid=<?php echo $lawmaker['Lawmaker']['crp_id']; ?>" alt="" border="0" /></a><br/>
+    <span>source: <a href="http://opensecrets.org/" title="opensecrets.org" target="_new">opensecrets.org</a></span> 
+</p>
 
             <?php if(!empty($lawmaker['Lawmaker']['twitter_id'])) { ?>
             <span> twitter social_stream <a href="<?php echo Router::url('/social_stream/user/'.@urlencode($lawmaker['Lawmaker']['twitter_id'])); ?>" title="twitter account">twitter_stream</a>  </span>

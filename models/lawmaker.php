@@ -49,10 +49,15 @@ class Lawmaker extends AppModel {
         return $results;
     }
 
-    public function getCongressMembersByState($state, $limit = 19)
+    public function getCongressMembersByState($state, $district=null, $limit = 19)
     {
         //removing rand() see if that prevents the broken page
-        $sql = "select * from lawmakers as lawmaker where state = '".$state."' order by district limit ".$limit;
+        if($district) {
+            $sql = "select * from lawmakers as lawmaker where state = '".$state."' and district = '".$district."' order by district limit ".$limit;
+        }
+        else {
+            $sql = "select * from lawmakers as lawmaker where state = '".$state."' order by district limit ".$limit;
+        }
         $results = $this->query($sql);
         return $results;
     }

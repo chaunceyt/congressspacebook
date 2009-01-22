@@ -24,9 +24,9 @@ class AppController extends Controller
         //$this->Auth->authenticate = $this;
         $this->_siteSettings = Configure::read('AppSettings');
  
-        // Set cookie defaults
-        $this->cookieName = Configure::read('Wildflower.cookie.name');
-        $this->cookieTime = Configure::read('Wildflower.cookie.expire');
+        // Set cookie defaults (wildflower copy/paste)
+        $this->cookieName = Configure::read('CongressSpacebook.cookie.name');
+        $this->cookieTime = Configure::read('CongressSpacebook.cookie.expire');
         $this->cookieDomain = '.' . getenv('SERVER_NAME');
  
         // Compress output to save bandwith / speed site up

@@ -18,6 +18,7 @@ foreach($govtrack_results->CosponsoredBills->Bill as $bill) {
 }
 ?>
 </p>
+<p><span>source: <a href="http://govtrack.us/" title="Govtrack.us" target="_new">Govtrack.us</a></span></p>
 
 </div>
 </div>
