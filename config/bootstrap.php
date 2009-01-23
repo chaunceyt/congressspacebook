@@ -46,6 +46,7 @@
 require_once(APP . 'geocity' . DS .'geoipcity.inc');
 require_once(APP . 'geocity' . DS .'geoipregionvars.php');
 require_once(APP . 'config' . DS . 'app.init.php');
+require_once(APP . 'config' . DS . 'votesmart.php');
 function hsc($string) {
       return htmlspecialchars($string, ENT_QUOTES, Configure::read('App.encoding'));
 }
