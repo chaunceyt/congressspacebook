@@ -11,6 +11,23 @@
  */
 class VoteSmartLocalComponent extends Object
 {
+        protected function getXml($iface, $args) {
+
+                if (!$xml = file_get_contents(_APISERVER_ . $iface . $args)) {
+
+                        return false;
+
+                } else {
+
+                        // Let's use the SimpleXML to drop the whole XML
+                        // output into an object we can later interact with easilly
+                        $xml_object = new SimpleXMLElement($xml, LIBXML_NOCDATA);
+
+                        return $xml_object;
+
+                }
+
+        }
         public function getCities($state_id) {
                 /**
                  * Returns a list of cities in a given state
