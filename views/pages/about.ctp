@@ -7,6 +7,8 @@
 CongressSpaceBook <br/>
 - Developer: Chauncey Thorn<br/>
 - $email = $this->chaunceyt->gmail->com();<br/>
+- Facebook group: Join <a href="http://www.facebook.com/group.php?gid=70366056616" title="CongressSpacebook Facebook" />here</a><br/>
+- Follow our twits: <a href="http://twitter.com/congressSB" title="Twitter account">here</a><br/>
 - Powered by: MASHUP::Keyword and <a href="http://services.sunlightlabs.com/api/" target="_new">Sunlight Labs</a> data<br/>
 - takes advantage of state-of-the-art XML webservices i.e. Google, Yahoo, Flickr, YouTube <br/>
 - Govtrack.us, OpenSecrets, FedSpending and a number of others..<br/>
