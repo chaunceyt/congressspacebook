@@ -2,6 +2,7 @@
 class Lawmaker extends AppModel {
 
 	public $name = 'Lawmaker';
+    public $displayField = 'username';
 
     public function getProfileIdByName($profile_name)
     {

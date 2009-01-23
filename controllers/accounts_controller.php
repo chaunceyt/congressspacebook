@@ -2,6 +2,7 @@
 class AccountsController extends AppController {
 
 	var $name = 'Accounts';
+    var $uses = array('Account', 'Lawmaker');
 	var $helpers = array('Html', 'Form');
 
     function beforeFilter()
@@ -23,7 +24,11 @@ class AccountsController extends AppController {
 		$this->set('account', $this->Account->read(null, $id));
 	}
 
-	function add() {
+	function add() 
+    {
+        $profile_name = $this->params['username'];
+        $member_id = $this->Lawmaker->getProfileIdByName($profile_name);
+
 		if (!empty($this->data)) {
 			$this->Account->create();
 			if ($this->Account->save($this->data)) {
@@ -33,6 +38,7 @@ class AccountsController extends AppController {
 				$this->Session->setFlash(__('The Account could not be saved. Please, try again.', true));
 			}
 		}
+        $this->set('member_id', $member_id);
 		$lawmakers = $this->Account->Lawmaker->find('list', array('fields' => array('id','username')));
 		$services = $this->Account->Service->find('list');
 		$serviceTypes = $this->Account->ServiceType->find('list');

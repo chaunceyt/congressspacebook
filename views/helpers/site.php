@@ -65,7 +65,7 @@ class SiteHelper extends Helper
                     $c++;
                 }
             } else {
-                echo "Could not grab feed.";
+                echo "<p>Found nothing on the GovTrack Monitor.</p>";
             }
     }//end function
 
@@ -92,7 +92,7 @@ class SiteHelper extends Helper
                     $c++;
                 }
             } else {
-                echo "Could not grab feed.";
+                echo "<p>Found no videos on Youtube.";
             }
     }//end function
     

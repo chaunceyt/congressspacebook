@@ -177,16 +177,16 @@ if(!isset($_page_)) {
     else { ?>
         <li><a href="<?php echo Router::url('/profiles/'.$username.'/fundraising'); ?>" title="Home">Fund Raising</a></li>
 <?php } ?>
-
+    <li><a href="<?php echo Router::url('/profiles/'.$username.'/state'); ?>" title="Home">My State</a></li>
 <?php
-/*
+
     if($_page_ == 'wall') {?>
         <li><a href="<?php echo Router::url('/profiles/'.$username.'/wall'); ?>" title="Home" class="current">Wall</a></li>
 <?php  
     }
-    else { ?>
+    else { ?>        
         <li><a href="<?php echo Router::url('/profiles/'.$username.'/wall'); ?>" title="Home">Wall</a></li>
-<?php } */?>
+<?php } ?>
 
 </ul>
 </div>
@@ -207,7 +207,6 @@ if(isset($_page_)) {
     else if($_page_ == 'industries')  {
         echo $this->element('lawmakers_industries', array('_year_' => $_year_)); 
     }
-
     else if($_page_ == 'history')  {
         echo $this->element('lawmakers_history', array('_year_' => $_year_)); 
     }
@@ -216,6 +215,12 @@ if(isset($_page_)) {
     }
     else if($_page_ == 'bills')  {
         echo $this->element('lawmakers_sponsoredbills', array('_year_' => $_year_)); 
+    }
+    else if($_page_ == 'wall')  {
+        echo $this->element('lawmakers_wall', array('_year_' => $_year_)); 
+    }
+    else if($_page_ == 'state')  {
+        echo $this->element('lawmakers_state', array('_year_' => $_year_)); 
     }
 }//see if $_page_ isset
 else {

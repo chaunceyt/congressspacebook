@@ -8,16 +8,10 @@ echo $paginator->counter(array(
 ?></p>
 <table cellpadding="0" cellspacing="0">
 <tr>
-	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('lawmaker_id');?></th>
 	<th><?php echo $paginator->sort('service_id');?></th>
-	<th><?php echo $paginator->sort('service_type_id');?></th>
 	<th><?php echo $paginator->sort('title');?></th>
-	<th><?php echo $paginator->sort('username');?></th>
-	<th><?php echo $paginator->sort('account_url');?></th>
 	<th><?php echo $paginator->sort('feed_url');?></th>
-	<th><?php echo $paginator->sort('created');?></th>
-	<th><?php echo $paginator->sort('modified');?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
 <?php
@@ -30,34 +24,16 @@ foreach ($accounts as $account):
 ?>
 	<tr<?php echo $class;?>>
 		<td>
-			<?php echo $account['Account']['id']; ?>
+			<?php echo $account['Lawmaker']['username']; ?>
 		</td>
 		<td>
-			<?php echo $account['Account']['lawmaker_id']; ?>
-		</td>
-		<td>
-			<?php echo $account['Account']['service_id']; ?>
-		</td>
-		<td>
-			<?php echo $account['Account']['service_type_id']; ?>
+			<?php echo $account['Service']['name']; ?>
 		</td>
 		<td>
 			<?php echo $account['Account']['title']; ?>
 		</td>
 		<td>
-			<?php echo $account['Account']['username']; ?>
-		</td>
-		<td>
-			<?php echo $account['Account']['account_url']; ?>
-		</td>
-		<td>
 			<?php echo $account['Account']['feed_url']; ?>
-		</td>
-		<td>
-			<?php echo $account['Account']['created']; ?>
-		</td>
-		<td>
-			<?php echo $account['Account']['modified']; ?>
 		</td>
 		<td class="actions">
 			<?php echo $html->link(__('View', true), array('action'=>'view', $account['Account']['id'])); ?>

@@ -157,12 +157,22 @@ class LawmakersController extends AppController {
                 case 'history' :
                     $_page = 'history';
                     break;
+                case 'state' :
+                    $_page = 'state';
+                    break;
+
                 case 'bills' :
                     $_page = 'bills';
                     break;
+
+                case 'breakdown' :
+                    $_page = 'breakdown';
+                    break;
+
                 case 'bill' :
                     $_page = 'bill';
 
+                    //move to model
                     list($session, $type, $number) = explode('-', $id);
                     $bill_path = '/home/govtrack/data/us/bills.text/'.$session.'/'.$type.'/'.$type.$number.'.txt';
                     $raw_text = file_get_contents($bill_path);
