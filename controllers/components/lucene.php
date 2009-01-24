@@ -25,6 +25,9 @@
 class LuceneComponent extends Object
 {
 
+   protected $search;
+   protected $luceneModule;
+
     /**
      * Controller Startup Initialisation
      * Add APP/vendor to include path
@@ -43,19 +46,6 @@ class LuceneComponent extends Object
         Zend_Loader::registerAutoload();
     }
 
-   protected $search;
-   public function insertFromDB($since)
-   {
-        $doc = new Zend_Search_Lucene_Document();
-        $doc->addField(Zend_Search_Lucene_Field::Keyword('id', $row['id']));
-        $doc->addField(Zend_Search_Lucene_Field::Keyword('person', $row['person']));
-        $doc->addField(Zend_Search_Lucene_Field::Text('celeb_type', $row['celeb_type']));
-        $doc->addField(Zend_Search_Lucene_Field::Text('wikikeyword', $row['wikikeyword']));
-        $doc->addField(Zend_Search_Lucene_Field::Text('blurb', $row['blurb']));
-        $this->search->addDocument($doc);
-   }
-
-
    public function load($module)
    {
            // Set the default analyzer to one that supports searching on purely numeric values.
@@ -64,17 +54,31 @@ class LuceneComponent extends Object
 
            // Check the module already has a index directory. If it does not have one, create it.
 
-           if(!is_dir(TMP . DS .'indexdata/' . $module)) {
-               //throw exception
-           }
-           else {
+
+          if(is_dir(TMP . DS .'indexdata/' . $module))
               $this->search = Zend_Search_Lucene::open(TMP . DS .'indexdata/' . $module);
+           else {
+                $this->search = Zend_Search_Lucene::create(TMP . DS .'indexdata' . DS . $module);
+                $this->search->setMaxBufferedDocs(500);
+                $this->search->setMergeFactor(2000);
+
+                $this->luceneModule = ClassRegistry::init(ucfirst($module));
+                
+                if(method_exists($this->luceneModule, 'lucene_populate')) {
+                    $this->luceneModule->lucene_populate($this->search);
+                    $this->search->commit();
+
+                }
+                else {
+                    die('Method not found');
+                }
+              
            }
 
            // Set some baseline performance options.
 
-           $this->search->setMaxBufferedDocs(100);
-           $this->search->setMergeFactor(10);
+           $this->search->setMaxBufferedDocs(500);
+           $this->search->setMergeFactor(2000);
 
            // As part of good general practice, optimize the index.
 
@@ -93,7 +97,6 @@ class LuceneComponent extends Object
            //                                      sort : The field to sort on.
            //                                      sort-order: The direction to sort on that field.
 
-           global $cacheManager, $protocolHandler, $socketManager, $Logger;
 
            // If they don't specify a limit, set a default.
 
@@ -219,11 +222,6 @@ class LuceneComponent extends Object
                                    $finalresults[] = $row;
                            }
                    }
-
-                   // Use the unmodified search parameters as the key and the end final search result as the value to cache this search.
-
-                   //echo 'Caching ' . $resultcount . ' rows found for query "' . $params['query'] . '" in module "' . $params['type'] . '".', 'queries';
-                   //$cacheManager->set($protocolHandler->encode($cachekey), $protocolHandler->encode($finalresults));
 
                    return($finalresults);
            }

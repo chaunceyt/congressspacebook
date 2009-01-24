@@ -3,6 +3,56 @@ class Lawmaker extends AppModel {
 
 	public $name = 'Lawmaker';
     public $displayField = 'username';
+    protected $search = null;
+
+
+    //executed from Lucene component
+    //lucene component callback like method - no need to execute this outside
+    //component.
+    public function lucene_populate($search)
+    {
+        $data = $this->query("SELECT * FROM lawmakers as Lawmaker");
+        
+        $this->search = $search; 
+        $this->search->setMaxBufferedDocs(500);
+        $this->search->setMergeFactor(2000);
+        
+        foreach($data as $row) {
+            $doc = new Zend_Search_Lucene_Document();
+            $doc->addField(Zend_Search_Lucene_Field::Keyword('id', $row['Lawmaker']['id']));
+            $doc->addField(Zend_Search_Lucene_Field::Keyword('username', $row['Lawmaker']['username']));
+            $doc->addField(Zend_Search_Lucene_Field::Keyword('title', $row['Lawmaker']['title']));
+            $doc->addField(Zend_Search_Lucene_Field::Keyword('firstname', $row['Lawmaker']['firstname']));
+            $doc->addField(Zend_Search_Lucene_Field::Keyword('lastname', $row['Lawmaker']['lastname']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('middlename', $row['Lawmaker']['middlename']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('name_suffix', $row['Lawmaker']['name_suffix']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('nickname', $row['Lawmaker']['nickname']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('party', $row['Lawmaker']['party']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('state', $row['Lawmaker']['state']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('district', $row['Lawmaker']['district']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('in_office', $row['Lawmaker']['in_office']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('gender', $row['Lawmaker']['gender']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('phone', $row['Lawmaker']['phone']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('fax', $row['Lawmaker']['fax']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('website', $row['Lawmaker']['website']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('webform', $row['Lawmaker']['webform']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('email', $row['Lawmaker']['email']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('congress_office', $row['Lawmaker']['congress_office']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('bioguide_id', $row['Lawmaker']['bioguide_id']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('votesmart_id', $row['Lawmaker']['votesmart_id']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('fec_id', $row['Lawmaker']['fec_id']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('govtrack_id', $row['Lawmaker']['govtrack_id']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('crp_id', $row['Lawmaker']['crp_id']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('eventful_id', $row['Lawmaker']['eventful_id']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('sunlight_old_id', $row['Lawmaker']['sunlight_old_id']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('twitter_id', $row['Lawmaker']['twitter_id']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('congresspedia_url', $row['Lawmaker']['congresspedia_url']));
+            $doc->addField(Zend_Search_Lucene_Field::Text('youtube_url', $row['Lawmaker']['youtube_url']));
+            $this->search->addDocument($doc);
+        }
+        return $doc;
+
+    }
 
     public function getProfileIdByName($profile_name)
     {

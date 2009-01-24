@@ -4,7 +4,7 @@ class TestController extends AppController {
 
     var $name = 'Test';
     var $helpers = array('Html', 'Form');
-    var $components = array('Capitolwords', 'Govtrack', 'FollowTheMoney');
+    var $components = array('Capitolwords', 'Govtrack','Lucene');
     var $uses = array('Lawmaker');
     
     function beforeFilter()
@@ -17,17 +17,28 @@ class TestController extends AppController {
     {
         echo '<pre>';
         $this->autoRender=false;
+        $start = getMicrotime(); 
+        $this->Lucene->load('lawmaker');
+        $query = '202-225';
+        $params = array('type' => 'lawmaker', 'query' => $query);
+        $q = $this->Lucene->query($params);
+        $time = round(getMicrotime() - $start, 1);
+        print_r($q);
+        echo $time;
+
         //$state_offices = $this->FollowTheMoney->stateOffice('ny');
-        $sort = array('total_dollars');
+        //$sort = array('total_dollars');
         //$state_offices_breakdown = $this->FollowTheMoney->stateOfficeBreakdown('ny', 2008, null, null, $sort);
-        $state_offices_business = $this->FollowTheMoney->stateOfficeBusiness('ny', '2008', null, '1', null, $sort);
-        print_r($state_offices_business);
+        //$state_offices_business = $this->FollowTheMoney->stateOfficeBusiness('ny', '2008', null, '1', null, $sort);
+        //print_r($state_offices_business);
+        /*
         foreach($state_offices_business as $business) { 
             print_r($business);
             $state_offices_district = $this->FollowTheMoney->stateOfficeDistrict('ny', '2008', trim($business->attributes()->office),  null, $sort);
         print_r($state_offices_district);
 
         }
+        */
 
         //$w = $this->Capitolwords->dailysum('iraq','2006');
         //$ww = $this->Capitolwords->wordofday();
