@@ -27,6 +27,7 @@ class LuceneComponent extends Object
 
    protected $search;
    protected $luceneModule;
+   protected $_cache;
 
     /**
      * Controller Startup Initialisation
@@ -44,7 +45,20 @@ class LuceneComponent extends Object
         require_once('Zend/Loader.php');
 
         Zend_Loader::registerAutoload();
+        $this->_cache = $this->cache();
     }
+
+    protected function cache()
+    {
+        $cacheDir = APP . 'tmp' . DS .'zend_cache';
+        $frontendOptions = array(
+            'lifetime' => 7200, // cache lifetime of 2 hours
+            'automatic_serialization' => true);
+        $backendOptions = array(
+            'cache_dir' => $cacheDir); // Directory where to put the cache files
+        return Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
+    }
+
 
    public function load($module)
    {
@@ -110,14 +124,15 @@ class LuceneComponent extends Object
 
            // Call the cache and see if we already have the results for this search.
            // If yes, send that instead. If not, proceed to running the query.
-           //$cacheresults = $cacheManager->get($protocolHandler->encode($params));
-           $cacheresults = false;
+           $cacheresultsKey = md5(serialize($params));
+           $cacheresults = $this->_cache->load($cacheresultsKey);
 
            if($cacheresults !== false)
            {
                    //$Logger->add('Found results for query "' . $params['query'] . '" in module "' . $params['type'] . '" in cache, sending back cached result.', 'queries');
-                   //$results = $protocolHandler->decode($cacheresults);
-                   //return($results);
+                   // echo 'getting from cache';
+                   $results = $this->_cache->load($cacheresultsKey);
+                   return($results);
            }
            else
            {
@@ -126,7 +141,6 @@ class LuceneComponent extends Object
                    // Copy the now complete but un-modified params array to a
                    // temporary variable to be used later for the caching key.
 
-           //      $cachekey = $params;
 
                    // ********************
                    // **** Sort Logic ****
@@ -222,7 +236,7 @@ class LuceneComponent extends Object
                                    $finalresults[] = $row;
                            }
                    }
-
+                   $this->_cache->save($finalresults, $cacheresultsKey, array(), (86400*3));
                    return($finalresults);
            }
    }

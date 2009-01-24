@@ -19,7 +19,10 @@ class TestController extends AppController {
         $this->autoRender=false;
         $start = getMicrotime(); 
         $this->Lucene->load('lawmaker');
-        $query = '202-225';
+        //state: "NY" AND district: 1
+
+        //$query = 'state: "NY" AND district: 1';
+        $query = '"House"';
         $params = array('type' => 'lawmaker', 'query' => $query);
         $q = $this->Lucene->query($params);
         $time = round(getMicrotime() - $start, 1);
