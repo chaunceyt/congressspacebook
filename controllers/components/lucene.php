@@ -62,13 +62,12 @@ class LuceneComponent extends Object
 
    public function load($module)
    {
+       //using code from the class_searchinterface.php
+       //http://phparch.com/c/code/ jan09 code zend_lucene
            // Set the default analyzer to one that supports searching on purely numeric values.
-
            Zend_Search_Lucene_Analysis_Analyzer::setDefault(new Zend_Search_Lucene_Analysis_Analyzer_Common_TextNum_CaseInsensitive());
 
            // Check the module already has a index directory. If it does not have one, create it.
-
-
           if(is_dir(TMP . DS .'indexdata/' . $module))
               $this->search = Zend_Search_Lucene::open(TMP . DS .'indexdata/' . $module);
            else {
@@ -77,40 +76,36 @@ class LuceneComponent extends Object
                 $this->search->setMergeFactor(2000);
 
                 $this->luceneModule = ClassRegistry::init(ucfirst($module));
-                
+                //see if we have the callback method in the model
+                //if so execute lucene_populate
                 if(method_exists($this->luceneModule, 'lucene_populate')) {
                     $this->luceneModule->lucene_populate($this->search);
                     $this->search->commit();
-
                 }
                 else {
                     die('Method not found');
                 }
-              
            }
 
            // Set some baseline performance options.
-
            $this->search->setMaxBufferedDocs(500);
            $this->search->setMergeFactor(2000);
 
            // As part of good general practice, optimize the index.
-
-           //echo 'Running optimization on index data for module "' . $module . '".', 'general';
            $this->search->optimize();
-           //echo 'Finished loading ' . number_format($this->search->numDocs()) . ' records for module "' . $module . '".', 'general';
    }
 
    public function query($params)
    {
+       //using code from the class_searchinterface.php
+       //http://phparch.com/c/code/ jan09 code zend_lucene
            // Params Structure:
-           //                                      type : The name of the module you're searching.
-           //                                      query : The raw lucene query to run.
-           //                                      limit : The maximum number of rows to return.
-           //                                      offset : The number of results to skip in the return.
-           //                                      sort : The field to sort on.
-           //                                      sort-order: The direction to sort on that field.
-
+           //  type : The name of the module you're searching.
+           //  query : The raw lucene query to run.
+           //  limit : The maximum number of rows to return.
+           //  offset : The number of results to skip in the return.
+           //  sort : The field to sort on.
+           //  sort-order: The direction to sort on that field.
 
            // If they don't specify a limit, set a default.
 
@@ -129,18 +124,15 @@ class LuceneComponent extends Object
 
            if($cacheresults !== false)
            {
-                   //$Logger->add('Found results for query "' . $params['query'] . '" in module "' . $params['type'] . '" in cache, sending back cached result.', 'queries');
-                   // echo 'getting from cache';
+                   //echo 'Found results for query "' . $params['query'] . '" in module "' . $params['type'] . '" in cache, sending back cached result.', 'queries';
                    $results = $this->_cache->load($cacheresultsKey);
                    return($results);
            }
            else
            {
-                   //$Logger->add('Results for query "' . $params['query'] . '" in module "' . $params['type'] . '" not found in cache, executing against index.', 'queries');
-
+                   //echo 'Results for query "' . $params['query'] . '" in module "' . $params['type'] . '" not found in cache, executing against index.', 'queries';
                    // Copy the now complete but un-modified params array to a
                    // temporary variable to be used later for the caching key.
-
 
                    // ********************
                    // **** Sort Logic ****
@@ -191,7 +183,7 @@ class LuceneComponent extends Object
                    $finalresults = array();
                    $resultcount = count($results);
 
-                   echo $resultcount . ' rows found for query "' . $params['query'] . '" in module "' . $params['type'] . '".', 'queries';
+                   //echo $resultcount . ' rows found for query "' . $params['query'] . '" in module "' . $params['type'] . '".', 'queries';
 
                    if($resultcount > 0)
                    {
@@ -241,8 +233,13 @@ class LuceneComponent extends Object
            }
    }
 
+   public function add_to_index($module, $data)
+   {
+   }
+
+   public function delete_from_index($module, $id)
+   {
+   }
+
 
 }
-
-
-

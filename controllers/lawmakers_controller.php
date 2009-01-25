@@ -259,10 +259,7 @@ class LawmakersController extends AppController {
 
         $bill_path = '/home/govtrack/data/us/bills.text/'.$_session.'/'.$type.'/'.$type.$number.'.txt';
         $raw_text = file_get_contents($bill_path);
-        $encoding = 'ASCII';
-        $utf8_text = @iconv( $encoding, "utf-8", $raw_text );
-        $data = html_entity_decode( $utf8_text, ENT_QUOTES, "utf-8" ); 
-        $this->set('data', $data);
+        $this->set('data', $raw_text);
 
     }
 
