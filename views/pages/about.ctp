@@ -9,7 +9,7 @@
 <p><strong>Our GitHub</strong> - <a class="url" rel="me" href="http://github.com/chaunceyt/mashupkeyword/tree/master">source code</a>
 <p>
 <strong>Mission/Goal</strong> -
-Help ensure Congress and the President keep their promises of more transparency. By exposing their spending habits, voting record and is showing who influences them and how much they are spending to do so.
+Help ensure Congress and the President keep their promises of more transparency. By exposing the congress person spending habits, voting record and show who influences them and how much they are spending to do so. We track the Bills introduced, enacted, and co-sponsored for each congress person.
 </p>
 <p>
 <strong>Target audience</strong> -
