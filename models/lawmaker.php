@@ -54,6 +54,14 @@ class Lawmaker extends AppModel {
 
     }
 
+    public function getYoutubeVideos($username)
+    {
+        //$path = 'http://gdata.youtube.com/feeds/base/users/househub/uploads?alt=rss&amp;v=2&amp;client=ytapi-youtube-profile';
+        $path = 'http://gdata.youtube.com/feeds/base/users/'.$username.'/uploads?alt=rss&amp;v=2&amp;client=ytapi-youtube-profile';
+        $response = file_get_contents($path);
+        $results = simplexml_load_string($response);
+        return $results;
+    }
     //get the xml for bill
     public function getBill($id)
     {

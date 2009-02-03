@@ -69,7 +69,7 @@ class SiteHelper extends Helper
             }
     }//end function
 
-    function getYoutubeVideoRss($site)
+    function getYoutubeVideoRss($site, $display_title=null)
     {
     //$response = file_get_contents($site);
 
@@ -79,8 +79,10 @@ class SiteHelper extends Helper
                 $title = $rss->channel[0]->title[0];
                 $url = $rss->channel[0]->link[0];
                 $desc = $rss->channel[0]->description[0];
-                echo "<h2>Youtube $title</h2>\n";
-                echo "$desc<br /><br />\n";
+                if($display_title) {
+                    echo "<h2>Youtube $title</h2>\n";
+                    echo "$desc<br /><br />\n";
+                }
                 $c=0;
                 foreach($rss->channel->item as $item) {
                     $_title = str_replace("Video: ","", $item->title);

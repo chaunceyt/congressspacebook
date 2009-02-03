@@ -4,8 +4,9 @@
                         <div class="entry"  style="padding-left:90px;">
                         <h2 class="title">/about us</h2>
 <p>
-<strong>CongressSpaceBook</strong>  - a DEMO of an opensource web application designed to make it easy to deploy websites that focus on striving to make Congress more accountable and transparent...<br/>
+<strong>CongressSpaceBook</strong>  - a opensource web application designed to make it easy to deploy websites that focus on striving to make Congress more accountable and transparent...<br/>
 </p>
+<p><strong>Developed for</strong>: App For America http://sunlightlabs.com/appsforamerica/</p>
 <p><strong>Our GitHub</strong> - <a class="url" rel="me" href="http://github.com/chaunceyt/mashupkeyword/tree/master">source code</a>
 <p>
 <strong>Mission/Goal</strong> -
@@ -26,7 +27,7 @@ A social networking platform where the only members networking are Congress memb
 - Follow our twits: <a href="http://twitter.com/congressSB" title="Twitter account">here</a><br/>
 - Powered by: MASHUP::Keyword and <a href="http://services.sunlightlabs.com/api/" target="_new">Sunlight Labs</a> data<br/>
 - takes advantage of state-of-the-art XML webservices i.e. Google, Yahoo, Flickr, YouTube <br/>
-- Govtrack.us, OpenSecrets, FedSpending and a number of others..<br/>
+- Govtrack.us, OpenSecrets, FedSpending, Capitol Words, Sunlight Labs and a number of others..<br/>
 - Environment:  Linux, Apache2, Mysql 5, PHP 5.2.x + <strike>Zend</strike> CakePHP Framework MVC<br/>
 - Framework:  I first developed this site using <strike>Zend</strike> however I prefer the CakePHP Framework's  MVC pattern but, still use Zend components!<br/>
 - News results provided by Yahoo, Google, Technorati<br/>

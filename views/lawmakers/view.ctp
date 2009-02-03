@@ -54,6 +54,7 @@ $_year_ = date("Y")-1;
             <?php
                 $congresspedia_name = ucfirst($lawmaker['Lawmaker']['firstname']) . '_' .ucfirst($lawmaker['Lawmaker']['lastname']);
                 $this_person = $lawmaker['Lawmaker']['firstname'] . ' ' .$lawmaker['Lawmaker']['lastname'];
+                $social_search_term = $lawmaker['Lawmaker']['title'] . ' ' .$lawmaker['Lawmaker']['lastname'];
 
                 $openSecretWidgitData = $lawmaker['Lawmaker']['state'].$_district;
             ?>
@@ -131,11 +132,13 @@ foreach ($profile_friends as $current) {
         <p></p>
        <h3> the public is saying...</h3>
                <ul>
-                    <li><img src="http://twitter.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/twitter/'. @urlencode($this_person)); ?>" title="Twitter Chatter">Twitter Post</a>  </li>
-                    <li><img src="http://www.friendfeed.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/friendfeed/'. @urlencode($this_person)); ?>" title="Friend Feed">FriendFeed Chatter</a>  </li>
-                    <li><img src="http://backtype.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/comments/'.@urlencode($this_person)); ?>" title="Comments: Blogs">User Comments</a>  </li>
-                    <li><img src="http://www.technorati.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/technorati/'.@urlencode($this_person)); ?>" title="Blog Chatter">Blogs Chatter</a> </li>
-                    <li><img src="http://www.google.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/news/'. @urlencode($this_person)); ?>" title="News">Google News</a> </li>
+                    <li><img src="http://twitter.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/twitter/'. @urlencode($social_search_term)); ?>" title="Twitter Chatter">Twitter Post</a>  </li>
+                    <li><img src="http://www.friendfeed.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/friendfeed/'. @urlencode($social_search_term)); ?>" title="Friend Feed">FriendFeed Chatter</a>  </li>
+                    <li><img src="http://backtype.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/comments/'.@urlencode($social_search_term)); ?>" title="Comments: Blogs">User Comments</a>  </li>
+                    <li><img src="http://www.technorati.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/technorati/'.@urlencode($social_search_term)); ?>" title="Blog Chatter">Blogs Chatter</a> </li>
+                    <li><img src="http://www.google.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/news/'. @urlencode($social_search_term)); ?>" title="News">Google News</a> </li>
+                    <li><img src="http://flickr.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/flickr/'. @urlencode($social_search_term)); ?>" title="Youtube Search">Flickr Search</a>  </li>
+                    <li><img src="http://youtube.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/youtube/'. @urlencode($social_search_term)); ?>" title="Flickr Search">Youtube Search</a>  </li>
                     <!--<li> Audioscrobbler </li>-->
                     <!--<li><a href="<?php echo Router::url('/audioscrobbler/similar/'.@urlencode($this_person)); ?>" title="Similar Artist">Similar Artist</a> </li>-->
                     <!--<li><a href="<?php echo Router::url('/audioscrobbler/albums/'.@urlencode($this_person)); ?>" title="Albums">Albums</a> </li>-->

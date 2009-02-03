@@ -7,24 +7,8 @@
 <h1> CongressSpacebook</h1>
 <h2>...striving to make Congress more accountable and transparent...</h2>
 <p>Here we're tracking each member's voting records, FEC reports, Campaign Finance summary, their opinions on the issues, and even their state's federal spending reports. </p>
-<p>More to come...!</p>
+<p><h2>Browse  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> profiles</h2></p>
 
-
-<p><h3>Browse  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> member profiles</h3></p>
-<p></p>
-<h2>you may hear a congress person say...</h2>
-<blockquote>
-<p><strong>We</strong> have lawmaking power. The U.S. Constitution created <strong>us</strong> and named <strong>us</strong> the legislative branch - the branch with the power to write laws.</p>
-<p> No laws can govern the nation unless <strong>we</strong> enacted them and have it approved by the President.</p>
-</blockquote>
-<p>
-<h2>Top 100</h2>
-The lawmakers @ work...<br/>
-...see who's had the most bills 
-<a href="<?php echo Router::url('/lawmakers/top/enacted'); ?>" title="Top 100 Lawmakers to Enact Laws">enacted</a>,  
-the most <a href="<?php echo Router::url('/lawmakers/top/novote'); ?>" title="Top 100 Lawmakers with the most No Votes">novotes</a>, 
-<a href="<?php echo Router::url('/lawmakers/top/cosponsored'); ?>" title="Top 100 Lawmakers who co-sponsored the most Bills">co-sponsored</a> the most bills...<br/>
-</p>
 <p>
 <h3>In the state of <?php echo $current_webuser->region; ?> the lawmakers are:</h3>
 <p>
@@ -50,11 +34,27 @@ foreach ($current_congress as $current) {
     }
 ?>
 </p>
-<blockquote>
-<strong>We</strong> have the "Power of the Purse." The Constitution grants <strong>us</strong> the power of the purse. Under Article 1 [section 8], <strong>we</strong> are given the power to tax and impose tariffs, duties, and other measures to collect revenue for the U.S. Treasury.
-</blockquote>
 </p>
+
+<p></p>
+<p>
+<h2>Top 100</h2>
+<strong>...see who's had</strong>:<br/> 
+the most bills <a href="<?php echo Router::url('/lawmakers/top/enacted'); ?>" title="Top 100 Lawmakers to Enact Laws">enacted</a>,  
+the most <a href="<?php echo Router::url('/lawmakers/top/novote'); ?>" title="Top 100 Lawmakers with the most No Votes">novotes</a>, 
+and <a href="<?php echo Router::url('/lawmakers/top/cosponsored'); ?>" title="Top 100 Lawmakers who co-sponsored the most Bills">co-sponsored</a> the most bills...<br/>
 </p>
+<h2>YouTube Stream</h2>
+<p>
+<?php
+foreach($videos as $yt_username) {
+    $yt_url = 'http://gdata.youtube.com/feeds/base/users/'.trim($yt_username).'/uploads?alt=rss&v=2&client=ytapi-youtube-profile';
+    $site->getYoutubeVideoRss($yt_url);
+}
+
+?>
+</p>
+
 <h3>Leaders of the 111th Congress</h3>
 <p>
 <?php
@@ -69,9 +69,6 @@ foreach ($leaders_congress as $leaders) {
     }
 ?>
 </p>
-<blockquote>
-<p> <strong>We</strong> are also given the authority to borrow money on credit on behalf of the United States. Article 1 [section 9, clause 7] of the U.S. Constitution, states no money can be appropriated [spent] out of the U.S. Treasury <strong>unless</strong> we Act. This means that governmental agencies and departments may not spend any money for their operations and programs that <strong>we</strong> have not appropriated nor use any federal money for any purpose that <strong>we</strong> have not expressly authorized...
-</blockquote>
 <?php
 /*
         echo '<p>';
