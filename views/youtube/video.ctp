@@ -38,8 +38,8 @@
             $thumbnailUrl = $entry->mediaGroup->thumbnail[0]->url;
             $videoTitle = $entry->mediaGroup->title;
             $videoDescription = $entry->mediaGroup->description;
-            echo '
-                <li id="image_set_youtubeVideo"><a href="./video?v='.$videoId.'"><img src="'.$thumbnailUrl.'" alt="'.$videoTitle.'" border="0"/></a></li>
+            echo 'ss
+                <li id="image_set_youtubeVideo"><a href="./'.$videoId.'"><img src="'.$thumbnailUrl.'" alt="'.$videoTitle.'" border="0"/></a></li>
             ';
         }
 
