@@ -56,7 +56,9 @@ class FedspendingComponent extends Object
             $this->cache()->save($response, $fedSummaryKey, array(), (86400*3));
         }
 
-        $results = simplexml_load_string($response);
+        //supressing this - I know it's slow but I have zero
+        //control over the content being passed
+        $results = @simplexml_load_string($response);
         return $results;
     }
 

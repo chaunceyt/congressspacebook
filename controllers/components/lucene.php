@@ -119,8 +119,9 @@ class LuceneComponent extends Object
 
            // Call the cache and see if we already have the results for this search.
            // If yes, send that instead. If not, proceed to running the query.
-           $cacheresultsKey = md5(serialize($params));
-           $cacheresults = $this->_cache->load($cacheresultsKey);
+           //$cacheresultsKey = md5(serialize($params));
+           //$cacheresults = $this->_cache->load($cacheresultsKey);
+           $cacheresults = false;
 
            if($cacheresults !== false)
            {
@@ -130,7 +131,7 @@ class LuceneComponent extends Object
            }
            else
            {
-                   //echo 'Results for query "' . $params['query'] . '" in module "' . $params['type'] . '" not found in cache, executing against index.', 'queries';
+                   echo 'Results for query "' . $params['query'] . '" in module "' . $params['type'] . '" not found in cache, executing against index.', 'queries';
                    // Copy the now complete but un-modified params array to a
                    // temporary variable to be used later for the caching key.
 
@@ -183,7 +184,7 @@ class LuceneComponent extends Object
                    $finalresults = array();
                    $resultcount = count($results);
 
-                   //echo $resultcount . ' rows found for query "' . $params['query'] . '" in module "' . $params['type'] . '".', 'queries';
+                   echo $resultcount . ' rows found for query "' . $params['query'] . '" in module "' . $params['type'] . '".', 'queries';
 
                    if($resultcount > 0)
                    {
@@ -228,7 +229,7 @@ class LuceneComponent extends Object
                                    $finalresults[] = $row;
                            }
                    }
-                   $this->_cache->save($finalresults, $cacheresultsKey, array(), (86400*3));
+                   //$this->_cache->save($finalresults, $cacheresultsKey, array(), (86400*3));
                    return($finalresults);
            }
    }

@@ -18,6 +18,14 @@
 <p> No laws can govern the nation unless <strong>we</strong> enacted them and have it approved by the President.</p>
 </blockquote>
 <p>
+<h2>Top 100</h2>
+The lawmakers @ work...<br/>
+...see who's had the most bills 
+<a href="<?php echo Router::url('/lawmakers/top/enacted'); ?>" title="Top 100 Lawmakers to Enact Laws">enacted</a>,  
+the most <a href="<?php echo Router::url('/lawmakers/top/novote'); ?>" title="Top 100 Lawmakers with the most No Votes">novotes</a>, 
+<a href="<?php echo Router::url('/lawmakers/top/cosponsored'); ?>" title="Top 100 Lawmakers who co-sponsored the most Bills">co-sponsored</a> the most bills...<br/>
+</p>
+<p>
 <h3>In the state of <?php echo $current_webuser->region; ?> the lawmakers are:</h3>
 <p>
 <?php
@@ -188,7 +196,12 @@ foreach ($leaders_congress as $leaders) {
                 break;
             case 'I' :
                 $key_str = 'Independent';
-            default :    
+                break;
+            case 'C' :
+                $key_str = '';
+                break;
+            default :   
+                $key_str = '';
         }
         echo '<p><a href="'.Router::url('/lawmakers/browse/party/'.$key).'" style="padding:5px;font-size: '.$size.'%"';
         echo ' title="'.$value.' lawmakers in  '.$key.'"';

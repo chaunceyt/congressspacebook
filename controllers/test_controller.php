@@ -4,8 +4,8 @@ class TestController extends AppController {
 
     var $name = 'Test';
     var $helpers = array('Html', 'Form');
-    var $components = array('Capitolwords', 'Govtrack','Lucene');
-    var $uses = array('Lawmaker');
+    var $components = array('Capitolwords', 'Govtrack','Lucene', 'FollowTheMoneyState');
+    var $uses = array('Lawmaker', 'LawmakerStats', 'Govtrack');
     
     function beforeFilter()
     {
@@ -18,22 +18,38 @@ class TestController extends AppController {
         echo '<pre>';
         $this->autoRender=false;
         $start = getMicrotime(); 
-        $this->Lucene->load('lawmaker');
         //state: "NY" AND district: 1
+        //$top_members_introduced = $this->LawmakerStats->getTopLawmakersByIntroduced();
+        //$top_members_cosponsored = $this->LawmakerStats->getTopLawmakersByCoSponsored();
+        //$top_members_enacted = $this->LawmakerStats->getTopLawmakersByEnacted();
+        //$top_members_novote = $this->LawmakerStats->getTopLawmakersByNoVote();
 
+        //print_r($top_members_introduced);
         //$query = 'state: "NY" AND district: 1';
-        $query = '"House"';
-        $params = array('type' => 'lawmaker', 'query' => $query);
+        $this->Lucene->load('govtrack');
+        $query = '2009 ';
+        $params = array('type' => 'govtrack', 'query' => $query);
         $q = $this->Lucene->query($params);
-        $time = round(getMicrotime() - $start, 1);
         print_r($q);
-        echo $time;
 
         //$state_offices = $this->FollowTheMoney->stateOffice('ny');
         //$sort = array('total_dollars');
-        //$state_offices_breakdown = $this->FollowTheMoney->stateOfficeBreakdown('ny', 2008, null, null, $sort);
-        //$state_offices_business = $this->FollowTheMoney->stateOfficeBusiness('ny', '2008', null, '1', null, $sort);
+        //$state_offices = $this->FollowTheMoneyState->stateOffice('ny', 2008, null, null, $sort);
+        //office required
+       // $state_offices_district = $this->FollowTheMoneyState->stateOfficeDistrict('ny', 2008, null, null, $sort);
+        //$state_offices_breakdown = $this->FollowTheMoneyState->stateOfficeBreakdown('ny', 2008, null, null, $sort);
+        //$state_offices_business = $this->FollowTheMoneyState->stateOfficeBusiness('ny', '2008', null, '1', null, $sort);
+        //$state_offices_sectors = $this->FollowTheMoneyState->stateOfficeSectors('ny', '2008', 'SENATE', null, $sort); 
+        //$state_offices_industries = $this->FollowTheMoneyState->stateOfficeIndustries('ny', '2008','SENATE'); 
+        //$state_offices_contributors = $this->FollowTheMoneyState->stateTopContributors('ny', '2008', 'SENATE', null, $sort); 
+        //print_r($state_offices);
+        //print_r($state_offices_sectors);
+        //print_r($state_offices_industries);
+        //print_r($state_offices_contributors);
+        //print_r($state_offices_district);
+        //print_r($state_offices_breakdown);
         //print_r($state_offices_business);
+        
         /*
         foreach($state_offices_business as $business) { 
             print_r($business);
@@ -97,5 +113,7 @@ class TestController extends AppController {
         //$twitter['feed'] = $feeds = $social->getInfoFromFeed($username, '1', $twitter['link'], $max_items = 10);
 
         //print_r($twitter);
+        $time = round(getMicrotime() - $start, 1);
+        echo $time;
     }
 }

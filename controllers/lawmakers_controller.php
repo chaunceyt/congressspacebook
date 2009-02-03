@@ -3,7 +3,8 @@ class LawmakersController extends AppController {
 
     var $name = 'Lawmakers';
     var $components = array('Opensecrets', 'Fedspending', 'Zend', 'Govtrack', 'Sunlightlabs');
-    var $helpers = array('Html', 'Form', 'Javascript');
+    var $helpers = array('Html', 'Form', 'Javascript', 'Govtrack', 'Repstats');
+    var $uses = array('Lawmaker', 'LawmakerStats');
     public $_cache = null;
 
     function beforeFilter()
@@ -15,6 +16,7 @@ class LawmakersController extends AppController {
                                             'campaign_cost',
                                             'industry_by_race',
                                             'bill',
+                                            'top',
                                             'search'
                                             );
         parent::beforeFilter();
@@ -102,10 +104,10 @@ class LawmakersController extends AppController {
                         $this->paginate['Lawmaker']['conditions'] = "firstname like '{$value}%'";
                         break;
                     case 'house' :
-                        $this->paginate['Lawmaker']['conditions'] = "congress_office like '%House%'";
+                        $this->paginate['Lawmaker']['conditions'] = "title = 'Rep'";
                         break;
                     case 'senate' :
-                        $this->paginate['Lawmaker']['conditions'] = "congress_office like '%Senate%'";
+                        $this->paginate['Lawmaker']['conditions'] = "title =  'Sen'";
                         break;
                     default :
                 }   
@@ -257,9 +259,18 @@ class LawmakersController extends AppController {
         $this->set('type', $type);
         $this->set('number', $number);
 
-        $bill_path = '/home/govtrack/data/us/bills.text/'.$_session.'/'.$type.'/'.$type.$number.'.txt';
-        $raw_text = file_get_contents($bill_path);
-        $this->set('data', $raw_text);
+        
+        //$bill_path = '/home/govtrack/data/us/'.$_session.'/bills/'.$type.$number.'.xml';
+        //$bill_response = file_get_contents($bill_path);
+
+        //$bill_xml = simplexml_load_string($bill_response);
+        $bill_xml = $this->Lawmaker->getBill($id);
+        $raw_text = $this->Lawmaker->getBillText($id);
+        //$billtext_path = '/home/govtrack/data/us/bills.text/'.$_session.'/'.$type.'/'.$type.$number.'.txt';
+
+        //$raw_text = file_get_contents($billtext_path);
+        $this->set('bill_xml', $bill_xml);
+        $this->set('data',  $raw_text);
 
     }
 
@@ -270,6 +281,32 @@ class LawmakersController extends AppController {
             $params['action'] = 'browse';
             $this->redirect($params);
         }        
+    }
+
+    function top($type=null)
+    {
+    
+        switch($type) {
+            case 'cosponsored' :
+                $results = $this->LawmakerStats->getTopLawmakersByCoSponsored();
+                break;
+            case 'introduced' :
+                $results = $this->LawmakerStats->getTopLawmakersByIntroduced();
+                break;
+            case 'enacted' :
+                $results =  $this->LawmakerStats->getTopLawmakersByEnacted();
+                break;
+            case 'novote' :
+                $results = $this->LawmakerStats->getTopLawmakersByNoVote();
+                break;
+            case 'verbosity' :
+                $results = $this->LawmakerStats->getTopLawmakersByVerbosity();
+                break;
+            default :
+                $results = $this->LawmakerStats->getTopLawmakersByNoVote();
+        }
+        $this->set('type', $type);
+        $this->set('data', $results);
     }
     
     function campaign_cost()

@@ -61,7 +61,9 @@ ul#member-menu li a.current:hover{color:#2E4560;background:#fff;}
   width: 960px;
   margin: 0 auto; padding: 0;
 }
-#page {}
+#page {
+
+}
 
 #content {
   float: left;

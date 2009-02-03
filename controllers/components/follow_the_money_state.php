@@ -135,7 +135,7 @@ class FollowTheMoneyStateComponent extends Object
         }
     }
 
-    public function stateOfficeIndustries()
+    public function stateOfficeIndustries($state, $year, $office = null, $page = null, $sort = array())
     {
         if($state) {
             $params['state'] = $state;
@@ -145,7 +145,7 @@ class FollowTheMoneyStateComponent extends Object
             $params['year'] = $year;
         }
 
-        if($office) {            
+        if($office) {
             $params['office'] = $office;
         }
 
@@ -155,7 +155,10 @@ class FollowTheMoneyStateComponent extends Object
         if(is_array($sort) && sizeof($sort) > 0) {
             $params['sort'] = implode($sort);
         }
-        $url = 'http://api.followthemoney.org/states.offices.industries.php?key='.$this->apikey;
+        $url = 'http://api.followthemoney.org/states.offices.industries.php?key='.$this->apikey.'&'.http_build_query($params);
+        echo $url;
+
+        //$url = 'http://api.followthemoney.org/states.offices.industries.php?key='.$this->apikey;
         $response = file_get_contents($url);
         $results = @simplexml_load_string($response);
         if(!$results) {
@@ -166,7 +169,7 @@ class FollowTheMoneyStateComponent extends Object
         }
     }
 
-    public function stateOfficeSectors()
+    public function stateOfficeSectors($state, $year, $office = null, $page = null, $sort = array())
     {
         if($state) {
             $params['state'] = $state;
@@ -176,7 +179,7 @@ class FollowTheMoneyStateComponent extends Object
             $params['year'] = $year;
         }
 
-        if($office) {            
+        if($office) {
             $params['office'] = $office;
         }
 
@@ -186,7 +189,10 @@ class FollowTheMoneyStateComponent extends Object
         if(is_array($sort) && sizeof($sort) > 0) {
             $params['sort'] = implode($sort);
         }
-        $url = 'http://api.followthemoney.org/states.offices.sectors.php?key='.$this->apikey;
+        $url = 'http://api.followthemoney.org/states.offices.sectors.php?key='.$this->apikey.'&'.http_build_query($params);
+        echo $url;
+
+        //$url = 'http://api.followthemoney.org/states.offices.sectors.php?key='.$this->apikey;
         $response = file_get_contents($url);
         $results = @simplexml_load_string($response);
         if(!$results) {
@@ -197,7 +203,7 @@ class FollowTheMoneyStateComponent extends Object
         }
     }
 
-    public function stateTopContributors()
+    public function stateTopContributors($state, $year, $office = null, $page = null, $sort = array())
     {
         if($state) {
             $params['state'] = $state;
@@ -207,7 +213,7 @@ class FollowTheMoneyStateComponent extends Object
             $params['year'] = $year;
         }
 
-        if($office) {            
+        if($office) {
             $params['office'] = $office;
         }
 
@@ -217,7 +223,10 @@ class FollowTheMoneyStateComponent extends Object
         if(is_array($sort) && sizeof($sort) > 0) {
             $params['sort'] = implode($sort);
         }
-        $url = 'http://api.followthemoney.org/states.top_contributors.php?key='.$this->apikey;
+        $url = 'http://api.followthemoney.org/states.offices.districts.php?key='.$this->apikey.'&'.http_build_query($params);
+        echo $url;
+        
+        //$url = 'http://api.followthemoney.org/states.top_contributors.php?key='.$this->apikey;
         $response = file_get_contents($url);
         $results = @simplexml_load_string($response);
         if(!$results) {

@@ -1,12 +1,27 @@
 <div id="page">
         <div id="content">
                 <div class="post">
+                        <div class="entry"  style="padding-left:90px;">
                         <h2 class="title">/about us</h2>
-                        <div class="entry">
 <p>
-CongressSpaceBook <br/>
-- Developer: Chauncey Thorn<br/>
+<strong>CongressSpaceBook</strong>  - a DEMO of an opensource web application designed to make it easy to deploy websites that focus on striving to make Congress more accountable and transparent...<br/>
+</p>
+<p><strong>Our GitHub</strong> - <a class="url" rel="me" href="http://github.com/chaunceyt/mashupkeyword/tree/master">source code</a>
+<p>
+<strong>Mission/Goal</strong> -
+Help ensure Congress and the President keep their promises of more transparency. By exposing their spending habits, voting record and is showing who influences them and how much they are spending to do so.
+</p>
+<p>
+<strong>Target audience</strong> -
+Those who now expect transparency from our elected officials.
+</p>
+<p>
+<strong>Technical Description</strong> -
+A social networking platform where the only members networking are Congress members.<br/><br/>
+- Developer / Site maintainer: Chauncey Thorn<br/>
 - $email = $this->chaunceyt->gmail->com();<br/>
+</p>
+<p>
 - Facebook group: Join <a href="http://www.facebook.com/group.php?gid=70366056616" title="CongressSpacebook Facebook" />here</a><br/>
 - Follow our twits: <a href="http://twitter.com/congressSB" title="Twitter account">here</a><br/>
 - Powered by: MASHUP::Keyword and <a href="http://services.sunlightlabs.com/api/" target="_new">Sunlight Labs</a> data<br/>

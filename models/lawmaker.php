@@ -54,6 +54,35 @@ class Lawmaker extends AppModel {
 
     }
 
+    //get the xml for bill
+    public function getBill($id)
+    {
+        list($_session, $type, $number) = explode('-', $id);
+        $path = '/home/govtrack/data/us/'.$_session.'/bills/'.$type.$number.'.xml';
+        if(file_exists($path)) {
+            $response = file_get_contents($path);
+            $result = simplexml_load_string($response);
+            return $result;
+        }
+        else {
+            trigger_error('Could not locate bill {$id} text', E_USER_ERROR); 
+        }
+    }
+
+    //get the bill full text
+    public function getBillText($id)
+    {
+        list($_session, $type, $number) = explode('-', $id);
+        $path = '/home/govtrack/data/us/bills.text/'.$_session.'/'.$type.'/'.$type.$number.'.txt';
+        if(file_exists($path)) {
+            $result = file_get_contents($path);
+            return $result;
+        }
+        else {
+            trigger_error('Could not locate bill {$id} text', E_USER_ERROR); 
+        }
+    }
+
     public function getProfileIdByName($profile_name)
     {
         $sql = "select id from lawmakers where username = '".$profile_name."'";
