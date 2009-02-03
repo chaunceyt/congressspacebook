@@ -38,7 +38,7 @@ class NearbyController extends AppController {
         $gi = geoip_open(APP . 'geocity' . DS .'GeoLiteCity.dat',GEOIP_MEMORY_CACHE);
         $current_webuser = geoip_record_by_addr($gi, $_SERVER['REMOTE_ADDR']);
                 
-        $this->paginate['Lawmaker'] = array('limit' => '10','order' => 'firstname ASC', );
+        $this->paginate['Lawmaker'] = array('limit' => '25','order' => 'firstname ASC', );
         $this->paginate['Lawmaker']['conditions'] = array('state = ' => $current_webuser->region);
                 $this->set('lawmakers', $this->paginate());
         }
