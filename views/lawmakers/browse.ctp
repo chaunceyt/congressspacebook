@@ -1,10 +1,9 @@
-    <div id="singleContent">
-        <div id="archiveEntries">
-            <div class="archivePost">
-<h2 class="archiveTitles"><a href=""></a> &raquo;
-<?php __('Browse Member Profiles');?></h2>
-<div class="clear margintop"></div>
+<div id="content">
+    <div class="post">
+        <div class="entry">
 
+<div class="lawmakers index">
+<h2 style="text-align:center"><?php __('Browse Member Profiles');?></h2>
 <p style="text-align:center">
 <?php
 echo $paginator->counter(array(
@@ -43,6 +42,8 @@ echo $paginator->counter(array(
     </p>
 
     <p></p>
+    <div>
+    <div id="profileresults"> 
 <?php
 $i = 0;
 foreach ($lawmakers as $lawmaker):
@@ -66,9 +67,12 @@ foreach ($lawmakers as $lawmaker):
         </div>
 
 <?php endforeach; ?>
+    </div> <!-- end profileresults -->
+    </div>
 </div>
-                        <div class="clear"></div>
 <br/>
+<div class="clear"></div>
+<p></p>
 <p>
 <center>
 <div class="paging">
@@ -79,57 +83,10 @@ foreach ($lawmakers as $lawmaker):
 </center>
 </p>
 <p>Powered by:<a href="http://services.sunlightlabs.com/api/" target="_new">Sunlight Labs API</a> data feed.</p>
-<div class="clear"></div>
-                        <div class="clear"></div>
-            <div class="navigation">
-                <div class="previous"></div>
-                <div class="next"></div>
-                <div class="clear"></div>
-            </div>
-
-                    </div>
-
-        <div id="singlePostSidebarLeft">
-            
-                                            
-                        <div class="widget">
-                <h3 class="widgetTitleSbLeft">Federal Spending</h3>
-                <ul>
-                Data here
-                </ul>
-
-            </div>
-
-                                    
-            <div class="widget">
-                <h3 class="widgetTitleSbLeft">Industries </h3>
-                <div id="tagcloud">
-                tagcloud
-                </div>  
-            </div>
-            
-            <div class="widget">
-                <h3 class="widgetTitleSbLeft">Sectors </h3>
-                <ul>
-
-                Data here
-                </ul>
-            </div>
-                    </div>
-
-        <div class="clear"></div>
+</div>
     </div>
-    
-    
-    <div id="singlePostSidebarRight">
-                                    <h3 class="photoGallery">111th Congress</h3>
-
-        <ul id="singpPhotoGalleryList">
-                <?php // echo $this->element('sidebar', array('keyword' => $keyword)); ?>
-        </ul>
-                
-        <div id="innerSidebarRight">
-                    
+</div>
+        <div id="sidebar">
+                <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
         </div>
-    </div>
 
