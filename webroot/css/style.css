@@ -31,19 +31,6 @@ Author URI: http://pittcrew.net/geekblog/
  *     #sidebar
  *   #footer
  */
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,table,tr,th,td,embed,object{margin:0;padding:0;}
-table{border-collapse:collapse;border-spacing:0;}
-fieldset,img,abbr{border:0;}
-address,caption,cite,code,dfn,em,h1,h2,h3,h4,h5,h6,strong,th,var{font-style:normal;font-weight:normal;}
-ul {list-style:none;}
-caption,th {text-align:left;}
-div { text-align: left; vertical-align: top; }
-q:before,q:after{content:'';}
-a,ins{text-decoration:none;}
-strong { font-weight: bold; }
-cite { display: block; font-size: 0.9em; font-style: italic; text-align: right; }
-
-
 body {
   text-align: center;
   margin: 0; padding: 0.6em 1em 1em 1em; 
@@ -106,7 +93,7 @@ ul#member-menu li a.current:hover{color:#2E4560;background:#fff;}
 }
 
 #content {
-  width: 960px;
+  width: 669px;
 }
 /* END: Standard Layout */
 
@@ -978,6 +965,3 @@ width:30em
     background: transparent url(../img/pullquote.gif) no-repeat top left;
     text-align: left;
 }
-
-
-
