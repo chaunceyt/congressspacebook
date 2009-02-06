@@ -87,4 +87,59 @@ class GovtrackHelper extends Helper {
         echo '<p>'.nl2br($summary).'</p>';
 
     }
+
+    function getCongressionalRecords()
+    {
+        $dir = "/home/govtrack/data/us/111/cr/";
+        $filepattern = '*';
+        $sorting_list = array();
+        $filemtimes = array();
+
+        # Get file/dir listing, else error message
+        if ( ( $list = glob( $dir . $filepattern ) ) !== false ) {
+            $i=0;
+            $list = array_reverse($list);
+            foreach ( $list AS $file ) {
+                if($i < 1) {
+                    //echo $file;
+                    $filemtime = filemtime( $file );
+                    # Build array to be sorted with filename and filemtime
+                    $sorting_list[] = array('filename' => $file, 'filemtime' => $filemtime);
+                    # This is the list of filemtimes to sort by later
+                    $filemtimes[] = $filemtime;
+                    # Sort array based on $filemtimes
+                    # http://php.net/array-multisort Example #3
+                    if (array_multisort($filemtimes, SORT_DESC, $sorting_list) ) {
+                        $response = file_get_contents($file);
+                        $result = simplexml_load_string($response);
+                        print_r($result);
+
+                        foreach($result as $cr) {
+                            echo $cr->attributes()->speaker;
+                            $j=0;
+                            foreach($cr->narrative as $narrative) {
+                                echo 'Narrative'."\n";
+                                echo '<p>'.$narrative.'</p>';
+                                $j++;
+                            }
+                            $j=0;
+                            foreach($cr->paragraph as $paragraph) {
+                                echo 'Paragraph'."\n";
+                                echo '<p>'.$paragraph.'</p>';
+                                $j++;
+                            }
+                            foreach($cr->chair as $chair) {
+                                echo $chair;
+                            }
+                        }
+                    }
+                }
+                $i++;
+            }
+        }
+        else {
+            echo 'Directory listing call failed!';
+        }
+        
+    }
 }

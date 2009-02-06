@@ -53,11 +53,11 @@ ul#member-menu li a.current:hover{color:#2E4560;background:#fff;}
 
 #header {
   height: 130px; 
-  margin: 0 -0.5px 10px 0; padding: 0;
+  //margin: 0 -0.5px 10px 0; padding: 0;
 }
 
 #page_wrapper {
-  background: #fafafa;
+  background: #ffffff;
   width: 960px;
   margin: 0 auto; padding: 0;
 }
@@ -143,7 +143,7 @@ ul#member-menu li a.current:hover{color:#2E4560;background:#fff;}
  --------------------------------------------------------------*/
 
 #header { 
-  background: #fafafa;  
+  background: #ffffff;  
   text-align: center;            
 }
 
@@ -177,7 +177,7 @@ ul#member-menu li a.current:hover{color:#2E4560;background:#fff;}
  --------------------------------------------------------------*/
 
 #content {
- background: #fafafa;
+ background: #ffffff;
 
 }
 
@@ -424,7 +424,7 @@ ul#member-menu li a.current:hover{color:#2E4560;background:#fff;}
  Sidebar
  --------------------------------------------------------------*/
 #sidebar {
-  background: #fafafa;  
+  background: #ffffff;  
   font-size: 11px; 
 }
 
@@ -516,8 +516,8 @@ ul#member-menu li a.current:hover{color:#2E4560;background:#fff;}
                #content form.comments { display: none; } }
 
 body {
-  background: url(../img/bg.jpg) no-repeat scroll 50% 0;
-  background-color: #112441;
+  background: url(../img/bg.jpg) repeat scroll 50% 0;
+  background-color: #FFFFFF;
   font: normal 12px "lucida grande", verdana, arial, helvetica, sans-serif;
 }
 
@@ -683,7 +683,7 @@ div.paging span a {
 
 
 #profile_page {
-  background: #fafafa;
+  background: #ffffff;
   width: 100%;
   margin-left: auto ;
   margin-right: auto ;
@@ -694,7 +694,7 @@ div.paging span a {
   padding-left: 20px;       
 }
 #profile_right {
-  background: #fafafa;
+  background: #ffffff;
   float: right;
   width: 450px;
 }
@@ -732,7 +732,7 @@ div.paging span a {
 }
 #homepage_right {
   float: right;
-  width: 414px;
+  width: 450px;
 }
 #profileresults {
     width:615px;
