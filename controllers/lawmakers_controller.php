@@ -30,7 +30,8 @@ class LawmakersController extends AppController {
         $_cache = $this->Zend->cache();
 
         //get district of connecting visitor
-        //$webuser_district = $this->Sunlightlabs->getDistrictFromLatLong($webuser->latitude, $webuser->longitude);
+        $webuser_district = $this->Sunlightlabs->getDistrictFromLatLong($webuser->latitude, $webuser->longitude);
+        $this->set('webuser_district', $webuser_district);
         $video_hubs = array('senatorhub','househub','HouseConference');
         //$video_hubs = array('HouseConference');
         $this->set('videos', $video_hubs);
