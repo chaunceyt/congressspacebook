@@ -1,5 +1,11 @@
 <?php
 //sunlight labs api
+/*
+* SunlightLabs API wrapper
+*
+*
+*
+*/
 class SunlightlabsComponent extends Object
 {
     private $url = 'http://services.sunlightlabs.com/api/';
@@ -12,9 +18,9 @@ class SunlightlabsComponent extends Object
         $method = 'districts.getDistrictFromLatLong.'.$type.'?';
         $params = $this->apikey.'&latitude='.$latitude.'&longitude='.$longitude; 
         $resource_url = $this->url.$method.$params;
-        echo $resource_url;
+        //echo $resource_url;
         $data = @file_get_contents($resource_url);
-        echo $data;
+        //echo $data;
         if($data) {
             switch($type) {
                 case 'json' :
