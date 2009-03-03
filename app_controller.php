@@ -108,7 +108,13 @@ class AppController extends Controller
                     //fixme: generating a notice. @ fornow..
                     //cthorn - thinking about something else and noticed the warning
                     //12302008
-                    $keyword = @$this->data['Search']['url'];
+                    if(isset($this->data['Search']['url'])) {
+                        $keyword = @$this->data['Search']['url'];    
+                    }
+                    else {
+                        $keyword = 'congress';
+                    }
+                    
                 }
                 $this->set('keyword', $keyword);
             }
