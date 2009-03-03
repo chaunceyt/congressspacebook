@@ -43,6 +43,7 @@
  *
  */
 //EOF
+date_default_timezone_set("America/New_York");
 require_once(APP . 'geocity' . DS .'geoipcity.inc');
 require_once(APP . 'geocity' . DS .'geoipregionvars.php');
 require_once(APP . 'config' . DS . 'app.init.php');
