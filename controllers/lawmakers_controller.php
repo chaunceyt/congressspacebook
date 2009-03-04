@@ -91,26 +91,27 @@ class LawmakersController extends AppController {
         if(isset($this->passedArgs['query'])) { 
             $value = $this->passedArgs['query'];
             $this->paginate['Lawmaker'] = array('limit' => '25' );
-            $this->paginate['Lawmaker']['conditions'] = "concat(firstname, lastname, phone, email) like '%".$value."%'";
+            $this->paginate['Lawmaker']['conditions'] = "concat(firstname, lastname, phone, email) like '%".$value."%' AND in_office = '1'";
         }
         else { // deal with params state, party, house, senate
-            $this->paginate['Lawmaker'] = array('limit' => '28' ); 
+            $this->paginate['Lawmaker'] = array('limit' => '28' );
             if(isset($by)) { 
                 switch($by) {
                     case 'state' :
-                        $this->paginate['Lawmaker']['conditions'] = "state = '{$value}'";
+                        $this->paginate['Lawmaker']['conditions'] = "state = '{$value}' AND in_office = '1'";
                         break;
                     case 'party' :
-                        $this->paginate['Lawmaker']['conditions'] = "party = '{$value}'";
+                        $this->paginate['Lawmaker']['conditions'] = "party = '{$value}' AND in_office = '1'";
                         break;
                     case 'letter' :
-                        $this->paginate['Lawmaker']['conditions'] = "firstname like '{$value}%'";
+                        $this->paginate['Lawmaker']['conditions'] = "firstname like '{$value}%'  AND in_office = '1'";
                         break;
                     case 'house' :
-                        $this->paginate['Lawmaker']['conditions'] = "title = 'Rep'";
+                        $this->paginate['Lawmaker']['conditions'] = "title = 'Rep' AND in_office = '1'";
                         break;
                     case 'senate' :
-                        $this->paginate['Lawmaker']['conditions'] = "title =  'Sen'";
+                        $this->paginate['Lawmaker']['conditions'] = "title =  'Sen' AND in_office = '1'";
+                        // $this->paginate['Lawmaker']['conditions'] = "in_office = '1'";
                         break;
                     default :
                 }   

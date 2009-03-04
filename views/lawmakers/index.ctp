@@ -222,4 +222,6 @@ foreach ($leaders_congress as $leaders) {
                 <?php  echo $this->element('sidebar', array('keyword' => $keyword)); ?>
         </div>
 </div>
-
+<?php
+//print_r($webuser_district);
+?>

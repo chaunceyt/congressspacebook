@@ -36,6 +36,8 @@ Released   : 20071222
 <?php echo $javascript->link('ui.core'); ?>
 <?php echo $javascript->link('ui.tabs'); ?>
 <?php echo $javascript->link('tooltip'); ?>
+<?php echo $javascript->link('control.tabs.2.1.1'); ?>
+<?php echo $javascript->link('dropdown'); ?>
 <!--<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>-->
 <?php 
 echo $scripts_for_layout;
@@ -59,7 +61,6 @@ echo $scripts_for_layout;
 <div id="header">
 <a href="<?php echo Router::url('/'); ?>" title="CongressSpacebook.com"><img src="<?php echo Router::url('/'); ?>img/congress_spacebook_header.jpg" alt="" border="0"/></a>
 </div>
-
 <div id="page">
 <?php $session->flash(); ?>
 
