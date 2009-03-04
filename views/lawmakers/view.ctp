@@ -180,7 +180,7 @@ if(!isset($_page_)) {
     else { ?>
         <li><a href="<?php echo Router::url('/profiles/'.$username.'/fundraising'); ?>" title="Home">Fund Raising</a></li>
 <?php } ?>
-    <li><a href="<?php echo Router::url('/profiles/'.$username.'/state'); ?>" title="Home">My State</a></li>
+<!--    <li><a href="<?php echo Router::url('/profiles/'.$username.'/state'); ?>" title="Home">My State</a></li> -->
 <?php
 
     if($_page_ == 'wall') {?>
