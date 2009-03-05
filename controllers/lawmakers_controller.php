@@ -32,8 +32,8 @@ class LawmakersController extends AppController {
         //get district of connecting visitor
         $webuser_district = $this->Sunlightlabs->getDistrictFromLatLong($webuser->latitude, $webuser->longitude);
         $this->set('webuser_district', $webuser_district);
-        $video_hubs = array('senatorhub','househub','HouseConference');
-        $video_hubs = array('HouseConference');
+        //$video_hubs = array('senatorhub','househub','HouseConference');
+        $video_hubs = array('whitehouse');
         $this->set('videos', $video_hubs);
 
         $this->Lawmaker->recursive = 0;
