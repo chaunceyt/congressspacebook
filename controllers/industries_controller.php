@@ -19,6 +19,8 @@ class IndustriesController extends AppController {
 
         if(isset($this->params['query'])) {
             $url_params = explode(':',$this->params['query']);
+            $this->set('query_url', $this->params['query']);
+
             $query = str_replace('*','/',$url_params[1]);
             if($url_params[0] == 'industry') {
                 $conditions = array('industry =' => $query);

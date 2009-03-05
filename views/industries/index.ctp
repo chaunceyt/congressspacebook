@@ -9,6 +9,13 @@ echo $paginator->counter(array(
 ?></p>
 <p>
 <div class="paging"  style="padding-left:90px;">
+
+<?php 
+//$paginator->options(array('url' => '/'.$this->params['pass'][0].'/'.$this->params['pass'][1]));
+if(isset($query_url)) {
+    $paginator->options(array('url' => '/'.$query_url.'/')); 
+}    
+?>
 	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
  | 	<?php echo $paginator->numbers();?>
 	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>

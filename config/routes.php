@@ -35,7 +35,9 @@
  */
 	
     Router::connect('/', array('controller' => 'lawmakers', 'action' => 'index'));
-    Router::connect('/industries/:query', array('controller' => 'industries', 'action' => 'index'));
+    //fixed for pagination
+    Router::connect('/industries/index/:query/*', array('controller' => 'industries', 'action' => 'index'));
+    Router::connect('/industries/:query/*', array('controller' => 'industries', 'action' => 'index'));
     Router::connect('/lobbyist/:client/*', array('controller' => 'lobbyists_filings', 'action' => 'index'));
     //Router::connect('/lawmakers/view', array('controller' => 'lawmakers', 'action' => 'view'));
     Router::connect('/profiles/:username/accounts/submit_account', array('controller' => 'accounts', 'action' => 'add'));
