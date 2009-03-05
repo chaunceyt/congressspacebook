@@ -16,8 +16,8 @@ Industries
                   echo '</td>';
                   echo '</tr>';
                }
-            ?>
                   echo '<tr><td colspan="2" align="right"><span>source: <a href="http://opensecrets.org/" title="opensecrets.org" target="_new">opensecrets.org</a></span></td></tr>';
+            ?>
             </table>
         <?php } ?>
         </div>
