@@ -1,5 +1,6 @@
 <h2>Sponsored Bills</h2>
 <p>
+<div style="overflow:scroll; overflow-x:hidden;height:700px;"> 
 <?php
 $govtrack_results->SponsoredBills->Bill = array_reverse($govtrack_results->SponsoredBills->Bill);
 foreach($govtrack_results->SponsoredBills->Bill as $bill) {
@@ -20,6 +21,7 @@ foreach($govtrack_results->CosponsoredBills->Bill as $bill) {
 }
 ?>
 </p>
+</div>
 <p><span>source: <a href="http://govtrack.us/" title="Govtrack.us" target="_new">Govtrack.us</a></span></p>
 
 </div>

@@ -33,7 +33,7 @@ class LawmakersController extends AppController {
         $webuser_district = $this->Sunlightlabs->getDistrictFromLatLong($webuser->latitude, $webuser->longitude);
         $this->set('webuser_district', $webuser_district);
         $video_hubs = array('senatorhub','househub','HouseConference');
-        //$video_hubs = array('HouseConference');
+        $video_hubs = array('HouseConference');
         $this->set('videos', $video_hubs);
 
         $this->Lawmaker->recursive = 0;
@@ -223,6 +223,7 @@ class LawmakersController extends AppController {
         $this->set('fedSpending', $fedSpendingSummary);
 
         $govtrack_results = $this->Govtrack->getPerson($lawmaker['Lawmaker']['govtrack_id'], '110');
+
         $this->set('govtrack_results', $govtrack_results);
 
         /* we want to cache the top friends it's not going to change until a database update */

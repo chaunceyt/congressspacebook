@@ -44,7 +44,7 @@ the most bills <a href="<?php echo Router::url('/lawmakers/top/enacted'); ?>" ti
 the most <a href="<?php echo Router::url('/lawmakers/top/novote'); ?>" title="Top 100 Lawmakers with the most No Votes">novotes</a>, 
 and <a href="<?php echo Router::url('/lawmakers/top/cosponsored'); ?>" title="Top 100 Lawmakers who co-sponsored the most Bills">co-sponsored</a> the most bills...<br/>
 </p>
-<h2>YouTube Stream</h2>
+<p><h2>YouTube Stream</h2></p>
 <p>
 <?php
 foreach($videos as $yt_username) {
@@ -55,20 +55,6 @@ foreach($videos as $yt_username) {
 ?>
 </p>
 
-<h3>Leaders of the 111th Congress</h3>
-<p>
-<?php
-$i=0;
-foreach ($leaders_congress as $leaders) {
-    $fullname = $leaders['lawmaker']['firstname'].' '.$leaders['lawmaker']['lastname'];
-
-?>
-        <span><a class="url" rel="me" href="<?php echo Router::url('/profiles/'.$leaders['lawmaker']['username']); ?>" title="<?php echo $fullname;?>"><img src="<?php echo Router::url('/img/lawmakers/40x50/'.$leaders['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" /></a></span>
-
-<?php
-    }
-?>
-</p>
 <?php
 /*
         echo '<p>';
