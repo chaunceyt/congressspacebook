@@ -36,7 +36,7 @@ foreach ($industries as $industry):
 	<tr<?php echo $class;?>>
 		<td>
             <p>
-            <h2><?php echo $html->link(__(str_replace('*',',',$industry['Industry']['catname']), true), array('action'=>'view', $industry['Industry']['id'])); ?></h2><br/>
+            <h2><?php echo str_replace('*',',',$industry['Industry']['catname']); //echo $html->link(__(str_replace('*',',',$industry['Industry']['catname']), true), array('action'=>'view', $industry['Industry']['id'])); ?></h2><br/>
 			<?php echo $industry['Industry']['industry']; ?><br/><br/>
             <img src="http://www.opensecrets.org/lobby/IMG_client_year_comp.php?lname=<?php echo $industry['Industry']['catorder'];?>&type=n" alt="" /><br/>
             </p>
