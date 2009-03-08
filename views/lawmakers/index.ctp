@@ -9,6 +9,27 @@
 <p>Here we're tracking each member's voting records, FEC reports, Campaign Finance summary, their opinions on the issues, and even their state's federal spending reports. </p>
 <p><h2>Browse  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> profiles</h2></p>
 
+<p style="margin-top:15px">
+View by letter: 
+<?php
+$letters = range('a','z');
+foreach($letters as $letter) {
+    echo '<span style="padding:1px;font-size:16px;"><a href="'.Router::url('/lawmakers/browse/letter/'.strtoupper($letter)).'" title="'.strtoupper($letter).'"><strong>'.strtoupper($letter).'</a></strong></span>';
+}
+?>
+</p>
+<p>
+<h2>Top 100</h2>
+<strong>...see who's has</strong>:<br/> 
+the most bills <a href="<?php echo Router::url('/lawmakers/top/enacted'); ?>" title="Top 100 Lawmakers to Enact Laws">enacted</a>,  
+the most <a href="<?php echo Router::url('/lawmakers/top/novote'); ?>" title="Top 100 Lawmakers with the most No Votes">novotes</a>, 
+and <a href="<?php echo Router::url('/lawmakers/top/cosponsored'); ?>" title="Top 100 Lawmakers who co-sponsored the most Bills">co-sponsored</a> the most bills...<br/>
+</p>
+
+<p style="margin-top:15px;"><strong> some of our members are <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
+
+<p style="margin-top:15px;"><strong> some of our members are <a href="<?php echo Router::url('/lawmakers_with_youtube_channel'); ?>">using youtube</a></strong></p>
+
 <p>
 <h3>In the state of <?php echo $current_webuser->region; ?> the lawmakers are:</h3>
 <p>
@@ -37,14 +58,7 @@ foreach ($current_congress as $current) {
 </p>
 
 <p></p>
-<p>
-<h2>Top 100</h2>
-<strong>...see who's had</strong>:<br/> 
-the most bills <a href="<?php echo Router::url('/lawmakers/top/enacted'); ?>" title="Top 100 Lawmakers to Enact Laws">enacted</a>,  
-the most <a href="<?php echo Router::url('/lawmakers/top/novote'); ?>" title="Top 100 Lawmakers with the most No Votes">novotes</a>, 
-and <a href="<?php echo Router::url('/lawmakers/top/cosponsored'); ?>" title="Top 100 Lawmakers who co-sponsored the most Bills">co-sponsored</a> the most bills...<br/>
-</p>
-<p><h2>YouTube Stream</h2></p>
+<p><h2>Whitehouse YouTube Stream</h2></p>
 <p>
 <?php
 foreach($videos as $yt_username) {
@@ -55,70 +69,6 @@ foreach($videos as $yt_username) {
 ?>
 </p>
 
-<?php
-/*
-        echo '<p>';
-        echo '<strong>Federal Spending ' . $fedSpending->data->record->attributes()->description .': '. $current_webuser->region.' </strong><br/><br/>';
-        echo 'Total Obligated Amount: $' . number_format($fedSpending->data->record->totals->total_ObligatedAmount, 2) . "<br/>";
-        echo 'Rank Among states: ' . $fedSpending->data->record->totals->rank_among_states . "<br/>";
-        echo 'Number of Contractors: ' . number_format($fedSpending->data->record->totals->number_of_contractors) . "<br/>";
-        echo 'Number of Transactions: ' . number_format($fedSpending->data->record->totals->number_of_transactions) . "<br/>";
-        echo '</p>';
-        
-        echo '<p>';
-        echo '<strong>'.$fedSpending->data->record->top_known_congressional_districts->attributes()->description ."</strong><br/><br/>";
-        foreach($fedSpending->data->record->top_known_congressional_districts->congressional_district as $_district) {
-            echo $_district ."<br/>";
-        }
-        echo '</p>';
-
-        echo '<p>';
-        echo '<strong>Top products or services sold</strong>'."<br/><br/>";
-        foreach($fedSpending->data->record->top_products_or_services_sold->product_or_service_category as $_prodsrv) {
-            echo  $_prodsrv . "<br/>";
-        }
-        echo '</p>';
-
-        echo '<p>';
-        echo '<strong>Top contracting agencies</strong>'."<br/><br/>";
-        foreach($fedSpending->data->record->top_contracting_agencies->agency as $_agency) {
-            echo  $_agency . "<br/>";
-        }
-        echo '</p>';
-        
-        echo '<p>';
-        echo '<strong>Top contractor parent companies</strong>'."<br/><br/>";
-        foreach($fedSpending->data->record->top_contractor_parent_companies->contractor_parent_company as $_parent_comp) {
-            echo  $_parent_comp . "<br/>";
-        }
-        echo '</p>';
-        
-        echo '<p>';
-        echo '<strong>Total obligated amount in dollars by year</strong>'."<br/><br/>";
-        $i=0;
-        foreach($fedSpending->data->record->fiscal_years->fiscal_year as $_total_dollars) {
-            echo 'Fical Year 200'.$i .': $'. number_format($_total_dollars) ."<br/>";
-            $i++;
-        }
-        echo '</p>';
-
-*/
-
-?>
-</p>
-
-<!--
-<h3>About..</h3>
--->
-<p><strong> some of our members are <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
-<p>
-<?php
-//$letters = range('a','z');
-//foreach($letters as $letter) {
-//    echo '<span style="padding:1px;font-size:16px;"><a href="'.Router::url('/lawmakers/browse/letter/'.strtoupper($letter)).'" title="'.strtoupper($letter).'"><strong>'.strtoupper($letter).'</a></strong></span>';
-//}
-?>
-</p>
 
 
 </div>

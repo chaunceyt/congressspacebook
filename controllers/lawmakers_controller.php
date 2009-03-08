@@ -12,6 +12,7 @@ class LawmakersController extends AppController {
         $this->Auth->allowedActions = array('index', 
                                             'browse', 
                                             'lawmakers_with_twitter_accounts', 
+                                            'lawmakers_with_youtube_channel', 
                                             'view', 
                                             'campaign_cost',
                                             'industry_by_race',
@@ -43,11 +44,11 @@ class LawmakersController extends AppController {
         $state = strtolower($webuser->region);
         
         /* get congress members by state: cache since data isn't going to change*/
-        $current_congress_key = md5('current_congress_key_'.$state);
-        if(!$current_congress = $_cache->load($current_congress_key)) {
+        //$current_congress_key = md5('current_congress_key_'.$state);
+        //if(!$current_congress = $_cache->load($current_congress_key)) {
             $current_congress = $this->Lawmaker->getCongressMembersByState($state);
-            $_cache->save($current_congress, $current_congress_key, array(), (86400*3));
-        }
+          //  $_cache->save($current_congress, $current_congress_key, array(), (86400*3));
+        //}
         $this->set('current_congress', $current_congress);
 
         /* cache support built into fedspending component */
@@ -123,11 +124,20 @@ class LawmakersController extends AppController {
     public function lawmakers_with_twitter_accounts() 
     {
         $this->pageTitle = 'Lawmakers using twitter';
+        $this->paginate['Lawmaker'] = array('limit' => '28' );
+        $this->paginate['Lawmaker']['conditions'] = "twitter_id != ' '";
         $this->Lawmaker->recursive = 0;
-        //$conditions = array('twitter_id' ));
-        $conditions = array('conditions' => "twitter_id != ' '" ); 
-        //$conditions = array('Lawmaker.twitter_id != ' => $conditions);
-        $this->set('lawmakers', $this->Lawmaker->find('all', $conditions));
+        $this->set('lawmakers', $this->paginate());
+    }
+
+    public function lawmakers_with_youtube_channel() 
+    {
+
+        $this->pageTitle = 'Lawmakers using Youtube';
+        $this->paginate['Lawmaker'] = array('limit' => '28' );
+        $this->paginate['Lawmaker']['conditions'] = "youtube_url != ' '";
+        $this->Lawmaker->recursive = 0;
+        $this->set('lawmakers', $this->paginate());
     }
 
     function view($id=null) 
