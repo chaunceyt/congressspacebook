@@ -42,7 +42,7 @@ class SunlightlabsComponent extends Object
 
     public function getZipsFromDistrict($state, $district, $type = 'json')
     {
-        $method = 'districts.getZipsFromDistrict.json?state='.$state.'&district='.$district;
+        $method = 'districts.getZipsFromDistrict.json?state='.$state.'&district='.$district.'&'. $this->apikey;
         $resource_url = $this->url.$method;
         $data = @file_get_contents($resource_url);
         if($data) {
@@ -66,7 +66,7 @@ class SunlightlabsComponent extends Object
 
     public function getDistrictsFromZip($zip, $type = 'json')
     {
-        $method = 'districts.getDistrictsFromZip.'.$type.'?zip='.$zip;
+        $method = 'districts.getDistrictsFromZip.'.$type.'?zip='.$zipi.'&'. $this->apikey;
         $resource_url = $this->url.$method;
         $data = @file_get_contents($resource_url);
         if($data) {

@@ -32,6 +32,14 @@ class LawmakersController extends AppController {
 
         //get district of connecting visitor
         $webuser_district = $this->Sunlightlabs->getDistrictFromLatLong($webuser->latitude, $webuser->longitude);
+
+        //$zipcodes=array();
+        //$i=0;
+        //foreach($webuser_district as $district) {
+        //    $zipcodes[] = $this->Sunlightlabs->getZipsFromDistrict($district->districts[$i]->district->state, $district->districts[$i]->district->number);
+        //    $i++;
+        //}
+
         $this->set('webuser_district', $webuser_district);
         //$video_hubs = array('senatorhub','househub','HouseConference');
         $video_hubs = array('whitehouse');
@@ -100,6 +108,7 @@ class LawmakersController extends AppController {
                 switch($by) {
                     case 'state' :
                         $this->paginate['Lawmaker']['conditions'] = "state = '{$value}' AND in_office = '1'";
+                        $this->set('by_state', $value);
                         break;
                     case 'party' :
                         $this->paginate['Lawmaker']['conditions'] = "party = '{$value}' AND in_office = '1'";

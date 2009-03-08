@@ -18,6 +18,9 @@ foreach($letters as $letter) {
 }
 ?>
 </p>
+<p style="margin-top:15px;"><strong> some of our members are <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a>
+and 
+<a href="<?php echo Router::url('/lawmakers_with_youtube_channel'); ?>"> youtube</a></strong></p>
 <p>
 <h2>Top 100</h2>
 <strong>...see who's has</strong>:<br/> 
@@ -26,36 +29,6 @@ the most <a href="<?php echo Router::url('/lawmakers/top/novote'); ?>" title="To
 and <a href="<?php echo Router::url('/lawmakers/top/cosponsored'); ?>" title="Top 100 Lawmakers who co-sponsored the most Bills">co-sponsored</a> the most bills...<br/>
 </p>
 
-<p style="margin-top:15px;"><strong> some of our members are <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a></strong></p>
-
-<p style="margin-top:15px;"><strong> some of our members are <a href="<?php echo Router::url('/lawmakers_with_youtube_channel'); ?>">using youtube</a></strong></p>
-
-<p>
-<h3>In the state of <?php echo $current_webuser->region; ?> the lawmakers are:</h3>
-<p>
-<?php
-$i=0;
-foreach ($current_congress as $current) {
-    $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
-
-?>
-        <span><a class="url" rel="me" href="<?php echo Router::url('/profiles/'.$current['lawmaker']['username']); ?>" title="<?php echo $fullname;?>">
-            <?php
-                    $path_to_image = APP .'webroot' . DS .'img' . DS . 'lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg';
-                    if(file_exists($path_to_image)) {
-            ?>
-        <img src="<?php echo Router::url('/img/lawmakers/40x50/'.$current['lawmaker']['bioguide_id'].'.jpg'); ?>" alt="" border="0" />
-            <?php } else {  ?>
-                <img src="<?php echo Router::url('/img/no_profile_img.jpg'); ?>" alt="" border="0" width="40" height="50"/>
-
-            <?php } ?>
-        </a></span>
-
-<?php
-    }
-?>
-</p>
-</p>
 
 <p></p>
 <p><h2>Whitehouse YouTube Stream</h2></p>
@@ -75,7 +48,8 @@ foreach($videos as $yt_username) {
 
 <div id="homepage_left">
 <h2>You are from: <?php echo $current_webuser->region; ?> </h2>
-<p><a style="hover:none;" href="<?php echo Router::url('/nearby/lawmakers'); ?>"><img src="<?php echo Router::url('/'); ?>img/states/<?php echo strtolower($current_webuser->region); ?>.png" alt="default" border="0" /></p></a>
+<p><a style="hover:none;" href="<?php echo Router::url('/nearby/lawmakers'); ?>">
+<img src="<?php echo Router::url('/'); ?>img/states/<?php echo strtolower($current_webuser->region); ?>.png" alt="default" border="0" /></p></a>
 <h3>Browse other states</h3>
 <?php
     $max_size = 250; // max font size in %

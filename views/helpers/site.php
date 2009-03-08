@@ -77,6 +77,7 @@ class SiteHelper extends Helper
             $rss = @simplexml_load_file($site);
             $entries = 10;
             if (!empty($rss)) {
+                
                 $title = $rss->channel[0]->title[0];
                 $url = $rss->channel[0]->link[0];
                 $desc = $rss->channel[0]->description[0];

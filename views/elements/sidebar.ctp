@@ -51,6 +51,12 @@
                     <li><a href="<?php echo Router::url('/industries'); ?>"><img src="<?php echo Router::url('/'); ?>img/lobbyist_at_work.jpg" alt="Their Clients" border="0"/></a></li>
                 </ul>
                 </p>
+                <p>
+                <?php
+                if(isset($by_state)) { ?>
+                    <img src="<?php echo Router::url('/'); ?>img/states/<?php echo strtolower($by_state); ?>.png" alt="default" border="0" width="150px" height="137px"/>
+                <?php } ?>
+                </p>
 
                 Congress referenced :<br/>
                 <strong><em><?php echo $keyword; ?></em></strong> -
@@ -71,6 +77,11 @@
                     echo $bookmark->getBookMarks($bookmark_str);
                  ?>
 
+            </li>
+            <li>
+            <pre>
+            <?php print_r($webuser_district); ?>
+            </pre>
             </li>
         </ul>
         <div style="clear: both; height: 40px;">&nbsp;</div>
