@@ -78,11 +78,6 @@
                  ?>
 
             </li>
-            <li>
-            <pre>
-            <?php print_r($webuser_district); ?>
-            </pre>
-            </li>
         </ul>
         <div style="clear: both; height: 40px;">&nbsp;</div>
 
