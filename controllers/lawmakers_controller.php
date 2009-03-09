@@ -1,12 +1,63 @@
 <?php
-class LawmakersController extends AppController {
+/**
+ * File used as photos controller
+ *
+ * Contains actions for photos controller
+ *
+ * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
 
+class LawmakersController extends AppController {
+    /**
+     * Property used to store name of controller
+     *
+     * @access public
+     * @var string Name of controller
+     */
     var $name = 'Lawmakers';
+
+    /**
+     * Property used to store list of components used by this controller's actions
+     *
+     * @access public
+     * @var string List of components used by this controller's actions
+     */    
     var $components = array('Opensecrets', 'Fedspending', 'Zend', 'Govtrack', 'Sunlightlabs');
+
+    /**
+     * Property used to store list of helpers used by this controller's actions' views
+     *
+     * @access public
+     * @var string List of helpers used by this controller's actions' views
+     */
     var $helpers = array('Html', 'Form', 'Javascript', 'Govtrack', 'Repstats');
+
+    /**
+     * Property used to store list of Models used by this controller's actions
+     *
+     * @access public
+     * @var string List of models used by this controller's actions' views
+     */
     var $uses = array('Lawmaker', 'LawmakerStats');
+
+
+    /**
+     * Method called automatically before each action execution
+     *
+     * @access publied to store view of controller
+     *
+     * @access public
+     * @var string cache object holder for controller
+     */
     public $_cache = null;
 
+    /**
+     * Method called automatically before each action execution
+     *
+     * @access public
+     */
     function beforeFilter()
     {
         $this->Auth->allowedActions = array('index', 
@@ -23,6 +74,11 @@ class LawmakersController extends AppController {
         parent::beforeFilter();
     }
 
+    /**
+     * Method used to get data used on main landing page of site 
+     *
+     * @access public
+     */
     function index() 
     {
         $webuser = $this->Session->read('current_webuser');
@@ -92,6 +148,14 @@ class LawmakersController extends AppController {
         $this->set('lawmakers', $this->paginate());
     }
 
+    /**
+     * Method used to browse 
+     *
+     * @access public
+     * @param string $by we're looking for state, party, letter, house, senate
+     * @param string $value the value 
+     */
+
     function browse($by=null, $value=null) 
     {
         $this->pageTitle = 'Browsing profiles by '.ucfirst($by).' '.$value;
@@ -130,6 +194,11 @@ class LawmakersController extends AppController {
         $this->set('lawmakers', $this->paginate());
     }
 
+    /**
+     * Method used to get congress person using twitter 
+     *
+     * @access public
+     */
     public function lawmakers_with_twitter_accounts() 
     {
         $this->pageTitle = 'Lawmakers using twitter';
@@ -139,6 +208,11 @@ class LawmakersController extends AppController {
         $this->set('lawmakers', $this->paginate());
     }
 
+    /**
+     * Method used to get congress person using youtube
+     *
+     * @access public
+     */
     public function lawmakers_with_youtube_channel() 
     {
 
@@ -149,6 +223,13 @@ class LawmakersController extends AppController {
         $this->set('lawmakers', $this->paginate());
     }
 
+    /**
+     * Method used to get data for congress persons profile page
+     *
+     * @access public
+     * @param  int $id not used
+     * @param string username via $this->params['username']
+     */
     function view($id=null) 
     {
         if(!isset($this->params['username'])) {
@@ -275,6 +356,11 @@ class LawmakersController extends AppController {
         $this->set('lawmaker', $lawmaker);
     }
 
+    /**
+     * Method used to get content of bill 
+     *
+     * @access public
+     */
     function bill($id=null)
     {
         $this->pageTitle = str_replace('_', ' ',$this->params['username']) . ' [ Bill: ' . str_replace('-', ' ', $id). ']';
@@ -298,6 +384,11 @@ class LawmakersController extends AppController {
 
     }
 
+    /**
+     * Method used to get data handle search by redirecting to browse method 
+     *
+     * @access public
+     */
     function search()
     {
         if(!empty($this->data)){
@@ -307,6 +398,11 @@ class LawmakersController extends AppController {
         }        
     }
 
+    /**
+     * Method used to get data for top congress persons with most cosponsored, enacted, etc bills
+     *
+     * @access public
+     */
     function top($type=null)
     {
     
@@ -345,6 +441,7 @@ class LawmakersController extends AppController {
     {
     }
 
+    /* TODO: remove code below since we won't be adding, editing data */
     function add() {
         if (!empty($this->data)) {
             $this->Lawmaker->create();
