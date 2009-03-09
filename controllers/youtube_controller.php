@@ -1,19 +1,72 @@
 <?php
+/**
+ * File used as youtube controller
+ *
+ * Contains actions for youtube controller
+ *
+ * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
 
-class YoutubeController extends AppController {
+/**
+ * Controller class containing youtube controller's actions
+ *
+ * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
 
+class YoutubeController extends AppController 
+{
+
+    /**
+     * Property used to store name of controller
+     *
+     * @access public
+     * @var string Name of controller
+     */
     var $name = 'Youtube';
+
+    /**
+     * Property used to store list of helpers used by this controller's actions' views
+     *
+     * @access public
+     * @var string List of helpers used by this controller's actions' views
+     */
     var $helpers = array('Html', 'Form', 'Javascript');
+
+    /**
+     * Property used to store list of components used by this controller's actions
+     *
+     * @access public
+     * @var string List of components used by this controller's actions
+     */    
     var $components = array('Zend', 'Mashup');
+
+    /**
+     * Property used to disable model usage for this controller's actions
+     *
+     * @access public
+     */
     var $uses = array();
 
+    /**
+     * Method called automatically before each action execution
+     *
+     * @access public
+     */
     function beforeFilter()
     {
         $this->Auth->allowedActions = array('index', 'video');
         parent::beforeFilter();
     }
 
-
+    /**
+     * Method used to get videos related to keyword passed via $this->params['keyword']
+     *
+     * @access public
+     */
     function index()
     {
         $keyword = $this->params['keyword'];
@@ -66,6 +119,12 @@ class YoutubeController extends AppController {
         $this->set('YoutubeSearch', $youtubeSearch);
     }
 
+    /**
+     * Method used to data related to selected video id
+     *
+     * @access public
+     * @param string $params['id'] youtube video id
+     */
     function video()
     {
         $videoId = $this->params['id'];
@@ -81,8 +140,6 @@ class YoutubeController extends AppController {
         $this->set('viewCount', $entry->statistics->viewCount);
         $this->set('rating', $entry->rating->average);
         $this->set('numRaters', $entry->rating->numRaters);
-
-
 
         /* Get related Videos */
         $ytQuery = $yt->newVideoQuery();

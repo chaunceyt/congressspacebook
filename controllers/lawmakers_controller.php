@@ -1,14 +1,21 @@
 <?php
 /**
- * File used as photos controller
+ * File used as lawmakers controller
  *
- * Contains actions for photos controller
+ * Contains actions for lawmakers controller
  *
  * @author Chauncey Thorn <chaunceyt@gmail.com>
  * @version 1.0
  * @package CongressSpacebook.com
  */
 
+/**
+ * Controller class containing lawmakers controller's actions
+ *
+ * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
 class LawmakersController extends AppController {
     /**
      * Property used to store name of controller
