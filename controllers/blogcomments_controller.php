@@ -1,6 +1,24 @@
 <?php
+/**
+ * File used as application controller
+ *
+ * Contains actions for application controller
+ *
+ * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
 
-class BlogcommentsController extends AppController {
+/**
+ * Controller class containing application controller's actions
+ *
+  * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
+
+class BlogcommentsController extends AppController 
+{
 
     var $name = 'Blogcomments';
     var $helpers = array('Html', 'Form');

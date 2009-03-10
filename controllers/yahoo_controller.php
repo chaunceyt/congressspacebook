@@ -1,4 +1,21 @@
 <?php
+/**
+ * File used as application controller
+ *
+ * Contains actions for application controller
+ *
+ * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
+
+/**
+ * Controller class containing application controller's actions
+ *
+  * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
 
 class YahooController extends AppController 
 {
@@ -30,7 +47,7 @@ class YahooController extends AppController
      * Property used to store list of models used by this controller's actions
      *
      * @access public
-     * @var string List of components used by this controller's actions
+     * @var string List of models used by this controller's actions
      */
     var $uses = array();
 
