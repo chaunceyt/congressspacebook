@@ -1,5 +1,23 @@
 <?php
-class Govtrack extends AppModel {
+/**
+ * File used as application model
+ *
+ * Contains methods for application model
+ *
+ * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
+
+/**
+ * Model class 
+ *
+  * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
+class Govtrack extends AppModel 
+{
 
     var $name = 'Govtrack';
     var $useTable = false;
