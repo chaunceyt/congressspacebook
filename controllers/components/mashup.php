@@ -1,4 +1,21 @@
 <?php
+/**
+ * File used as application component
+ *
+ * Contains methods for application 
+ *
+ * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
+
+/**
+ * Component class 
+ *
+  * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
 //@todo explain what each method does in doc style comments
 class MashupComponent extends Object
 {

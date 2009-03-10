@@ -1,5 +1,21 @@
 <?php
+/**
+ * File used as application component
+ *
+ * Contains methods for application 
+ *
+ * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
 
+/**
+ * Component class 
+ *
+  * @author Chauncey Thorn <chaunceyt@gmail.com>
+ * @version 1.0
+ * @package CongressSpacebook.com
+ */
 class FollowTheMoneyBallotMeasureComponent extends Object
 {
     protected $apikey = 'b699328758f1d96c705ea395c9ab46e5';
