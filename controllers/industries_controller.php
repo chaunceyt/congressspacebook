@@ -20,7 +20,27 @@
 class IndustriesController extends AppController {
 
 	var $name = 'Industries';
-	var $helpers = array('Html', 'Form');
+    /**
+     * Property used to store list of helpers used by this controller's actions' views
+     *
+     * @access public
+     * @var string List of helpers used by this controller's actions' views
+     */
+    var $helpers = array('Html', 'Form');
+
+    /**
+     * Property used to store list of components used by this controller's actions
+     *
+     * @access public
+     * @var string List of components used by this controller's actions
+     */
+    var $components = array('Zend', 'Mashup');
+
+    /**
+     * Method called automatically before each action execution
+     *
+     * @access public
+     */
 
     function beforeFilter()
     {
