@@ -1,0 +1,21 @@
+Download the latest version of CakePHP
+
+unzip cake_1.2.1.8004.zip
+mv cake_1.2.1.8004 <foldername>
+
+git clone git://github.com/chaunceyt/mashupkeyword.git
+
+edit index.php
+change APP_DIR from app to mashupkeyword
+define('APP_DIR', 'mashupkeyword');
+
+Set the tmp path
+define('TMP', 'app' . DS .'tmp');
+
+cd <foldername>/app
+chgrp -R apache tmp
+chmod -R g+w tmp
+cd ..
+
+
+
