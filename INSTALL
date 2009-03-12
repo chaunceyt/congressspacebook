@@ -17,5 +17,23 @@ chgrp -R apache tmp
 chmod -R g+w tmp
 cd ..
 
+create database
+mysqladmin create congressDB -ur<username> -p
 
+import database data
+mysql congressDB < mashupkeyword/config/db/congressDB-install.sql -u<username> -p
+
+edit mashupkeyword/config/database.php
+
+example settings:
+
+        var $default = array(
+                'driver' => 'mysql',
+                'persistent' => false,
+                'host' => 'localhost',
+                'login' => 'username',
+                'password' => 'password',
+                'database' => 'congressDB',
+                'prefix' => '',
+        );
 
