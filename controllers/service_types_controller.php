@@ -23,11 +23,24 @@ class ServiceTypesController extends AppController {
 	var $name = 'ServiceTypes';
 	var $helpers = array('Html', 'Form');
 
+    /**
+     * index 
+     * 
+     * @access public
+     * @return void
+     */
 	function index() {
 		$this->ServiceType->recursive = 0;
 		$this->set('serviceTypes', $this->paginate());
 	}
 
+    /**
+     * view 
+     * 
+     * @param mixed $id 
+     * @access public
+     * @return void
+     */
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid ServiceType.', true));
@@ -36,6 +49,12 @@ class ServiceTypesController extends AppController {
 		$this->set('serviceType', $this->ServiceType->read(null, $id));
 	}
 
+    /**
+     * add 
+     * 
+     * @access public
+     * @return void
+     */
 	function add() {
 		if (!empty($this->data)) {
 			$this->ServiceType->create();
@@ -48,6 +67,13 @@ class ServiceTypesController extends AppController {
 		}
 	}
 
+    /**
+     * edit 
+     * 
+     * @param mixed $id 
+     * @access public
+     * @return void
+     */
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid ServiceType', true));
@@ -66,6 +92,13 @@ class ServiceTypesController extends AppController {
 		}
 	}
 
+    /**
+     * delete 
+     * 
+     * @param mixed $id 
+     * @access public
+     * @return void
+     */
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for ServiceType', true));

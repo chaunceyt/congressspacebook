@@ -17,10 +17,20 @@
  * @package CongressSpacebook.com
  */
 //url: http://api.followthemoney.org/method.php?key= &params
+//FIXME: complete methods - 03122009 
 class FollowTheMoneyPartyPacsComponent extends Object
 {
     protected $apikey = 'b699328758f1d96c705ea395c9ab46e5';
 
+    /**
+     * committeesBusinesses 
+     * 
+     * @param mixed $imsp_candidate_id 
+     * @param mixed $page 
+     * @param array $sort 
+     * @access public
+     * @return void
+     */
     public function committeesBusinesses($imsp_candidate_id, $page, $sort = array())
     {
         if(is_array($sort) && sizeof($sort) > 0) {
@@ -39,6 +49,15 @@ class FollowTheMoneyPartyPacsComponent extends Object
         
     }
 
+    /**
+     * committeesIndustries 
+     * 
+     * @param mixed $imsp_candidate_id 
+     * @param mixed $page 
+     * @param array $sort 
+     * @access public
+     * @return void
+     */
     public function committeesIndustries($imsp_candidate_id, $page=null, $sort = array())
     {
         if(is_array($sort) && sizeof($sort) > 0) {
@@ -57,6 +76,9 @@ class FollowTheMoneyPartyPacsComponent extends Object
         
     }
     
+    /**
+     *  
+     */
     public function committeesList($state=null, 
                                     $year=null, 
                                     $office=null, 
@@ -83,6 +105,15 @@ class FollowTheMoneyPartyPacsComponent extends Object
         
     }
 
+    /**
+     * committeesSectors 
+     * 
+     * @param mixed $imsp_candidate_id 
+     * @param mixed $page 
+     * @param array $sort 
+     * @access public
+     * @return void
+     */
     public function committeesSectors($imsp_candidate_id, $page, $sort = array())
     {
         if(is_array($sort) && sizeof($sort) > 0) {
@@ -102,6 +133,14 @@ class FollowTheMoneyPartyPacsComponent extends Object
     }
     
     //this is really ugly...
+    /**
+     * committeesTopContributors 
+     * 
+     * @param mixed $imsp_candidate_id 
+     * @param mixed $msp_industry_code 
+     * @access public
+     * @return void
+     */
     public function committeesTopContributors($imsp_candidate_id, $msp_industry_code)
     {
         if(is_array($sort) && sizeof($sort) > 0) {

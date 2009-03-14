@@ -3,6 +3,9 @@ class FollowTheMoneyNameSearchComponent extends Object
 {
     protected $apikey = 'b699328758f1d96c705ea395c9ab46e5';
 
+    /**
+     * contributorsNameSearch 
+     */
     public function contributorsNameSearch($imsp_candidate_id,
                                             $contributor_name=null,
                                             $contributor_city=null,

@@ -21,6 +21,15 @@ class FollowTheMoneyCandidatesComponent extends Object
 {
     protected $apikey = 'b699328758f1d96c705ea395c9ab46e5';
 
+    /**
+     * candidatesBusinesses 
+     * 
+     * @param mixed $imsp_candidate_id 
+     * @param mixed $page 
+     * @param array $sort 
+     * @access public
+     * @return void
+     */
     public function candidatesBusinesses($imsp_candidate_id, $page, $sort = array())
     {
         if(is_array($sort) && sizeof($sort) > 0) {
@@ -39,6 +48,15 @@ class FollowTheMoneyCandidatesComponent extends Object
         
     }
 
+    /**
+     * candidatesIndustries 
+     * 
+     * @param mixed $imsp_candidate_id 
+     * @param mixed $page 
+     * @param array $sort 
+     * @access public
+     * @return void
+     */
     public function candidatesIndustries($imsp_candidate_id, $page=null, $sort = array())
     {
         if(is_array($sort) && sizeof($sort) > 0) {
@@ -57,6 +75,9 @@ class FollowTheMoneyCandidatesComponent extends Object
         
     }
     
+    /**
+     *  
+     */
     public function candidatesiList($state=null, 
                                     $year=null, 
                                     $office=null, 
@@ -83,6 +104,15 @@ class FollowTheMoneyCandidatesComponent extends Object
         
     }
 
+    /**
+     * candidatesSectors 
+     * 
+     * @param mixed $imsp_candidate_id 
+     * @param mixed $page 
+     * @param array $sort 
+     * @access public
+     * @return void
+     */
     public function candidatesSectors($imsp_candidate_id, $page, $sort = array())
     {
         if(is_array($sort) && sizeof($sort) > 0) {
@@ -102,6 +132,14 @@ class FollowTheMoneyCandidatesComponent extends Object
     }
     
     //this is really ugly...
+    /**
+     * candidatesTopContributors 
+     * 
+     * @param mixed $imsp_candidate_id 
+     * @param mixed $msp_industry_code 
+     * @access public
+     * @return void
+     */
     public function candidatesTopContributors($imsp_candidate_id, $msp_industry_code)
     {
         if(is_array($sort) && sizeof($sort) > 0) {
