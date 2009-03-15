@@ -2,7 +2,7 @@
     <div class="post">
         <div class="entry" style="padding-left:90px;">
 
-<h2><?php __('Congress Bills Blog');?></h2>
+<h2><?php __('Congress Bills');?></h2>
 <div class="paging">
 	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
  | 	<?php echo $paginator->numbers();?>
@@ -24,15 +24,16 @@ foreach ($congressBills as $congressBill):
 ?>
  <div class="blogDetails">
 
-		<h3>
+		<p>
+        <strong>
         <?php echo $congressBill['CongressBill']['bill_title']; ?>
-        </h3>
+        </strong><br/>
+			<?php echo $congressBill['CongressBill']['bill_official_title']; ?><br/>
+	    <?php echo ucfirst($congressBill['CongressBill']['bill_status']); ?> - 
+        <?php echo $time->nice($congressBill['CongressBill']['bill_last_action']); ?><br/> 
         </p>
-		<p class="byline">	
-	    <?php echo $congressBill['CongressBill']['bill_status']; ?> - 
-        <?php echo $time->niceShort($congressBill['CongressBill']['bill_last_action']); ?> 
+		<p>	
         </p>
-			<?php echo $congressBill['CongressBill']['bill_official_title']; ?>
     </div>
 <?php endforeach; ?>
 </div>
