@@ -39,7 +39,7 @@ $_year_ = date("Y")-1;
             <?php } ?>
     
     <br/>
-			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<?php echo $lawmaker['Lawmaker']['district']; ?>
+			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<a href="<?php echo Router::url('/district/'.$lawmaker['Lawmaker']['state'].'/'.$lawmaker['Lawmaker']['district']); ?>"><?php echo $lawmaker['Lawmaker']['district']; ?></a>
             </p>
          <p><strong>Information</strong></p>   
             <?php

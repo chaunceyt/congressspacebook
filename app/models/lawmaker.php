@@ -186,6 +186,13 @@ class Lawmaker extends AppModel {
         $results = $this->query($sql);
         return $results;
     }
+    
+    public function getProfileByGovtrackId($govtrack_id) 
+    {
+        $sql = "select * from lawmakers as Lawmaker where govtrack_id  = '".$govtrack_id."'";
+        $results = $this->query($sql);
+        return $results;
+    }
                 
 }
 ?>

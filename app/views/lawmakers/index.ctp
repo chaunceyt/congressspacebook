@@ -1,4 +1,4 @@
-            
+<!--- Development -->            
 <div id="content">
     <div class="post">
         <div class="entry">
@@ -7,6 +7,13 @@
 <h1> CongressSpacebook</h1>
 <h2>...striving to make Congress more accountable and transparent...</h2>
 <p>Here we're tracking each member's voting records, FEC reports, Campaign Finance summary, their opinions on the issues, and even their state's federal spending reports. </p>
+
+<p>
+Browse Congressional <a href="<?php echo Router::url('/congressional_reports/'); ?>">Record</a>
+<a href="<?php echo Router::url('/congress_votes/'); ?>">votes</a> or 
+<a href="<?php echo Router::url('/congress_bills/'); ?>">bills</a>
+</p>
+
 <p><h2>Browse  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> profiles</h2></p>
 
 <p style="margin-top:15px">

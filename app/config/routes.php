@@ -40,6 +40,7 @@
     Router::connect('/industries/:query/*', array('controller' => 'industries', 'action' => 'index'));
     Router::connect('/lobbyist/:client/*', array('controller' => 'lobbyists_filings', 'action' => 'index'));
     //Router::connect('/lawmakers/view', array('controller' => 'lawmakers', 'action' => 'view'));
+
     Router::connect('/profiles/:username/accounts/submit_account', array('controller' => 'accounts', 'action' => 'add'));
     Router::connect('/profiles/:username/:page', array('controller' => 'lawmakers', 'action' => 'view'));
     Router::connect('/profiles/:username/bill/*', array('controller' => 'lawmakers', 'action' => 'bill'));
@@ -91,6 +92,8 @@
     //Technorati - blog posts
     Router::connect('/technorati/:keyword', array('controller' => 'technorati', 'action' => 'index'));
 	
+	//District
+    Router::connect('/district/*', array('controller' => 'district', 'action' => 'index'));
 
 /**
  * ...and connect the rest of 'Pages' controller's urls.
