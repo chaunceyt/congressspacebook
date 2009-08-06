@@ -66,6 +66,7 @@ if(isset($google_social)) {
                         echo 'Nothing found here';
                     }
 
+                /*
                 echo '<h2>@'.$username.': </h2>';
                 if(isset($TwitterSearchRef->results)) {
                     foreach($TwitterSearchRef->results as $res) {
@@ -81,9 +82,11 @@ if(isset($google_social)) {
                         ';
                     }
                 }
+                
                 else {
                     echo 'Nothing found here';
                 }
+                */
 
                 }
                 
@@ -94,7 +97,7 @@ if(isset($google_social)) {
                     echo $weblink['attributes']['rss'] ."<br/>";
                     $mashup->RssFeed($rss_link);
                 }
-
+                /*
                 if(isset($weblink['nodes_referenced']) && sizeof($weblink['nodes_referenced']) > 0) {
                     echo '<p><strong>Made Reference to: </strong></p>';
                     foreach($weblink['nodes_referenced'] as $key => $type) { 
@@ -121,7 +124,7 @@ if(isset($google_social)) {
                         }
 
                     }
-                }
+                }*/
             //}
         }
         //echo '<pre>';

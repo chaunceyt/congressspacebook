@@ -112,9 +112,10 @@ class Lawmaker extends AppModel {
     {
         $sql = "select id from lawmakers where username = '".$profile_name."'";
         $results = $this->query($sql);
+        //commented out - prevent easy update of lawmakers
         //since we're getting the id we must be viewing it. update views.
-        $update_views_sql = "update lawmakers set views = views + 1  where id = '".$results[0]['lawmakers']['id']."'";
-        $this->query($update_views_sql);
+        //$update_views_sql = "update lawmakers set views = views + 1  where id = '".$results[0]['lawmakers']['id']."'";
+        //$this->query($update_views_sql);
         return $results[0]['lawmakers']['id'];
     }
     public function stateTagCloud()
@@ -190,6 +191,21 @@ class Lawmaker extends AppModel {
     public function getProfileByGovtrackId($govtrack_id) 
     {
         $sql = "select * from lawmakers as Lawmaker where govtrack_id  = '".$govtrack_id."'";
+        $results = $this->query($sql);
+        return $results;
+    }
+
+    public function getPresident()
+    {
+        $sql = "select * from lawmakers as Lawmaker where firstname = 'Barack' AND lastname = 'Obama'";
+        $results = $this->query($sql);
+        return $results;
+    }
+
+    public function getDistrictsByState($state)
+    {
+        $sql = "select state, district from lawmakers as Lawmaker where state = '".$state."' AND district NOT IN ('Senior Seat', 'Junior Seat')
+            GROUP BY district";
         $results = $this->query($sql);
         return $results;
     }

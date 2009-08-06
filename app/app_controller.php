@@ -68,34 +68,34 @@ class AppController extends Controller
             $keyword = $this->params['keyword'];
             $this->set('keyword', $keyword);
             
-            $captial_words_today_url = 'http://www.capitolwords.org/api/word/'.$keyword.'/2008/feed.json';
-            $data = @file_get_contents($captial_words_today_url);
-            $results = $json->decode($data);
+            //$captial_words_today_url = 'http://www.capitolwords.org/api/word/'.$keyword.'/2008/feed.json';
+            //$data = @file_get_contents($captial_words_today_url);
+            //$results = $json->decode($data);
               
-            $_wordused=0;
-            foreach($results as $result) {
-                $_wordused += $result->word_count;
-            }
+            //$_wordused=0;
+            //foreach($results as $result) {
+            //    $_wordused += $result->word_count;
+            //}
 
-            $this->set('wordused', $_wordused);
+            //$this->set('wordused', $_wordused);
         }
         else if(isset($this->params['username'])) {
             $keyword = str_replace('_', ' ', $this->params['username']);
             $this->set('keyword', $keyword);
             $this->set('username', $this->params['username']);
 
-            $captial_words_today_url = 'http://www.capitolwords.org/api/word/'.$keyword.'/2008/feed.json';
-            $data = @file_get_contents($captial_words_today_url);
+            //$captial_words_today_url = 'http://www.capitolwords.org/api/word/'.$keyword.'/2008/feed.json';
+            //$data = @file_get_contents($captial_words_today_url);
 
-            $results = $json->decode($data);
-            $_wordused=0;
+            //$results = $json->decode($data);
+            //$_wordused=0;
             
-            if($results) {
-                foreach($results as $result) {
-                    $_wordused += $result->word_count;
-                }
-            }
-           $this->set('wordused', $_wordused);
+            //if($results) {
+            //    foreach($results as $result) {
+            //       $_wordused += $result->word_count;
+            //   }
+            //}
+           //$this->set('wordused', $_wordused);
 
             
         }
@@ -122,16 +122,16 @@ class AppController extends Controller
                 
                 //need to cache this
                 
-                $captial_words_today_url = 'http://www.capitolwords.org/api/word/'.$_random_keyword.'/2008/feed.json';
-                $data = @file_get_contents($captial_words_today_url);
-                $results = $json->decode($data);
+                //$captial_words_today_url = 'http://www.capitolwords.org/api/word/'.$_random_keyword.'/2008/feed.json';
+                //$data = @file_get_contents($captial_words_today_url);
+               //$results = $json->decode($data);
                 
-                $_wordused=0;
-                foreach($results as $result) {
-                    $_wordused += $result->word_count;
-                }
+                //$_wordused=0;
+                //foreach($results as $result) {
+                //    $_wordused += $result->word_count;
+                //}
 
-                $this->set('wordused', $_wordused);
+                //$this->set('wordused', $_wordused);
                 $this->set('keyword', $_random_keyword);
                
                 /*

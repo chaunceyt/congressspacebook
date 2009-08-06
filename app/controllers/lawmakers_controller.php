@@ -76,7 +76,8 @@ class LawmakersController extends AppController {
                                             'industry_by_race',
                                             'bill',
                                             'top',
-                                            'search'
+                                            'search',
+                                            'testing'
                                             );
         parent::beforeFilter();
     }
@@ -163,7 +164,7 @@ class LawmakersController extends AppController {
      * @param string $value the value 
      */
 
-    function browse($by=null, $value=null) 
+    function browse($by=null, $value=null, $district=null) 
     {
         $this->pageTitle = 'Browsing profiles by '.ucfirst($by).' '.$value;
         $this->Lawmaker->recursive = 0;
@@ -178,8 +179,22 @@ class LawmakersController extends AppController {
             if(isset($by)) { 
                 switch($by) {
                     case 'state' :
-                        $this->paginate['Lawmaker']['conditions'] = "state = '{$value}' AND in_office = '1'";
+                        $getdistricts = $this->Lawmaker->getDistrictsByState($value);
+                        $this->set('districts', $getdistricts);
+                        if(isset($district)) {
+                            $this->paginate['Lawmaker']['conditions'] = "state = '{$value}' AND district IN ({$district}, 'Senior Seat','Junior Seat') AND in_office = '1'";
+                            $this->paginate['Lawmaker']['order'] = 'district DESC';
+                            $president = $this->Lawmaker->getPresident();
+                            $this->set('president', $president);
+                            $this->set('by_district', $district);
+                        }
+                        else {
+                            $this->paginate['Lawmaker']['conditions'] = "state = '{$value}' AND in_office = '1'";
+                        }
                         $this->set('by_state', $value);
+                        
+                        //$this->paginate['Lawmaker']['conditions'] = "state = '{$value}' AND in_office = '1'";
+                        //$this->set('by_state', $value);
                         break;
                     case 'party' :
                         $this->paginate['Lawmaker']['conditions'] = "party = '{$value}' AND in_office = '1'";
@@ -488,6 +503,11 @@ class LawmakersController extends AppController {
             $this->Session->setFlash(__('Lawmaker deleted', true));
             $this->redirect(array('action'=>'index'));
         }
+    }
+
+
+    function testing()
+    {
     }
 
 }

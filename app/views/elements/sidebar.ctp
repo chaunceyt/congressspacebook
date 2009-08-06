@@ -55,13 +55,14 @@
                 <?php
                 if(isset($by_state)) { ?>
                     <img src="<?php echo Router::url('/'); ?>img/states/<?php echo strtolower($by_state); ?>.png" alt="default" border="0" width="150px" height="137px"/>
+                    <!--<p><a href="http://www.tetonpost.com/sc/?sc=<?php echo strtoupper($by_state); ?>&fy=8" target="_blank">Federal Contracts</a></p>-->
                 <?php } ?>
                 </p>
-
+                <!--
                 Congress referenced :<br/>
                 <strong><em><?php echo $keyword; ?></em></strong> -
                 <?php echo number_format($wordused); ?> time(s)<br/> in 2008 <br/>
-                
+                -->
                 <h2>About</h2>
                 <ul>
                     <li><a href="<?php echo Router::url('/pages/about'); ?>">CongressSpaceBook</a></li>
