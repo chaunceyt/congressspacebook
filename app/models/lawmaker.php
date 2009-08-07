@@ -168,12 +168,24 @@ class Lawmaker extends AppModel {
         return $results;
     }
 
-    public function getProfileTopFriends($state, $party, $member, $limit=9) 
+    public function getProfileTopFriends($state, $party, $member, $district='', $limit=9) 
     {
+        /*
         $sql = "select * from lawmakers as lawmaker where state = '".$state."' 
                 and party = '".$party."' 
                 and id != '".$member."'
                 limit ".$limit;
+       */         
+        if($district == 'Senior Seat' || $district == 'Junior Seat') {
+            $sql = "SELECT * FROM lawmakers as lawmaker 
+                    WHERE state = '".$state."' AND district IN ('Senior Seat','Junior Seat') AND in_office = '1'
+                    AND id != '".$member."'";
+        }
+        else {
+            $sql = "SELECT * FROM lawmakers as lawmaker 
+                    WHERE state = '".$state."' AND district IN ({$district}, 'Senior Seat','Junior Seat') AND in_office = '1'
+                    AND id != '".$member."'";
+        }
         $results = $this->query($sql);
         return $results;
     }

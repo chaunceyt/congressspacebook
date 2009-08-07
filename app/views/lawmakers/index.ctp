@@ -4,19 +4,17 @@
         <div class="entry">
 <div id="homepage_page">
 <div id="homepage_right">
-<h1> CongressSpacebook</h1>
 <h2>...striving to make Congress more accountable and transparent...</h2>
 <p>Here we're tracking each member's voting records, FEC reports, Campaign Finance summary, their opinions on the issues, and even their state's federal spending reports. </p>
 
 <p>
-Browse Congressional <a href="<?php echo Router::url('/congressional_reports/'); ?>">Record</a>
+Congressional <a href="<?php echo Router::url('/congressional_reports/'); ?>">record</a>, 
 <a href="<?php echo Router::url('/congress_votes/'); ?>">votes</a> or 
 <a href="<?php echo Router::url('/congress_bills/'); ?>">bills</a>
 </p>
-
-<p><h2>Browse  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> profiles</h2></p>
-
+<p><h2>Browse  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> Members</h2></p>
 <p style="margin-top:15px">
+<?php /* ?>
 View by letter: 
 <?php
 $letters = range('a','z');
@@ -25,9 +23,10 @@ foreach($letters as $letter) {
 }
 ?>
 </p>
-<p style="margin-top:15px;"><strong> some of our members are <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">using twitter</a>
-and 
-<a href="<?php echo Router::url('/lawmakers_with_youtube_channel'); ?>"> youtube</a></strong></p>
+<?php */ ?>
+<p style="margin-top:15px;"><strong> some of our congressional members are using <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">twitter</a> and <a href="<?php echo Router::url('/lawmakers_with_youtube_channel'); ?>">youtube</a></strong>
+</p>
+<?php /* ?>
 <p>
 <h2>Top 100</h2>
 <strong>...see who's has</strong>:<br/> 
@@ -35,10 +34,11 @@ the most bills <a href="<?php echo Router::url('/lawmakers/top/enacted'); ?>" ti
 the most <a href="<?php echo Router::url('/lawmakers/top/novote'); ?>" title="Top 100 Lawmakers with the most No Votes">novotes</a>, 
 and <a href="<?php echo Router::url('/lawmakers/top/cosponsored'); ?>" title="Top 100 Lawmakers who co-sponsored the most Bills">co-sponsored</a> the most bills...<br/>
 </p>
-
-<p><h2><a href="/recoveryact_100days_report" title="100 Days 100 Projects">100-Days-100-Projects</a></h2></p>
+<?php */ ?>
+<hr noshade />
+<p><h2><small>American Recovery and Reinvestment Act</small> <a href="/recoveryact_100days_report" title="100 Days 100 Projects">100-Days-100-Projects</a><small> Poll</small></h2></p>
 <p></p>
-<p><h2>Whitehouse YouTube Stream</h2></p>
+<p><h2>Whitehouse Video Stream</h2></p>
 <p>
 <?php
 foreach($videos as $yt_username) {

@@ -60,6 +60,7 @@ echo $scripts_for_layout;
 <div id="container">
 <div id="header">
 <a href="<?php echo Router::url('/'); ?>" title="CongressSpacebook.com"><img src="<?php echo Router::url('/'); ?>img/congress_spacebook_header.jpg" alt="" border="0"/></a>
+<br/>
 </div>
 <div id="page">
 <?php $session->flash(); ?>

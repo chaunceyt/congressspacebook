@@ -2,7 +2,7 @@
     <div class="post">
         <div class="entry" style="padding-left:90px;">
 
-<h2><?php __('Congress Votes');?></h2>
+<h2><?php __('Congressional Votes');?></h2>
 <p>
 <?php
 echo $paginator->counter(array(

@@ -3,7 +3,7 @@
         <div class="entry">
 
 <div class="lawmakers index">
-<h2 style="text-align:center"><?php __('Browse Member Profiles who use Youtube');?></h2>
+<h2 style="text-align:center"><?php __('Congressional Member(s) who use Youtube');?></h2>
 <p style="text-align:center">
 <?php
 echo $paginator->counter(array(

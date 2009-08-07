@@ -3,7 +3,7 @@
         <div class="entry">
 
 <div class="lawmakers index">
-<h2 style="text-align:center"><?php __('Browse Member Profiles who have Twitter accounts');?></h2>
+<h2 style="text-align:center"><?php __('Congressional Member(s) who use Twitter');?></h2>
 <p style="text-align:center">
 <?php
 echo $paginator->counter(array(
@@ -52,7 +52,7 @@ foreach ($lawmakers as $lawmaker):
 ?>
         <div class="imageblock">
         <?php //fixme need to check if the image file exist and use default image once it's done ?>
-            <a href="<?php echo Router::url('/profiles/'.$lawmaker['Lawmaker']['username']); ?>">
+            <a href="<?php echo Router::url('/social_stream/user/'.@urlencode($lawmaker['Lawmaker']['twitter_id'])); //Router::url('/profiles/'.$lawmaker['Lawmaker']['username']); ?>">
             <?php
                     $path_to_image = APP .'webroot' . DS .'img' . DS . 'lawmakers/100x125/'.$lawmaker['Lawmaker']['bioguide_id'].'.jpg';
                     if(file_exists($path_to_image)) {
@@ -63,7 +63,7 @@ foreach ($lawmakers as $lawmaker):
 
             <?php } ?>
             </a>
-            <strong><a href="<?php echo Router::url('/profiles/'.$lawmaker['Lawmaker']['username']); ?>"><?php echo $lawmaker['Lawmaker']['lastname']; ?></a></strong><br/>
+            <strong><a href="<?php echo Router::url('/social_stream/user/'.@urlencode($lawmaker['Lawmaker']['twitter_id'])); //Router::url('/profiles/'.$lawmaker['Lawmaker']['username']); ?>"><?php echo $lawmaker['Lawmaker']['lastname']; ?></a></strong><br/>
         </div>
 
 <?php endforeach; ?>

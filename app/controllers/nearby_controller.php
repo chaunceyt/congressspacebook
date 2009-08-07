@@ -17,6 +17,7 @@
  * @package CongressSpacebook.com
  */
 
+Configure::write('debug', 1);
 class NearbyController extends AppController {
 
     var $name = 'Nearby';
@@ -26,7 +27,7 @@ class NearbyController extends AppController {
 
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index', 'lawmakers');
+        $this->Auth->allowedActions = array('index', 'lawmakers', 'events', 'places');
         parent::beforeFilter();
     }
 
@@ -34,7 +35,7 @@ class NearbyController extends AppController {
     function index()
     {
         //$this->autoRender=false;
-        require APP . 'vendors' . DS .'JSON.php';
+        //require APP . 'vendors' . DS .'JSON.php';
         $json = new Services_JSON();
         $gi = geoip_open(APP . 'geocity' . DS .'GeoLiteCity.dat',GEOIP_MEMORY_CACHE);
         $current_webuser = geoip_record_by_addr($gi, $_SERVER['REMOTE_ADDR']);
@@ -71,7 +72,8 @@ class NearbyController extends AppController {
 
         function places()
         {
-            require APP . 'vendors' . DS .'JSON.php';
+            //require APP . 'vendors' . DS .'JSON.php';
+            //$this->autoRender=false;
             $json = new Services_JSON();
             $gi = geoip_open(APP . 'geocity' . DS .'GeoLiteCity.dat',GEOIP_MEMORY_CACHE);
             $current_webuser = geoip_record_by_addr($gi, $_SERVER['REMOTE_ADDR']);

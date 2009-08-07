@@ -2,7 +2,7 @@
     <div class="post">
         <div class="entry" style="padding-left:90px;">
 
-<h2><?php __('Congress Bills');?></h2>
+<h2><?php __('Congressional Bills');?></h2>
 <div class="paging">
 	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
  | 	<?php echo $paginator->numbers();?>

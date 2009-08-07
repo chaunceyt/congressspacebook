@@ -52,7 +52,7 @@ ul#member-menu li a.current:hover{color:#2E4560;background:#fff;}
 }
 
 #header {
-  height: 130px; 
+  height: 245px; 
   //margin: 0 -0.5px 10px 0; padding: 0;
 }
 
@@ -966,4 +966,3 @@ width:30em
     background: transparent url(../img/pullquote.gif) no-repeat top left;
     text-align: left;
 }
-

@@ -339,19 +339,21 @@ class LawmakersController extends AppController {
         $cid = $lawmaker['Lawmaker']['crp_id'];
         $state = $lawmaker['Lawmaker']['state'];
         $party = $lawmaker['Lawmaker']['party'];
+        $district = $lawmaker['Lawmaker']['district'];
         
         /* cache built into fedspending component */
         $fedSpendingSummary = $this->Fedspending->getFedSpendingSummary($state);
         $this->set('fedSpending', $fedSpendingSummary);
 
-        $govtrack_results = $this->Govtrack->getPerson($lawmaker['Lawmaker']['govtrack_id'], '110');
+        //need to move session to config value
+        $govtrack_results = $this->Govtrack->getPerson($lawmaker['Lawmaker']['govtrack_id'], '111');
 
         $this->set('govtrack_results', $govtrack_results);
 
         /* we want to cache the top friends it's not going to change until a database update */
-        $profile_top_friends_key = md5('profile_top_friends_key_'.$state.$party.$id);
+        $profile_top_friends_key = md5('profile_top_friends_key_'.$state.$party.$id.$district);
         if(!$profile_top_friends = $_cache->load($profile_top_friends_key)) {
-            $profile_top_friends = $this->Lawmaker->getProfileTopFriends($state, $party, $id, '4');
+            $profile_top_friends = $this->Lawmaker->getProfileTopFriends($state, $party, $id, $district, '4');
             $_cache->save($profile_top_friends, $profile_top_friends_key, array(), (86400*3));
         }
 

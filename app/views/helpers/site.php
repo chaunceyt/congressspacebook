@@ -86,17 +86,19 @@ class SiteHelper extends Helper
                     echo "$desc<br /><br />\n";
                 }
                 $c=0;
+                echo '<ul>';
                 foreach($rss->channel->item as $item) {
                     $_title = str_replace("Video: ","", $item->title);
                     $video_id = str_replace('http://www.youtube.com/watch?v=','',$item->link);
                     $_desc = $item->description;
-                    echo '<a href="'.Router::url('/youtube/video/'.$video_id).'">'. $_title .'</a>'."<br/>\n";
+                    echo '<li  style="list-style:circle;"><a href="'.Router::url('/youtube/video/'.$video_id).'">'. $_title .'</a>'."</li>\n";
                     //echo $url ."\n";
                     //echo "<i>$_desc</i><br /><br />\n";
                     $c++;
                 }
+                echo '</ul>';
             } else {
-                echo "<p>Found no videos on Youtube.";
+                //echo "<p>Found no videos on Youtube.";
             }
     }//end function
     

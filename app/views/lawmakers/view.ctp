@@ -39,7 +39,13 @@ $_year_ = date("Y")-1;
             <?php } ?>
     
     <br/>
-			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-<a href="<?php echo Router::url('/lawmakers/browse/state/'.$lawmaker['Lawmaker']['state'].'/'.$lawmaker['Lawmaker']['district']); ?>"><?php echo $lawmaker['Lawmaker']['district']; ?></a>
+			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-
+            <?php
+            if($lawmaker['Lawmaker']['district'] == 'Senior Seat' || $lawmaker['Lawmaker']['district'] == 'Junior Seat') { ?>
+                <?php echo $lawmaker['Lawmaker']['district']; ?>
+            <?php } else { ?>
+                <a href="<?php echo Router::url('/lawmakers/browse/state/'.$lawmaker['Lawmaker']['state'].'/'.$lawmaker['Lawmaker']['district']); ?>"><?php echo $lawmaker['Lawmaker']['district']; ?></a>
+            <?php } ?>
             </p>
          <p><strong>Information</strong></p>   
             <?php
@@ -79,9 +85,14 @@ $_year_ = date("Y")-1;
             </p>
 
 <p>
-<p style="font-size:13px"><strong>Top Friends</strong></p>
 <?php
 $i=0;
+
+//don't display top friends if senior or junior seat
+if(sizeof($profile_top_friends['lawmaker']) > 0) {
+   echo ' <p style="font-size:13px"><strong>Top Friends</strong></p>';
+}
+
 foreach ($profile_top_friends as $current) {
     $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
 
@@ -104,8 +115,9 @@ foreach ($profile_top_friends as $current) {
 ?>
 </p>
 <p>
-<p style="font-size:13px"><strong>Friends</strong></p>
 <?php
+/*
+echo '<p style="font-size:13px"><strong>Friends</strong></p>';
 $i=0;
 foreach ($profile_friends as $current) {
     $fullname = $current['lawmaker']['firstname'].' '.$current['lawmaker']['lastname'];
@@ -125,6 +137,7 @@ foreach ($profile_friends as $current) {
 
 <?php
     }
+    */
 ?>
 </p>
 
