@@ -47,7 +47,8 @@ class LawmakersController extends AppController {
      * @access public
      * @var string List of models used by this controller's actions' views
      */
-    var $uses = array('Lawmaker', 'LawmakerStats');
+    //var $uses = array('Lawmaker', 'LawmakerStats');
+    var $uses = array();
 
 
     /**
@@ -89,6 +90,9 @@ class LawmakersController extends AppController {
      */
     function index() 
     {
+        $this->Lawmaker =& ClassRegistry::init('Lawmaker');
+        $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
+
         $webuser = $this->Session->read('current_webuser');
         $this->pageTitle = 'Lawmakers';
         //setup zend cache
@@ -166,6 +170,9 @@ class LawmakersController extends AppController {
 
     function browse($by=null, $value=null, $district=null) 
     {
+        $this->Lawmaker =& ClassRegistry::init('Lawmaker');
+        $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
+
         $this->pageTitle = 'Browsing profiles by '.ucfirst($by).' '.$value;
         $this->Lawmaker->recursive = 0;
         //check to see if we're doing a search.
@@ -223,6 +230,9 @@ class LawmakersController extends AppController {
      */
     public function lawmakers_with_twitter_accounts() 
     {
+        $this->Lawmaker =& ClassRegistry::init('Lawmaker');
+        $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
+
         $this->pageTitle = 'Lawmakers using twitter';
         $this->paginate['Lawmaker'] = array('limit' => '28' );
         $this->paginate['Lawmaker']['conditions'] = "twitter_id != ' '";
@@ -237,6 +247,8 @@ class LawmakersController extends AppController {
      */
     public function lawmakers_with_youtube_channel() 
     {
+        $this->Lawmaker =& ClassRegistry::init('Lawmaker');
+        $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
 
         $this->pageTitle = 'Lawmakers using Youtube';
         $this->paginate['Lawmaker'] = array('limit' => '28' );
@@ -254,6 +266,9 @@ class LawmakersController extends AppController {
      */
     function view($id=null) 
     {
+        $this->Lawmaker =& ClassRegistry::init('Lawmaker');
+        $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
+
         if(!isset($this->params['username'])) {
 
             if(!$id) {
@@ -312,6 +327,12 @@ class LawmakersController extends AppController {
                     break;
                 case 'wall' :
                     $_page = 'wall';
+                    
+                    $this->CongressParty =& ClassRegistry::init('CongressParty');
+                    if($this->CongressParty->getEventInvites($member) > 0) {
+                        $this->set('hasCongressParty', 'true');
+                    }
+
                     break;
                 case 'fundraising' :
                     $_page = 'fundraising';
@@ -387,6 +408,9 @@ class LawmakersController extends AppController {
      */
     function bill($id=null)
     {
+        $this->Lawmaker =& ClassRegistry::init('Lawmaker');
+        $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
+
         $this->pageTitle = str_replace('_', ' ',$this->params['username']) . ' [ Bill: ' . str_replace('-', ' ', $id). ']';
         list($_session, $type, $number) = explode('-', $id);
         $this->set('congress_session', $_session);
@@ -415,6 +439,9 @@ class LawmakersController extends AppController {
      */
     function search()
     {
+        $this->Lawmaker =& ClassRegistry::init('Lawmaker');
+        $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
+
         if(!empty($this->data)){
             $params['query'] = $this->data['Search']['query'];
             $params['action'] = 'browse';
@@ -430,6 +457,9 @@ class LawmakersController extends AppController {
     function top($type=null)
     {
     
+        $this->Lawmaker =& ClassRegistry::init('Lawmaker');
+        $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
+
         switch($type) {
             case 'cosponsored' :
                 $results = $this->LawmakerStats->getTopLawmakersByCoSponsored();
@@ -455,14 +485,20 @@ class LawmakersController extends AppController {
     
     function campaign_cost()
     {
+        $this->Lawmaker =& ClassRegistry::init('Lawmaker');
+        $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
     }
 
     function industry_by_race()
     {
+        $this->Lawmaker =& ClassRegistry::init('Lawmaker');
+        $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
     }
 
     function industry()
     {
+        $this->Lawmaker =& ClassRegistry::init('Lawmaker');
+        $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
     }
 
     /* TODO: remove code below since we won't be adding, editing data */

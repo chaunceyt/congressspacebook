@@ -9,8 +9,9 @@
 
 <p>
 Congressional <a href="<?php echo Router::url('/congressional_reports/'); ?>">record</a>, 
-<a href="<?php echo Router::url('/congress_votes/'); ?>">votes</a> or 
-<a href="<?php echo Router::url('/congress_bills/'); ?>">bills</a>
+<a href="<?php echo Router::url('/congress_votes/'); ?>">votes</a>, 
+<a href="<?php echo Router::url('/congress_bills/'); ?>">bills</a> or
+find out who is <a href="<?php echo Router::url('/congress_parties/'); ?>">partying</a>, where and when.
 </p>
 <p><h2>Browse  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> Members</h2></p>
 <p style="margin-top:15px">

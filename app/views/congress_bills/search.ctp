@@ -3,9 +3,6 @@
         <div class="entry" style="padding-left:90px;">
 
 <h2><?php __('Congressional Bills');?></h2>
-<p>
-The Congressional Bills documents for the 111th Congressional Session are searchable here.
-</p>
 <span style="margin:0 auto"><?php echo $this->element('congress_bills_search'); ?></span>
 <div class="paging">
 	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>

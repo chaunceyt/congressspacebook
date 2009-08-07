@@ -12,7 +12,7 @@
 <p>
 <?php
 echo $paginator->counter(array(
-'format' => __('Page %page% of %pages%, showing %current% votes out of %count% total', true)
+'format' => __('Page %page% of %pages%, showing %current% votes out of %count% total, starting on record %start%, ending on %end%', true)
 ));
 ?></p>
 <?php

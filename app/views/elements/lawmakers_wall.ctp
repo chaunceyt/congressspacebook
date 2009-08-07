@@ -1,3 +1,4 @@
+<h3>** has this Member Benefited at any (fundraising) <a href="/<?php Router::url('/'); ?>congress_parties/<?php echo $lawmaker['Lawmaker']['username']; ?>">Event/Party</a></h3> 
 <?php
 
 if(!empty($lawmaker['Lawmaker']['youtube_url'])) {

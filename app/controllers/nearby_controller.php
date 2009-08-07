@@ -17,7 +17,7 @@
  * @package CongressSpacebook.com
  */
 
-Configure::write('debug', 1);
+//Configure::write('debug', 1);
 class NearbyController extends AppController {
 
     var $name = 'Nearby';

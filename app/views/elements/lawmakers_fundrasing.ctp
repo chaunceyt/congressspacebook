@@ -1,4 +1,5 @@
  <h2> Last Elections Fundraising report</p></h2>
+<h3>** has this Member Benefited at any (fundraising) <a href="/<?php Router::url('/'); ?>congress_parties/<?php echo $lawmaker['Lawmaker']['username']; ?>">Event/Party</a></h3><br/> 
 <p>
 View breakdown by: 
 <a href="<?php echo Router::url('/profiles/'.$username.'/contributors'); ?>">Contributors</a>

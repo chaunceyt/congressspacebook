@@ -96,12 +96,12 @@ while($data_row = mysql_fetch_assoc($results)) {
 
 array_rand($_row);
 foreach($_row as $row1) {  ?>
-    <div dojoType="bert.Card" style="display: block; float: left; background: #cae9ff; width:100px; height:133px;" src="http://www.congressspaceboook.com/img/lawmakers/100x125/<?php echo $row1['bioguide_id']; ?>.jpg"><img src="card.png" width="100" /></div>        
+    <div dojoType="bert.Card" style="display: block; float: left; background: #cae9ff; width:100px; height:133px;" src="http://www.congressspacebook.com/img/lawmakers/100x125/<?php echo $row1['bioguide_id']; ?>.jpg"><img src="card.png" width="100" /></div>        
 <?php
 }
 array_rand($_row);
 foreach($_row as $row2) { ?>
-    <div dojoType="bert.Card" style="display: block; float: left; background: #cae9ff; width:100px; height:133px;" src="http://www.congressspaceboook.com/img/lawmakers/100x125/<?php echo $row2['bioguide_id']; ?>.jpg"><img src="card.png" width="100" /></div>        
+    <div dojoType="bert.Card" style="display: block; float: left; background: #cae9ff; width:100px; height:133px;" src="http://www.congressspacebook.com/img/lawmakers/100x125/<?php echo $row2['bioguide_id']; ?>.jpg"><img src="card.png" width="100" /></div>        
 <?php
 }
 ?>

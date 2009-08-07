@@ -1,3 +1,4 @@
+<h3>** has this Member attended a (fundraising) <a href="/<?php Router::url('/'); ?>congress_parties/<?php echo $lawmaker['Lawmaker']['username']; ?>">Event/Party</a> as a Beneficiary</h3><br/> 
 <?php
 foreach($govtrack_results->CongressionalTerms->Term as $term) {
     echo  $term->Title . ' of ' . $term->State . ' ' . $term->District . '  (' . $term->Start . '-' . $term->End .")<br/>";
