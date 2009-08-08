@@ -24,11 +24,14 @@ class AppController extends Controller
         //$this->Auth->authenticate = $this;
         $this->_siteSettings = Configure::read('AppSettings');
  
-        // Set cookie defaults (wildflower copy/paste)
-        $this->cookieName = Configure::read('CongressSpacebook.cookie.name');
-        $this->cookieTime = Configure::read('CongressSpacebook.cookie.expire');
-        $this->cookieDomain = '.' . getenv('SERVER_NAME');
- 
+        $this->Cookie->name = 'CongressSpacebook';
+        $this->Cookie->time =  $this->cookie_expires;
+        $this->Cookie->path = '/';
+        $this->Cookie->domain = '.congressspacebook.com';
+        $this->Cookie->secure = false;
+        $this->Cookie->key = Configure::read('Security.salt');
+
+
         // Compress output to save bandwith / speed site up
         //if (!isset($this->params['requested'])) {
         //    $this->_gzipOutput();

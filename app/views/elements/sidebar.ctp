@@ -14,9 +14,9 @@
             <?php if(isset($username)) { ?>
             <p>
             <a><h2>Related Info</h2></a>
-            <?php if(!empty($lawmaker['Lawmaker']['twitter_id'])) { ?>
+            <?php /* if(!empty($lawmaker['Lawmaker']['twitter_id'])) { ?>
             <span> twitter social_stream <a href="<?php echo Router::url('/social_stream/user/'.@urlencode($lawmaker['Lawmaker']['twitter_id'])); ?>" title="twitter account">twitter_stream</a>  </span>
-            <?php } ?><br/>
+            <?php } */ ?><br/>
        <?php
 
         if(strlen($lawmaker['Lawmaker']['district']) == 1) {

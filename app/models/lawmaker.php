@@ -190,6 +190,7 @@ class Lawmaker extends AppModel {
         return $results;
     }
 
+
     public function getProfileFriends($state, $party, $member, $limit=9) 
     {
         $sql = "select * from lawmakers as lawmaker where party = '".$party."' 
@@ -222,5 +223,13 @@ class Lawmaker extends AppModel {
         return $results;
     }
                 
+    public function getMyDistrict($state, $district)
+    {
+        $sql = "SELECT * FROM lawmakers as lawmaker 
+                    WHERE state = '".$state."' AND district IN ({$district}, 'Senior Seat','Junior Seat') AND in_office = '1' 
+                    ORDER BY district DESC";
+        $results = $this->query($sql);
+        return $results;
+    }
 }
 ?>

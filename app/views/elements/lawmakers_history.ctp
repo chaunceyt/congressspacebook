@@ -1,8 +1,24 @@
 <h3>** has this Member attended a (fundraising) <a href="/<?php Router::url('/'); ?>congress_parties/<?php echo $lawmaker['Lawmaker']['username']; ?>">Event/Party</a> as a Beneficiary</h3><br/> 
+<p>Member's State  <a href="/<?php Router::url('/'); ?>profiles/<?php echo $lawmaker['Lawmaker']['username']; ?>/fedspending">Spending</a></p> 
 
 <?php
-if(!empty($lawmaker['Lawmaker']['twitter_id'])) { ?>
-<p><a href="http://twitter.com/home?source=congressSB&status=@<?php echo $lawmaker['Lawmaker']['twitter_id']; ?>%20Just%20reviewed%20your%20profile%20on%20CongressSpacebook:%20http://www.congressspacebook.com/profiles/<?php echo $lawmaker['Lawmaker']['username']; ?>" target="_blank">Tweet @<?php echo $lawmaker['Lawmaker']['twitter_id']; ?></a> letting him know about this page..</p>
+if(!empty($lawmaker['Lawmaker']['twitter_id'])) { 
+    if($lawmaker['Lawmaker']['gender'] == 'F') {
+        $gender_str = ' her';
+    }
+    else {
+        $gender_str = ' him';
+    }
+    //major hack to get tinyurl first. I know I should never use @
+    $url = 'http://www.congressspacebook.com/profiles/'.$lawmaker['Lawmaker']['username'];
+    $shortUrl = @file_get_contents("http://tinyurl.com/api-create.php?url=" . $url);
+
+    $getFollowers_resp = @file_get_contents('http://twittercounter.com/api/?username='.$lawmaker['Lawmaker']['twitter_id'].'&output=xml');
+    $followersResult = simplexml_load_string($getFollowers_resp);
+    $totalFollowers = number_format($followersResult->followers_current);
+    ?>
+<p>This member has <?php echo $totalFollowers; ?> followers on Twitter, tweet <a href="http://twitter.com/home?status=@<?php echo $lawmaker['Lawmaker']['twitter_id']; ?>%20Just%20reviewed%20your%20profile%20on%20CongressSpacebook:%20<?php echo $shortUrl; ?>" target="_blank">@<?php echo $lawmaker['Lawmaker']['twitter_id']; ?></a> letting <?php echo $gender_str; ?> know about this page or view <span> <a href="<?php echo Router::url('/social_stream/user/'.@urlencode($lawmaker['Lawmaker']['twitter_id'])); ?>" title="twitter account">twitter_stream</a>  </span>
+</p>
 <?php }  ?>
 <?php
 foreach($govtrack_results->CongressionalTerms->Term as $term) {

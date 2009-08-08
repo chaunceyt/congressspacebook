@@ -83,8 +83,9 @@ class SunlightlabsComponent extends Object
 
     public function getDistrictsFromZip($zip, $type = 'json')
     {
-        $method = 'districts.getDistrictsFromZip.'.$type.'?zip='.$zipi.'&'. $this->apikey;
+        $method = 'districts.getDistrictsFromZip.'.$type.'?zip='.$zip.'&'. $this->apikey;
         $resource_url = $this->url.$method;
+        //echo $resource_url;
         $data = @file_get_contents($resource_url);
         if($data) {
             switch($type) {

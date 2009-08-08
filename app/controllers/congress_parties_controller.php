@@ -1,5 +1,5 @@
 <?php
-Configure::write('debug', 1);
+//Configure::write('debug', 1);
 class CongressPartiesController extends AppController {
 
 	var $name = 'CongressParties';

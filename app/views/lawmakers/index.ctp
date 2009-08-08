@@ -33,6 +33,9 @@ the most bills <a href="<?php echo Router::url('/lawmakers/top/enacted'); ?>" ti
 the most <a href="<?php echo Router::url('/lawmakers/top/novote'); ?>" title="Top 100 Lawmakers with the most No Votes">novotes</a>, 
 and <a href="<?php echo Router::url('/lawmakers/top/cosponsored'); ?>" title="Top 100 Lawmakers who co-sponsored the most Bills">co-sponsored</a> the most bills...<br/>
 </p>
+<span style="margin:0 auto"><?php echo $this->element('mydistrict_search'); ?></span>
+
+
 <?php /* ?>
 <?php */ ?>
 <hr noshade />
