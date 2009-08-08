@@ -104,10 +104,10 @@ class GovtrackComponent extends Object
 
         $govtrack_getDistrictByZipKey = md5('govtrack_getDistrictByZipKey_'.$session);
 
-        //if(!$response = $this->cache()->load($govtrack_getDistrictByZipKey)) {
+        if(!$response = $this->cache()->load($govtrack_getDistrictByZipKey)) {
             $response = $this->getOutput($url);
-          //  $this->cache()->save($response, $govtrack_getDistrictByZipKey, array(), (86400*3));
-        //}
+            $this->cache()->save($response, $govtrack_getDistrictByZipKey, array(), (86400));
+        }
 
         $results = simplexml_load_string($response);
         return $results;
