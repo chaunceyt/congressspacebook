@@ -7,7 +7,7 @@
 <strong>CongressSpaceBook</strong>  - a opensource web application designed to make it easy to deploy websites that focus on striving to make Congress more accountable and transparent...<br/>
 </p>
 <p><strong>Developed for</strong>: App For America http://sunlightlabs.com/appsforamerica/ this contest has ended. I didn't win but will continue to develop the site. Because I'm striving to make Congress more accountable and transparent!</p>
-<p><strong>Our GitHub</strong> - <a class="url" rel="me" href="http://github.com/chaunceyt/mashupkeyword/tree/master">source code</a> 
+<p><strong>Our GitHub</strong> - <a class="url" rel="me" href="http://github.com/chaunceyt/congressspacebook/tree/master">source code</a> 
 or view <a href="<?php echo Router::url('/pages/latest_commits'); ?>">latest commits</a>
 <p>
 <strong>Mission/Goal</strong> -
