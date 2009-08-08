@@ -8,14 +8,14 @@
 <p>Here we're tracking each member's voting records, FEC reports, Campaign Finance summary, their opinions on the issues, and even their state's federal spending reports. </p>
 
 <p>
-Congressional <a href="<?php echo Router::url('/congressional_reports/'); ?>">record</a>, 
-<a href="<?php echo Router::url('/congress_votes/'); ?>">votes</a>, 
-<a href="<?php echo Router::url('/congress_bills/'); ?>">bills</a> or
-find out who is <a href="<?php echo Router::url('/congress_parties/'); ?>">partying</a>, where and when.
+View the congressional <a href="<?php echo Router::url('/congressional_reports/'); ?>">reports</a> and search, 
+<a href="<?php echo Router::url('/congress_votes/'); ?>">votes</a> and/or, 
+<a href="<?php echo Router::url('/congress_bills/'); ?>">bills</a> and then
+find out who is <a href="<?php echo Router::url('/congress_parties/'); ?>">partying</a> with who and where and when.
 </p>
+<?php /* ?>
 <p><h2>Browse  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> Members</h2></p>
 <p style="margin-top:15px">
-<?php /* ?>
 View by letter: 
 <?php
 $letters = range('a','z');
@@ -25,16 +25,15 @@ foreach($letters as $letter) {
 ?>
 </p>
 <?php */ ?>
-<p style="margin-top:15px;"><strong> some of our congressional members are using <a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">twitter</a> and <a href="<?php echo Router::url('/lawmakers_with_youtube_channel'); ?>">youtube</a></strong>
+<p style="margin-top:15px;"> So you know ...! some of our congressional members are using <strong><a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">twitter</a> and <a href="<?php echo Router::url('/lawmakers_with_youtube_channel'); ?>">youtube</a></strong> to get their message out.
 </p>
-<?php /* ?>
 <p>
-<h2>Top 100</h2>
-<strong>...see who's has</strong>:<br/> 
+<strong>...see who's has</strong>
 the most bills <a href="<?php echo Router::url('/lawmakers/top/enacted'); ?>" title="Top 100 Lawmakers to Enact Laws">enacted</a>,  
 the most <a href="<?php echo Router::url('/lawmakers/top/novote'); ?>" title="Top 100 Lawmakers with the most No Votes">novotes</a>, 
 and <a href="<?php echo Router::url('/lawmakers/top/cosponsored'); ?>" title="Top 100 Lawmakers who co-sponsored the most Bills">co-sponsored</a> the most bills...<br/>
 </p>
+<?php /* ?>
 <?php */ ?>
 <hr noshade />
 <p><h2><small>American Recovery and Reinvestment Act</small> <a href="/recoveryact_100days_report" title="100 Days 100 Projects">100-Days-100-Projects</a><small> Poll</small></h2></p>

@@ -1,4 +1,4 @@
-<form action="/congress_parties/search" method="POST"><fieldset><legend>Party/Event Search</legend><select name="field" id="field">
+<form action="/congress_parties/search" method="POST"><fieldset style="width:450px;"><legend>Party/Event Search</legend><select name="field" id="field">
 <option value="Beneficiary" >Beneficiary</option>
 <option value="Host" >Host</option>
 <option value="Venue_Name" >Venue Name</option>

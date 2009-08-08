@@ -39,6 +39,7 @@ $_year_ = date("Y")-1;
             <?php } ?>
     
     <br/>
+    <span class="party <?php echo strtolower($lawmaker['Lawmaker']['party']); ?>">
 			<?php echo $lawmaker['Lawmaker']['party']; ?>-<?php echo $lawmaker['Lawmaker']['state']; ?>-
             <?php
             if($lawmaker['Lawmaker']['district'] == 'Senior Seat' || $lawmaker['Lawmaker']['district'] == 'Junior Seat') { ?>
@@ -46,6 +47,7 @@ $_year_ = date("Y")-1;
             <?php } else { ?>
                 <a href="<?php echo Router::url('/lawmakers/browse/state/'.$lawmaker['Lawmaker']['state'].'/'.$lawmaker['Lawmaker']['district']); ?>"><?php echo $lawmaker['Lawmaker']['district']; ?></a>
             <?php } ?>
+    </span>        
             </p>
          <p><strong>Information</strong></p>   
             <?php

@@ -39,8 +39,8 @@
     Router::connect('/congress_parties/search/*', array('controller' => 'congress_parties', 'action' => 'search'));
     Router::connect('/congress_parties/*', array('controller' => 'congress_parties', 'action' => 'index'));
 
-    Router::connect('/industries/index/:query/*', array('controller' => 'industries', 'action' => 'index'));
-    Router::connect('/industries/:query/*', array('controller' => 'industries', 'action' => 'index'));
+    //Router::connect('/industries/index/:query/*', array('controller' => 'industries', 'action' => 'index'));
+    //Router::connect('/industries/:query/*', array('controller' => 'industries', 'action' => 'index'));
     Router::connect('/lobbyist/:client/*', array('controller' => 'lobbyists_filings', 'action' => 'index'));
     //Router::connect('/lawmakers/view', array('controller' => 'lawmakers', 'action' => 'view'));
 

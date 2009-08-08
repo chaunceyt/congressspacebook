@@ -913,7 +913,7 @@ border: 1px solid #000099:;
     #rotate a.active:hover {
         background: #FF0000;
         color: #DEDECF; }
-
+/*
 #nav-menu ul
 {
 list-style: none;
@@ -941,8 +941,9 @@ color: #0d2474;
 text-decoration: none;
 text-align: center;
 }
-
+*/
 /* Hide from IE5-Mac \*/
+/*        
 #nav-menu li a
 {
 float: none
@@ -953,7 +954,7 @@ float: none
 {
 width:30em
 }
-
+*/
 .pullquote_left {
     width: 240px;
     border-top: 1px dotted #3f002f;
@@ -966,3 +967,54 @@ width:30em
     background: transparent url(../img/pullquote.gif) no-repeat top left;
     text-align: left;
 }
+
+
+ #nav-menu ul
+{
+list-style: none;
+padding: 0;
+margin: 0; auto;
+}
+
+#nav-menu li
+{
+float: left;
+margin: 0 0.10em;
+}
+
+#nav-menu li a
+{
+background: url(background.gif) #fff bottom left repeat-x;
+height: 2em;
+line-height: 2em;
+float: left;
+width: 7em;
+display: block;
+border: 0.1em solid #dcdce9;
+color: #0d2474;
+text-decoration: none;
+text-align: center;
+}
+
+/* Hide from IE5-Mac \*/
+#nav-menu li a
+{
+float: none
+}
+/* End hide */
+
+#nav-menu
+{
+width:90em;
+margin:0px auto;
+}
+ span.party {
+  font-size: 85%;
+  padding: 2px 5px; }
+   span.party.d {
+    color: #fff;
+    background-color: #01245c; }
+  span.party.r {
+    color: #fff;
+    background-color: #941c03; }
+

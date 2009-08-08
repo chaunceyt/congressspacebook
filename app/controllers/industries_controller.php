@@ -44,7 +44,7 @@ class IndustriesController extends AppController {
 
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index', 'view');
+        $this->Auth->allowedActions = array('index', 'view', 'search');
         parent::beforeFilter();
     }
 
@@ -54,7 +54,7 @@ class IndustriesController extends AppController {
         $this->pageTitle = 'The Influencers';
 
 		$this->Industry->recursive = 0;
-
+        /*
         if(isset($this->params['query'])) {
             $url_params = explode(':',$this->params['query']);
             $this->set('query_url', $this->params['query']);
@@ -83,10 +83,15 @@ class IndustriesController extends AppController {
                     'limit' => '10',
                     );
 
-        }
+        }*/
+        $this->paginate['Industry'] = array(
+                 'order' => array('Industry.catname' => 'asc'),
+                 'limit' => '10',
+                 );
         $this->set('section', $section);
 		$this->set('industries', $this->paginate());
 	}
+
 
 	function view($id = null) {
 		if (!$id) {
@@ -119,6 +124,32 @@ class IndustriesController extends AppController {
 
 		$this->set('industry', $industry);
 	}
+
+    function search() {
+
+        $this->Industry =& ClassRegistry::init('Industry');
+        if(isset($this->params['form'])) {
+
+            if (isset($this->params['form']['args'])) {
+                $args = $this->params['form']['args'];
+                $this->Session->write('_args',$args);
+            }
+        }
+        if($this->Session->check('_args')) {
+            $args = $this->Session->read('_args');
+        }
+
+        if(empty($args)) {
+            $this->redirect('/industries');
+            exit;
+        }
+        $this->paginate['Industry']['conditions'] = "MATCH(catname, industry, sector_long) AGAINST ('".$args."*' IN BOOLEAN MODE)";
+
+        $this->paginate['Industry']['order'] = 'Industry.id DESC';
+        $this->paginate['Industry']['limit'] = '10';
+        $this->Industry->recursive = 0;
+        $this->set('industries', $this->paginate());
+    }
 
 }
 ?>

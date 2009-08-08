@@ -68,13 +68,14 @@ class GovtrackComponent extends Object
     public function getPerson($id, $session) 
     {
         $url = 'http://www.govtrack.us/congress/person_api.xpd?id='.$id.'&session='.$session;
-
+        //echo '<!--- ' . $url . '--->';
         $govtrack_getPersonKey = md5('govtrack_getPersonKey_'.$id.$session);
 
-        //if(!$response = $this->cache()->load($govtrack_getPersonKey)) {
+        if(!$response = $this->cache()->load($govtrack_getPersonKey)) {
+            //FIXME: ensure we have a response before saving to cache
             $response = $this->getOutput($url);
-          //  $this->cache()->save($response, $govtrack_getPersonKey, array(), (86400*3));
-        //}
+            $this->cache()->save($response, $govtrack_getPersonKey, array(), 86400);
+        }
 
         $results = simplexml_load_string($response);
         return $results;
@@ -86,10 +87,11 @@ class GovtrackComponent extends Object
 
         $govtrack_getBillsKey = md5('govtrack_getBillsKey_'.$session);
 
-        //if(!$response = $this->cache()->load($govtrack_getBillsKey)) {
+        if(!$response = $this->cache()->load($govtrack_getBillsKey)) {
+            //FIXME: ensure we have a response before saving to cache
             $response = $this->getOutput($url);
-          //  $this->cache()->save($response, $govtrack_getBillsKey, array(), (86400*3));
-        //}
+            $this->cache()->save($response, $govtrack_getBillsKey, array(), 86400);
+        }
 
         $results = simplexml_load_string($response);
         return $results;

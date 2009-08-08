@@ -73,6 +73,7 @@ echo '<p><strong>Chair</strong></p>';
  | 	<?php echo $paginator->numbers();?>
 	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
 </div>
+<p><span>source: <a href="http://govtrack.us/" title="Govtrack.us" target="_new">Govtrack.us</a></span></p>
 </div>
 </div>
 </div>

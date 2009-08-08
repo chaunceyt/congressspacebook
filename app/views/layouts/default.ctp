@@ -63,6 +63,7 @@ echo $scripts_for_layout;
 <br/>
 </div>
 <div id="page">
+<?php echo $this->element('navigation'); ?>
 <?php $session->flash(); ?>
 
 <?php echo $content_for_layout; ?>

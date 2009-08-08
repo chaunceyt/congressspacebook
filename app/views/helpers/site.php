@@ -61,7 +61,7 @@ class SiteHelper extends Helper
                     $_url = $item->link;
                     $_desc = $item->description;
                     echo '<b>'.$_title.'</b><br />'."\n";
-                    echo '<a href="'.$_url.'">'.$_title.'</a><br />'."\n";
+                    echo '<a class="url" rel="me" href="'.$_url.'">'.$_title.'</a><br />'."\n";
                     echo '<i>'.$_desc.'</i><br /><br />'."\n";
                     $c++;
                 }
@@ -91,7 +91,7 @@ class SiteHelper extends Helper
                     $_title = str_replace("Video: ","", $item->title);
                     $video_id = str_replace('http://www.youtube.com/watch?v=','',$item->link);
                     $_desc = $item->description;
-                    echo '<li  style="list-style:circle;"><a href="'.Router::url('/youtube/video/'.$video_id).'">'. $_title .'</a>'."</li>\n";
+                    echo '<li  style="list-style:circle;"><a class="url" rel="me" href="'.Router::url('/youtube/video/'.$video_id).'">'. $_title .'</a>'."</li>\n";
                     //echo $url ."\n";
                     //echo "<i>$_desc</i><br /><br />\n";
                     $c++;
@@ -122,7 +122,7 @@ class SiteHelper extends Helper
                     $_url = $item->link;
                     $_desc = $item->description;
                     echo '<b>'.$_title.'</b><br />'."\n";
-                    echo '<a href="'.$_url.'">'.$_title.'</a><br />'."\n";
+                    echo '<a class="url" rel="me" href="'.$_url.'">'.$_title.'</a><br />'."\n";
                     echo '<i>'.$_desc.'</i><br /><br />'."\n";
                     $c++;
                 }

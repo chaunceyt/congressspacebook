@@ -1,8 +1,7 @@
-
 <div id="content">
     <div class="post">
+            <div class="entry" style="padding-left:90px;">
 
-        <div class="entry">
 		<p><?php echo $html->link(__('Browse other Filings', true), array('action'=>'index')); ?> </p>
 
 <div class="lobbyistsFilings view">

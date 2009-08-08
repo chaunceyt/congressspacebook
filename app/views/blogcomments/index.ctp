@@ -1,5 +1,6 @@
 <div id="content">
     <div class="post"  style="padding-left:90px;">
+    <h2>Comment chatter all over the web...</h2>
 <center><?echo $CommentsPagination; ?></center>
 <div class="entry">
 <?php

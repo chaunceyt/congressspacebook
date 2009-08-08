@@ -1,6 +1,9 @@
 <div id="content">
     <div class="post">
                     <div class="entry"  style="padding-left:90px;">
+                    <h2>Twitter chatter...</h2>
+
+
 <center>
 <?php 
 if(isset($TwitterSearch->results)) {

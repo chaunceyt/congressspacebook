@@ -1,6 +1,8 @@
 <div id="content">
     <div class="post">
-        <div class="entry"   style="padding-left:90px; padding-right:10px;">
+            <div class="entry" style="padding-left:90px;">
+
+
 <div class="lobbyistsFilings index">
 <h2><?php __('Lobbyist @ Work their expenditures...');?></h2>
 <img src="http://www.opensecrets.org/lobby/IMG_client_year_comp.php?lname=Pfizer+Inc&type=c" alt="chart" />

@@ -36,51 +36,52 @@ foreach ($congressParties as $congressParty):
 ?>
 		
 	<div style="margin-left: 10px; border: #929292 dashed 1px; padding: 10px;">
-    <h1>EVENT NOTICE</h1>
-			<h3> <?php echo stripslashes($congressParty['CongressParty']['Entertainment_Type']); ?> for: <?php echo $congressParty['CongressParty']['Beneficiary']; ?></h3>
+    <h1>EVENT INVITE</h1>
+			<h3> <?php echo stripslashes($congressParty['CongressParty']['Entertainment_Type']); ?> for: <br /><?php echo str_replace(array('||'),'<br/>', $congressParty['CongressParty']['Beneficiary']); ?></h3>
 		
+	        <?php if(!empty($congressParty['CongressParty']['Host'])) { ?>	
+			<p><strong>Hosts:</strong> <br/> <?php echo str_replace('||','<br/>',$congressParty['CongressParty']['Host']); ?></p>
+            <?php } ?>
 		
-			<p>Hosts: <br/> <?php echo str_replace('||','<br/>',$congressParty['CongressParty']['Host']); ?></p>
-		
-		
-			<p>Other Beneficiary: <br/>
+	        <?php if(!empty($congressParty['CongressParty']['Other_Members'])) { ?>	
+			<p><strong>Other Beneficiary:</strong> <br/>
             <?php 
                 $other_members =   str_replace('||','<br/>',$congressParty['CongressParty']['Other_Members']);
                 echo $other_members;
             ?>
             </p>
+		    <?php } ?>
 		
-		
-			<p>Start Date: <?php echo $congressParty['CongressParty']['Start_Date']; ?> - End Date: <?php echo $congressParty['CongressParty']['End_Date']; ?><br/>
-			Start Time: <?php echo $congressParty['CongressParty']['Start_Time']; ?> - End Time: <?php echo $congressParty['CongressParty']['End_Time']; ?></p>
+			<p>Start Date: <?php echo $congressParty['CongressParty']['Start_Date']; ?><br/> End Date: <?php echo $congressParty['CongressParty']['End_Date']; ?><br/>
+			Start Time: <?php echo $congressParty['CongressParty']['Start_Time']; ?> <br/> End Time: <?php echo $congressParty['CongressParty']['End_Time']; ?></p>
 		
 		
 			<p>
 		
 		
 			<strong> <?php echo $congressParty['CongressParty']['Venue_Name']; ?></strong><br/>
-		
-		
-			Address: <?php echo $congressParty['CongressParty']['Venue_Address1']; ?><br/>
+			<?php echo $congressParty['CongressParty']['Venue_Address1']; ?><br/>
 			<?php echo $congressParty['CongressParty']['Venue_Address2']; ?><br/>
 			<?php echo $congressParty['CongressParty']['Venue_City']; ?>	
 			<?php echo $congressParty['CongressParty']['Venue_State']; ?>,
             <?php echo $congressParty['CongressParty']['Venue_Zipcode']; ?>
             </p>
 		
-		
-			<p>Website: <?php echo $congressParty['CongressParty']['Venue_Website']; ?></p>
+	        
+            <?php if(!empty($congressParty['CongressParty']['Venue_Website'])) { ?>
+			<p>Website: <a href="<?php echo $congressParty['CongressParty']['Venue_Website']; ?>" target="_blank">click here</a></p>
+            <?php } ?>
 			<?php // echo $congressParty['CongressParty']['LatLong']; ?>
 			
-            <p>Contribution Info:<br/> <?php echo str_replace(';','<br/>',$congressParty['CongressParty']['Contributions_Info']); ?></p>
+            <p><strong>Contribution Info:</strong><br/> <?php echo str_replace(array(';','.'),'<br/>',$congressParty['CongressParty']['Contributions_Info']); ?></p>
 		
-			<p>Make Check Payable to:<br/><strong> <?php echo $congressParty['CongressParty']['Make_Checks_Payable_To']; ?></strong><br/>
+			<p><strong>Make Check Payable to:</strong><br/> <?php echo $congressParty['CongressParty']['Make_Checks_Payable_To']; ?><br/>
 		
 			<?php echo str_replace(';','<br/>',$congressParty['CongressParty']['Checks_Payable_To_Address']); ?></p>
 		
 			<p><?php echo $congressParty['CongressParty']['Committee_Id']; ?></p>
 		
-			<p><?php echo str_replace(';','<br/>',$congressParty['CongressParty']['RSVP_Info']); ?></p>
+			<p><strong>RSVP Info:</strong><br/> <?php echo str_replace(array(';','or'),'<br/>',$congressParty['CongressParty']['RSVP_Info']); ?></p>
 		
 			<p>Distribution Paid for by: <?php echo $congressParty['CongressParty']['Distribution_Paid_for_By']; ?></p>
 		

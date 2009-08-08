@@ -2,6 +2,7 @@
         <div id="content">
                 <div class="post">
                         <div class="entry"  style="padding-left:90px;">
+                <h2>Blog chatter...</h2>
             <p></p>
             <ul>
 <?php

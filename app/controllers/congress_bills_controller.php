@@ -38,7 +38,7 @@ class CongressBillsController extends AppController {
 	function index() {
         $this->CongressBill =& ClassRegistry::init('CongressBill');
 
-        $this->paginate['CongressBill']['order'] = 'CongressBill.bill_num DESC';
+        $this->paginate['CongressBill']['order'] = 'CongressBill.id DESC';
         $this->paginate['CongressBill']['limit'] = '20';
 		$this->CongressBill->recursive = 0;
 		$this->set('congressBills', $this->paginate());
@@ -63,7 +63,7 @@ class CongressBillsController extends AppController {
             $this->redirect('/congress_bills');
             exit;
         }
-        $this->paginate['CongressBill']['conditions'] = "MATCH(bill_title,bill_official_title) AGAINST ('".$args."')";
+        $this->paginate['CongressBill']['conditions'] = "MATCH(bill_title,bill_official_title) AGAINST ('".$args."*' IN BOOLEAN MODE)";
 
         $this->paginate['CongressBill']['order'] = 'CongressBill.id DESC';
         $this->paginate['CongressBill']['limit'] = '10';

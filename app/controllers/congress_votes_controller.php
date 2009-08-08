@@ -61,7 +61,7 @@ class CongressVotesController extends AppController {
             $this->redirect('/congress_votes');
             exit;
         }
-        $this->paginate['CongressVote']['conditions'] = "MATCH(vote_title,vote_bill_title,vote_bill) AGAINST ('".$args."')";
+        $this->paginate['CongressVote']['conditions'] = "MATCH(vote_title,vote_bill_title,vote_bill) AGAINST ('".$args."*' IN BOOLEAN MODE)";
         
         $this->paginate['CongressVote']['order'] = 'CongressVote.vote_id DESC';
         $this->paginate['CongressVote']['limit'] = '10';

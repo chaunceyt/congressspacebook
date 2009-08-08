@@ -6,8 +6,9 @@
 <p>
 <strong>CongressSpaceBook</strong>  - a opensource web application designed to make it easy to deploy websites that focus on striving to make Congress more accountable and transparent...<br/>
 </p>
-<p><strong>Developed for</strong>: App For America http://sunlightlabs.com/appsforamerica/</p>
-<p><strong>Our GitHub</strong> - <a class="url" rel="me" href="http://github.com/chaunceyt/mashupkeyword/tree/master">source code</a>
+<p><strong>Developed for</strong>: App For America http://sunlightlabs.com/appsforamerica/ this contest has ended. I didn't win but will continue to develop the site. Because I'm striving to make Congress more accountable and transparent!</p>
+<p><strong>Our GitHub</strong> - <a class="url" rel="me" href="http://github.com/chaunceyt/mashupkeyword/tree/master">source code</a> 
+or view <a href="<?php echo Router::url('/pages/latest_commits'); ?>">latest commits</a>
 <p>
 <strong>Mission/Goal</strong> -
 Help ensure Congress and the President keep their promises of more transparency. By exposing the congress person spending habits, voting record and show who influences them and how much they are spending to do so. We track the Bills introduced, enacted, and co-sponsored for each congress person.
