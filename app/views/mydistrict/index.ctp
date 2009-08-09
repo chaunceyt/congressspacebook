@@ -4,10 +4,14 @@
 <div id="content">
     <div class="post">
                 <div class="entry" style="padding-left:90px;">
+                <h2>For Transparency to work. <br/> <small>get to know your Senators and Representative.</small></h2>
+
 <span style="margin:0 auto"><?php echo $this->element('mydistrict_search'); ?></span>
     <p></p>
     <div>
+    <?php if(isset($myZipcode,$myDistrict)) { ?>
     <h2>The zipcode <?php echo $myZipcode; ?> is located in <br/> <?php echo str_replace('-',' Congressional District # ', $myDistrict); ?></h2>
+    <?php } ?>
     <div id="profileresults"> 
 <?php
 if(isset($president)) {
@@ -16,9 +20,8 @@ if(isset($president)) {
 ?>
 
         <div class="imageblock">
-        <p><strong>President</strong></p>
+        <p><strong>US President</strong></p>
         <?php //fixme need to check if the image file exist and use default image once it's done ?>
-            <a class="url" rel="me" href="<?php echo Router::url('/profiles/'.$president[0]['Lawmaker']['username']); ?>">
             <?php
                     $path_to_image = APP .'webroot' . DS .'img' . DS . 'lawmakers/100x125/'.$president[0]['Lawmaker']['bioguide_id'].'.jpg';
                     if(file_exists($path_to_image)) {
@@ -29,13 +32,22 @@ if(isset($president)) {
                 <img src="<?php echo Router::url('/img/no_profile_img.jpg'); ?>" alt="" border="0"/>
 
             <?php } ?>
-            </a>
-            <strong><a  class="url" rel="me" href="<?php echo Router::url('/profiles/'.$president[0]['Lawmaker']['username']); ?>"><?php echo $president[0]['Lawmaker']['lastname']; ?></a></strong><br/>
+            <strong><?php echo $president[0]['Lawmaker']['firstname']; ?> <?php echo $president[0]['Lawmaker']['lastname']; ?></strong><br/>
+            <?php 
+            if($president[0]['Lawmaker']['party'] == "D") {
+                $party_str = 'Democrat';
+            }
+            else if($president[0]['Lawmaker']['party'] = "R") {
+                $party_str = 'Republican';
+            }
+            echo $party_str; 
+            ?>
         </div>
 <?php
 }
 ?>
 <?php
+if(isset($lawmakers)) { 
 $i = 0;
 foreach ($lawmakers as $lawmaker):
     $keyword = $lawmaker['lawmaker']['firstname'] . ' ' .$lawmaker['lawmaker']['lastname'];
@@ -43,14 +55,14 @@ foreach ($lawmakers as $lawmaker):
 ;
     $congresspedia_name = ucfirst($lawmaker['lawmaker']['firstname']) . '_' .ucfirst($lawmaker['lawmaker']['lastname']);
 ?>
-        <div class="imageblock">
+        <div class="imageblock" style="width:138px">
         <p><strong><?php
            if(isset($president)) {
             if(is_numeric($lawmaker['lawmaker']['district'])) {
-                echo 'Representative';
+                echo '<font color="green">US Representative</font>';
             }
             else {
-                echo $lawmaker['lawmaker']['district']; 
+                echo 'US Senator - ' . $lawmaker['lawmaker']['district']; 
             }
            }
         ?></strong></p>
@@ -66,11 +78,28 @@ foreach ($lawmakers as $lawmaker):
 
             <?php } ?>
             </a>
-            <strong><a class="url" rel="me" href="<?php echo Router::url('/profiles/'.$lawmaker['lawmaker']['username']); ?>" title="<?php echo $title_str; ?>"><?php echo $lawmaker['lawmaker']['lastname']; ?></a></strong><br/>
+            <br/>
+            <strong><a class="url" rel="me" href="<?php echo Router::url('/profiles/'.$lawmaker['lawmaker']['username']); ?>" title="<?php echo $title_str; ?>"><?php echo $lawmaker['lawmaker']['firstname']; ?> <?php echo $lawmaker['lawmaker']['lastname']; ?></a></strong><br/>
+            <?php 
+            if($lawmaker['lawmaker']['party'] == "D") {
+                $party_str = 'Democrat';
+            }
+            else if($lawmaker['lawmaker']['party'] = "R") {
+                $party_str = 'Republican';
+            }
+            echo $party_str;
+           // echo '<br/>';
+           // echo '<a href="'.Router::url('/profiles/'.$lawmaker['lawmaker']['username']).'">State Spending</a>';
+            ?>
+            <div class="clear"></div>
+            <br/>
+            <br/>
         </div>
 
 
-<?php endforeach; ?>
+<?php endforeach; 
+}
+?>
     </div> <!-- end profileresults -->
     </div>
     <div class="clear"></div>

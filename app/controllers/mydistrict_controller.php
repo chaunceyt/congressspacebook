@@ -19,39 +19,47 @@ class MydistrictController extends AppController {
     function index($district=null)
     {
 
+        $noDistrict=true;
+        $noZip=true;
+
         $web_userdata = $this->Session->read('current_webuser');
         if(!$district) {
             if($this->Cookie->read('district') != null) {
                 $district = $this->Cookie->read('district');
                 $this->set('myDistrict', $district);
             }
+            else if($this->Session->read('district') !=null) {
+                $district = $this->Session->read('district');
+                $this->set('myDistrict', $district);
+            }
+            else {
+                $noDistrict = false;
+            }
 
             if($this->Cookie->read('zipcode') != null) {
                 $zipcode = $this->Cookie->read('zipcode');
                 $this->set('myZipcode', $zipcode);
             }
-
-            if($this->Session->read('district') !=null) {
-                $district = $this->Session->read('district');
-                $this->set('myDistrict', $district);
-            }
-
-            if($this->Session->read('zipcode') !=null) {
+            else if($this->Session->read('zipcode') !=null) {
                 $zipcode = $this->Session->read('zipcode');
                 $this->set('myZipcode', $zipcode);
+            }
+            else {
+                $noZip = false;
             }
 
         }
 
-        
-        //$this->autoRender=false;
-        $this->Lawmaker =& ClassRegistry::init('Lawmaker');
-        $st_dist = explode('-',$district);
-        $lawmakers = $this->Lawmaker->getMyDistrict($st_dist[0], $st_dist[1]);
-        $president = $this->Lawmaker->getPresident();
-        //print_r($lawmakers);
-        $this->set('lawmakers', $lawmakers);
-        $this->set('president', $president);
+        if($noDistrict != false || $noZip != false) {
+            //$this->autoRender=false;
+            $this->Lawmaker =& ClassRegistry::init('Lawmaker');
+            $st_dist = explode('-',$district);
+            $lawmakers = $this->Lawmaker->getMyDistrict($st_dist[0], $st_dist[1]);
+            $president = $this->Lawmaker->getPresident();
+            //print_r($lawmakers);
+            $this->set('lawmakers', $lawmakers);
+            $this->set('president', $president);
+        }
     }
 
     function zipcode()
@@ -81,6 +89,8 @@ class MydistrictController extends AppController {
         if(isset($this->params['form']['myzip'])) {
                 $this->Cookie->write('district', $mydistrict, $this->cookie_encrypted, $this->cookie_expires);
                 $this->Cookie->write('zipcode', $zipcode, $this->cookie_encrypted, $this->cookie_expires);
+                $this->Session->write('district', null);
+                $this->Session->write('zipcode', null);
         }
         else {
             $this->Session->write('district', $mydistrict);
