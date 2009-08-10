@@ -110,7 +110,7 @@ class Lawmaker extends AppModel {
 
     public function getProfileIdByName($profile_name)
     {
-        $sql = "select id from lawmakers where username = '".$profile_name."'";
+        $sql = "select id from lawmakers where username = '".$profile_name."' AND in_office = 1";
         $results = $this->query($sql);
         //commented out - prevent easy update of lawmakers
         //since we're getting the id we must be viewing it. update views.
