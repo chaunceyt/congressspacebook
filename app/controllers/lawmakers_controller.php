@@ -39,7 +39,7 @@ class LawmakersController extends AppController {
      * @access public
      * @var string List of helpers used by this controller's actions' views
      */
-    var $helpers = array('Html', 'Form', 'Javascript', 'Govtrack', 'Repstats');
+    var $helpers = array('Html', 'Form', 'Javascript', 'Govtrack', 'Repstats', 'Usafedspending');
 
     /**
      * Property used to store list of Models used by this controller's actions
