@@ -235,7 +235,7 @@ class LawmakersController extends AppController {
 
         $this->pageTitle = 'Lawmakers using twitter';
         $this->paginate['Lawmaker'] = array('limit' => '28' );
-        $this->paginate['Lawmaker']['conditions'] = "twitter_id != ' '";
+        $this->paginate['Lawmaker']['conditions'] = "twitter_id != ' ' AND in_office = 1";
         $this->Lawmaker->recursive = 0;
         $this->set('lawmakers', $this->paginate());
     }
