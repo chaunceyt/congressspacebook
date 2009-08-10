@@ -120,7 +120,7 @@ class Lawmaker extends AppModel {
     }
     public function stateTagCloud()
     {
-        $sql = 'select state, count(*) as lawmakers from lawmakers group by state';
+        $sql = 'select state, count(*) as lawmakers from lawmakers where in_office = 1 group by state';
         $results = $this->query($sql);
         foreach($results as $res) {
             $tags[$res['lawmakers']['state']] = $res[0]['lawmakers'];
@@ -130,7 +130,7 @@ class Lawmaker extends AppModel {
 
     public function partyTagCloud()
     {
-        $sql = 'select party, count(*) as lawmakers from lawmakers group by party';
+        $sql = 'select party, count(*) as lawmakers from lawmakers where in_office = 1 group by party';
         $results = $this->query($sql);
         foreach($results as $res) {
             $tags[$res['lawmakers']['party']] = $res[0]['lawmakers'];
@@ -159,10 +159,10 @@ class Lawmaker extends AppModel {
     {
         //removing rand() see if that prevents the broken page
         if($district) {
-            $sql = "select * from lawmakers as lawmaker where state = '".$state."' and district = '".$district."' order by district limit ".$limit;
+            $sql = "select * from lawmakers as lawmaker where state = '".$state."' and district = '".$district."'  and in_office = 1 order by district limit ".$limit;
         }
         else {
-            $sql = "select * from lawmakers as lawmaker where state = '".$state."' order by district limit ".$limit;
+            $sql = "select * from lawmakers as lawmaker where state = '".$state."' and in_office = 1 order by district limit ".$limit;
         }
         $results = $this->query($sql);
         return $results;
@@ -217,7 +217,7 @@ class Lawmaker extends AppModel {
 
     public function getDistrictsByState($state)
     {
-        $sql = "select state, district from lawmakers as Lawmaker where state = '".$state."' AND district NOT IN ('Senior Seat', 'Junior Seat')
+        $sql = "select state, district from lawmakers as Lawmaker where state = '".$state."' AND district NOT IN ('Senior Seat', 'Junior Seat') AND in_office = 1
             GROUP BY district";
         $results = $this->query($sql);
         return $results;
