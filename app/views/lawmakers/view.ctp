@@ -49,7 +49,13 @@ $_year_ = date("Y")-1;
             <?php } ?>
     </span>        
             </p>
-         <p><strong>Information</strong></p>   
+         <p><strong>Information</strong></p>  
+        <?php
+            if(!empty($lawmaker['Lawmaker']['webform'])) {
+                echo '<a href="'.$lawmaker['Lawmaker']['webform'].'" title="Contact Me" target="_blank">Contact Me</a><br/>';
+            }
+        ?>
+
             <?php
             if(isset($candSummary)) {
                     echo 'First Elected: '. $candSummary->summary->attributes()->first_elected . '<br/>';
