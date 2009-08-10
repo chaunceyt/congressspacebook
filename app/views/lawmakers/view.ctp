@@ -62,7 +62,7 @@ $_year_ = date("Y")-1;
             <?php
                 $congresspedia_name = ucfirst($lawmaker['Lawmaker']['firstname']) . '_' .ucfirst($lawmaker['Lawmaker']['lastname']);
                 $this_person = $lawmaker['Lawmaker']['firstname'] . ' ' .$lawmaker['Lawmaker']['lastname'];
-                $social_search_term = $lawmaker['Lawmaker']['title'] . ' ' .$lawmaker['Lawmaker']['lastname'];
+                $social_search_term = $lawmaker['Lawmaker']['title'] . ' ' . $lawmaker['Lawmaker']['firstname']. ' ' .$lawmaker['Lawmaker']['lastname'];
 
                 $openSecretWidgitData = $lawmaker['Lawmaker']['state'].$_district;
             ?>
@@ -88,8 +88,8 @@ $_year_ = date("Y")-1;
 
 <p>
 <?php
+/*
 $i=0;
-
 //don't display top friends if senior or junior seat
 if(sizeof($profile_top_friends['lawmaker']) > 0) {
    echo ' <p style="font-size:13px"><strong>Top Friends</strong></p>';
@@ -113,7 +113,7 @@ foreach ($profile_top_friends as $current) {
         </a></span>
 
 <?php
-    }
+    } */
 ?>
 </p>
 <p>
@@ -147,7 +147,7 @@ foreach ($profile_friends as $current) {
         <p></p>
        <h3> the public is saying...</h3>
                <ul>
-                    <li><img src="http://twitter.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/twitter/'. @urlencode($social_search_term)); ?>" title="Twitter Chatter">Twitter Post</a>  </li>
+                    <li><img src="http://twitter.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/twitter/'. @urlencode($lawmaker['Lawmaker']['lastname'] . ' ' .$lawmaker['Lawmaker']['firstname'])); ?>" title="Twitter Chatter">Twitter Post</a>  </li>
                     <li><img src="http://www.friendfeed.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/friendfeed/'. @urlencode($social_search_term)); ?>" title="Friend Feed">FriendFeed Chatter</a>  </li>
                     <li><img src="http://backtype.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/comments/'.@urlencode($social_search_term)); ?>" title="Comments: Blogs">User Comments</a>  </li>
                     <li><img src="http://www.technorati.com/favicon.ico" class="favicon" width="12" /> <a href="<?php echo Router::url('/technorati/'.@urlencode($social_search_term)); ?>" title="Blog Chatter">Blogs Chatter</a> </li>

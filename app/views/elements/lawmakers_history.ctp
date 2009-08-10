@@ -1,5 +1,4 @@
 <h3>** has this Member attended a (fundraising) <a href="/<?php Router::url('/'); ?>congress_parties/<?php echo $lawmaker['Lawmaker']['username']; ?>">Event/Party</a> as a Beneficiary</h3><br/> 
-<p>Member's State  <a href="/<?php Router::url('/'); ?>profiles/<?php echo $lawmaker['Lawmaker']['username']; ?>/fedspending">Spending</a></p> 
 
 <?php
 if(!empty($lawmaker['Lawmaker']['twitter_id'])) { 
@@ -20,6 +19,8 @@ if(!empty($lawmaker['Lawmaker']['twitter_id'])) {
 <p>This member has <?php echo $totalFollowers; ?> followers on Twitter, tweet <a href="http://twitter.com/home?status=@<?php echo $lawmaker['Lawmaker']['twitter_id']; ?>%20Just%20reviewed%20your%20profile%20on%20CongressSpacebook:%20<?php echo $shortUrl; ?>" target="_blank">@<?php echo $lawmaker['Lawmaker']['twitter_id']; ?></a> letting <?php echo $gender_str; ?> know about this page or view <span> <a href="<?php echo Router::url('/social_stream/user/'.@urlencode($lawmaker['Lawmaker']['twitter_id'])); ?>" title="twitter account">twitter_stream</a>  </span>
 </p>
 <?php }  ?>
+
+<h2>Congressional Terms</h2>
 <?php
 foreach($govtrack_results->CongressionalTerms->Term as $term) {
     echo  $term->Title . ' of ' . $term->State . ' ' . $term->District . '  (' . $term->Start . '-' . $term->End .")<br/>";
@@ -46,7 +47,22 @@ foreach($govtrack_results->CongressionalTerms->Term as $term) {
 }
 ?>
 </p>
-<span>source: <a href="http://govtrack.us/" title="Govtrack.us" target="_new">Govtrack.us</a></span>
+<?php 
+    if(ctype_digit($lawmaker['Lawmaker']['district'])) {
+        if(strlen($lawmaker['Lawmaker']['district']) == 1) {
+            $_dist = '0'.$lawmaker['Lawmaker']['district'];
+        }
+        else {
+            $_dist = $lawmaker['Lawmaker']['district'];
+        }
+        $lawmakers_district = $lawmaker['Lawmaker']['state'].$_dist;
+        $currentYear = date('Y');
+        $usafedspending->usaFedSpendingByDistrict($lawmakers_district, $currentYear);
+    }
+ ?>
+<h2>Member's State Federal <a href="/<?php Router::url('/'); ?>profiles/<?php echo $lawmaker['Lawmaker']['username']; ?>/fedspending"><small>Spending</small></a></h2> 
+<p><span>source: <a href="http://govtrack.us/" title="Govtrack.us" target="_new">Govtrack.us</a> and <a href="http://usafederalspending.gov" title="USA Federal Spending" target="_blank">USA Federal Spending</a></span></p>
+<br/>
 </div>
 </div>
 

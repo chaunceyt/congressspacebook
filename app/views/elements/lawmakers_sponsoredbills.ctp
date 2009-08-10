@@ -4,9 +4,10 @@
 <?php
 $govtrack_results->SponsoredBills->Bill = array_reverse($govtrack_results->SponsoredBills->Bill);
 foreach($govtrack_results->SponsoredBills->Bill as $bill) {
-    $_url_param = $bill->attributes()->Session .'-'.$bill->attributes()->Type.'-'.$bill->attributes()->Number;
+    $_url_param = $bill->attributes()->Type.$bill->attributes()->Session .'-'.$bill->attributes()->Number;
 
-    echo '<p><strong><a class="url" rel="me" href="'.Router::url('/').'profiles/'.$username.'/bill/'.$_url_param .'">'. $bill->attributes()->Session . ' ' . $bill->attributes()->Type . '' .$bill->attributes()->Number .'</a> ('. $bill->Status .')</strong></p>';
+    echo '<p><strong><a class="url" rel="me" href="http://www.govtrack.us/congress/bill.xpd?bill='.$_url_param .'" target="_blank">'. $bill->attributes()->Session . ' ' . $bill->attributes()->Type . '' .$bill->attributes()->Number .'</a> ('. $bill->Status .')</strong></p>';
+    //echo '<p><strong>'. $bill->attributes()->Session . ' ' . $bill->attributes()->Type . '' .$bill->attributes()->Number .' ('. $bill->Status .')</strong></p>';
     echo '<p>' . $bill->OfficialTitle . '</p>';
 }
 ?>
@@ -16,7 +17,9 @@ foreach($govtrack_results->SponsoredBills->Bill as $bill) {
 <?php
 $govtrack_results->CosponsoredBills->Bill = array_reverse($govtrack_results->CosponsoredBills->Bill);
 foreach($govtrack_results->CosponsoredBills->Bill as $bill) {
-    echo '<p><strong><a class="url" rel="me" href="'.Router::url('/').'profiles/'.$username.'/bill/'.$_url_param .'">' . $bill->attributes()->Session . ' ' . $bill->attributes()->Type . '    ' .$bill->attributes()->Number .'</a> ('.$bill->Status.')</strong></p>';
+    $_url_param = $bill->attributes()->Type.$bill->attributes()->Session .'-'.$bill->attributes()->Number;
+    echo '<p><strong><a class="url" rel="me" href="http://www.govtrack.us/congress/bill.xpd?bill='.$_url_param .'" target="_blank">' . $bill->attributes()->Session . ' ' . $bill->attributes()->Type . '    ' .$bill->attributes()->Number .'</a>  ('.$bill->Status.')</strong></p>';
+    //echo '<p><strong>' . $bill->attributes()->Session . ' ' . $bill->attributes()->Type . '    ' .$bill->attributes()->Number .' ('.$bill->Status.')</strong></p>';
     echo '<p>' . $bill->OfficialTitle . '</p>';
 }
 ?>

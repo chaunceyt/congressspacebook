@@ -1,6 +1,6 @@
 <?php
         echo '<p>';
-        echo '<strong>Federal Spending ' . $fedSpending->data->record->attributes()->description .': </strong><br/><br/>';
+        echo '<strong>Federal Spending Summary for member\'s state </strong><br/><br/>';
         echo 'Total Obligated Amount: $' . number_format($fedSpending->data->record->totals->total_ObligatedAmount, 2) . "<br/>";
         echo 'Rank Among states: ' . $fedSpending->data->record->totals->rank_among_states . "<br/>";
         echo 'Number of Contractors: ' . number_format($fedSpending->data->record->totals->number_of_contractors) . "<br/>";

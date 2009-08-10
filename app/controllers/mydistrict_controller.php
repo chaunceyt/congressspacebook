@@ -65,7 +65,12 @@ class MydistrictController extends AppController {
     function zipcode()
     {
         $this->autoRender=false;
-        $zipcode = $this->params['form']['zipcode'];
+        if(isset($this->params['zipcode'])) {
+            $zipcode = $this->params['zipcode'];
+        }
+        else {
+            $zipcode = $this->params['form']['zipcode'];
+        }
         $districts = $this->Sunlightlabs->getDistrictsFromZip($zipcode);
         print_r($districts); 
         if(sizeof($districts->response->districts) > 1) {

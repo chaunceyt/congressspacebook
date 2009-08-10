@@ -1,11 +1,13 @@
 <?php
 ini_set("display_errors", true);
+Configure::write('debug', 1);
 class TestController extends AppController {
 
     var $name = 'Test';
-    var $helpers = array('Html', 'Form');
+    var $helpers = array('Html', 'Form', 'Usafedspending');
     var $components = array('Capitolwords', 'Govtrack','Lucene', 'FollowTheMoneyState');
     var $uses = array('Lawmaker', 'LawmakerStats', 'Govtrack');
+    var $cookie_expires = null;
     
     function beforeFilter()
     {
@@ -16,8 +18,13 @@ class TestController extends AppController {
     function index($clear = false)
     {
         echo '<pre>';
-        $this->autoRender=false;
+        //$this->autoRender=false;
         $start = getMicrotime(); 
+        $nextsession = $this->Govtrack->getNextSession();
+
+        echo 'Senate: ' . date('m-d-Y', (int) $nextsession['senate'][0]);
+        echo 'House: ' . date('m-d-Y', (int) $nextsession['house'][0]);
+        
         //state: "NY" AND district: 1
         //$top_members_introduced = $this->LawmakerStats->getTopLawmakersByIntroduced();
         //$top_members_cosponsored = $this->LawmakerStats->getTopLawmakersByCoSponsored();
@@ -26,6 +33,7 @@ class TestController extends AppController {
 
         //print_r($top_members_introduced);
         //$query = 'state: "NY" AND district: 1';
+/*        
 $dir = "/home/govtrack/data/us/111/cr/";
 $filepattern = '*';
 $sorting_list = array();
@@ -84,33 +92,228 @@ else {
         $params = array('type' => 'govtrack', 'query' => $query);
         $q = $this->Lucene->query($params);
         print_r($q);
+*/  
+        //echo '<pre>';    
+        //$response = file_get_contents('http://www.usaspending.gov/fpds/fpds.php?datype=X&detail=-1&&stateCode=NY&fiscal_year=2009');
+        //$response = file_get_contents('http://www.usaspending.gov/fpds/fpds.php?datype=X&detail=-1&placeOfPerformanceZIPCode=10009&fiscal_year=all');
+        $response = file_get_contents('http://www.usaspending.gov/fpds/fpds.php?datype=X&detail=-1&pop_cd=NY12&fiscal_year=2009');
+        $result = simplexml_load_string($response);
+        print_r($result);
+        //echo '</pre>'; 
+        /*
+$search='';
+echo "<p><strong>Contracts with place of performance in ", $search," </strong><p>\n";
+$totals = $result->data->record->totals;
+$total_amt = $totals->total_ObligatedAmount;
 
+echo '<p>Total Obligated: $', number_format($total_amt) ,"<br>\n";
+echo 'Number of Contractors: ', $totals->number_of_contractors,"<br>\n";
+echo 'Number of Contracts: ', $totals->number_of_transactions,"<br></p>\n";
+
+$districts = $result->data->record->top_known_congressional_districts;
+foreach($districts->attributes() as $name=>$attr) {
+    $res[$name]=$attr;
+
+}
+echo "<h3>Districts where work is performed </h3>\n";
+
+foreach($districts->children() as $district)
+{
+    foreach($district->attributes() as $name=>$attr)
+    {
+        $res[$name]=$attr;
+
+    }
+    echo $district. '&nbsp;';
+    echo "$",  number_format($res["total_obligatedAmount"]),  "\n";
+}
+
+$agencies = $result->data->record->top_contracting_agencies;
+
+echo "<h3>Top Contracting Agencies</h3>\n";
+
+foreach($agencies->children() as $agency)
+{
+    foreach($agency->attributes() as $name=>$attr)
+    {
+        $res[$name]=$attr;
+
+    }
+    echo  $agency, ":&nbsp;";
+    echo "$",  number_format($res["total_obligatedAmount"]),  "\n";
+
+
+}
+
+        
+$level_of_competition = $result->data->record->extent_of_competition;
+$full_and_open = $level_of_competition->full_and_open_competition;
+settype($full_and_open, "float");
+$percent = $full_and_open / $total_amt * 100;
+$comp_chart_percent = array(number_format($percent, 0));
+
+$one_bid = $level_of_competition->full_and_open_competition_but_only_one_bid;
+settype($one_bid, "float");
+$percent = $one_bid / $total_amt * 100;
+$comp_chart_percent[] = number_format($percent, 0);
+
+$level_of_competition_after_exclusion = $level_of_competition->competition_after_exclusion_of_sources;
+settype($level_of_competition_after_exclusion, "float");
+$percent = $level_of_competition_after_exclusion / $total_amt * 100;
+$comp_chart_percent[] = number_format($percent, 0);
+
+$not_available_for_comp = $level_of_competition->not_available_for_competition;
+settype($not_available_for_comp, "float");
+$percent = $not_available_for_comp / $total_amt * 100;
+$comp_chart_percent[] = number_format($percent, 0);
+        
+$not_competed = $level_of_competition->not_competed;
+settype($not_competed, "float");
+$percent = $not_competed / $total_amt * 100;
+$comp_chart_percent[] = number_format($percent, 0);
+
+$competition_unknown = $level_of_competition->unknown;
+settype($competition_unknown, "float");
+$percent = $level_of_competition->unknown / $total_amt * 100;
+$comp_chart_percent[] = number_format($percent, 0);
+
+
+
+echo "<p>\n";
+echo '<img src="http://chart.apis.google.com/chart?cht=p&chdl=';
+echo 'Open+to+everyone+-+$'.number_format($level_of_competition->full_and_open_competition).'|';
+echo 'Open+to+everyone,+but+only+one+offer+was+received+-+$'.number_format($level_of_competition->full_and_open_competition_but_only_one_bid).'|';
+echo 'Competition+within+a+limited+pool+-+$'.number_format($level_of_competition_after_exclusion).'|';
+echo 'Available+only+for+groups+such+as+disabled+persons+-+$'.number_format($not_available_for_comp).'|';
+echo 'Not+competed+for+an+allowable+reason+-+$'.number_format($not_competed).'|';
+echo 'Not+identified+-+$'.number_format($competition_unknown);
+//echo '&chco=17D813,27A53B,91D849,D0D833,E2651D,AF3228,31030C,000000';
+echo '&chco=073540,d2e5e8,ea7100';
+echo '&chl=';
+echo $comp_chart_percent[0],'%|';
+echo $comp_chart_percent[1],'%|';
+echo $comp_chart_percent[2],'%|';
+echo $comp_chart_percent[3],'%|';
+echo $comp_chart_percent[4],'%|';
+echo $comp_chart_percent[5],'%';
+echo '&chd=t:';
+echo $comp_chart_percent[0],',';
+echo $comp_chart_percent[1],',';
+echo $comp_chart_percent[2],',';
+echo $comp_chart_percent[3],',';
+echo $comp_chart_percent[4],',';
+echo $comp_chart_percent[5],'&chs=400x355&chdlp=bv&chtt=Level+of+Competition+for+Federal+Contracts">';
+echo "</p>\n";
+
+$types_of_contracts = $result->data->record->type_of_contract_used;
+
+//print_r($types_of_contracts);
+
+$contract_chart_percent = array();
+$fixed_contract = $types_of_contracts->fixed_price;
+settype($fixed_contract, "float");
+$percent = $fixed_contract / $total_amt * 100;
+$contract_chart_percent[] = number_format($percent, 0);
+
+$cost_type = $types_of_contracts->cost_type;
+settype($cost_type, "float");
+$percent = $cost_type / $total_amt * 100;
+$contract_chart_percent[] = number_format($percent, 0);
+
+$time_and_material = $types_of_contracts->time_and_material;
+settype($time_and_material, "float");
+$percent = $time_and_material / $total_amt * 100;
+$contract_chart_percent[] = number_format($percent,0);
+
+$labor_hours = $types_of_contracts->labor_hours;
+settype($labor_hours, "float");
+$percent = $labor_hours / $total_amt * 100;
+$contract_chart_percent[] = number_format($percent, 0);
+
+$contracts_that_allow_the_orders_to_be_priced_differently_than_the_basic_contract = $types_of_contracts->contracts_that_allow_the_orders_to_be_priced_differently_than_the_basic_contract;
+$percent = $contracts_that_allow_the_orders_to_be_priced_differently_than_the_basic_contract / $total_amt * 100;
+$contract_chart_percent[] = number_format($percent, 0);
+
+$contracts_that_used_a_combination_of_the_above_pricing_arrangements = $types_of_contracts->contracts_that_used_a_combination_of_the_above_pricing_arrangements;
+$percent = $contracts_that_used_a_combination_of_the_above_pricing_arrangements / $total_amt * 100;
+$contract_chart_percent[] = number_format($percent, 0);
+
+$awards_only_where_none_of_the_above_pricing_arrangements_apply = $types_of_contracts->awards_only_where_none_of_the_above_pricing_arrangements_apply;
+$percent = $awards_only_where_none_of_the_above_pricing_arrangements_apply / $total_amt * 100;
+$contract_chart_percent[] = number_format($percent, 0);
+
+$unknown = $types_of_contracts->unknown;
+$percent = $unknown / $total_amt * 100;
+$contract_chart_percent[] = number_format($percent,0);
+
+//print_r($contract_chart_percent);
+
+echo "<p>\n";
+echo '<img src="http://chart.apis.google.com/chart?cht=p&chdl=';
+echo 'Fixed+Contract+-+$'.number_format($fixed_contract).'|';
+echo 'Cost Type+-+$'.number_format($cost_type).'|';
+echo 'Time+and+Material+-+$'.number_format($time_and_material).'|';
+echo 'Labor+Hours+-+$'.number_format($labor_hours).'|';
+echo 'Contracts+priced+differently+than+the+basic+-+$'.number_format($contracts_that_allow_the_orders_to_be_priced_differently_than_the_basic_contract).'|';
+echo 'Contracts+that+use+a+combination+of+above+pricing+-+$'.number_format($contracts_that_used_a_combination_of_the_above_pricing_arrangements).'|';
+echo 'Awards+without+above+pricing+arrangements+-+$'.number_format($awards_only_where_none_of_the_above_pricing_arrangements_apply).'|';
+echo 'Not+identified+-+$'.number_format($unknown);
+//echo '&chco=17D813,27A53B,91D849,D0D833,E2651D,AF3228,31030C,000000';
+echo '&chco=073540,d2e5e8,ea7100';
+echo '&chl=';
+echo $contract_chart_percent[0],'%|';
+echo $contract_chart_percent[1],'%|';
+echo $contract_chart_percent[2],'%|';
+echo $contract_chart_percent[3],'%|';
+echo $contract_chart_percent[4],'%|';
+echo $contract_chart_percent[5],'%';
+echo '&chd=t:';
+echo $contract_chart_percent[0],',';
+echo $contract_chart_percent[1],',';
+echo $contract_chart_percent[2],',';
+echo $contract_chart_percent[3],',';
+echo $contract_chart_percent[4],',';
+echo $contract_chart_percent[5],'&chs=400x355&chdlp=bv&chtt=Types of Contract used in Contracts">';
+echo "</p>\n";
+
+
+$services = $result->data->record->top_products_or_services_sold;
+*/
         //$state_offices = $this->FollowTheMoney->stateOffice('ny');
         //$sort = array('total_dollars');
         //$state_offices = $this->FollowTheMoneyState->stateOffice('ny', 2008, null, null, $sort);
         //office required
-       // $state_offices_district = $this->FollowTheMoneyState->stateOfficeDistrict('ny', 2008, null, null, $sort);
+       
+        //$district_key = 'state_offices_district-ny-2008';
+
+        //$state_offices_district = $this->FollowTheMoneyState->stateOfficeDistrict('ny', 2008, null, null, $sort);
         //$state_offices_breakdown = $this->FollowTheMoneyState->stateOfficeBreakdown('ny', 2008, null, null, $sort);
         //$state_offices_business = $this->FollowTheMoneyState->stateOfficeBusiness('ny', '2008', null, '1', null, $sort);
         //$state_offices_sectors = $this->FollowTheMoneyState->stateOfficeSectors('ny', '2008', 'SENATE', null, $sort); 
         //$state_offices_industries = $this->FollowTheMoneyState->stateOfficeIndustries('ny', '2008','SENATE'); 
         //$state_offices_contributors = $this->FollowTheMoneyState->stateTopContributors('ny', '2008', 'SENATE', null, $sort); 
-        //print_r($state_offices);
-        //print_r($state_offices_sectors);
-        //print_r($state_offices_industries);
-        //print_r($state_offices_contributors);
-        //print_r($state_offices_district);
+       
+        //echo $this->renderStateOffices($state_offices);
+
+        /*
+        print_r($state_offices);
+        print_r($state_offices_sectors);
+        print_r($state_offices_industries);
+        print_r($state_offices_district);
+        */
         //print_r($state_offices_breakdown);
         //print_r($state_offices_business);
-        
-        /*
+        //print_r($state_offices_contributors);
+        //echo $this->renderStateOfficesBusiness($state_offices_business);
+        /* 
         foreach($state_offices_business as $business) { 
-            print_r($business);
-            $state_offices_district = $this->FollowTheMoney->stateOfficeDistrict('ny', '2008', trim($business->attributes()->office),  null, $sort);
-        print_r($state_offices_district);
+        //    print_r($business);
+            $state_offices_district[trim($business->attributes()->office)][]= $this->FollowTheMoneyState->stateOfficeDistrict('ny', '2008', trim($business->attributes()->office),  null, $sort);
 
         }
+        print_r($state_offices_district);
         */
+        
 
         //$w = $this->Capitolwords->dailysum('iraq','2006');
         //$ww = $this->Capitolwords->wordofday();
@@ -167,6 +370,79 @@ else {
 
         //print_r($twitter);
         $time = round(getMicrotime() - $start, 1);
-        echo $time;
+        //echo $time;
     }
+        function renderStateOffices($arr)
+        {
+            $total_stateoffices = sizeof($arr);
+        
+            echo '<table class="datadisplay"><tr><thead><th>State</th><th>Year</th><th>Office</th><th>Recipients</th>
+            <th>Contribution</th><th>Total Dollars</th></tr>';
+            for($i=0; $i < $total_stateoffices; $i++) {
+            echo '<tr>';
+            echo '<td>';
+            echo $arr->state_office[$i]->attributes()->state_name;
+            echo '</td><td>';
+            echo $arr->state_office[$i]->attributes()->year;
+            echo '</td><td>';
+            echo $arr->state_office[$i]->attributes()->office;
+            echo '</td><td align="right">';
+            echo $arr->state_office[$i]->attributes()->total_recipients;
+            echo '</td><td class="number" align="right">';
+            echo number_format($arr->state_office[$i]->attributes()->total_contribution_records);
+            echo '</td><td class="number" align="right">';
+            echo number_format($arr->state_office[$i]->attributes()->total_dollars, 2);
+            echo '</td><td>';
+            echo '</tr>';
+            }
+            echo '</table>';
+        }
+        function renderStateOfficesBusiness($arr)
+        {
+            $total_stateoffices = sizeof($arr);
+        
+            echo '<table class="datadisplay"><tr><thead><th>State</th><th>Year</th><th>Business</th>
+            <th>Contribution</th><th>Total Dollars</th></tr>';
+            for($i=0; $i < $total_stateoffices; $i++) {
+            echo '<tr>';
+            echo '<td>';
+            echo $arr->state_offices_business[$i]->attributes()->state_name;
+            echo '</td><td>';
+            echo $arr->state_offices_business[$i]->attributes()->year;
+            echo '</td><td>';
+            echo $arr->state_offices_business[$i]->attributes()->business_name;
+            echo '</td><td class="number" align="right">';
+            echo number_format($arr->state_offices_business[$i]->attributes()->total_contribution_records);
+            echo '</td><td class="number" align="right">';
+            echo number_format($arr->state_offices_business[$i]->attributes()->total_dollars, 2);
+            echo '</td><td>';
+            echo '</tr>';
+            }
+            echo '</table>';
+        }
+        function renderStateOfficesBreakdowns($arr, $method = 'state_office')
+        {
+            $total_stateoffices = sizeof($arr);
+        
+            echo '<table class="datadisplay"><tr><thead><th>State</th><th>Year</th><th>Office</th><th>Recipients</th>
+            <th>Contribution</th><th>Total Dollars</th></tr>';
+            for($i=0; $i < $total_stateoffices; $i++) {
+            echo '<tr>';
+            echo '<td>';
+            echo $arr->state_office[$i]->attributes()->state_code;
+            echo '</td><td>';
+            echo $arr->state_office[$i]->attributes()->year;
+            echo '</td><td>';
+            echo $arr->state_office[$i]->attributes()->office;
+            echo '</td><td align="right">';
+            echo $arr->state_office[$i]->attributes()->total_recipients;
+            echo '</td><td class="number" align="right">';
+            echo number_format($arr->state_office[$i]->attributes()->total_contribution_records);
+            echo '</td><td class="number" align="right">';
+            echo number_format($arr->state_office[$i]->attributes()->total_dollars, 2);
+            echo '</td><td>';
+            echo '</tr>';
+            }
+            echo '</table>';
+        }
 }

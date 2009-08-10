@@ -5,6 +5,12 @@
 <div id="homepage_page">
 <div id="homepage_right">
 <h2>...striving to make Congress more accountable and transparent...</h2>
+<p>
+<?php
+$today = date("F j, Y, g:i a");
+echo '<small> by congressSB - '.$today.'</small>';
+?>
+</p>
 <p>Here we're tracking each member's voting records, FEC reports, Campaign Finance summary, their opinions on the issues, and even their state's federal spending reports. </p>
 
 <p>
@@ -33,13 +39,28 @@ the most bills <a href="<?php echo Router::url('/lawmakers/top/enacted'); ?>" ti
 the most <a href="<?php echo Router::url('/lawmakers/top/novote'); ?>" title="Top 100 Lawmakers with the most No Votes">novotes</a>, 
 and <a href="<?php echo Router::url('/lawmakers/top/cosponsored'); ?>" title="Top 100 Lawmakers who co-sponsored the most Bills">co-sponsored</a> the most bills...<br/>
 </p>
-<span style="margin:0 auto"><?php echo $this->element('mydistrict_search'); ?></span>
-
-
+<p><small>0 COMMENTS</small></p>
 <?php /* ?>
 <?php */ ?>
 <hr noshade />
-<p><h2><small>American Recovery and Reinvestment Act</small> <a href="/recoveryact_100days_report" title="100 Days 100 Projects">100-Days-100-Projects</a><small> Poll</small></h2></p>
+<br/>
+<h2>Transparency and being held accountable</h2>
+<p>
+<?php
+$today = date("F j, Y, g:i a");
+echo '<small> by congressSB - '.$today.'</small>';
+?>
+</p>
+<p>
+Make Transparency work - Stay Informed and Take Action in your Political Scene. 
+</p>
+<span style="margin:0 auto"><?php echo $this->element('mydistrict_search'); ?></span>
+<br/>
+<p><small>0 COMMENTS</small></p>
+<hr noshade />
+<p><h2>Poll(s) <br/> <small>American Recovery and Reinvestment Act</small> <a href="/recoveryact_100days_report" title="100 Days 100 Projects" target="_blank">100-Days-100-Projects</a></h2></p>
+<br/>
+<hr noshade />
 <p></p>
 <p><h2>Whitehouse Video Stream</h2></p>
 <p>

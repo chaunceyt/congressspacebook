@@ -225,9 +225,16 @@ class Lawmaker extends AppModel {
                 
     public function getMyDistrict($state, $district)
     {
-        $sql = "SELECT * FROM lawmakers as lawmaker 
+        /*if($district) {*/
+            $sql = "SELECT * FROM lawmakers as lawmaker 
                     WHERE state = '".$state."' AND district IN ({$district}, 'Senior Seat','Junior Seat') AND in_office = '1' 
                     ORDER BY district DESC";
+        /*}
+        else {
+            $sql = "SELECT * FROM lawmakers as lawmaker 
+                    WHERE state = '".$state."' AND district IN ('Senior Seat','Junior Seat') AND in_office = '1' 
+                    ORDER BY district DESC";
+        }*/
         $results = $this->query($sql);
         return $results;
     }

@@ -46,10 +46,10 @@ padding-left:20px;
 <li><a href="<?php echo Router::url('/lawmakers/browse/senate');?>">Senate</a></li>
 <li><a href="<?php echo Router::url('/lawmakers/browse/house');?>">House</a></li>
 <li><a href="<?php echo Router::url('/congress_votes');?>">Votes</a></li>
-<li><a href="<?php echo Router::url('/congress_bills');?>">Bills</a></li>
 <li><a href="<?php echo Router::url('/industries');?>">Lobbyist</a></li>
 <li><a href="<?php echo Router::url('/congress_parties');?>">Parties</a></li>
 <li><a href="<?php echo Router::url('/pages/about');?>">About</a></li>
+<li><a href="<?php echo Router::url('/pages/latest_commits');?>">Commits</a></li>
 </ul>
 </div>
 <br/><br/>

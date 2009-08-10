@@ -5,13 +5,6 @@
 
 <div class="lobbyistsFilings index">
 <h2><?php __('Lobbyist @ Work their expenditures...');?></h2>
-<img src="http://www.opensecrets.org/lobby/IMG_client_year_comp.php?lname=Pfizer+Inc&type=c" alt="chart" />
-<p>
-<?php
-echo $paginator->counter(array(
-'format' => __('Page %page% of %pages%, showing %current% records out of %count% ', true)
-));
-?></p>
 <p>
 <?php 
         if(isset($this->params['client'])) {
@@ -27,6 +20,13 @@ echo $paginator->counter(array(
 	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
 </div>
 </p>
+<img src="http://www.opensecrets.org/lobby/IMG_client_year_comp.php?lname=Pfizer+Inc&type=c" alt="chart" />
+<p>
+<?php
+echo $paginator->counter(array(
+'format' => __('Page %page% of %pages%, showing %current% records out of %count% ', true)
+));
+?></p>
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
         <th><?php echo $paginator->sort('Registrant filing on behalf of: '. $client, 'client_name');?></th>
