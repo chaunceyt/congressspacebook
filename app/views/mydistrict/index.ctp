@@ -88,6 +88,10 @@ foreach ($lawmakers as $lawmaker):
                 $party_str = 'Republican';
             }
             echo $party_str;
+            if(!empty($lawmaker['lawmaker']['webform'])) {
+                echo ' - <a href="'.$lawmaker['lawmaker']['webform'].'" title="Contact Me" target="_blank">Contact</a><br/>';
+            }
+            
            // echo '<br/>';
            // echo '<a href="'.Router::url('/profiles/'.$lawmaker['lawmaker']['username']).'">State Spending</a>';
             ?>

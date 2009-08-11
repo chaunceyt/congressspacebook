@@ -5,16 +5,77 @@ class TestController extends AppController {
 
     var $name = 'Test';
     var $helpers = array('Html', 'Form', 'Usafedspending');
-    var $components = array('Capitolwords', 'Govtrack','Lucene', 'FollowTheMoneyState');
+    var $components = array('Capitolwords', 'Govtrack','Lucene', 'FollowTheMoneyState', 'Sunlightlabs');
     var $uses = array('Lawmaker', 'LawmakerStats', 'Govtrack');
     var $cookie_expires = null;
     
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index');
+        $this->Auth->allowedActions = array('index','zipcode');
         parent::beforeFilter();
     }    
-    
+
+    function zipcode()
+    {
+        $this->autoRender=false;
+        /*
+        if(isset($this->params['zipcode'])) {
+            $zipcode = $this->params['zipcode'];
+        }
+        else {
+            $zipcode = $this->params['form']['zipcode'];
+        }
+        */
+        /*
+        $zipcode = '10009';
+        $districts = $this->Sunlightlabs->getDistrictsFromZip($zipcode);
+        print_r($districts); 
+        if(sizeof($districts->response->districts) > 1) {
+            $total_dist = sizeof($districts->response->districts);
+            for($i=0; $i < $total_dist; $i++) {
+                $dist = $districts->response->districts[$i]->district->state.'-'.$districts->response->districts[$i]->district->number;
+                $zip4dists[$dist][] = $this->Sunlightlabs->getZipsFromDistrict($districts->response->districts[$i]->district->state, $districts->response->districts[$i]->district->number);                
+            }
+            echo '<pre>';
+            print_r($zip4dists);
+            echo '</pre>';
+            foreach($zip4dists as $state_dist => $data) {
+                if(in_array($zipcode, $data[0]->response->zips)) {
+                    $mydistrict =  $state_dist;
+                }
+            }
+        }
+        else {
+            $mydistrict = $dist = $districts->response->districts[0]->district->state.'-'.$districts->response->districts[0]->district->number;
+        }//end if
+
+
+        if(isset($this->params['form']['myzip'])) {
+                $this->Cookie->write('district', $mydistrict, $this->cookie_encrypted, $this->cookie_expires);
+                $this->Cookie->write('zipcode', $zipcode, $this->cookie_encrypted, $this->cookie_expires);
+                $this->Session->write('district', null);
+                $this->Session->write('zipcode', null);
+        }
+        else {
+            $this->Session->write('district', $mydistrict);
+            $this->Session->write('zipcode', $zipcode);
+        }
+        $this->redirect('/mydistrict/');
+        */
+        $this->StateGovernor =& ClassRegistry::init('StateGovernor');
+        $state = 'NY';
+        $governor = $this->StateGovernor->getGovernor($state);
+        echo '<pre>';
+        print_r($governor);
+        echo '</pre>';
+        echo '<small>Governor of '.$governor[0]['state_governors']['governor_state_name'].'</small><br/>';
+        echo '<img src="'.$governor[0]['state_governors']['wikipedia_image'].'" alt="" /><br/>';
+        echo '<a href="'.$governor[0]['state_governors']['wikipedia_url'].'" target="_blank"><small>'.$governor[0]['state_governors']['governor_name'].'</small></a><br/>';
+        echo '<small>'.$governor[0]['state_governors']['governor_party'].'</small><br/>';
+
+    }
+
+
     function index($clear = false)
     {
         echo '<pre>';

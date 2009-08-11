@@ -55,6 +55,14 @@
                 <?php
                 if(isset($by_state)) { ?>
                     <img src="<?php echo Router::url('/'); ?>img/states/<?php echo strtolower($by_state); ?>.png" alt="default" border="0" width="150px" height="137px"/>
+                    <br/>
+                    <?php
+                        echo 'Governor of '.$governor[0]['state_governors']['governor_state_name'].'<br/>';
+                        echo '<img src="'.$governor[0]['state_governors']['wikipedia_image'].'" alt="" /><br/>';
+                        echo '<a href="'.$governor[0]['state_governors']['wikipedia_url'].'" target="_blank"><small>'.$governor[0]['state_governors']['governor_name'].'</small></a><br/>';
+                        echo '<small>'.$governor[0]['state_governors']['governor_party'].'</small><br/>';
+                    ?>
+                    
                     <!--<p><a href="http://www.tetonpost.com/sc/?sc=<?php echo strtoupper($by_state); ?>&fy=8" target="_blank">Federal Contracts</a></p>-->
                 <?php } ?>
                 </p>

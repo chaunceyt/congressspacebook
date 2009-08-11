@@ -172,6 +172,13 @@ class LawmakersController extends AppController {
     {
         $this->Lawmaker =& ClassRegistry::init('Lawmaker');
         $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
+        
+        if($value) {
+            $this->StateGovernor =& ClassRegistry::init('StateGovernor');
+            $governor = $this->StateGovernor->getGovernor($value);
+            $this->set('governor',$governor);
+        }
+
 
         $this->pageTitle = 'Browsing profiles by '.ucfirst($by).' '.$value;
         $this->Lawmaker->recursive = 0;
@@ -252,7 +259,7 @@ class LawmakersController extends AppController {
 
         $this->pageTitle = 'Lawmakers using Youtube';
         $this->paginate['Lawmaker'] = array('limit' => '28' );
-        $this->paginate['Lawmaker']['conditions'] = "youtube_url != ' '";
+        $this->paginate['Lawmaker']['conditions'] = "youtube_url != ' ' AND in_office = 1";
         $this->Lawmaker->recursive = 0;
         $this->set('lawmakers', $this->paginate());
     }
