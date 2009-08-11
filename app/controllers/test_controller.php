@@ -1,6 +1,6 @@
 <?php
 ini_set("display_errors", true);
-Configure::write('debug', 1);
+//Configure::write('debug', 1);
 class TestController extends AppController {
 
     var $name = 'Test';
@@ -11,7 +11,7 @@ class TestController extends AppController {
     
     function beforeFilter()
     {
-        $this->Auth->allowedActions = array('index','zipcode');
+        $this->Auth->allowedActions = array('index','zipcode', 'shell');
         parent::beforeFilter();
     }    
 
@@ -78,7 +78,7 @@ class TestController extends AppController {
 
     function index($clear = false)
     {
-        echo '<pre>';
+        //echo '<pre>';
         //$this->autoRender=false;
         $start = getMicrotime(); 
         $nextsession = $this->Govtrack->getNextSession();
@@ -397,7 +397,7 @@ $services = $result->data->record->top_products_or_services_sold;
         //preg_match_all("/\<span class=\"vcard\">(.*?)<\/span>/is", $response, $friends_vcard);
         //$this->set('FriendsVcard', $friends_vcard[1]);
         //$this->set('AuthorVcard', $author_vcard[1]);
-        echo '<pre>'; 
+        //echo '<pre>'; 
         //        echo $author_vcard[1];
         //print_r($friends_vcard[1]);
 
@@ -506,4 +506,10 @@ $services = $result->data->record->top_products_or_services_sold;
             }
             echo '</table>';
         }
+
+    function shell($str=null)
+    {
+        echo 'Hello Chauncey' . $str;
+    }
+
 }

@@ -307,6 +307,11 @@ class LawmakersController extends AppController {
                 case 'history' :
                     $_page = 'history';
                     break;
+
+                case 'comments' :
+                    $_page = 'comments';
+                    break;
+
                 case 'state' :
                     $_page = 'state';
                     break;

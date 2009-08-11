@@ -246,6 +246,9 @@ if(isset($_page_)) {
     else if($_page_ == 'state')  {
         echo $this->element('lawmakers_state', array('_year_' => $_year_)); 
     }
+    else if($_page_ == 'comments')  {
+        echo $this->element('lawmakers_comments'); 
+    }
 }//see if $_page_ isset
 else {
         echo $this->element('lawmakers_history', array('_year_' => $_year_)); 

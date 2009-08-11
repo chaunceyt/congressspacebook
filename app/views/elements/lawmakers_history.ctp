@@ -1,5 +1,5 @@
-<h3>** has this Member attended a (fundraising) <a href="/<?php Router::url('/'); ?>congress_parties/<?php echo $lawmaker['Lawmaker']['username']; ?>">Event/Party</a> as a Beneficiary</h3><br/> 
-
+<h3>** has this Member attended a (fundraising) <a href="/<?php Router::url('/'); ?>congress_parties/<?php echo $lawmaker['Lawmaker']['username']; ?>">Event/Party</a> as a Beneficiary</h3> 
+<h3>** this members Donors <a href="http://www.newsmeat.com/campaign_contributions_to_politicians/donor_list.php?candidate_id=<?php echo $lawmaker['Lawmaker']['fec_id']; ?>" target="_blank">List</a></h3>
 <?php
 if(!empty($lawmaker['Lawmaker']['twitter_id'])) { 
     if($lawmaker['Lawmaker']['gender'] == 'F') {
