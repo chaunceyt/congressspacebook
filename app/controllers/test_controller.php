@@ -17,7 +17,7 @@ class TestController extends AppController {
 
     function zipcode()
     {
-        $this->autoRender=false;
+        //$this->autoRender=false;
         /*
         if(isset($this->params['zipcode'])) {
             $zipcode = $this->params['zipcode'];
@@ -62,17 +62,11 @@ class TestController extends AppController {
         }
         $this->redirect('/mydistrict/');
         */
-        $this->StateGovernor =& ClassRegistry::init('StateGovernor');
-        $state = 'NY';
-        $governor = $this->StateGovernor->getGovernor($state);
-        echo '<pre>';
-        print_r($governor);
-        echo '</pre>';
-        echo '<small>Governor of '.$governor[0]['state_governors']['governor_state_name'].'</small><br/>';
-        echo '<img src="'.$governor[0]['state_governors']['wikipedia_image'].'" alt="" /><br/>';
-        echo '<a href="'.$governor[0]['state_governors']['wikipedia_url'].'" target="_blank"><small>'.$governor[0]['state_governors']['governor_name'].'</small></a><br/>';
-        echo '<small>'.$governor[0]['state_governors']['governor_party'].'</small><br/>';
-
+        $this->CongressBiography =& ClassRegistry::init('CongressBiography');
+        $biography = $this->CongressBiography->findById('F000444');
+        //print_r($biography);
+        $this->set('biography',$biography);
+        
     }
 
 

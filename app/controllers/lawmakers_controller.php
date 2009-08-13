@@ -373,7 +373,12 @@ class LawmakersController extends AppController {
         $state = $lawmaker['Lawmaker']['state'];
         $party = $lawmaker['Lawmaker']['party'];
         $district = $lawmaker['Lawmaker']['district'];
-        
+        $bioguide_id = $lawmaker['Lawmaker']['bioguide_id'];        
+
+        $this->CongressBiography =& ClassRegistry::init('CongressBiography');
+        $biography = $this->CongressBiography->findById($bioguide_id);
+        $this->set('congressional_bio', $biography); 
+
         /* cache built into fedspending component */
         $fedSpendingSummary = $this->Fedspending->getFedSpendingSummary($state);
         $this->set('fedSpending', $fedSpendingSummary);
