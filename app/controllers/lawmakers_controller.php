@@ -115,10 +115,36 @@ class LawmakersController extends AppController {
 
         $this->Lawmaker->recursive = 0;
    
+        //??
         $leaders_congress = $this->Lawmaker->getCurrentCongress();
         $this->set('leaders_congress', $leaders_congress);
         $state = strtolower($webuser->region);
-        
+
+        $senators_index_key = md5('senators_index_'.$webuser->region);
+        $_cache->remove($senators_index_key);
+        if(!$senators = $_cache->load($senators_index_key)) {
+            $senators = $this->Lawmaker->getStateSenators($webuser->region);
+            $_cache->save($senators, $senators_index_key, array(), (86400*3));
+        }
+        $this->set('senators', $senators);
+
+        $districts_index_key = md5('districts_index_'.$state);
+        if(!$districts = $_cache->load($districts_index_key)) {        
+            $districts = $this->Lawmaker->getStateDistricts($webuser->region);
+            $_cache->save($districts, $districts_index_key, array(), (86400*3));
+        }
+        $this->set('districts', $districts);
+
+        $state_governor_key = md5('state_governor_'.$webuser->region);
+        $_cache->remove($state_governor_key);
+        if(!$governor = $_cache->load($state_governor_key)) {
+            $this->StateGovernor =& ClassRegistry::init('StateGovernor');
+            $governor = $this->StateGovernor->getGovernor($webuser->region);
+            $_cache->save($governor, $state_governor_key, array(), (86400*3));
+        }
+        $this->set('governor',$governor);
+
+
         /* get congress members by state: cache since data isn't going to change*/
         //$current_congress_key = md5('current_congress_key_'.$state);
         //if(!$current_congress = $_cache->load($current_congress_key)) {
@@ -276,6 +302,7 @@ class LawmakersController extends AppController {
         $this->Lawmaker =& ClassRegistry::init('Lawmaker');
         $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
 
+
         if(!isset($this->params['username'])) {
 
             if(!$id) {
@@ -374,9 +401,21 @@ class LawmakersController extends AppController {
         $party = $lawmaker['Lawmaker']['party'];
         $district = $lawmaker['Lawmaker']['district'];
         $bioguide_id = $lawmaker['Lawmaker']['bioguide_id'];        
+        
+        $districts_view_key = md5('district_view_'.$state);
+        if(!$districts = $_cache->load($districts_view_key)) {
+            $districts = $this->Lawmaker->getStateDistricts($state);
+            $_cache->save($districts, $districts_view_key, array(), (86400*3));
+        }
 
-        $this->CongressBiography =& ClassRegistry::init('CongressBiography');
-        $biography = $this->CongressBiography->findById($bioguide_id);
+        $this->set('districts', $districts);
+       
+        $profile_bioguide_key = md5('profile_biography_'.$bioguide_id);
+        if(!$biography = $_cache->load($profile_bioguide_key)) {
+            $this->CongressBiography =& ClassRegistry::init('CongressBiography');
+            $biography = $this->CongressBiography->findById($bioguide_id);
+            $_cache->save($biography, $profile_bioguide_key, array(), (86400*3));
+        }
         $this->set('congressional_bio', $biography); 
 
         /* cache built into fedspending component */
