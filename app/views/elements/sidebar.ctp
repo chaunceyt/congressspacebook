@@ -64,13 +64,27 @@
                     ?>
                     
                     <!--<p><a href="http://www.tetonpost.com/sc/?sc=<?php echo strtoupper($by_state); ?>&fy=8" target="_blank">Federal Contracts</a></p>-->
-                <?php } ?>
+                <?php } 
+                      else {
+                ?>
                 </p>
+                <p>
+                <h2>Congressional Districts</h2>
+                <?php
+                foreach($districts as $district) {
+                    echo '<a href="'.Router::url('/profiles/'.$district['lawmakers']['username']).'">'.$district['lawmakers']['firstname'] . ' ' . $district['lawmakers']['lastname'] . '</a>  ';
+                    echo '[ '. $district['lawmakers']['state'].'-'.$district['lawmakers']['district'].'-'.$district['lawmakers']['party'].' ]<br/>';
+                }
+
+                ?>
+                </p>
+                <?php } ?>
                 <!--
                 Congress referenced :<br/>
                 <strong><em><?php echo $keyword; ?></em></strong> -
                 <?php echo number_format($wordused); ?> time(s)<br/> in 2008 <br/>
                 -->
+                <br/>
                 <h2>About</h2>
                 <ul>
                     <li><a href="<?php echo Router::url('/pages/about'); ?>">CongressSpaceBook</a></li>
