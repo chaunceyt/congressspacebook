@@ -238,5 +238,24 @@ class Lawmaker extends AppModel {
         $results = $this->query($sql);
         return $results;
     }
+
+    public function getStateSenators($state)
+    {
+            $sql = "SELECT * FROM lawmakers as Lawmaker 
+                    WHERE state = '".$state."' AND district IN ('Senior Seat','Junior Seat') AND in_office = '1' 
+                    ORDER BY district DESC";        
+        $results = $this->query($sql);
+        return $results;
+    }
+
+    public function getStateDistricts($state)
+    {
+        $sql = "select username, firstname, lastname, party, state, district from lawmakers 
+                where state = '".$state."' and in_office = 1 
+                and district NOT IN ('Junior Seat','Senior Seat') 
+                order by district;";
+        $results = $this->query($sql);
+        return $results;
+    }
 }
 ?>
