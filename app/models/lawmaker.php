@@ -257,5 +257,18 @@ class Lawmaker extends AppModel {
         $results = $this->query($sql);
         return $results;
     }
+
+    public function getRepresentative($state=null, $district=null)
+    {
+        if($state && $district) {
+            $sql = "SELECT * FROM lawmakers as lawmaker
+                    WHERE state = '".$state."' AND district = '".$district."'";
+            $results = $this->query($sql);
+            return $results;
+        }
+        else {
+            return false;
+        }
+    }
 }
 ?>

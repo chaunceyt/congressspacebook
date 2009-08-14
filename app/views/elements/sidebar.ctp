@@ -74,7 +74,7 @@
                 <?php
                 foreach($districts as $district) {
                     echo '<a href="'.Router::url('/profiles/'.$district['lawmakers']['username']).'">'.$district['lawmakers']['firstname'] . ' ' . $district['lawmakers']['lastname'] . '</a>  ';
-                    echo '[ '. $district['lawmakers']['state'].'-'.$district['lawmakers']['district'].'-'.$district['lawmakers']['party'].' ]<br/>';
+                    echo '[ '. $district['lawmakers']['state'].'-'.$district['lawmakers']['party'].'-'.$district['lawmakers']['district'].' ]<br/>';
                 }
 
                 ?>

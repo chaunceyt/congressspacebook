@@ -69,7 +69,7 @@ class TestController extends AppController {
         $_current_user = $this->Session->read('current_webuser');
         //print_r($_current_user);
         
-        $senators = $this->Lawmaker->getStateSenators($_current_user->region);
+        $senators = $this->Lawmaker->getRepresentative('NY', '14');
         $this->set('senators', $senators);
         
     }

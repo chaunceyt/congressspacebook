@@ -115,6 +115,11 @@ class LawmakersController extends AppController {
             $this->set('webuser_state', $webuser_state);
         }
 
+        if(isset($district) && !empty($district)) {
+            $representative = $this->Lawmaker->getRepresentative($webuser_state, $district);
+            $this->set('representative', $representative);
+        }
+
 
         //$zipcodes=array();
         //$i=0;

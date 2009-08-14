@@ -54,10 +54,6 @@ foreach ($senators as $lawmaker):
             </div>
             <div class="clear"></div>
             <br/>
-            <br/>
-        
- 
- 
 <?php endforeach;
 }
 ?>

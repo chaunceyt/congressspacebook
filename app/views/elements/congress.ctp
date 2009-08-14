@@ -55,3 +55,32 @@
 </tr>
 </table>
 </span>
+<br/>
+<?php
+if(isset($representative)) {
+echo '<h2><small>Your US Representative</small></h2>';
+$i = 0;
+foreach ($representative as $lawmaker):
+    $keyword = $lawmaker['lawmaker']['firstname'] . ' ' .$lawmaker['lawmaker']['lastname'];
+    $title_str = $lawmaker['lawmaker']['firstname'] . ' ' .$lawmaker['lawmaker']['lastname'] .' ['.$lawmaker['lawmaker']['party'] .'-'.$lawmaker['lawmaker']['district'].']';
+    $congresspedia_name = ucfirst($lawmaker['lawmaker']['firstname']) . '_' .ucfirst($lawmaker['lawmaker']['lastname']);
+?>
+            <strong><a class="url" rel="me" href="<?php echo Router::url('/profiles/'.$lawmaker['lawmaker']['username']); ?>" title="<?php echo $title_str; ?>"><?php echo $lawmaker['lawmaker']['firstname']; ?> <?php echo $lawmaker['lawmaker']['lastname']; ?></a></strong>
+            <?php
+            if($lawmaker['lawmaker']['party'] == "D") {
+                $party_str = 'Democrat';
+            }
+            echo $party_str;
+            echo ' for Congressional District '. $lawmaker['lawmaker']['district'];
+            if(!empty($lawmaker['lawmaker']['webform'])) {
+                echo ' - <a href="'.$lawmaker['lawmaker']['webform'].'" title="Contact Me" target="_blank">Contact</a><br/>';
+            }
+            
+           // echo '<br/>';
+           // echo '<a href="'.Router::url('/profiles/'.$lawmaker['lawmaker']['username']).'">State Spending</a>';
+            ?>
+            <div class="clear"></div>
+            <br/>
+<?php endforeach;
+}
+?>
