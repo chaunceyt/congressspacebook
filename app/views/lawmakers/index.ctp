@@ -1,25 +1,25 @@
-<!--- Development -->            
 <div id="content">
     <div class="post">
         <div class="entry">
 <div id="homepage_page">
 <div id="homepage_right">
 <h2>...striving to make Congress more accountable and transparent...</h2>
-<p>
 <?php
 $today = date("F j, Y, g:i a");
 echo '<small> by congressSB - '.$today.'</small>';
 ?>
 </p>
+<br/>
+<br/>
 <p>Here we're tracking each member's voting records, FEC reports, Campaign Finance summary, their opinions on the issues, and even their state's federal spending reports. </p>
 
+<?php /* ?>
 <p>
 View the congressional <a href="<?php echo Router::url('/congressional_reports/'); ?>">reports</a> and search, 
 <a href="<?php echo Router::url('/congress_votes/'); ?>">votes</a> and/or, 
 <a href="<?php echo Router::url('/congress_bills/'); ?>">bills</a> and then
 find out who is <a href="<?php echo Router::url('/congress_parties/'); ?>">partying</a> with who and where and when.
 </p>
-<?php /* ?>
 <p><h2>Browse  <a href="<?php echo Router::url('/lawmakers/browse/house'); ?>" title="House">House</a> or <a href="<?php echo Router::url('/lawmakers/browse/senate'); ?>" title="Senate">Senate</a> Members</h2></p>
 <p style="margin-top:15px">
 View by letter: 
@@ -30,7 +30,6 @@ foreach($letters as $letter) {
 }
 ?>
 </p>
-<?php */ ?>
 <p style="margin-top:15px;"> So you know ...! some of our congressional members are using <strong><a href="<?php echo Router::url('/lawmakers_with_twitter_accounts'); ?>">twitter</a> and <a href="<?php echo Router::url('/lawmakers_with_youtube_channel'); ?>">youtube</a></strong> to get their message out.
 </p>
 <p>
@@ -39,37 +38,37 @@ the most bills <a href="<?php echo Router::url('/lawmakers/top/enacted'); ?>" ti
 the most <a href="<?php echo Router::url('/lawmakers/top/novote'); ?>" title="Top 100 Lawmakers with the most No Votes">novotes</a>, 
 and <a href="<?php echo Router::url('/lawmakers/top/cosponsored'); ?>" title="Top 100 Lawmakers who co-sponsored the most Bills">co-sponsored</a> the most bills...<br/>
 </p>
+<?php */ ?>
+<p><?php echo $this->element('congress'); ?></p>
+<br/>
 <p><small>0 COMMENTS</small></p>
 <?php /* ?>
 <?php */ ?>
 <hr noshade />
 <br/>
-<h2>Transparency and being held accountable</h2>
+<h2><small>Stay Informed! Take Action in your Political Scene.</small></h2>
 <p>
 <?php
 $today = date("F j, Y, g:i a");
 echo '<small> by congressSB - '.$today.'</small>';
 ?>
 </p>
-<p>
-Make Transparency work - Stay Informed and Take Action in your Political Scene. 
-</p>
-<span style="margin:0 auto"><?php echo $this->element('mydistrict_search'); ?></span>
+<p><span style="margin:0 auto"><?php echo $this->element('mydistrict_search'); ?></span></p>
 <br/>
 <p><small>0 COMMENTS</small></p>
 <hr noshade />
 <p><h2>Poll(s) <br/> <small>American Recovery and Reinvestment Act</small> <a href="/recoveryact_100days_report" title="100 Days 100 Projects" target="_blank">100-Days-100-Projects</a></h2></p>
 <br/>
-<hr noshade />
-<p></p>
-<p><h2>Whitehouse Video Stream</h2></p>
 <p>
 <?php
+/*
+echo '<p><h2>Whitehouse Video Stream</h2></p>';
+
 foreach($videos as $yt_username) {
     $yt_url = 'http://gdata.youtube.com/feeds/base/users/'.trim($yt_username).'/uploads?alt=rss&v=2&client=ytapi-youtube-profile';
     $site->getYoutubeVideoRss($yt_url);
 }
-
+*/
 ?>
 </p>
 
@@ -81,6 +80,8 @@ foreach($videos as $yt_username) {
 <h2>You are from: <?php echo $current_webuser->region; ?> </h2>
 <p><a style="hover:none;" href="<?php echo Router::url('/nearby/lawmakers'); ?>">
 <img src="<?php echo Router::url('/'); ?>img/states/<?php echo strtolower($current_webuser->region); ?>.png" alt="default" border="0" /></p></a>
+
+<?php /* ?>
 <h3>Browse other states</h3>
 <?php
     $max_size = 250; // max font size in %
@@ -149,8 +150,10 @@ foreach($videos as $yt_username) {
 
 ?>
 </p>
-<h3>.. or just <a href="<?php echo Router::url('/lawmakers/browse/'); ?>" title="Browse">Browse</a> them all.</h3>
-
+<?php */ ?>
+<?php echo $this->element('state_senators'); ?>
+<h3><a href="<?php echo Router::url('/lawmakers/browse/'); ?>" title="Browse">Browse</a> all</h3>
+<br/>
 </div> <!-- page_left -->
 </div>
 </p>
