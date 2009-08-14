@@ -10,7 +10,7 @@
     <p></p>
     <div>
     <?php if(isset($myZipcode,$myDistrict)) { ?>
-    <h2>The zipcode <?php echo $myZipcode; ?> is located in <br/> <?php echo str_replace('-',' Congressional District # ', $myDistrict); ?></h2>
+    <h2><?php echo 'Congressional District # '. $myDistrict; ?></h2>
     <?php } ?>
     <div id="profileresults"> 
 <?php

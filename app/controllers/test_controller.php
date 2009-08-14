@@ -1,10 +1,10 @@
 <?php
 ini_set("display_errors", true);
-//Configure::write('debug', 1);
+Configure::write('debug', 1);
 class TestController extends AppController {
 
     var $name = 'Test';
-    var $helpers = array('Html', 'Form', 'Usafedspending');
+    var $helpers = array('Html', 'Form', 'Usafedspending', 'State');
     var $components = array('Capitolwords', 'Govtrack','Lucene', 'FollowTheMoneyState', 'Sunlightlabs');
     var $uses = array('Lawmaker', 'LawmakerStats', 'Govtrack');
     var $cookie_expires = null;
@@ -66,6 +66,11 @@ class TestController extends AppController {
         $biography = $this->CongressBiography->findById('F000444');
         //print_r($biography);
         $this->set('biography',$biography);
+        $_current_user = $this->Session->read('current_webuser');
+        //print_r($_current_user);
+        
+        $senators = $this->Lawmaker->getStateSenators($_current_user->region);
+        $this->set('senators', $senators);
         
     }
 

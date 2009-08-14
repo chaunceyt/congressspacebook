@@ -67,7 +67,8 @@
                 <?php } 
                       else {
                 ?>
-                </p>
+                </p> 
+                <?php if(isset($districts)) { ?>
                 <p>
                 <h2>Congressional Districts</h2>
                 <?php
@@ -78,6 +79,7 @@
 
                 ?>
                 </p>
+                <?php } ?>
                 <?php } ?>
                 <!--
                 Congress referenced :<br/>

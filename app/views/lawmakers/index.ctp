@@ -1,3 +1,4 @@
+<!-- WEB REGION: <?php echo $current_webuser->region; ?>--->
 <div id="content">
     <div class="post">
         <div class="entry">
@@ -53,6 +54,7 @@ $today = date("F j, Y, g:i a");
 echo '<small> by congressSB - '.$today.'</small>';
 ?>
 </p>
+<p>Locate your District Representative</p>
 <p><span style="margin:0 auto"><?php echo $this->element('mydistrict_search'); ?></span></p>
 <br/>
 <p><small>0 COMMENTS</small></p>
@@ -77,12 +79,17 @@ foreach($videos as $yt_username) {
 </div>
 
 <div id="homepage_left">
-<h2>You are from: <?php echo $current_webuser->region; ?> </h2>
-<p><a style="hover:none;" href="<?php echo Router::url('/nearby/lawmakers'); ?>">
-<img src="<?php echo Router::url('/'); ?>img/states/<?php echo strtolower($current_webuser->region); ?>.png" alt="default" border="0" /></p></a>
 
-<?php /* ?>
-<h3>Browse other states</h3>
+<?php if(isset($webuser_state) && !empty($webuser_state)) { ?>
+
+    <h2>You are from: <?php echo $webuser_state; ?> </h2>
+    <p><a style="hover:none;" href="<?php echo Router::url('/lawmakers/browse/state/'.$webuser_state); ?>">
+    <img src="<?php echo Router::url('/'); ?>img/states/<?php echo strtolower($webuser_state); ?>.png" alt="default" border="0" /></p></a>
+    <?php echo $this->element('state_senators'); ?>
+
+<?php } else { ?>
+
+    <h3>Browse by states</h3>
 <?php
     $max_size = 250; // max font size in %
     $min_size = 100; // min font size in %
@@ -150,8 +157,9 @@ foreach($videos as $yt_username) {
 
 ?>
 </p>
+<?php /* ?>
 <?php */ ?>
-<?php echo $this->element('state_senators'); ?>
+<?php } ?>
 <h3><a href="<?php echo Router::url('/lawmakers/browse/'); ?>" title="Browse">Browse</a> all</h3>
 <br/>
 </div> <!-- page_left -->

@@ -31,7 +31,7 @@ class LawmakersController extends AppController {
      * @access public
      * @var string List of components used by this controller's actions
      */    
-    var $components = array('Opensecrets', 'Fedspending', 'Zend', 'Govtrack', 'Sunlightlabs');
+    var $components = array('Opensecrets', 'Fedspending', 'Zend', 'Govtrack', 'Sunlightlabs', 'Cookie');
 
     /**
      * Property used to store list of helpers used by this controller's actions' views
@@ -39,7 +39,7 @@ class LawmakersController extends AppController {
      * @access public
      * @var string List of helpers used by this controller's actions' views
      */
-    var $helpers = array('Html', 'Form', 'Javascript', 'Govtrack', 'Repstats', 'Usafedspending');
+    var $helpers = array('Html', 'Form', 'Javascript', 'Govtrack', 'Repstats', 'Usafedspending', 'State');
 
     /**
      * Property used to store list of Models used by this controller's actions
@@ -100,6 +100,21 @@ class LawmakersController extends AppController {
 
         //get district of connecting visitor
         $webuser_district = $this->Sunlightlabs->getDistrictFromLatLong($webuser->latitude, $webuser->longitude);
+        
+        if($this->Cookie->read('district') != null) {
+            $district = $this->Cookie->read('district');
+            $this->set('myDistrict', $district);
+        }
+
+        if($this->Cookie->read('state') != null) {
+            $webuser_state = $this->Cookie->read('state');
+            $this->set('webuser_state', $webuser_state);
+        }
+        else {
+            $webuser_state = $webuser->region;
+            $this->set('webuser_state', $webuser_state);
+        }
+
 
         //$zipcodes=array();
         //$i=0;
@@ -120,26 +135,26 @@ class LawmakersController extends AppController {
         $this->set('leaders_congress', $leaders_congress);
         $state = strtolower($webuser->region);
 
-        $senators_index_key = md5('senators_index_'.$webuser->region);
+        $senators_index_key = md5('senators_index_'.$webuser_state);
         $_cache->remove($senators_index_key);
         if(!$senators = $_cache->load($senators_index_key)) {
-            $senators = $this->Lawmaker->getStateSenators($webuser->region);
+            $senators = $this->Lawmaker->getStateSenators($webuser_state);
             $_cache->save($senators, $senators_index_key, array(), (86400*3));
         }
         $this->set('senators', $senators);
 
-        $districts_index_key = md5('districts_index_'.$state);
+        $districts_index_key = md5('districts_index_'.$webuser_state);
         if(!$districts = $_cache->load($districts_index_key)) {        
-            $districts = $this->Lawmaker->getStateDistricts($webuser->region);
+            $districts = $this->Lawmaker->getStateDistricts($webuser_state);
             $_cache->save($districts, $districts_index_key, array(), (86400*3));
         }
         $this->set('districts', $districts);
 
-        $state_governor_key = md5('state_governor_'.$webuser->region);
+        $state_governor_key = md5('state_governor_'.$webuser_state);
         $_cache->remove($state_governor_key);
         if(!$governor = $_cache->load($state_governor_key)) {
             $this->StateGovernor =& ClassRegistry::init('StateGovernor');
-            $governor = $this->StateGovernor->getGovernor($webuser->region);
+            $governor = $this->StateGovernor->getGovernor($webuser_state);
             $_cache->save($governor, $state_governor_key, array(), (86400*3));
         }
         $this->set('governor',$governor);
@@ -299,6 +314,8 @@ class LawmakersController extends AppController {
      */
     function view($id=null) 
     {
+        $_cache = $this->Zend->cache();
+        
         $this->Lawmaker =& ClassRegistry::init('Lawmaker');
         $this->LawmakerStats =& ClassRegistry::init('LawmakerStats');
 
@@ -312,7 +329,11 @@ class LawmakersController extends AppController {
         }
 
         if(isset($this->params['username'])) {
-            $id = $this->Lawmaker->getProfileIdByName($this->params['username']);
+            $username_id_key = md5('username_id_'.$this->params['username']);
+            if(!$id = $_cache->load($username_id_key)) {
+                $id = $this->Lawmaker->getProfileIdByName($this->params['username']);
+                $_cache->save($id, $username_id_key, array(), (86400*3));
+            }
             $this->pageTitle = str_replace('_', ' ',$this->params['username']);
         }
 
@@ -382,7 +403,6 @@ class LawmakersController extends AppController {
             $this->set('_page_', $_page);
         }
         
-        $_cache = $this->Zend->cache();
 
         //let's get this lawmaker
         /* cache lawmaker no need to keep hitting the database */

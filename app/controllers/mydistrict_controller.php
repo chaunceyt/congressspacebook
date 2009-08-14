@@ -3,7 +3,7 @@ Configure::write('debug', 1);
 class MydistrictController extends AppController {
 
     var $name = 'Mydistrict';
-    var $helpers = array('Html', 'Form');
+    var $helpers = array('Html', 'Form', 'State');
     var $components = array('Sunlightlabs', 'Cookie');
     var $uses = array();
     var $cookie_expires = 2592000; // 30 days
@@ -54,7 +54,9 @@ class MydistrictController extends AppController {
             //$this->autoRender=false;
             $this->Lawmaker =& ClassRegistry::init('Lawmaker');
             $st_dist = explode('-',$district);
-            $lawmakers = $this->Lawmaker->getMyDistrict($st_dist[0], $st_dist[1]);
+            $state = $this->Cookie->read('state');
+            $district = $this->Cookie->read('district');
+            $lawmakers = $this->Lawmaker->getMyDistrict($state, $district);
             $president = $this->Lawmaker->getPresident();
             //print_r($lawmakers);
             $this->set('lawmakers', $lawmakers);
