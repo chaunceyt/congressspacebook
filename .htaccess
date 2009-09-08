@@ -1,6 +1,7 @@
 <IfModule mod_rewrite.c>
    RewriteEngine on
    RewriteCond %{REQUEST_URI} !/brief_summaries.*
+   RewriteCond %{REQUEST_URI} !/recovery_gov.*
    RewriteCond %{REQUEST_URI} !/recoveryact_100days_report.*
    RewriteRule    ^$ app/webroot/    [L]
    RewriteRule    (.*) app/webroot/$1 [L]

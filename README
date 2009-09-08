@@ -1,34 +1,28 @@
-CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC. Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.
+CongressSpaceBook - a opensource web application designed to make it easy to deploy websites that focus on striving to make Congress more accountable and transparent...
 
-The Cake Software Foundation - promoting development related to CakePHP
-http://www.cakefoundation.org/
+Developed for: App For America http://sunlightlabs.com/appsforamerica/ this contest has ended. I didn't win but will continue to develop the site. Because I'm striving to make Congress more accountable and transparent!
 
-CakePHP - the rapid development PHP framework
-http://www.cakephp.org
+Mission/Goal - Help ensure Congress and the President keep their promises of more transparency. By exposing the congress person spending habits, voting record and show who influences them and how much they are spending to do so. We track the Bills introduced, enacted, and co-sponsored for each congress person.
 
-Cookbook - user documentation for learning about CakePHP
-http://book.cakephp.org
+Target audience - Those who now expect transparency from our elected officials.
 
-API - quick reference to CakePHP
-http://api.cakephp.org
+Technical Description - A social networking platform where the only members networking are Congress members.
 
-The Bakery - everything CakePHP
-http://bakery.cakephp.org
+- Developer / Site maintainer: Chauncey Thorn
+- $email = $this->chaunceyt->gmail->com();
 
-The Show - live and archived podcasts about CakePHP and more
-http://live.cakephp.org
+- Powered by: MASHUP::Keyword and Sunlight Labs data
+- takes advantage of state-of-the-art XML webservices i.e. Google, Yahoo, Flickr, YouTube
+- Govtrack.us, OpenSecrets, FedSpending, Capitol Words, Sunlight Labs and a number of others..
+- Environment: Linux, Apache2, Mysql 5, PHP 5.2.x + Zend CakePHP Framework MVC
+- Framework: I first developed this site using Zend however I prefer the CakePHP Framework's MVC pattern but, still use Zend components!
+- News results provided by Yahoo, Google, Technorati
+- Music tagclouds provided by Audioscrobbler
+- Video results provided by Youtube
+- Photos results provided by Yahoo / Flickr
+- Blog Comment results provided by Backtype / FriendFeed
+- Events results provided by Eventful
+- GeoIP/Geocity Lite results used to tailor search results to ip location if possible
 
-CakePHP Google Group - community mailing list and forum
-http://groups.google.com/group/cake-php
-
-#cakephp on irc.freenode.net - chat with CakePHP developers
-irc://irc.freenode.net/cakephp
-
-CakeForge - open development for CakePHP
-http://cakeforge.org
-
-CakePHP gear
-http://www.cafepress.com/cakefoundation
-
-Recommended Reading
-http://astore.amazon.com/cakesoftwaref-20/
+This code is primary for transparency. It has a number of dependencies that are not in the REPO.
+I rsync govtrack.us/data/
